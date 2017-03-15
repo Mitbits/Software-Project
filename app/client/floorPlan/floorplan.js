@@ -9,7 +9,10 @@ Template.table.events({
         ;
 
     }
-})
+});
+
+
+
 Template.floorplan.helpers({
     tables()
     {

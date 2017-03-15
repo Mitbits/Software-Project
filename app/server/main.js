@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import {Table, TableStatus, TableType} from '../imports/api/table.js'
 Meteor.startup(() => {
+	Table.remove({});
 	for(i=1;i<=16;i++){
 		//create astronomy table obj entry
 		var table_entry = new Table({
