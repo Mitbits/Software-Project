@@ -4,15 +4,30 @@
             {{>table}}
         {{/each}}
     </div>
-    <!--<div class="ui modal">-->
-        <!--<div class="header">Header{{this._id}}</div>-->
-    <!--</div>-->
+
 </template>
 
 <template name="table">
     <div class="column">
-	    <div  class="ui black inverted segment">
-            Table {{table_id}}<br>
+        <div class="ui black inverted segment">
+            {{#if isDirty}}
+                <a class="ui red right corner label">
+                    <i class="trash outline icon"></i>
+                </a>
+            {{else if isClean}}
+                <a class="ui green right corner label">
+                    <i class="check outline icon"></i>
+                </a>
+            {{else if isReserved}}
+                <a class="ui gray right corner label">
+                    <i class="check outline icon"></i>
+                </a>
+            {{else if isTaken}}
+                <a class="ui yellow right corner label">
+                    <i class="check outline icon"></i>
+                </a>
+            {{/if}}
+            Table1 {{table_id}}<br>
             Size  {{size}}<br>
             Table Status {{table_status}}<br>
             Table Type {{table_type}}<br>
@@ -21,7 +36,16 @@
 
         </div>
     </div>
+    <div class="ui modal" id="{{id}}">
+        <div class="header">
+            Header{{this._id}}
+            <br>
+            {{table_id}}
+        </div>
+
+    </div>
 </template>
+
 
 
 
