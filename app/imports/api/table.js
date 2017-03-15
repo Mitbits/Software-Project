@@ -16,6 +16,7 @@ export const TableStatus = Enum.create({
 
 });
 
+
 //types for each table
 export const TableType = Enum.create({
 	name : 'TableType',
@@ -36,7 +37,8 @@ export const Table = Class.create({
 		size : Number,
 		table_status: TableStatus,
 		table_type :TableType,
-		reservation_intv : Number
+		reservation_intv : Number,
+		converted : Boolean
 	}
 });
 
