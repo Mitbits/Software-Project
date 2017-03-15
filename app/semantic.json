@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "base": "node_modules",
+=======
+  "base": "node_modules/",
+>>>>>>> ef496ad6278aa212f427d667343b7d95644db7f2
   "paths": {
     "source": {
       "config": "src/theme.config",
@@ -19,4 +23,8 @@
   "autoInstall": false,
   "rtl": false,
   "version": "2.2.9"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ef496ad6278aa212f427d667343b7d95644db7f2
