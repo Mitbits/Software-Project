@@ -7,10 +7,10 @@ export const Tables = new Mongo.Collection('table');
 export const TableStatus = Enum.create({
 	name : 'TableStatus',
 	identifiers : {
-		DIRTY: 1,
-		CLEAN: 2,
-		RESERVED: 3,
-		TAKEN: 4
+		DIRTY: 'Dirty',
+		CLEAN: 'Clean',
+		RESERVED: 'Reserved',
+		TAKEN: 'Taken'
 
 	}
 
@@ -20,8 +20,8 @@ export const TableStatus = Enum.create({
 export const TableType = Enum.create({
 	name : 'TableType',
 	identifiers :{
-		RESERVATION :1,
-		WALKIN : 2
+		RESERVATION : 'Reservation',
+		WALKIN : 'Walkin'
 
 	}
 });
