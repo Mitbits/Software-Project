@@ -5,9 +5,9 @@ Template.table.events({
     'click .icon.link' () {
         console.log(event.currentTarget.id);
     },
-    'click .set_taken' () {
+    'click .ui.teal.button' () {
     	Tables.update(this._id,{
-		$set: { table_status : TableStatus.RESERVED},
+		$set: { table_status : TableStatus.TAKEN},
 	});
     },
     'click .link.card' () {
@@ -22,6 +22,8 @@ Template.table.events({
             $set: { table_status : TableStatus.CLEAN}
         });
     },
+	
+	
 });
 
 Template.floorplan.helpers({
