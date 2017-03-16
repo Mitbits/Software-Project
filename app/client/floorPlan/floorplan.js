@@ -7,7 +7,7 @@ Template.table.events({
     },
     'click .ui.teal.button' () {
     	Tables.update(this._id,{
-		$set: { table_status : TableStatus.TAKEN},
+		$set: { table_status : TableStatus.DIRTY},
 	});
     },
     'click .link.card' () {
@@ -21,6 +21,7 @@ Template.table.events({
         Tables.update(this._id,{
             $set: { table_status : TableStatus.CLEAN}
         });
+;
     },
 	
 	
