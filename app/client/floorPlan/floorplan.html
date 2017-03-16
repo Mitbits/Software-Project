@@ -1,23 +1,8 @@
 <template name="floorplan">
     <div class="ui four column grid">
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-        {{>table}}
-
-
+        {{#each tables}}
+            {{>table}}
+        {{/each}}
     </div>
     <!--<div class="ui modal">-->
         <!--<div class="header">Header{{this._id}}</div>-->
@@ -26,8 +11,11 @@
 
 <template name="table">
     <div class="column">
-        <div class="ui black inverted segment">Table#<br><br><br><br><br></div>
+        <div class="ui black inverted segment">{{> tableid}}</div>
     </div>
+</template>
+<template name="tableid">
+    {{table_id}}
 </template>
 
 

@@ -1,3 +1,6 @@
+import '../../imports/api/table.js';
+import { Table } from '../../imports/api/table.js';
+
 Template.table.events({
     'click .icon.link' () {
         console.log(event.currentTarget.id);
@@ -7,3 +10,9 @@ Template.table.events({
 
     }
 })
+Template.floorplan.helpers({
+    tables()
+    {
+        return Table.find({});
+    },
+});
