@@ -5,10 +5,10 @@ import {Table,Tables, TableStatus, TableType} from '../imports/api/table.js'
 // loops through all reservation tables checking if they can be made walkins 
 function check_reservation_interval(){
 	console.log("Triggered check reservation");
-	Table.find({'table_type':TableType.RESERVATION}).forEach(function(table_entry){
+	Table.find({$or: [{'table_type':TableType.RESERVATION},{'converted':true}]}).forEach(function(table_entry){
 
 		//if the table is not reserved, convert it to walk for this hour
-		if(table_entry.table_status != TableStatus.RESERVED){
+		if(table_entry.table_type == TableType.RESERVATION && table_entry.table_status != TableStatus.RESERVED){
 
 			table_entry.table_type = TableType.WALKIN;
 			table_entry.converted = true;
