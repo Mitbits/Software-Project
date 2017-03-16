@@ -1,5 +1,6 @@
 {
-  "base": "node_modules/",
+  "base": "/node_modules",
+
   "paths": {
     "source": {
       "config": "src/theme.config",
@@ -20,3 +21,4 @@
   "rtl": false,
   "version": "2.2.9"
 }
+
