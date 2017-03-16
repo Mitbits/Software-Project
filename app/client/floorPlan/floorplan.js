@@ -21,10 +21,7 @@ Template.table.events({
         Tables.update(this._id,{
             $set: { table_status : TableStatus.CLEAN}
         });
-;
     },
-	
-	
 });
 
 Template.floorplan.helpers({

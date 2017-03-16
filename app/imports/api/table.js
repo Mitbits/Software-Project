@@ -35,10 +35,12 @@ export const Table = Class.create({
 	fields : {
 		table_id : Number,
 		size : Number,
+		occupants: Number,
 		table_status: TableStatus,
 		table_type :TableType,
 		reservation_intv : Number,
-		converted : Boolean
+		converted : Boolean,
+		billPaid: Boolean
 	}
 });
 
