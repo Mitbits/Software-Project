@@ -12,4 +12,8 @@ FlowRouter.route('/floorplan', {
     }
 });
 
-
+FlowRouter.route('/orderqueue', {
+    action: function() {
+        BlazeLayout.render("orderQueue");
+    }
+});
