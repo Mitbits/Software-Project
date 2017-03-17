@@ -33,5 +33,13 @@
     float:left;
     padding-left:40px;
     margin-top:30px;
-
+}
+.form-group{
+    margin-right: 30px;
+    margin-bottom: 15px;
+}
+.timeLabel{
+    margin-bottom:0px;
+    margin: auto;
+    float: left;
 }

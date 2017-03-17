@@ -33,24 +33,28 @@
                         </div>
 
                         <div class="grey statistic" id ="counter">
-                            <i class="big disabled minus icon link" id = "minus"></i>
-                            <i class="big plus icon link"></i>
+
                             <div class="slabel">
                                 Table For
                             </div>
+                            <i class="big disabled minus icon link" id = "minus"></i>
+                            <i class="big plus icon link" id="plus"></i>
+                            <br>
                             <div class="value" id="count">
                                 0
                             </div>
                         </div>
+                        <label class="timeLabel">Pick a time:</label>
                         <div class="container">
                             <div class="row">
                                 <div class='col-sm-6'>
-                                    <div class="form-group">
+                                    <div class="form-group" >
                                         <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" />
                                             <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                            <input type='text' class="form-control"/>
+
                                         </div>
                                     </div>
                                 </div>
@@ -61,6 +65,7 @@
                                 </script>
                             </div>
                         </div>
+                        <button class="fluid ui positive button" type="submit">Confirm Reservation</button>
                     </form>
                 </div>
             </div>
@@ -68,4 +73,5 @@
         <div class="four wide column">
         </div>
     </div>
+
 </template>
