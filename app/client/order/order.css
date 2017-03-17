@@ -1,0 +1,16 @@
+.ui.celled.grid > .white.row {
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3px;
+}
+
+.ui[class*="internally celled"].grid {
+  padding:2em;
+}
+
+.rounded.row {
+  border-radius: 17px;
+}
+
+.ui.celled.grid > .spaced.row {
+  margin-bottom: 10px;
+}
