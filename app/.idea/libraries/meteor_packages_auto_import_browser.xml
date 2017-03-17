@@ -278,10 +278,13 @@
         <item url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/js/bootstrap.js" />
         <item url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/css/bootstrap.css" />
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/collections.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/tsega_bootstrap3-datetimepicker/4.17.37_1/web.browser/lib/js/bootstrap-datetimepicker.js" />
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/client/main.js" />
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/privateAPI.js" />
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/style/toykit.css" />
+        <item url="file://$USER_HOME$/.meteor/packages/tsega_bootstrap3-datetimepicker/4.17.37_1/web.browser/lib/css/bootstrap-datetimepicker.css" />
         <item url="file://$USER_HOME$/.meteor/packages/id-map/1.0.9/web.browser/id-map.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/momentjs_moment/2.8.4/web.browser/packages/momentjs:moment.js" />
         <item url="file://$USER_HOME$/.meteor/packages/jquery/1.11.10/web.browser/jquery.js" />
         <item url="file://$USER_HOME$/.meteor/packages/jquery/1.11.10/web.browser/main.js" />
         <item url="file://$USER_HOME$/.meteor/packages/msavin_mongol/2.0.1/web.browser/lib/common.js" />
@@ -713,10 +716,13 @@
       <root url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/js/bootstrap.js" />
       <root url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/css/bootstrap.css" />
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/collections.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/tsega_bootstrap3-datetimepicker/4.17.37_1/web.browser/lib/js/bootstrap-datetimepicker.js" />
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/client/main.js" />
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/privateAPI.js" />
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/style/toykit.css" />
+      <root url="file://$USER_HOME$/.meteor/packages/tsega_bootstrap3-datetimepicker/4.17.37_1/web.browser/lib/css/bootstrap-datetimepicker.css" />
       <root url="file://$USER_HOME$/.meteor/packages/id-map/1.0.9/web.browser/id-map.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/momentjs_moment/2.8.4/web.browser/packages/momentjs:moment.js" />
       <root url="file://$USER_HOME$/.meteor/packages/jquery/1.11.10/web.browser/jquery.js" />
       <root url="file://$USER_HOME$/.meteor/packages/jquery/1.11.10/web.browser/main.js" />
       <root url="file://$USER_HOME$/.meteor/packages/msavin_mongol/2.0.1/web.browser/lib/common.js" />

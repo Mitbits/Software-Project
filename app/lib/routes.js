@@ -11,5 +11,10 @@ FlowRouter.route('/floorplan', {
         BlazeLayout.render("floorplan");
     }
 });
+FlowRouter.route('/Reserve', {
+    action: function() {
+        BlazeLayout.render("reservationPage");
+    }
+});
 
 

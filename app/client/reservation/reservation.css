@@ -1,0 +1,37 @@
+.ui.form {
+    padding-left:3%;
+    padding-right:3%;
+}
+.ui.centered.card {
+    margin-top: 30px;
+}
+.slabel
+{
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    color: rgba(0,0,0,.87);
+    text-transform: uppercase;
+    text-align: center;
+    margin: auto;
+}
+.statistic>.value {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 1em;
+    color: #1b1c1d;
+    text-transform: uppercase;
+    text-align: center;
+}
+.plus.icon{
+    float:right;
+    padding-right:40px;
+    margin-top:30px;
+}
+.minus.icon{
+    float:left;
+    padding-left:40px;
+    margin-top:30px;
+
+}
