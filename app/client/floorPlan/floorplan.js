@@ -10,12 +10,6 @@ Template.table.events({
 		$set: { table_status : TableStatus.DIRTY},
 	});
     },
-    'click .link.card' () {
-        console.log(this._id);
-        $("#this._id")
-            .modal('show')
-        ;
-    },
     'click .red.right.corner.label' ()
     {
         Tables.update(this._id,{

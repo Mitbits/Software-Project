@@ -11,15 +11,18 @@
     margin-right: 20px;
 }
 .ui.inverted.segment{
-    background: rgba(27, 28, 29, 0.93);
+    background: rgba(27, 28, 29, 0.9);
     height: 130px;
 }
 .ui.inverted.segment:hover{
     background: rgba(27, 28, 29,1);
+    box-shadow: 10px 10px 5px #3e3e3e;
 }
 .users.icon {
     float: left;
     text-decoration: none;
     font-weight: normal;
-
+}
+.check.icon{
+    color: white;
 }

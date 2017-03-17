@@ -16,7 +16,7 @@
                 </a>
             {{else if isClean}}
                 <a class="ui green right corner label">
-                    <i class="check outline icon"></i>
+                    <i class="white check icon"></i>
                 </a>
             {{else if isReserved}}
                 <a class="ui gray right corner label">
@@ -29,10 +29,8 @@
                 </a>
             {{/if}}
             <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}</div>
-
             {{#if isReserved}}
-                <h2> Reserved for name: </h2>
-                insert time here
+                <h3> Reserved for name: </h3>insert time here
                 Table Type {{table_type}}<br>
                 {{else}}
                 <br>
