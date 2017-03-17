@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import {Table,Tables, TableStatus, TableType} from '../imports/api/table.js'
+import {Table,Tables, TableStatus, TableType} from '../imports/api/table.js';
+
+import '../imports/api/reservation.js';
 
 
 // loops through all reservation tables checking if they can be made walkins 
