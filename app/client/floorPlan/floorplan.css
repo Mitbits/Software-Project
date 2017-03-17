@@ -13,6 +13,7 @@
 .ui.inverted.segment{
     background: rgba(27, 28, 29, 0.9);
     height: 130px;
+	border: outset;
 }
 .ui.inverted.segment:hover{
     background: rgba(27, 28, 29,1);
