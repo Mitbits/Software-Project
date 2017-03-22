@@ -1,5 +1,5 @@
 import '../../imports/api/orders.js';
-import { Orders } from '../../imports/api/orders.js';
+import { Orders, ORDER_TYPE } from '../../imports/api/orders.js';
 
 Template.orderQueue.helpers({
 	templateGestures: {
@@ -15,4 +15,11 @@ Template.orderQueue.helpers({
 		return Orders.find({});
 	},
 });
+
+Template.orderRow.helpers({
+	'orderTypeResolved': function(orderTypeNumber) {
+		console.log(ORDER_TYPE.getIdentifier(orderTypeNumber));
+		return ORDER_TYPE.getIdentifier(orderTypeNumber);
+	}
+})
 
