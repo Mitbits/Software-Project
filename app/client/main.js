@@ -23,7 +23,6 @@ import './main.html';
 
 Template.landingpage.events({
     'click #login': function () {
-        console.log("hello");
         window.location.href = 'floorplan';
 
     }

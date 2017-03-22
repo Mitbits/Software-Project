@@ -16,6 +16,12 @@ Template.table.events({
             $set: { table_status : TableStatus.CLEAN}
         });
     },
+    'click .green.right.corner.label' ()
+    {
+        Tables.update(this._id,{
+            $set: { table_status : TableStatus.TAKEN}
+        });
+    },
 });
 
 Template.floorplan.helpers({
