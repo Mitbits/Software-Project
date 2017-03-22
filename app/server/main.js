@@ -1,14 +1,16 @@
 import { Meteor } from 'meteor/meteor';
-import {Table,Tables, TableStatus, TableType} from '../imports/api/table.js'
+import {Table,Tables, TableStatus, TableType} from '../imports/api/table.js';
+
+import '../imports/api/reservation.js';
 
 
 // loops through all reservation tables checking if they can be made walkins 
 function check_reservation_interval(){
 	console.log("Triggered check reservation");
-	Table.find({'table_type':TableType.RESERVATION}).forEach(function(table_entry){
+	Table.find({$or: [{'table_type':TableType.RESERVATION},{'converted':true}]}).forEach(function(table_entry){
 
 		//if the table is not reserved, convert it to walk for this hour
-		if(table_entry.table_status != TableStatus.RESERVED){
+		if(table_entry.table_type == TableType.RESERVATION && table_entry.table_status != TableStatus.RESERVED){
 
 			table_entry.table_type = TableType.WALKIN;
 			table_entry.converted = true;
@@ -16,7 +18,7 @@ function check_reservation_interval(){
 		}
 		//if it was converted to walk and is not taken, convert back
 		else if(table_entry.converted == true && table_entry.table_status != TableStatus.TAKEN){
-			table_entry.table_type = TableType.RESERVED;
+			table_entry.table_type = TableType.RESERVATION;
 			table_entry.converted = false;
 			table_entry.save();
 		}
@@ -35,14 +37,16 @@ Meteor.startup(() => {
 	for(i=1;i<=16;i++){
 		//create astronomy table obj entry
 		//L_status just for testing
-		L_status = (i%4) ? TableStatus.RESERVED : TableStatus.CLEAN;	
+		L_status = (i%4) ? TableStatus.CLEAN : TableStatus.RESERVED;
 		var table_entry = new Table({
 			"table_id":i,
 			"size":4,
+			"occupants" : 0,
 			"table_status":L_status,
 			"table_type":TableType.RESERVATION,
 			"reservation_intv":1,
-			"converted" : false
+			"converted" : false,
+			"billPaid"	: false,
 		});
 		table_entry.save();
 	}

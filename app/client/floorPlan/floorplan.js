@@ -7,14 +7,8 @@ Template.table.events({
     },
     'click .ui.teal.button' () {
     	Tables.update(this._id,{
-		$set: { table_status : TableStatus.TAKEN},
+		$set: { table_status : TableStatus.DIRTY},
 	});
-    },
-    'click .link.card' () {
-        console.log(this._id);
-        $("#this._id")
-            .modal('show')
-        ;
     },
     'click .red.right.corner.label' ()
     {
@@ -22,8 +16,6 @@ Template.table.events({
             $set: { table_status : TableStatus.CLEAN}
         });
     },
-	
-	
 });
 
 Template.floorplan.helpers({
