@@ -30,22 +30,22 @@ export const TableType = Enum.create({
 
 function reservation_checker(id){
 	table =Table.findOne({'table_id': id});
-	if (table.table_type == TableType.RESERVATION && table.table_status != TableStatus.RESERVED){
+	if (table.table_type == TableType.RESERVATION && table.table_status==TableStatus.CLEAN){
 		table.table_type = TableType.WALKIN;
 		console.log("TO WALKIN");
-	} else if (table.table_status != TableStatus.TAKEN){
+	} else if (table.table_type == TableType.WALKIN && table.table_status == TableStatus.CLEAN){
 		table.table_type = TableType.RESERVATION;
 		console.log("TO RESERVATION");
 	} else if (table.table_type = TableType.WALKIN && table.table_status == TableStatus.TAKEN){
 		console.log("WAITING...");
 		Meteor.setTimeout(function (){
-			reservation_checker(table);
+			reservation_checker(id);
 		},15*1000);
 	
 	}
 	table.save();
 	Meteor.setTimeout(function (){
-				reservation_checker(table);
+				reservation_checker(id);
 			},table.reservation_intv*1000);
 }
 
