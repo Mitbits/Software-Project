@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+
 import './main.html';
 //
 // Template.hello.onCreated(function helloOnCreated() {
@@ -21,10 +22,4 @@ import './main.html';
 //   },
 // });
 
-Template.landingpage.events({
-    'click #login': function () {
-        window.location.href = 'floorplan';
-
-    }
-})
 

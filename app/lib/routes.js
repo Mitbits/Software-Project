@@ -21,9 +21,18 @@ FlowRouter.route('/Success', {
         BlazeLayout.render("reservationSuccess");
     }
 });
-
 FlowRouter.route('/orderqueue', {
     action: function() {
         BlazeLayout.render("orderQueue");
+    }
+});
+FlowRouter.route('/manager', {
+    action: function() {
+        BlazeLayout.render("manager");
+    }
+});
+FlowRouter.route('/waiter', {
+    action: function() {
+        BlazeLayout.render("waiter");
     }
 });
