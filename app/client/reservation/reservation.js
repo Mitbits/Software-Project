@@ -50,13 +50,14 @@ Template.reservationPage.events({
             "email": Email,
             "seats": Seats*1,
             "date": new Date(date),
+			
 		});
 		reserve.sssave();
+
 		var tc = TableCluster.findOne({"size": Seats*1});
-		tc.reservations.push(reserve);
+		tc.pushReservation(reserve);
 		console.log(tc);
-		console.log(tc.reservations);
-		tc.sssave();
+		//console.log(tc.reservations);
    //     window.location.href = 'Success';
 
     }

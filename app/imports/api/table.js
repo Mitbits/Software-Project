@@ -90,8 +90,14 @@ export const TableCluster = Class.create({
 	meteorMethods: {
 			sssave()
 			{
+				console.log("hi");
 				return this.save();
-			}
+			},
+			pushReservation(res){		
+			this.reservations.push(res);
+			this.save();
+		}
+			
 		}
 });
 
