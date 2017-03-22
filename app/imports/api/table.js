@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { Class,Enum } from 'meteor/jagi:astronomy'
+import { Class, Enum } from 'meteor/jagi:astronomy'
 
 export const Tables = new Mongo.Collection('table');
 
