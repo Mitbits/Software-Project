@@ -28,10 +28,8 @@ export const TableType = Enum.create({
 });
 
 
-function reservation_checker(table){
-	if(table.table_id == 11){
-		console.log(table.table_id+table.table_status);
-	}
+function reservation_checker(id){
+	table =Table.findOne({'table_id': id});
 	if (table.table_type == TableType.RESERVATION && table.table_status != TableStatus.RESERVED){
 		table.table_type = TableType.WALKIN;
 		console.log("TO WALKIN");
@@ -71,7 +69,7 @@ export const Table = Class.create({
 			}
 			var table = this;
 			Meteor.setTimeout(function (){
-				reservation_checker(table);
+				reservation_checker(table.table_id);
 			},table.reservation_intv*1000)
 		}
 	}	
