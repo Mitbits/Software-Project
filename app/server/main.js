@@ -60,6 +60,7 @@ Meteor.startup(() => {
 	{
 		var order_entry = new Order({
 			"orderID": i,
+			"orderType": 1,
 			"waiterID": 1,
 			"menuItemID": 7,
 			"timePlaced": curDate
