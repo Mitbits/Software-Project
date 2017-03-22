@@ -42,5 +42,12 @@ export const Table = Class.create({
 		converted : Boolean,
 		billPaid: Boolean
 	}
+	meteorMethods :{
+		reservation_intr(){
+			Meteor.setInterval(interal_check(){,this
+		}
+	}	
+
+
 });
 
