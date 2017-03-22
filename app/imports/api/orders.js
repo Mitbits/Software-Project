@@ -28,6 +28,16 @@ export const Order = Class.create({
 		timePlaced: {
 			type: Date
 		}	
+	},
+	indexes: {
+		orderID: {
+			fields: {
+				orderID: 1
+			},
+			options: {
+				unique: true
+			}
+		}
 	}
 })
 
