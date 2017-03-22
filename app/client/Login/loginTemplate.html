@@ -21,43 +21,43 @@
                         <div class="col-md-12">
                             <div class="input-group blmd-form fields">
                                 <div class="blmd-line">
-                                    <input required  type="text" name="email" autocomplete="off" id="username" class="form-control">
+                                    <input required  type="text" name="email" autocomplete="off" id="loginEmail" class="form-control">
                                     <label class="blmd-label">E-mail</label>
                                 </div>
                             </div>
                             <div class="input-group blmd-form fields">
                                 <div class="blmd-line">
-                                    <input required type="password" name="password" autocomplete="off" id="password" class="form-control">
+                                    <input required type="password" name="password" autocomplete="off" id="loginPassword" class="form-control">
                                     <label class="blmd-label">Password</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <button type="button" id="login" class="btn btn-blmd ripple-effect btn-success btn-lg btn-block">Login</button>
+                            <button type="submit" id="login" class="btn btn-blmd ripple-effect btn-success btn-lg btn-block">Login</button>
                         </div>
                         <br/>
                     </form>
                     <!-- @ Login form container -->
-                    <form action="post" class="clearfix form-hidden" id="Register-form">
+                    <form class="clearfix form-hidden register" id="Register-form">
                         <h1>Register Account</h1>
                         <div class="col-md-12">
                             <div class="input-group blmd-form">
-                                    <div class="ui selection dropdown">
-                                        <input type="hidden" name="role">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Pick a Role</div>
-                                        <div class="menu">
-                                            <div class="item" data-value="4">Bus Boy</div>
-                                            <div class="item" data-value="3">Waiter</div>
-                                            <div class="item" data-value="2">Chef</div>
-                                            <div class="item" data-value="1">Host</div>
-                                            <div class="item" data-value="0">Manager</div>
-                                        </div>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="role" id ="role">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Pick a Role</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="4">Bus Boy</div>
+                                        <div class="item" data-value="3">Waiter</div>
+                                        <div class="item" data-value="2">Chef</div>
+                                        <div class="item" data-value="1">Host</div>
+                                        <div class="item" data-value="0">Manager</div>
                                     </div>
+                                </div>
                             </div>
                             <div class="input-group blmd-form">
                                 <div class="blmd-line field" >
-                                    <input type="text" name="Name" autocomplete="off" id="username" class="form-control">
+                                    <input type="text" name="Name" autocomplete="off" id="name" class="form-control">
                                     <label class="blmd-label">Name</label>
                                 </div>
                             </div>
@@ -65,25 +65,25 @@
 
                             <div class="input-group blmd-form">
                                 <div class="blmd-line">
-                                    <input type="text" name="username" autocomplete="off" id="username" class="form-control">
+                                    <input type="email" name="email" autocomplete="off" id="regemail" class="form-control">
                                     <label class="blmd-label">Email</label>
                                 </div>
                             </div>
                             <div class="input-group blmd-form">
                                 <div class="blmd-line">
-                                    <input type="password" name="password" autocomplete="off" id="password" class="form-control">
+                                    <input type="password" name="password" id="password1" autocomplete="off" class="form-control">
                                     <label class="blmd-label">Password</label>
                                 </div>
                             </div>
-                            <div class="input-group blmd-form">
-                                <div class="blmd-line">
-                                    <input type="password" name="rePassword" autocomplete="off" id="password" class="form-control">
-                                    <label class="blmd-label">Repeat Password</label>
-                                </div>
-                            </div>
+                            <!--<div class="input-group blmd-form">-->
+                            <!--<div class="blmd-line">-->
+                            <!--<input type="password" name="rePassword" autocomplete="off" id="password" class="form-control">-->
+                            <!--<label class="blmd-label">Repeat Password</label>-->
+                            <!--</div>-->
+                            <!--</div>-->
                         </div>
                         <div class="col-sm-12 text-center">
-                            <button type="button" class="btn btn-blmd ripple-effect btn-warning btn-lg btn-block">Register</button>
+                            <button type="submit" class="btn btn-blmd ripple-effect btn-warning btn-lg btn-block" value="register">Register</button>
                         </div>
                         <br/>
                     </form>
@@ -232,6 +232,9 @@
                 }
             })
         })(jQuery);
+        $('.ui.dropdown')
+                .dropdown()
+        ;
     </script>
 
 

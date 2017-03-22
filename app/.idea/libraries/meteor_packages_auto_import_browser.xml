@@ -275,6 +275,12 @@
         <item url="file://$USER_HOME$/.meteor/packages/underscore/1.0.10/web.browser/post.js" />
         <item url="file://$USER_HOME$/.meteor/packages/allow-deny/1.0.5/web.browser/allow-deny.js" />
         <item url="file://$USER_HOME$/.meteor/packages/allow-deny/1.0.5/web.browser/allow-deny-tests.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_single.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_session.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dialogs.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/accounts_ui.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dropdown.js" />
         <item url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/biginteger.js" />
         <item url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/srp.js" />
         <item url="file://$USER_HOME$/.meteor/packages/sha/1.0.9/web.browser/sha256.js" />
@@ -743,6 +749,12 @@
       <root url="file://$USER_HOME$/.meteor/packages/underscore/1.0.10/web.browser/post.js" />
       <root url="file://$USER_HOME$/.meteor/packages/allow-deny/1.0.5/web.browser/allow-deny.js" />
       <root url="file://$USER_HOME$/.meteor/packages/allow-deny/1.0.5/web.browser/allow-deny-tests.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_single.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_session.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dialogs.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/accounts_ui.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dropdown.js" />
       <root url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/biginteger.js" />
       <root url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/srp.js" />
       <root url="file://$USER_HOME$/.meteor/packages/sha/1.0.9/web.browser/sha256.js" />
