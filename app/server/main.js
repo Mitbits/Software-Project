@@ -50,7 +50,14 @@ Meteor.startup(() => {
 		});
 		table_entry.save();
 		table_entry.reservation_intr();
+		
 	}
+
+	/*var t = Table.findOne({'table_id': 1});
+	var m = Table.findOne({'table_id': 1});
+	m.table_status = TableStatus.DIRTY;
+	m.save();
+	console.log(t.table_status);*/
 
 	//set loop for reservation interval checkup 
 	//Meteor.setInterval(check_reservation_interval,Table.findOne({'table_type':TableType.RESERVATION})*3600*1000);
