@@ -21,7 +21,7 @@ Template.table.events({
 Template.floorplan.helpers({
     tables()
     {
-        return Table.find({});
+        return Tables.find({});
     },
 
 });

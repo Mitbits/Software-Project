@@ -8,6 +8,9 @@
        $deleteObj.fadeOut("slow", function() {
          $(this).remove();
        });
+
      }
    }
+
  });
+

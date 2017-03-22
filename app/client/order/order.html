@@ -23,26 +23,15 @@
         </div>
       </div>
 
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
+<!-- prints each orderRow depending on number of "Orders"-->
+        {{#each Orders}}
+            {{>orderRow}}
+        {{/each}}
+
+
+
+
+
     </div>
     {{/HammerTouchArea}}
 </template>
