@@ -1,6 +1,7 @@
 
 import {Reservations} from '../../imports/api/reservation.js';
-
+import { Reservation } from '../../imports/api/reservation.js';
+import { TableCluster } from '../../imports/api/table.js';
 Template.reservationPage.events({
 
     'click .plus.icon.link' () {
@@ -31,18 +32,32 @@ Template.reservationPage.events({
         var PhoneNum = document.getElementById('phoneNum').value;
         var Email = document.getElementById('email').value;
         var Seats = document.getElementById("count").innerHTML;
-        var Date = document.getElementById('date-time').value;
+        var date = document.getElementById('date-time').value;
         //var Time
-        console.log(FirstName, LastName, PhoneNum, Email, Seats, Date);
-        Reservations.insert({
+        console.log(FirstName, LastName, PhoneNum, Email, Seats, date);
+/*         Reservations.insert({
             firstName: FirstName,
             lastName: LastName,
             phoneNum: PhoneNum,
             email: Email,
             seats: Seats,
-            date: Date,
-        });
-        window.location.href = 'Success';
+            date: date,
+        }); */
+		var reserve = new Reservation({
+			"firstName": FirstName,
+            "lastName": LastName,
+            "phoneNum": PhoneNum*1,
+            "email": Email,
+            "seats": Seats*1,
+            "date": new Date(date),
+		});
+		reserve.sssave();
+		var tc = TableCluster.findOne({"size": Seats*1});
+		tc.reservations.push(reserve);
+		console.log(tc);
+		console.log(tc.reservations);
+		tc.sssave();
+   //     window.location.href = 'Success';
 
     }
 });
