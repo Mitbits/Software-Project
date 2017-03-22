@@ -44,16 +44,16 @@ Meteor.startup(() => {
 			"occupants" : 0,
 			"table_status":L_status,
 			"table_type":TableType.RESERVATION,
-			"reservation_intv":1,
+			"reservation_intv":10,
 			"converted" : false,
 			"billPaid"	: false,
 		});
 		table_entry.save();
+		table_entry.reservation_intr();
 	}
 
 	//set loop for reservation interval checkup 
 	//Meteor.setInterval(check_reservation_interval,Table.findOne({'table_type':TableType.RESERVATION})*3600*1000);
-	Meteor.setInterval(check_reservation_interval,10*1000);
-
+	//Meteor.setInterval(check_reservation_interval,10*1000);
   // code to run on server at startup
 });
