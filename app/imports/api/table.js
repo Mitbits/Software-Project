@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
-
+import { Reservation } from './reservation.js'
 export const Tables = new Mongo.Collection('table');
 export const TableClusters = new Mongo.Collection('TableClusters');
 
@@ -83,9 +83,16 @@ export const TableCluster = Class.create({
 	collection : TableClusters,
 	fields : {
 		size: Number,
-		tables: [Table]
-	
-	}
+		tables: [Table],
+		reservations: [Reservation]
+		
+	},
+	meteorMethods: {
+			sssave()
+			{
+				return this.save();
+			}
+		}
 });
 
 
