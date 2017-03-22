@@ -90,12 +90,34 @@ export const TableCluster = Class.create({
 	meteorMethods: {
 			sssave()
 			{
-				console.log("hi");
 				return this.save();
 			},
 			pushReservation(res){		
-			this.reservations.push(res);
-			this.save();
+				this.reservations.push(res);
+				this.save();
+			},
+			checkValidReservation(time){
+				var numResTbls = 0;
+				this.tables.forEach(function(tb){
+					if(tb.table_type == TableType.RESERVATION)
+						numResTbls++;
+				});
+				var numRes = 0;
+				this.reservations.forEach(function(res){
+					if(res.time == time)
+						numRes++;
+				});
+				return (numRes+1<=numResTbls) ? true : false;
+			},
+		tablechecker()
+		{
+		Meteor.setInterval(function () {
+		
+		
+		
+		
+		},15*1000);
+		
 		}
 			
 		}

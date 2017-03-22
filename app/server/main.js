@@ -16,7 +16,8 @@ Meteor.startup(() => {
         "size":4,
         "tables": [],
         "reservations": []
-    })
+});
+
     tablecluster.save();
     for(i=1;i<=16;i++){
         //create astronomy table obj entry
@@ -33,6 +34,8 @@ Meteor.startup(() => {
             "billPaid"	: false,
         });
         table_entry.save();
+		tablecluster.tables.push(table_entry);
+		tablecluster.save();
 		/* 		table_entry.reservation_intr();
 		 */
     }
