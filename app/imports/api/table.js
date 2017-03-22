@@ -41,7 +41,7 @@ function reservation_checker(id){
 		Meteor.setTimeout(function (){
 			reservation_checker(id);
 		},15*1000);
-	
+
 	}
 	table.save();
 	Meteor.setTimeout(function (){
