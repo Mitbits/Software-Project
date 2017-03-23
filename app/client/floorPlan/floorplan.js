@@ -1,20 +1,14 @@
 import '../../imports/api/table.js';
-import { Tables,Table, TableStatus } from '../../imports/api/table.js';
+import { Tables, Table, TableStatus } from '../../imports/api/table.js';
 
 Template.table.events({
     'click .icon.link' () {
         console.log(event.currentTarget.id);
     },
-    'click .set_taken' () {
+    'click .ui.teal.button' () {
     	Tables.update(this._id,{
-		$set: { table_status : TableStatus.RESERVED},
+		$set: { table_status : TableStatus.DIRTY},
 	});
-    },
-    'click .link.card' () {
-        console.log(this._id);
-        $("#this._id")
-            .modal('show')
-        ;
     },
     'click .red.right.corner.label' ()
     {
@@ -27,9 +21,8 @@ Template.table.events({
 Template.floorplan.helpers({
     tables()
     {
-        return Table.find({});
+        return Tables.find({});
     },
-
 });
 
 Template.table.helpers({

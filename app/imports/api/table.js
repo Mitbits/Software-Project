@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { Class,Enum } from 'meteor/jagi:astronomy'
+import { Class, Enum } from 'meteor/jagi:astronomy'
 
 export const Tables = new Mongo.Collection('table');
 
@@ -35,10 +35,12 @@ export const Table = Class.create({
 	fields : {
 		table_id : Number,
 		size : Number,
+		occupants: Number,
 		table_status: TableStatus,
 		table_type :TableType,
 		reservation_intv : Number,
-		converted : Boolean
+		converted : Boolean,
+		billPaid: Boolean
 	}
 });
 

@@ -1,12 +1,29 @@
-.icon
-{
-    padding-left:20%;
+.four.column.grid {
+    padding-top: 3%;
+    padding-right: 5%;
+    padding-left: 5%;
 }
-.four.column.grid
-{
-    padding-top:5%;
+.tableNum{
+    font-weight: bold;
+    text-align:center;
+    text-decoration: underline;
+    margin-top: -10px;
+    margin-right: 20px;
 }
-.segment
-{
-    cursor: pointer;
+.ui.inverted.segment{
+    background: rgba(27, 28, 29, 0.9);
+    height: 130px;
+	border: outset;
+}
+.ui.inverted.segment:hover{
+    background: rgba(27, 28, 29,1);
+    box-shadow: 10px 10px 5px #3e3e3e;
+}
+.users.icon {
+    float: left;
+    text-decoration: none;
+    font-weight: normal;
+}
+.check.icon{
+    color: white;
 }

@@ -1,53 +1,48 @@
 <template name="floorplan">
+
     <div class="ui four column grid">
         {{#each tables}}
             {{>table}}
         {{/each}}
     </div>
-
+	
 </template>
 
-<template name="table">
-    <div class="column">
-        <div class="ui black inverted segment">
+<template name="table" >
+    <div class="column" >
+
+		<div class="ui raised inverted segment" style="color:white">
             {{#if isDirty}}
                 <a class="ui red right corner label">
                     <i class="trash outline icon"></i>
                 </a>
             {{else if isClean}}
                 <a class="ui green right corner label">
-                    <i class="check outline icon"></i>
+                    <i class="white check icon"></i>
                 </a>
             {{else if isReserved}}
                 <a class="ui gray right corner label">
-                    <i class="check outline icon"></i>
+                    <i class="checked calendar icon"></i>
                 </a>
+
             {{else if isTaken}}
                 <a class="ui yellow right corner label">
-                    <i class="check outline icon"></i>
+                    <i class="notched circle loading icon"></i>
                 </a>
             {{/if}}
-            Table1 {{table_id}}<br>
-            Size  {{size}}<br>
-            Table Status {{table_status}}<br>
-            Table Type {{table_type}}<br>
-            Reservation Interval {{reservation_intv}}<br>
-	    <button class="set_taken" id="{{id}}" type="button">Taken</button>
+            <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}</div>
+            {{#if isReserved}}
+                <h3> Reserved for name: </h3>insert time here
+                Table Type {{table_type}}<br>
+                {{else}}
+                <br>
 
-        </div>
-    </div>
-    <div class="ui modal" id="{{id}}">
-        <div class="header">
-            Header{{this._id}}
-            <br>
-            {{table_id}}
-        </div>
+                Table Type {{table_type}}<br>
+                <!--             Reservation Interval {{reservation_intv}}<br>
+                 -->
+                <!--<button class="ui teal button">Taken</button>-->
+                {{/if}}
 
+		</div>
     </div>
 </template>
-
-
-
-
-
-
