@@ -89,9 +89,13 @@ nav#slide-menu > ul li.Desserts:before {
 nav#slide-menu > ul li.payBill:before {
     content: '\e803';
 }
+nav#slide-menu > ul li.MainMenu:before {
+    content: '\e803';
+}
 nav#slide-menu > ul li.logout:before {
     content: '\e804';
 }
+
 
 body.menu-active nav#slide-menu {
     left: 0px;
@@ -113,7 +117,7 @@ div#content {
     height: 100%;
     padding: 60px;
     overflow: scroll;
-    background: #fcfeff;
+    background: #f5f5f5;
     border-radius: 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -174,3 +178,5 @@ body.menu-active div#content .menu-trigger {
 .displayAll{
     display: block;
 }
+
+

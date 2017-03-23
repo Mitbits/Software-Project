@@ -2,6 +2,7 @@
     <!-- Navigation -->
     <nav id="slide-menu">
         <ul>
+            <li class="FloorPlan">FloorPlan</li>
             <li class="Appetizers">Appetizers</li>
             <li class="Entrees">Entrees</li>
             <li class="Desserts">Desserts</li>
@@ -12,7 +13,10 @@
     <!-- Content panel -->
     <div id="content">
         <div class="menu-trigger"></div>
-        <div id="appMenu">
+        <div id = "floorPlan" class="woodBG">
+            {{>floorplan}}
+        </div>
+        <div id="appMenu" class = "displayNone">
             <h1 class="ios">App</h1>
             <p>Here's an easy way to create an iOS style, side sliding menu.</p>
         </div>
@@ -20,6 +24,12 @@
             <h1 class="ios">Entrees</h1>
             <p>Here's an easy way to create an iOS style, side sliding menu.</p>
         </div>
+        <div id="dessertsMenu" class="displayNone">
+            <h1 class="ios">Desserts</h1>
+            <p>Here's an easy way to create an iOS style, side sliding menu.</p>
+        </div>
+
+
 
     </div>
     <script>
