@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Table, Tables, TableStatus, TableType } from '../imports/api/table.js';
 import { Order, Orders } from '../imports/api/orders.js';
+import { MenuItem, MenuItems } from '../imports/api/menuitems.js';
+
 
 import '../imports/api/reservation.js';
 
@@ -38,6 +40,7 @@ Meteor.startup(() => {
 	
 	Tables.remove({});
 	Orders.remove({});
+	MenuItems.remove({});
 
 	for(i=1;i<=16;i++){
 		//create astronomy table obj entry
@@ -60,13 +63,29 @@ Meteor.startup(() => {
 	{
 		var order_entry = new Order({
 			"orderID": i,
-			"orderType": 1,
+			"orderType": i,
 			"waiterID": 1,
 			"menuItemID": 7,
 			"timePlaced": curDate
 		});
 		order_entry.save();
 	}
+
+	var menuitems = require('./menuitems.json');
+	//var count = Object.keys(menuitems).length;
+
+
+	for (i = 0; i<57; i++)
+	{
+		var menuitem_entry = new MenuItem({
+			"itemName": menuitems.names[i],
+		});
+		//console.log(menuitems.names[i]);
+
+		menuitem_entry.save();
+	}
+
+
 	
 	//console.log(Tables.find({}));
 

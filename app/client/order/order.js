@@ -1,5 +1,7 @@
 import '../../imports/api/orders.js';
+import '../../imports/api/menuitems';
 import { Orders, ORDER_TYPE } from '../../imports/api/orders.js';
+import { MenuItems} from '../../imports/api/menuitems';
 
 Template.orderQueue.helpers({
 	templateGestures: {
@@ -13,6 +15,7 @@ Template.orderQueue.helpers({
 	'orders': function() {
 		//console.log(Orders.find());
 		return Orders.find({});
+
 	},
 });
 
