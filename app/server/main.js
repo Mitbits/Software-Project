@@ -35,10 +35,12 @@ Meteor.startup(() => {
         });
         table_entry.save();
 		tablecluster.tables.push(table_entry);
+	    
 		tablecluster.save();
 		/* 		table_entry.reservation_intr();
 		 */
     }
+    tablecluster.tablechecker();
 
     // code to run on server at startup
 });

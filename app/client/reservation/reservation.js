@@ -26,6 +26,7 @@ Template.reservationPage.events({
         }
     },
     'submit form': function(event){
+	    console.log(new Date());
         event.preventDefault();
         var FirstName = document.getElementById('firstName').value;
         var LastName = document.getElementById('lastName').value;
@@ -35,23 +36,25 @@ Template.reservationPage.events({
         var date = document.getElementById('date-time').value;
         //var Time
         console.log(FirstName, LastName, PhoneNum, Email, Seats, date);
-		var tc = TableCluster.findOne({"size": Seats*1});
-		if(!tc.checkValidReservation(date)){
-			alert("Not enough tables");
-			return;
-		}
-		var reserve = new Reservation({
+	//fetch table clust of given size and check if res can be added
+	var tc = TableCluster.findOne({"size": Seats*1});
+	if(!tc.checkValidReservation(new Date(date))){
+		alert("Not enough tables");
+		return;
+	}
+	//construct res
+	var reserve = new Reservation({
 			"firstName": FirstName,
-            "lastName": LastName,
-            "phoneNum": PhoneNum*1,
-            "email": Email,
-            "seats": Seats*1,
-            "date": new Date(date),
+	    "lastName": LastName,
+	    "phoneNum": PhoneNum*1,
+	    "email": Email,
+	    "seats": Seats*1,
+	    "date": new Date(date),
 			
 		});
-		reserve.sssave();
-		tc.pushReservation(reserve);
-        window.location.href = 'Success';
+	reserve.sssave();
+	tc.pushReservation(reserve);
+        //window.location.href = 'Success';
 
     }
 });

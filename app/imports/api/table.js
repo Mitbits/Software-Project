@@ -62,7 +62,14 @@ export const Table = Class.create({
 		table_status: TableStatus,
 		table_type :TableType,
 		reservation_intv : Number,
-		billPaid: Boolean
+		billPaid: Boolean,
+		reservation: {
+			type :Reservation,
+			optional :true,
+			default:function(){
+				return null;
+			}
+		}
 	},
 	meteorMethods :{
 		reservation_intr(){
@@ -90,13 +97,34 @@ export const TableCluster = Class.create({
 	meteorMethods: {
 			sssave()
 			{
+				//helper for saving on client side
 				return this.save();
 			},
-			pushReservation(res){		
+			getTable(lambda){
+			
+				var table_ind = this.tables.findIndex(lambda);
+	console.log("DDD");
+				obj = this.tables[table_ind];
+				var new_obj ={};
+	console.log("DDD");
+				for(var key in obj){
+					if(key!="_isNew" && key!="_id")
+						new_obj[key] = obj[key];
+				}
+				console.log(new Table(new_obj));
+				return new Table(new_obj);
+
+				
+
+			},
+			pushReservation(res){
+				//adds reservation entity to wait list
 				this.reservations.push(res);
 				this.save();
 			},
 			checkValidReservation(time){
+				//checks if reservation can be added to waitlist
+				//the number of reses for a given time must not exceed # of reservation tables
 				var numResTbls = 0;
 				this.tables.forEach(function(tb){
 					if(tb.table_type == TableType.RESERVATION)
@@ -104,21 +132,50 @@ export const TableCluster = Class.create({
 				});
 				var numRes = 0;
 				this.reservations.forEach(function(res){
-					if(res.time == time)
+					if(!res.isToday())
+						return;
+					if(res.date.getTime() == time.getTime())
 						numRes++;
 				});
+		
 				return (numRes+1<=numResTbls) ? true : false;
 			},
-		tablechecker()
-		{
-		Meteor.setInterval(function () {
-		
-		
-		
-		
-		},15*1000);
-		
-		}
+			tablechecker()
+			{
+				var size = this.size;
+				Meteor.setInterval(function(){
+				function reserve(size) {
+					var now = new Date();
+					var cluster = TableCluster.findOne({'size':size});
+					var new_reservations =[];
+					cluster.reservations.forEach(function(res){
+						if(!res.isToday())
+							return;
+						var diff = ((res.date.getTime()*1-now.getTime()*1)/1000)/3600;
+						console.log(diff);
+						if(diff < 2){
+					
+
+
+							var table_ind =cluster.tables.findIndex((tbl) =>(tbl.table_type ==TableType.RESERVATION &&tbl.table_status == TableStatus.CLEAN));
+
+							var table = Table.findOne({'table_id':cluster.tables[table_ind].table_id});
+						
+																	
+							table.table_status = TableStatus.RESERVED;
+							table.reservation = res;	
+							table.save();
+						}
+						else{
+							new_reservations.push(res);
+						}
+					});
+					cluster.reservations = new_reservations;
+					cluster.save();
+					
+				}; reserve(size);},15*1000);
+			
+			}
 			
 		}
 });
