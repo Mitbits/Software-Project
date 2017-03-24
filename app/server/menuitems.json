@@ -1,11 +1,78 @@
-{"menu": {
-	"items": [
-		{ 
-			"id": "",
-			"name: "",
-			"desc": "",
-			"type": "",
-			"price": ""
-		},
-	]
-	
+{
+	"menu": {
+		"items": [
+			{
+				"id": "0",
+				"name": "Coffee",
+				"desc": "",
+				"type": "0",
+				"price": "1.95"
+			},
+			{
+				"id": "1",
+				"name": "Herbal Teas",
+				"desc": "",
+				"type": "0",
+				"price": "2.25"
+			},
+			{
+				"id": "2",
+				"name": "Assorted Juices",
+				"desc": "orange, apple, tomato, cranberry, grapefruit",
+				"type": "0",
+				"price": "3.50"
+			},
+			{
+				"id": "3",
+				"name": "Iced Tea",
+				"desc": "with a free refill",
+				"type": "0",
+				"price": "1.95"
+			},
+			{
+				"id": "4",
+				"name": "Milk",
+				"desc": "",
+				"type": "0",
+				"price": "2.25"
+			},
+
+			{
+				"id": "15",
+				"name": "Milk Shakes",
+				"desc": "vanilla - chocolate - strawberry",
+				"type": "3",
+				"price": "4.95"
+			},
+			{
+				"id": "16",
+				"name": "Ice Cream",
+				"desc": "",
+				"type": "3",
+				"price": "2.95"
+			},
+			{
+				"id": "17",
+				"name": "Homemade Cheesecake",
+				"desc": "",
+				"type": "3",
+				"price": "4.95"
+			},
+			{
+				"id": "18",
+				"name": "Homemade Fruit Pies",
+				"desc": "",
+				"type": "3",
+				"price": "3.50"
+			},
+			{
+				"id": "19",
+				"name": "Brownie Sundae",
+				"desc": "",
+				"type": "3",
+				"price": "5.95"
+			}
+
+		]
+	}
+}
