@@ -1,36 +1,34 @@
 <template name = "orderQueue">
-
-    <div class = "ui sizer vertical segment">
-        <div class = "ui center aligned huge header">Order Queue</div>
+	<div class = "ui sizer vertical segment">
+		<div class = "ui center aligned huge header">Order Queue</div>
     </div>
-{{#HammerTouchArea gestureMap=templateGestures}}
+	{{#HammerTouchArea gestureMap = templateGestures}}
     <div class="ui internally celled center aligned grid">
-      <div class="grey rounded spaced row">
-        <div class="two wide column">
-          Order ID
-        </div>
-        <div class="three wide column">
-          Item
-        </div>
-        <div class="two wide column">
-          Type
-        </div>
-        <div class="one wide column">
-          Quantity
-        </div>
-        <div class="one wide column">
-          Time
-        </div>
-        <div class="seven wide column">
-          Description
-        </div>
-      </div>
-
-			<!-- prints each orderRow depending on number of "Orders"-->
-			{{#each orders}}
-				{{>orderRow}}
-			{{/each}}
+		<div class="grey rounded spaced row">
+			<div class="two wide column">
+				Order ID
+			</div>
+			<div class="three wide column">
+				Item
+			</div>
+			<div class="two wide column">
+				Type
+			</div>
+			<div class="one wide column">
+				Quantity
+			</div>
+			<div class="one wide column">
+				Time
+			</div>
+			<div class="seven wide column">
+				Description
+			</div>
 		</div>
+		<!-- prints each orderRow depending on number of "Orders"-->
+		{{#each orders}}
+			{{>orderRow}}
+		{{/each}}
+	</div>
     {{/HammerTouchArea}}
 
 
@@ -47,7 +45,7 @@
       {{menuItemID}}
     </div>
     <div class = "two wide column">
-      {{orderTypeResolved orderType}}
+      {{orderType}}
     </div>
     <div class = "one wide column">
       2

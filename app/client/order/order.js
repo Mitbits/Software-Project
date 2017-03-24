@@ -1,37 +1,42 @@
-import {CountDownTimer} from './CountDownTimer.js'
-/**
- * Created by mitpatel on 3/16/17.
- */
- Template.orderQueue.helpers({
-   templateGestures: {
-     'tap div div#hammertap': function(event, templateInstance) {
-       // check if user clicked on the buttons
-       console.log(event.target.id);
-       var id = event.target.id;
-       if(id == 'done-btn' || id == 'done-btn-icon') {
-         addButtonHandler(event, templateInstance);
-         return;
-       } else if(id == 'add-time-btn' || id == 'add-time-icon') {
-         addTimeHandler(event, templateInstance);
-         return;
-       }
-       var $colorObj = $(event.target.parentNode);
-       var classesApplied = $colorObj.attr('class');
-       var isActive = classesApplied.includes('active');
-       var $addTimeBtn = $colorObj.find('#add-time-btn');
-       if(isActive) { //change it to normal- white
-         $colorObj.removeClass('active');
-         $colorObj.addClass('white');
-         $addTimeBtn.addClass('disabled');
-         resetTimer(event);
-       } else {
-         $colorObj.removeClass('white');
-         $colorObj.addClass('active');
-         $addTimeBtn.removeClass('disabled');
-         startTimer(event);
-       }
-     }
-   }
+import {CountDownTimer} from './CountDownTimer.js';
+import { Template } from 'meteor/templating';
+import { Order, Orders } from '../../imports/api/orders.js';
+
+Template.orderQueue.helpers({
+	templateGestures: {
+		'tap div div#hammertap': function(event, templateInstance) {
+			// check if user clicked on the buttons
+			console.log(event.target.id);
+			var id = event.target.id;
+			if(id == 'done-btn' || id == 'done-btn-icon') {
+				addButtonHandler(event, templateInstance);
+				return;
+			} else if(id == 'add-time-btn' || id == 'add-time-icon') {
+				addTimeHandler(event, templateInstance);
+				return;
+			}
+			
+			var $colorObj = $(event.target.parentNode);
+			var classesApplied = $colorObj.attr('class');
+			var isActive = classesApplied.includes('active');
+			var $addTimeBtn = $colorObj.find('#add-time-btn');
+			
+			if(isActive) { //change it to normal- white
+				$colorObj.removeClass('active');
+				$colorObj.addClass('white');
+				$addTimeBtn.addClass('disabled');
+				resetTimer(event);
+			} else {
+				$colorObj.removeClass('white');
+				$colorObj.addClass('active');
+				$addTimeBtn.removeClass('disabled');
+				startTimer(event);
+			}
+		}
+	},
+	orders() {
+		return Orders.find({});
+	}
  });
 
 var timer;
