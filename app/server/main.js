@@ -14,7 +14,6 @@ Meteor.startup(() => {
     Reservation.remove({});
     var tablecluster = new TableCluster({
         "size":4,
-        "tables": [],
         "reservations": []
 });
 
@@ -22,19 +21,22 @@ Meteor.startup(() => {
     for(i=1;i<=16;i++){
         //create astronomy table obj entry
         //L_status just for testing
-        L_status = (i%4) ? TableStatus.CLEAN : TableStatus.RESERVED;
+        L_status = (i%4) ? TableStatus.CLEAN : TableStatus.CLEAN;
+		M_status = (i%4) ? TableType.WALKIN : TableType.RESERVATION;
+		
         var table_entry = new Table({
             "table_id":i,
             "size":4,
             "occupants" : 0,
             "table_status":L_status,
-            "table_type":TableType.RESERVATION,
+            "table_type":M_status,
             "reservation_intv":10,
             "converted" : false,
             "billPaid"	: false,
+			
         });
         table_entry.save();
-		tablecluster.tables.push(table_entry);
+
 	    
 		tablecluster.save();
 		/* 		table_entry.reservation_intr();

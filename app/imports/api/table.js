@@ -90,7 +90,6 @@ export const TableCluster = Class.create({
 	collection : TableClusters,
 	fields : {
 		size: Number,
-		tables: [Table],
 		reservations: [Reservation]
 		
 	},
@@ -100,23 +99,6 @@ export const TableCluster = Class.create({
 				//helper for saving on client side
 				return this.save();
 			},
-			getTable(lambda){
-			
-				var table_ind = this.tables.findIndex(lambda);
-	console.log("DDD");
-				obj = this.tables[table_ind];
-				var new_obj ={};
-	console.log("DDD");
-				for(var key in obj){
-					if(key!="_isNew" && key!="_id")
-						new_obj[key] = obj[key];
-				}
-				console.log(new Table(new_obj));
-				return new Table(new_obj);
-
-				
-
-			},
 			pushReservation(res){
 				//adds reservation entity to wait list
 				this.reservations.push(res);
@@ -125,19 +107,15 @@ export const TableCluster = Class.create({
 			checkValidReservation(time){
 				//checks if reservation can be added to waitlist
 				//the number of reses for a given time must not exceed # of reservation tables
-				var numResTbls = 0;
-				this.tables.forEach(function(tb){
-					if(tb.table_type == TableType.RESERVATION)
-						numResTbls++;
-				});
+				
+				var numResTbls = Table.find({'size':this.size,'table_type':TableType.RESERVATION}).count();
 				var numRes = 0;
 				this.reservations.forEach(function(res){
-					if(!res.isToday())
-						return;
+
 					if(res.date.getTime() == time.getTime())
 						numRes++;
 				});
-		
+				console.log(numRes);
 				return (numRes+1<=numResTbls) ? true : false;
 			},
 			tablechecker()
@@ -148,32 +126,32 @@ export const TableCluster = Class.create({
 					var now = new Date();
 					var cluster = TableCluster.findOne({'size':size});
 					var new_reservations =[];
-					cluster.reservations.forEach(function(res){
-						if(!res.isToday())
+					cluster.reservations.forEach(function(res_id){
+		
+						var res = Reservation.findOne({'phoneNum':res_id.phoneNum});
+						if(!res.isToday() || res.assigned){
 							return;
+						}
 						var diff = ((res.date.getTime()*1-now.getTime()*1)/1000)/3600;
-						console.log(diff);
-						if(diff < 2){
-					
-
-
-							var table_ind =cluster.tables.findIndex((tbl) =>(tbl.table_type ==TableType.RESERVATION &&tbl.table_status == TableStatus.CLEAN));
-
-							var table = Table.findOne({'table_id':cluster.tables[table_ind].table_id});
-						
-																	
+						//console.log(diff);
+						if(diff <2){
+							
+							var table; 
+							Table.find({'size':cluster.size,'table_type':TableType.RESERVATION,'table_status':TableStatus.CLEAN}).forEach(function(tbl){
+								table = tbl;
+								return;
+							});	
+							console.log(table);
+							res.assigned = true;
+							res.save();
 							table.table_status = TableStatus.RESERVED;
 							table.reservation = res;	
 							table.save();
 						}
-						else{
-							new_reservations.push(res);
-						}
+
 					});
-					cluster.reservations = new_reservations;
-					cluster.save();
 					
-				}; reserve(size);},15*1000);
+				}; reserve(size);},500);
 			
 			}
 			

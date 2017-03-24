@@ -1,5 +1,7 @@
 import '../../imports/api/table.js';
-import { Tables,Table, TableStatus } from '../../imports/api/table.js';
+import { Tables,Table, TableStatus, TableCluster } from '../../imports/api/table.js';
+import { Mongo } from 'meteor/mongo';
+import { Class,Enum } from 'meteor/jagi:astronomy'
 
 Template.table.events({
     'click .icon.link' () {
@@ -27,7 +29,10 @@ Template.table.events({
 Template.floorplan.helpers({
     tables()
     {
-        return Table.find({});
+        return Table.find();
+    },
+	reservations() {
+        return Reservations.find();
     },
 
 });
@@ -52,5 +57,11 @@ Template.table.helpers({
         if(this.table_status == 'Taken') {
             return true;
         }
+    },
+});
+
+Template.reservationPage.helpers({
+    reservations() {
+        return Reservations.find();
     },
 });

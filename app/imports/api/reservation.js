@@ -14,7 +14,14 @@ export const Reservation = Class.create({
 			phoneNum: Number,
 			email: String,
 			seats: Number,
-			date: Date
+			date: Date,
+			assigned: {
+				type :Boolean,
+				optional :true,
+				default:function(){
+					return false;
+				}
+			}
 		},
 		meteorMethods: {
 			sssave()

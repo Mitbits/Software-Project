@@ -31,7 +31,7 @@
             {{/if}}
             <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}</div>
             {{#if isReserved}}
-                <h3> Reserved for name: </h3>insert time here
+                <h3> Reserved for name: {{reservation.firstName}}</h3>{{reservation.Date}}
                 Table Type {{table_type}}<br>
                 {{else}}
                 <br>
