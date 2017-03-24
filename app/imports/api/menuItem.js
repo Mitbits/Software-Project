@@ -15,8 +15,8 @@ export const ORDER_TYPE = Enum.create({
 		APPETIZER: 1,
 		ENTREE: 2,
 		DESSERT: 3,
-		CANCELLED: 4,
-		OTHER: 5
+		OTHER: 4,
+		CANCELLED: 5
 	}
 });
 
