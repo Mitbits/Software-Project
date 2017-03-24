@@ -1,5 +1,6 @@
 {"menu": {
 	"items": [
+<<<<<<< HEAD
 		{ 
 			"id": "5",
 			"name: "Nachos Supreme",
@@ -34,7 +35,41 @@
 			"desc": "Topped with brown gravy & melted mozzarella cheese.",
 			"type": "1",
 			"price": "4.75"
+		{
+			"id": "10",
+			"name: "Chopped Sirloin Steak",
+			"desc": "With fried onions and gravy",
+			"type": "2",
+			"price": "15.95"
 		},
+		{
+			"id": "11",
+			"name: "Roasted Spring Chicken",
+			"desc": "Slow roasted with herbs stuffing",
+			"type": "2",
+			"price": "14.95"
+		},
+		{
+			"id": "12",
+			"name: "Penne Vodka",
+			"desc": "Penne tossed with tomato cream",
+			"type": "2",
+			"price": "13.95"
+		},
+		{
+			"id": "13",
+			"name: "Stuffed Salmon",
+			"desc": "Baked filet of salmon stuffed with crabmeat",
+			"type": "2",
+			"price": "19.95"
+		},
+		{
+			"id": "14",
+			"name: "Succulent Sea Scallops",
+			"desc": "Broiled served with roasted potatoes and vegetable medley",
+			"type": "2",
+			"price": "21.95"
+		}
 	]
 	}
 }
