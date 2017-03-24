@@ -50,7 +50,7 @@ export const Order = Class.create({
 		},
 		timePlaced: {
 			type: Date
-		}	
+		}
 	},
 	indexes: {
 		orderID: {
@@ -64,7 +64,6 @@ export const Order = Class.create({
 	},
 	helpers: {
 		orderTypeName() {
-			console.log("test");
 			return ORDER_TYPE.getIdentifier(this.orderType);
 		}
 	}

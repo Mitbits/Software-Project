@@ -1,6 +1,6 @@
 import {CountDownTimer} from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
-import { Order, Orders } from '../../imports/api/orders.js';
+import { Order, Orders } from '../../imports/api/order.js';
 
 Template.orderQueue.helpers({
 	templateGestures: {
@@ -35,69 +35,65 @@ Template.orderQueue.helpers({
 		}
 	},
 	orders() {
-		return Orders.find({});
-	}
-});
-
-Template.orderRow.helpers({
-	order() {
-		return (Order.findOne(this));
+		console.log(Order.find());
+		console.log(Orders.find());
+		return Order.find();
 	}
 });
 
 var timer;
 
 var addButtonHandler = function(event, templateInstance) {
-  var $selectedObj = $(event.target);
-  var $deleteObj = $selectedObj.closest('#hammertap');
-  $deleteObj.fadeOut('slow', function() {
-    $(this).remove();
-  });
+	var $selectedObj = $(event.target);
+	var $deleteObj = $selectedObj.closest('#hammertap');
+	$deleteObj.fadeOut('slow', function() {
+		$(this).remove();
+	});
 }
 
 var deltaTime = 30;
 var addTimeHandler = function(event, templateInstance) {
-  var {timeMin, timeSec, timeText, $timeObj} = getTime(event);
-  var duration = 60*timeMin + timeSec + deltaTime;
-  resetTimer(event);
-  startCountDown($timeObj, duration, timeText);
+	var { timeMin, timeSec, timeText, $timeObj } = getTime(event);
+	var duration = 60*timeMin + timeSec + deltaTime;
+	resetTimer(event);
+	startCountDown($timeObj, duration, timeText);
 }
 
 var startTimer = function(event) {
-  var {timeMin, timeSec, timeText, $timeObj} = getTime(event);
-  var duration = 60*timeMin + timeSec;
-  console.log(typeof timeMin);
-  console.log(duration);
-  $timeObj.text(1 + ":" + 23);
-  startCountDown($timeObj, duration, timeText);
+	var {timeMin, timeSec, timeText, $timeObj} = getTime(event);
+	var duration = 60*timeMin + timeSec;
+	console.log(typeof timeMin);
+	console.log(duration);
+	$timeObj.text(1 + ":" + 23);
+	startCountDown($timeObj, duration, timeText);
 }
 
 var getTime = function(event) {
-  var $selectedObj = $(event.target);
-  var $timeObj = $selectedObj.closest('#hammertap').find('#time');
-  var timeText = $timeObj.text();
-  var timeMin = 1*timeText.substring(0, timeText.indexOf(':'));
-  var timeSec = 1*timeText.substring(timeText.indexOf(':')+1);
+	var $selectedObj = $(event.target);
+	var $timeObj = $selectedObj.closest('#hammertap').find('#time');
+	var timeText = $timeObj.text();
+	var timeMin = 1*timeText.substring(0, timeText.indexOf(':'));
+	var timeSec = 1*timeText.substring(timeText.indexOf(':')+1);
   console.log(timeMin);
   console.log(timeSec);
   return {timeMin, timeSec, timeText, $timeObj};
 }
 
 var startCountDown = function($timeObj, duration, resetTimeText) {
-  timer = new CountDownTimer(duration, 1000);
-  //alert(duration);
-  console.log($timeObj);
-  timer.onTick(function(min, sec, reset) {
-    $timeObj.text(min + ":" + sec);
-    if(reset) { // reset timer
-      $timeObj.text(resetTimeText);
-    }
-  });
+	timer = new CountDownTimer(duration, 1000);
+	//alert(duration);
+	console.log($timeObj);
+	timer.onTick(function(min, sec, reset) {
+		$timeObj.text(min + ":" + sec);
+		if(reset) { // reset timer
+			$timeObj.text(resetTimeText);
+		}
+	});
   timer.start();
 }
 
 var resetTimer = function(event) {
-  var $selectedObj = $(event.target);
-  var $timeObj = $selectedObj.closest('#hammertap').find('#time');
-  timer.resetTimer();
+	var $selectedObj = $(event.target);
+	var $timeObj = $selectedObj.closest('#hammertap').find('#time');
+	timer.resetTimer();
 }

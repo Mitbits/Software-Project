@@ -5,17 +5,12 @@ export const MenuItems = new Mongo.Collection('menuitems');
 
 
 export const MenuItem = Class.create({
-
     name: 'MenuItem',
-    collection: MenuItems,
-    fields: {
-        itemName: String,
-        //ingredients: String
-
-
-
-    }
-
-
-})
+	collection: MenuItems,
+	fields: {
+		itemName: {
+			type: String
+		}
+	}
+});
 

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Table, Tables, TableStatus, TableType } from '../imports/api/table.js';
-import { Order, Orders } from '../imports/api/orders.js';
-import { MenuItem, MenuItems } from '../imports/api/menuitems.js';
+import { Order, Orders } from '../imports/api/order.js';
+import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 
 
 import '../imports/api/reservation.js';
@@ -33,7 +33,6 @@ function check_reservation_interval(){
 
 }
 
-
 Meteor.startup(() => {
 	var curDate = new Date();
 
@@ -50,8 +49,8 @@ Meteor.startup(() => {
 			"table_id": i,
 			"size": 4,
 			"occupants" : 0,
-			"table_status":L_status,
-			"table_type":TableType.RESERVATION,
+			"table_status": L_status,
+			"table_type": TableType.RESERVATION,
 			"reservation_intv":1,
 			"converted" : false,
 			"billPaid"	: false,
@@ -59,11 +58,11 @@ Meteor.startup(() => {
 		table_entry.save();
 	}
 	
-	for ( i = 1; i <= 5; i++)
+	for ( i = 1; i <= 4; i++)
 	{
 		var order_entry = new Order({
 			"orderID": i,
-			"orderType": i,
+			"orderType": (i % 3),
 			"waiterID": 1,
 			"menuItemID": 7,
 			"timePlaced": curDate
@@ -71,7 +70,8 @@ Meteor.startup(() => {
 		order_entry.save();
 	}
 
-	var menuitems = require('./menuitems.json');
+	
+	var menuitems = require('./menuItems.json');
 	//var count = Object.keys(menuitems).length;
 
 
