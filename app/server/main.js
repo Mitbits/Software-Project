@@ -25,12 +25,7 @@ function check_reservation_interval(){
 			table_entry.converted = false;
 			table_entry.save();
 		}
-
-
 	});
-
-	
-
 }
 
 Meteor.startup(() => {

@@ -35,8 +35,6 @@ Template.orderQueue.helpers({
 		}
 	},
 	orders() {
-		console.log(Order.find());
-		console.log(Orders.find());
 		return Order.find();
 	}
 });

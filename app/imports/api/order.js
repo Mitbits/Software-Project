@@ -8,23 +8,6 @@ var minID = [{
 	type: 'gt',
 	param: 0
 }]
-
-/*
- * ENUM type definitions
- */
-
-// Definition for Order types.
-export const ORDER_TYPE = Enum.create({
-	name: 'orderType',
-	identifiers: {
-		REFRESHMENT: 0,
-		APPETIZER: 1,
-		ENTREE: 2,
-		DESSERT: 3,
-		CANCELLED: 4,
-		OTHER: 5
-	}
-});
  
 /*
  * Class definitions
@@ -36,9 +19,6 @@ export const Order = Class.create({
 		orderID: {
 			type: Number,
 			validators: minID
-		},
-		orderType: {
-			type: ORDER_TYPE
 		},
 		waiterID: {
 			type: Number,
