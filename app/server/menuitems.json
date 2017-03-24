@@ -1,11 +1,40 @@
 {"menu": {
 	"items": [
 		{ 
-			"id": "",
-			"name: "",
-			"desc": "",
-			"type": "",
-			"price": ""
+			"id": "5",
+			"name: "Nachos Supreme",
+			"desc": "Homemade chili topped with shredded, lettuce, diced tomato, monterey jack cheese, jalapenos over tortillas with salsa, sour cream.",
+			"type": "1",
+			"price": "9.95"
+		},
+		{ 
+			"id": "6",
+			"name: "Chicken Fingers",
+			"desc": "Fried golden brown with honey mustard sauce, with french fries.",
+			"type": "1",
+			"price": "8.50"
+		},
+		{ 
+			"id": "7",
+			"name: "Mozarella Sticks",
+			"desc": "Fried golden brown with marinara sauce.",
+			"type": "1",
+			"price": "6.50"
+		},
+		{ 
+			"id": "8",
+			"name: "Hot Wings",
+			"desc": "A southern recipe, served with ranch dressing and celery sticks.",
+			"type": "1",
+			"price": "8.25"
+		},
+		{ 
+			"id": "9",
+			"name: "Disco Fries",
+			"desc": "Topped with brown gravy & melted mozzarella cheese.",
+			"type": "1",
+			"price": "4.75"
 		},
 	]
-	
+	}
+}
