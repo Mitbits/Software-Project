@@ -37,7 +37,13 @@ Template.orderQueue.helpers({
 	orders() {
 		return Orders.find({});
 	}
- });
+});
+
+Template.orderRow.helpers({
+	order() {
+		return (Order.findOne(this));
+	}
+});
 
 var timer;
 
