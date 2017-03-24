@@ -61,15 +61,11 @@ export const Order = Class.create({
 				unique: true
 			}
 		}
+	},
+	helpers: {
+		orderTypeName() {
+			console.log("test");
+			return ORDER_TYPE.getIdentifier(this.orderType);
+		}
 	}
 })
-
-/*
-const Customer = Class.create({
-	name: 'Customer',
-	collection: Customers,
-	fields: {
-		
-	}
-})
-*/
