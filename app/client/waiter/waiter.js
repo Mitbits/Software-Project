@@ -7,12 +7,14 @@ Template.waiter.events({
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("appMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
+        $('.menu-active').removeClass('menu-active');
     },
     'click .Entrees' () {
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
+        $('.menu-active').removeClass('menu-active');
     },
 
     'click .FloorPlan' () {
@@ -20,6 +22,7 @@ Template.waiter.events({
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
+        $('.menu-active').removeClass('menu-active');
     },
 
     'click .Desserts' () {
@@ -27,6 +30,13 @@ Template.waiter.events({
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayAll";
+        $('.menu-active').removeClass('menu-active');
 
+    },
+    'click .drinkicon' () {
+        console.log("hello")
+        $('.ui.modal')
+            .modal('show')
+        ;
     }
 });

@@ -29,19 +29,23 @@
                     <i class="notched circle loading icon"></i>
                 </a>
             {{/if}}
-            <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}</div>
+            <div class="tableNum">
+                <i class="users icon">
+                    <p style="float:left;margin-top:-5px;">
+                        {{occupants}}/{{size}}
+                    </p>
+                </i>
+                Table {{table_id}}</div>
             {{#if isReserved}}
                 <h3> Reserved for name: </h3>insert time here
-                Table Type {{table_type}}<br>
+                Table Type {{table_type}}
                 {{else}}
                 <br>
-
                 Table Type {{table_type}}<br>
                 <!--             Reservation Interval {{reservation_intv}}<br>
                  -->
                 <!--<button class="ui teal button">Taken</button>-->
                 {{/if}}
-
 		</div>
     </div>
 </template>

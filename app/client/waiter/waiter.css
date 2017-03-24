@@ -15,7 +15,7 @@ body {
 
 #ios {
     color: #FF6B6B;
-    margin: 0 0 27px;
+    margin-top:-10px;
 }
 
 /*
@@ -77,24 +77,7 @@ nav#slide-menu > ul li.sep {
     padding-top: 14px;
     border-top: 1px solid #6b7b8d;
 }
-nav#slide-menu > ul li.Appetizers:before {
-    content: '\e805';
-}
-nav#slide-menu > ul li.Entrees:before {
-    content: '\e802';
-}
-nav#slide-menu > ul li.Desserts:before {
-    content: '\e800';
-}
-nav#slide-menu > ul li.payBill:before {
-    content: '\e803';
-}
-nav#slide-menu > ul li.MainMenu:before {
-    content: '\e803';
-}
-nav#slide-menu > ul li.logout:before {
-    content: '\e804';
-}
+
 
 
 body.menu-active nav#slide-menu {
@@ -161,7 +144,7 @@ div#content div.menu-trigger:hover {
     background: #556270;
 }
 div#content div.menu-trigger:hover:before {
-    color: #fcfeff;
+    color: #f5f5f5;
 }
 
 body.menu-active div#content {
@@ -177,6 +160,15 @@ body.menu-active div#content .menu-trigger {
 }
 .displayAll{
     display: block;
+}
+
+.drinkicon {
+    cursor: pointer;
+    float:right;
+    margin-right:100px;
+}
+.menuHeader {
+    float:left;
 }
 
 

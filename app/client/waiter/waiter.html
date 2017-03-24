@@ -2,36 +2,73 @@
     <!-- Navigation -->
     <nav id="slide-menu">
         <ul>
-            <li class="FloorPlan">FloorPlan</li>
-            <li class="Appetizers">Appetizers</li>
-            <li class="Entrees">Entrees</li>
-            <li class="Desserts">Desserts</li>
-            <li class="sep payBill">Pay</li>
-            <li class="logout">Logout</li>
+            <li class="FloorPlan"><img src="http://imgur.com/jQYF0Wl.png" height="25" width="25"> Floor Plan</li>
+            <li class="Appetizers"><img src="http://imgur.com/j5y9g0F.png" height="25" width="25"/> Appetizers</li>
+            <li class="Entrees"><img src="http://imgur.com/UJ6ZlhJ.png" height="25" width="25"/> Entrees</li>
+            <li class="Desserts"><img src="http://imgur.com/MgAzW9C.png" height="25" width="25"/> Desserts</li>
+            <li class="sep placeOrder"><img src="http://imgur.com/bFLgyrs.png" height="25" width="25"/> Place Order</li>
+            <li class="payBill"><img src="http://imgur.com/6Z2voOZ.png" height="30" width="30"/> Pay</li>
+            <li class="logout"><img src="http://imgur.com/0j8fZD1.png" height="25" width="25"/> Logout</li>
+
+            <!--drink png http://imgur.com/gI9NT37.png-->
         </ul>
     </nav>
     <!-- Content panel -->
     <div id="content">
         <div class="menu-trigger"></div>
         <div id = "floorPlan" class="woodBG">
+            <!--<h1 class="ios"> Floor Plan</h1>-->
             {{>floorplan}}
         </div>
         <div id="appMenu" class = "displayNone">
-            <h1 class="ios">App</h1>
+            <div>
+                <h1 class="menuHeader">App</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
             <p>Here's an easy way to create an iOS style, side sliding menu.</p>
+
         </div>
         <div id="entreeMenu" class="displayNone">
-            <h1 class="ios">Entrees</h1>
+            <div>
+                <h1 class="menuHeader">Entrees</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
             <p>Here's an easy way to create an iOS style, side sliding menu.</p>
         </div>
         <div id="dessertsMenu" class="displayNone">
-            <h1 class="ios">Desserts</h1>
+            <div>
+                <h1 class="menuHeader">Desserts</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
             <p>Here's an easy way to create an iOS style, side sliding menu.</p>
         </div>
-
-
-
     </div>
+    <!--Drinks Menu Modal Start-->
+    <div class="ui modal" id="drinksModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Modal Title
+        </div>
+        <div class="image content">
+            <div class="image">
+                An image can appear on left or an icon
+            </div>
+            <div class="description">
+                A description can appear on the right
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui button">Cancel</div>
+            <div class="ui button">OK</div>
+        </div>
+    </div>
+    <!--Drinks Menu Modal End-->
     <script>
         (function() {
             var $body = document.body

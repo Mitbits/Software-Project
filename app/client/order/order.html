@@ -3,69 +3,69 @@
     <div class="ui sizer vertical segment">
         <div class="ui center aligned huge header">Order Queue</div>
     </div>
-{{#HammerTouchArea gestureMap=templateGestures}}
-    <div class="ui internally celled center aligned grid">
-      <div class="grey rounded spaced row">
-        <div class="two wide column">
-          Order ID
-        </div>
-        <div class="three wide column">
-          Item
-        </div>
-        <div class="two wide column">
-          Type
-        </div>
-        <div class="one wide column">
-          Quantity
-        </div>
-        <div class="eight wide column">
-          Description
-        </div>
-      </div>
+    {{#HammerTouchArea gestureMap=templateGestures}}
+        <div class="ui internally celled center aligned grid">
+            <div class="grey rounded spaced row">
+                <div class="two wide column">
+                    Order ID
+                </div>
+                <div class="three wide column">
+                    Item
+                </div>
+                <div class="two wide column">
+                    Type
+                </div>
+                <div class="one wide column">
+                    Quantity
+                </div>
+                <div class="eight wide column">
+                    Description
+                </div>
+            </div>
 
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-    </div>
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+            {{>orderRow}}
+        </div>
     {{/HammerTouchArea}}
 </template>
 
 
 <template name="orderRow">
 
-  <div class="white rounded row" id="hammertap">
-    <div class="two wide column">
-      145
+    <div class="white rounded row" id="hammertap">
+        <div class="two wide column">
+            145
+        </div>
+        <div class="three wide column">
+            Fries
+        </div>
+        <div class="two wide column">
+            Appetizer
+        </div>
+        <div class="one wide column">
+            2
+        </div>
+        <div class="eight wide column">
+            Classic
+        </div>
     </div>
-    <div class="three wide column">
-      Fries
-    </div>
-    <div class="two wide column">
-      Appetizer
-    </div>
-    <div class="one wide column">
-      2
-    </div>
-    <div class="eight wide column">
-      Classic
-    </div>
-  </div>
 
 </template>
