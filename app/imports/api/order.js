@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { Class, Enum } from 'meteor/jagi:astronomy';
 import { Type } from 'meteor/jagi:astronomy';
 import { MenuItem } from './menuItem.js';
- 
+
 export const Orders = new Mongo.Collection('orders');
 export const Customers = new Mongo.Collection('customers');
 
@@ -14,12 +14,12 @@ var minID = [{
 /*
  * Custom types
  */
- 
+
 Type.create({
 	name: 'orderItem',
 	class: 'orderItem'
 })
- 
+
 /*
  * Class definitions
  */
@@ -39,7 +39,7 @@ export const orderItem = Class.create({
 		},
 		specialRequests: {
 			type: String
-		}	
+		}
 	}
 });
 
@@ -71,11 +71,12 @@ export const Order = Class.create({
 				unique: true
 			}
 		}
-	},
+	}
+  /*,
 	helpers: {
 		orderTypeName() {
-			return ORDER_TYPE.getIdentifier(this.orderType);
+			//return ORDER_TYPE.getIdentifier(this.orderType);
+      return "test";
 		}
-	}
+	}*/
 });
-
