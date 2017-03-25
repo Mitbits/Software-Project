@@ -63,6 +63,24 @@
 
             </div>
         </div>
+
+        <div id="placeOrderMenu" class = "displayNone">
+            <div>
+                <h1 class="menuHeader">PlaceOrder</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="ui three column grid">
+                {{#each apps}}
+                    {{>appCards}}
+                {{/each}}
+            </div>
+
+
+        </div>
+
     </div>
     <!--Drinks Menu Modal Start-->
     <div class="ui scrolling modal" id="drinksModal">

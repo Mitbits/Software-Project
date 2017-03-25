@@ -1,12 +1,27 @@
 import { MenuItems } from '../../imports/api/menuItem.js';
+import { Order, Orders, orderItem } from '../../imports/api/order.js';
 
 var orderArray = [];
+
+var mItemID =1;
+
+function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
+    return new orderItem({
+        "itemID": mItemID,
+        "priority": mPriority,
+        "menuItemID": mMenuItemID,
+        "specialRequests": mSpecialRequests
+    });
+};
+
 Template.waiter.events({
     'click .Appetizers' () {
+        console.log("test");
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("appMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     'click .Entrees' () {
@@ -14,6 +29,7 @@ Template.waiter.events({
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone"
         $('.menu-active').removeClass('menu-active');
     },
 
@@ -22,6 +38,7 @@ Template.waiter.events({
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
 
@@ -30,6 +47,17 @@ Template.waiter.events({
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayAll";
+        document.getElementById("placeOrderMenu").className = "displayNone";
+        $('.menu-active').removeClass('menu-active');
+
+    },
+    'click .placeOrder' () {
+        console.log("test111");
+        document.getElementById("floorPlan").className = "displayNone";
+        document.getElementById("entreeMenu").className = "displayNone";
+        document.getElementById("appMenu").className = "displayNone";
+        document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
 
     },
@@ -41,8 +69,11 @@ Template.waiter.events({
     },
     'click .ui.bottom.attached.button' ()
     {
-       
+        orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
+        console.log(orderArray);
+
     },
+
 });
 
 Template.drinksCards.events({
@@ -72,3 +103,4 @@ Template.waiter.helpers({
     },
 
 });
+
