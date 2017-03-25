@@ -19,3 +19,9 @@
   background-color: #00B0F0;
   margin-bottom: 3px;
 }
+
+#scrollfeature {
+  height: 64px;
+  word-wrap: break-word;
+  overflow: scroll;
+}

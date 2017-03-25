@@ -6,7 +6,7 @@ import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 
 // loops through all reservation tables checking if they can be made walkins 
 function check_reservation_interval(){
-	//console.log("Triggered check reservation");
+
 	Table.find({$or: [{'table_type':TableType.RESERVATION},{'converted':true}]}).forEach(function(table_entry){
 
 		//if the table is not reserved, convert it to walk for this hour
@@ -94,25 +94,58 @@ Meteor.startup(() => {
 			"specialRequests": mSpecialRequests
 		});
 	}
+
+
+    function getRandomNumber(min, max)
+	{
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min)) + min;
+	}
+
+    // Creating an array of requests that can be used for different items
+    var specialRequests = ["Less Oil ", "Half a Portion", "Less Butter", "None"];
+
+	// create list of items for a specific order
+	var next_mItemID = 1;
+
+	function createOrderItems()
+	{
+		var orderItems = [];
+
+		var numberOfItems = getRandomNumber(1,11);
+
+		for(var i =1; i<=numberOfItems; i++)
+		{
+
+			var random_mPriority = getRandomNumber(1,10); // random value for now..
+			var random_mMenuItemID = getRandomNumber(0,20);
+			var random_mSpecialRequests = specialRequests[getRandomNumber(0,4)];
+
+			orderItems.push(createOrderItem(next_mItemID,random_mPriority, random_mMenuItemID, random_mSpecialRequests));
+			next_mItemID++;
+
+		}
+		return orderItems;
+	}
+
 	
-	// Creating an array of orderItems that will be a part of an order
-	var order_items = [	createOrderItem(1, 20, 3, "none"),
-						createOrderItem(2, 80, 6, "blahblah"),
-						createOrderItem(3, 40, 8, "none"),
-						createOrderItem(4, 99, 12, "none")];
-	
-	// Creating 4 order objects and storing in the collection.
+	// Creating 5 order objects and storing in the collection.
 	// Each object is getting the same array of `order_items`
 	// Change if necessary for more diverse data - @raj
-	for ( i = 1; i <= 4; i++) {
+	for (var i = 1; i <= 5; i++) {
+
+		var test = createOrderItems();
+
 		var order_entry = new Order({
 			"orderID": i,
-			"orderType": (i % 3),
+			//"orderType": (i % 3),
 			"waiterID": 1,
-			"menuItemID": 7,
-			"orderItems": order_items,
+			//"menuItemID": 7,
+			"orderItems": test,
 			"timePlaced": new Date()
 		});
+
 		order_entry.save();
 	}
 	
@@ -132,7 +165,7 @@ Meteor.startup(() => {
 		});
 		table_entry.save();
 	}
-	
+
 	//set loop for reservation interval checkup 
 	//Meteor.setInterval(check_reservation_interval,Table.findOne({'table_type':TableType.RESERVATION})*3600*1000);
 	Meteor.setInterval(check_reservation_interval,10*1000);

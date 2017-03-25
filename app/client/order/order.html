@@ -15,14 +15,18 @@
 				Type
 			</div>
 			<div class="one wide column">
-				Quantity
+				Qty
 			</div>
-			<div class="one wide column">
-				Time
+			<div class="two wide column">
+				Cook Time
 			</div>
-			<div class="seven wide column">
-				Description
+			<div class="four wide column">
+				Special Requests
 			</div>
+
+            <div class="two wide column">
+                Actions
+            </div>
 		</div>
 		<!-- prints each orderRow depending on number of "Orders"-->
 		{{#each orders}}
@@ -40,19 +44,19 @@
       {{orderID}}
     </div>
     <div class = "three wide column">
-      {{menuItemID}}
+      {{itemName}}
     </div>
     <div class = "two wide column">
-      test
+      {{mealType}}
     </div>
     <div class = "one wide column">
-      2
+      1
     </div>
-    <div class="one wide column" id="time">
-      1:00
+    <div class="two wide column" id="time">
+      {{cookTime}}:00
     </div>
-    <div class="five wide column">
-      Classic
+    <div class="four wide column" id = "scrollfeature">
+      {{specialRequests}}
     </div>
     <div class="two wide column">
       <button class="ui medium icon primary button" id="done-btn">
