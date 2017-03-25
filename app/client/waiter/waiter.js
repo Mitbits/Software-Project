@@ -1,6 +1,5 @@
-/*
- Slidemenu
- */
+import { MenuItems } from '../../imports/api/menuItem.js';
+
 Template.waiter.events({
     'click .Appetizers' () {
         document.getElementById("entreeMenu").className = "displayNone";
@@ -39,4 +38,32 @@ Template.waiter.events({
             .modal('show')
         ;
     }
+});
+
+Template.drinksCards.events({
+    'click .ui.fluid.card'()
+    {
+        $('.ui.fluid.card').toggleClass("ui fluid card").toggleClass("ui blue fluid card");
+    }
+
+});
+
+Template.waiter.helpers({
+    drinks()
+    {
+        return MenuItems.find({mealType: 0});
+    },
+    apps()
+    {
+        return MenuItems.find({mealType: 1});
+    },
+    entrees()
+    {
+        return MenuItems.find({mealType: 2});
+    },
+    desserts()
+    {
+        return MenuItems.find({mealType: 3});
+    },
+
 });

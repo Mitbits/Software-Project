@@ -27,8 +27,12 @@
             </div>
             <br>
             <br>
-            <p>Here's an easy way to create an iOS style, side sliding menu.</p>
-
+            <br>
+            <div class="ui three column grid">
+                {{#each apps}}
+                    {{>appCards}}
+                {{/each}}
+            </div>
         </div>
         <div id="entreeMenu" class="displayNone">
             <div>
@@ -37,7 +41,12 @@
             </div>
             <br>
             <br>
-            <p>Here's an easy way to create an iOS style, side sliding menu.</p>
+            <br>
+            <div class="ui three column grid">
+                {{#each entrees}}
+                    {{>entreeCards}}
+                {{/each}}
+            </div>
         </div>
         <div id="dessertsMenu" class="displayNone">
             <div>
@@ -46,7 +55,13 @@
             </div>
             <br>
             <br>
-            <p>Here's an easy way to create an iOS style, side sliding menu.</p>
+            <br>
+            <div class="ui three column grid">
+                {{#each desserts}}
+                    {{>dessertCards}}
+                {{/each}}
+
+            </div>
         </div>
     </div>
     <!--Drinks Menu Modal Start-->
@@ -55,17 +70,16 @@
         <div class="header">
             Select Drink(s)
         </div>
-        <div class="image content">
-            <div class="image">
-                An image can appear on left or an icon
-            </div>
-            <div class="description">
-                A description can appear on the right
+        <div class="content">
+            <div class="ui three column grid">
+                {{#each drinks}}
+                    {{>drinksCards}}
+                {{/each}}
             </div>
         </div>
         <div class="actions">
-            <div class="ui button">Cancel</div>
-            <div class="ui button">OK</div>
+            <div class="ui red deny button">Cancel</div>
+            <div class="ui green approve button">Add</div>
         </div>
     </div>
     <!--Drinks Menu Modal End-->
@@ -82,4 +96,40 @@
 
         }).call(this);
     </script>
+</template>
+<template name="drinksCards">
+    <div class="column">
+        <div class="ui fluid card" id="drinksCard">
+            <div class="content">
+                <a class="header">{{itemName}}</a>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="appCards">
+    <div class="column">
+        <div class="ui fluid card" id="appCard">
+            <div class="content">
+                <a class="header">{{itemName}}</a>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="entreeCards">
+    <div class="column">
+        <div class="ui fluid card" id="entreeCard">
+            <div class="content">
+                <a class="header">{{itemName}}</a>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="dessertCards">
+    <div class="column">
+        <div class="ui fluid card" id="dessertCard">
+            <div class="content">
+                <a class="header">{{itemName}}</a>
+            </div>
+        </div>
+    </div>
 </template>
