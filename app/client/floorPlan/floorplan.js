@@ -1,5 +1,5 @@
 import '../../imports/api/table.js';
-import { Tables,Table, TableStatus } from '../../imports/api/table.js';
+import { Tables, Table, TableStatus } from '../../imports/api/table.js';
 
 Template.table.events({
     'click .icon.link' () {
@@ -27,9 +27,8 @@ Template.table.events({
 Template.floorplan.helpers({
     tables()
     {
-        return Table.find({});
+        return Tables.find({});
     },
-
 });
 
 Template.table.helpers({

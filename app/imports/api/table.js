@@ -12,19 +12,16 @@ export const TableStatus = Enum.create({
 		CLEAN: 'Clean',
 		RESERVED: 'Reserved',
 		TAKEN: 'Taken'
-
 	}
-
 });
 
 
 //types for each table
 export const TableType = Enum.create({
-	name : 'TableType',
-	identifiers :{
-		RESERVATION : 'Reservation',
-		WALKIN : 'Walkin'
-
+	name: 'TableType',
+	identifiers:{
+		RESERVATION: 'Reservation',
+		WALKIN: 'Walkin'
 	}
 });
 
@@ -55,9 +52,9 @@ function reservation_checker(id){
 export const Table = Class.create({
 	name: 'TableEntry',
 	collection: Tables,
-	fields : {
-		table_id : Number,
-		size : Number,
+	fields: {
+		table_id: Number,
+		size: Number,
 		occupants: Number,
 		table_status: TableStatus,
 		table_type :TableType,

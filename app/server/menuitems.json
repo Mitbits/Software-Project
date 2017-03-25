@@ -1,0 +1,166 @@
+{"menu": {
+	"items": [
+		{
+			"id": 0,
+			"name": "Coffee",
+			"desc": "NULL",
+			"type": 0,
+			"price": 1.95,
+			"cookTime": 3
+		},
+		{
+			"id": 1,
+			"name": "Herbal Teas",
+			"desc": "NULL",
+			"type": 0,
+			"price": 2.25,
+			"cookTime": 3
+		},
+		{
+			"id": 2,
+			"name": "Assorted Juices",
+			"desc": "orange, apple, tomato, cranberry, grapefruit",
+			"type": 0,
+			"price": 3.50,
+			"cookTime": 3
+		},
+		{
+			"id": 3,
+			"name": "Iced Tea",
+			"desc": "with a free refill",
+			"type": 0,
+			"price": 1.95,
+			"cookTime": 3
+		},
+		{
+			"id": 4,
+			"name": "Milk",
+			"desc": "NULL",
+			"type": 0,
+			"price": 2.25,
+			"cookTime": 3
+		},
+		{
+			"id": 5,
+			"name": "Nachos Supreme",
+			"desc": "Homemade chili topped with shredded, lettuce, diced tomato, monterey jack cheese, jalapenos over tortillas with salsa, sour cream.",
+			"type": 1,
+			"price": 9.95,
+			"cookTime": 10
+		},
+		{ 
+			"id": 6,
+			"name": "Chicken Fingers",
+			"desc": "Fried golden brown with honey mustard sauce, with french fries.",
+			"type": 1,
+			"price": 8.50,
+			"cookTime": 12
+		},
+		{ 
+			"id": 7,
+			"name": "Mozarella Sticks",
+			"desc": "Fried golden brown with marinara sauce.",
+			"type": 1,
+			"price": 6.50,
+			"cookTime": 12
+		},
+		{ 
+			"id": 8,
+			"name": "Hot Wings",
+			"desc": "A southern recipe, served with ranch dressing and celery sticks.",
+			"type": 1,
+			"price": 8.25,
+			"cookTime": 12
+		},
+		{ 
+			"id": 9,
+			"name": "Disco Fries",
+			"desc": "Topped with brown gravy & melted mozzarella cheese.",
+			"type": 1,
+			"price": 4.75,
+			"cookTime": 8
+		},
+		{
+			"id": 10,
+			"name": "Chopped Sirloin Steak",
+			"desc": "With fried onions and gravy",
+			"type": 2,
+			"price": 15.95,
+			"cookTime": 20
+		},
+		{
+			"id": 11,
+			"name": "Roasted Spring Chicken",
+			"desc": "Slow roasted with herbs stuffing",
+			"type": 2,
+			"price": 14.95,
+			"cookTime": 20
+		},
+		{
+			"id": 12,
+			"name": "Penne Vodka",
+			"desc": "Penne tossed with tomato cream",
+			"type": 2,
+			"price": 13.95,
+			"cookTime": 15
+		},
+		{
+			"id": 13,
+			"name": "Stuffed Salmon",
+			"desc": "Baked filet of salmon stuffed with crabmeat",
+			"type": 2,
+			"price": 19.95,
+			"cookTime": 15
+		},
+		{
+			"id": 14,
+			"name": "Succulent Sea Scallops",
+			"desc": "Broiled served with roasted potatoes and vegetable medley",
+			"type": 2,
+			"price": 21.95,
+			"cookTime": 15
+		},
+		{
+			"id": 15,
+			"name": "Milk Shakes",
+			"desc": "vanilla - chocolate - strawberry",
+			"type": 3,
+			"price": 4.95,
+			"cookTime": 6
+		},
+		{
+			"id": 16,
+			"name": "Ice Cream",
+			"desc": "NULL",
+			"type": 3,
+			"price": 2.95,
+			"cookTime": 4
+		},
+		{
+			"id": 17,
+			"name": "Homemade Cheesecake",
+			"desc": "NULL",
+			"type": 3,
+			"price": 4.95,
+			"cookTime": 10
+		},
+		{
+			"id": 18,
+			"name": "Homemade Fruit Pies",
+			"desc": "NULL",
+			"type": 3,
+			"price": 3.50,
+			"cookTime": 10
+		},
+		{
+			"id": 19,
+			"name": "Brownie Sundae",
+			"desc": "NULL",
+			"type": 3,
+			"price": 5.95,
+			"cookTime": 7
+		}
+	]
+	}
+}
+
