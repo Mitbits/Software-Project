@@ -1,5 +1,6 @@
 import { MenuItems } from '../../imports/api/menuItem.js';
 
+var orderArray = [];
 Template.waiter.events({
     'click .Appetizers' () {
         document.getElementById("entreeMenu").className = "displayNone";
@@ -37,16 +38,20 @@ Template.waiter.events({
         $('.ui.modal')
             .modal('show')
         ;
-    }
+    },
+    'click .ui.bottom.attached.button' ()
+    {
+       
+    },
 });
 
 Template.drinksCards.events({
-    'click .ui.fluid.card'()
+    'click .ui.bottom.attached.button' ()
     {
-        $('.ui.fluid.card').toggleClass("ui fluid card").toggleClass("ui blue fluid card");
-    }
 
+    },
 });
+
 
 Template.waiter.helpers({
     drinks()
