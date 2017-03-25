@@ -21,7 +21,7 @@
 				Time
 			</div>
 			<div class="seven wide column">
-				Description
+				Special Requests
 			</div>
 		</div>
 		<!-- prints each orderRow depending on number of "Orders"-->
@@ -37,22 +37,23 @@
 
   <div class = "white rounded row" id="hammertap">
     <div class = "two wide column">
+
       {{orderID}}
     </div>
     <div class = "three wide column">
-      {{menuItemID}}
+      {{itemName}}
     </div>
     <div class = "two wide column">
-      test
+      {{mealType}}
     </div>
     <div class = "one wide column">
-      2
+      1
     </div>
     <div class="one wide column" id="time">
-      1:00
+      {{cookTime}}
     </div>
     <div class="five wide column">
-      Classic
+      {{specialRequests}}
     </div>
     <div class="two wide column">
       <button class="ui medium icon primary button" id="done-btn">

@@ -1,6 +1,8 @@
 import { CountDownTimer } from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
+import '../../imports/api/priorityManager.js';
+import { PriorityManager } from '../../imports/api/priorityManager.js';
 
 Template.orderQueue.helpers({
 	templateGestures: {
@@ -15,7 +17,7 @@ Template.orderQueue.helpers({
 				addTimeHandler(event, templateInstance);
 				return;
 			}
-			
+
 			var $colorObj = $(event.target.parentNode);
 			var classesApplied = $colorObj.attr('class');
 			var isActive = classesApplied.includes('active');
@@ -35,7 +37,9 @@ Template.orderQueue.helpers({
 		}
 	},
 	orders() {
-		return Order.find();
+		console.log(PriorityManager.start());
+		return PriorityManager.start();
+
 	}
 });
 
