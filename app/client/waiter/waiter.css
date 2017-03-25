@@ -170,5 +170,8 @@ body.menu-active div#content .menu-trigger {
 .menuHeader {
     float:left;
 }
+#drinksModal {
+    position: fixed;
+}
 
 

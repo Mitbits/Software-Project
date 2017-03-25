@@ -284,8 +284,6 @@
         <item url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/biginteger.js" />
         <item url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/srp.js" />
         <item url="file://$USER_HOME$/.meteor/packages/sha/1.0.9/web.browser/sha256.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/js/bootstrap.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/css/bootstrap.css" />
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/collections.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tsega_bootstrap3-datetimepicker/4.17.37_1/web.browser/lib/js/bootstrap-datetimepicker.js" />
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/client/main.js" />
@@ -758,8 +756,6 @@
       <root url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/biginteger.js" />
       <root url="file://$USER_HOME$/.meteor/packages/srp/1.0.10/web.browser/srp.js" />
       <root url="file://$USER_HOME$/.meteor/packages/sha/1.0.9/web.browser/sha256.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/js/bootstrap.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/css/bootstrap.css" />
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/collections.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tsega_bootstrap3-datetimepicker/4.17.37_1/web.browser/lib/js/bootstrap-datetimepicker.js" />
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/client/main.js" />

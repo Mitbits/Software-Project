@@ -20,7 +20,6 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
 kadira:flow-router
 kadira:blaze-layout
 fourseven:scss
-twbs:bootstrap
 jagi:astronomy
 semantic:ui
 juliancwirko:postcss
