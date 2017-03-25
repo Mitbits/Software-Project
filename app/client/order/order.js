@@ -1,4 +1,4 @@
-import {CountDownTimer} from './CountDownTimer.js';
+import { CountDownTimer } from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
 

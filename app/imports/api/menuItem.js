@@ -26,10 +26,6 @@ export const MenuItem = Class.create({
 	fields: {
 		itemID: {
 			type: Number
-			validators: [{
-				type: 'gt',
-				param: 0
-			}]
 		},
 		itemName: {
 			type: String
@@ -41,6 +37,9 @@ export const MenuItem = Class.create({
 			type: ORDER_TYPE
 		},
 		itemPrice: {
+			type: Number
+		},
+		cookTime: {
 			type: Number
 		}
 	}
