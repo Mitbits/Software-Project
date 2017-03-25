@@ -72,11 +72,4 @@ export const Order = Class.create({
 			}
 		}
 	}
-  /*,
-	helpers: {
-		orderTypeName() {
-			//return ORDER_TYPE.getIdentifier(this.orderType);
-      return "test";
-		}
-	}*/
 });

@@ -15,14 +15,18 @@
 				Type
 			</div>
 			<div class="one wide column">
-				Quantity
+				Qty
 			</div>
-			<div class="one wide column">
-				Time
+			<div class="two wide column">
+				Cook Time
 			</div>
-			<div class="seven wide column">
+			<div class="four wide column">
 				Special Requests
 			</div>
+
+            <div class="two wide column">
+                Actions
+            </div>
 		</div>
 		<!-- prints each orderRow depending on number of "Orders"-->
 		{{#each orders}}
@@ -37,7 +41,6 @@
 
   <div class = "white rounded row" id="hammertap">
     <div class = "two wide column">
-
       {{orderID}}
     </div>
     <div class = "three wide column">
@@ -49,10 +52,10 @@
     <div class = "one wide column">
       1
     </div>
-    <div class="one wide column" id="time">
-      {{cookTime}}
+    <div class="two wide column" id="time">
+      {{cookTime}}:00
     </div>
-    <div class="five wide column">
+    <div class="four wide column" id = "scrollfeature">
       {{specialRequests}}
     </div>
     <div class="two wide column">
