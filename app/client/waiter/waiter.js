@@ -1,6 +1,4 @@
-
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
-
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
 
 var orderArray = [];
@@ -59,21 +57,20 @@ Template.waiter.events({
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
 
-        for (i = 0; i < orderArray.length; i++) {
-            itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
-            console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }).itemName);
-        }
-        Template.waiter.__helpers.get('selected')();
 
         // Create new order with orderID as the highest orderID in collection + 1
         new Order({
-            orderID: Order.findOne({}, { sort: {orderID: -1}}) + 1,
+            orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
             waiterID: 69,
             orderItems: orderArray,
             timePlaced: new Date()
         }).placeOrder();
+//
 
-		orderArray = [];
+        Template.waiter.__helpers.get('selected')();
+
+
+        orderArray = [];
     },
     'click .drinkicon' () {
         console.log("hello")
@@ -97,37 +94,29 @@ Template.waiter.helpers({
     drinks() {
         return MenuItems.find({mealType: 0});
     },
-	apps() {
+    apps() {
         return MenuItems.find({mealType: 1});
     },
     entrees() {
         return MenuItems.find({mealType: 2});
     },
     desserts() {
+        console.log(MenuItems.find({mealType: 3}));
         return MenuItems.find({mealType: 3});
 
     },
-    selected: function() {
-        return _.map(Object, function(itemID, itemName, itemDescription, mealType, itemPrice, cookTime){
-            return {
-                itemid: itemID,
-                name : itemName,
-                desc: itemDescription,
-                type: mealType,
-                price: itemPrice,
-                timeCook: cookTime,
-            }
-        })
-
+    selected() {
+        console.log("Item array" + itemArray);
+        return itemArray;
     },
 });
 
 
 
 /*
-		for (i = 0; i < orderArray.length; i++) {
-			itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
-			console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
-		}
-		return itemArray;
-*/
+ for (i = 0; i < orderArray.length; i++) {
+ itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+ console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+ }
+ return itemArray;
+ */
