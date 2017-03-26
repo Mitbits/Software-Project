@@ -32,6 +32,9 @@
                 </a>
             {{/if}}
             <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}
+			{{#if isTaken}}
+			<div><button class="ui yellow centered button">Print Bill</button></div>
+			{{/if}}
 			<div class="grey statistic" id ="counter">
 
                             {{#if isClean}}
