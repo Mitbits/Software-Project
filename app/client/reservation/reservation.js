@@ -44,19 +44,22 @@ Template.reservationPage.events({
 	}
 	//construct res
 	var reserve = new Reservation({
-			"firstName": FirstName,
+		"firstName": FirstName,
 	    "lastName": LastName,
 	    "phoneNum": PhoneNum*1,
 	    "email": Email,
 	    "seats": Seats*1,
 	    "date": new Date(date),
-			
+
 		});
 	reserve.sssave();
 	tc.pushReservation(reserve);
         //window.location.href = 'Success';
-
+	
+	
+    
     }
+
 });
 
 Template.reservationPage.helpers({
@@ -64,3 +67,4 @@ Template.reservationPage.helpers({
         return Reservations.find({});
     },
 });
+

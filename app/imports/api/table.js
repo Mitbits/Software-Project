@@ -54,6 +54,7 @@ function reservation_checker(id){
 //table entries
 export const Table = Class.create({
 	name: 'TableEntry',
+	secured: false,
 	collection: Tables,
 	fields : {
 		table_id : Number,
@@ -71,20 +72,24 @@ export const Table = Class.create({
 			}
 		}
 	},
-	meteorMethods :{
-		reservation_intr(){
-			if(this.table_type != TableType.RESERVATION){
-				return;
-			}
-			var table = this;
-			Meteor.setTimeout(function (){
-				reservation_checker(table.table_id);
-			},table.reservation_intv*1000)
-		}
-	}	
+	meteorMethods: {
+ 		reservation_intr() {
+ 			if(this.table_type != TableType.RESERVATION) { return; }
+  			var table = this;
+ 			Meteor.setTimeout(function() {
+  				reservation_checker(table.table_id);
+ 			},
+ 			table.reservation_intv*1000)
+ 		},
+ 		updateTableStatus(toStatus) {
+ 			this.table_status = toStatus;
+ 			this.save();
+  		}
+  	}	
+  
+ 
+ });
 
-
-});
 export const TableCluster = Class.create({
 	name : 'TableClusters',
 	collection : TableClusters,
@@ -108,7 +113,7 @@ export const TableCluster = Class.create({
 				//checks if reservation can be added to waitlist
 				//the number of reses for a given time must not exceed # of reservation tables
 				
-				var numResTbls = Table.find({'size':this.size,'table_type':TableType.RESERVATION}).count();
+				var numResTbls = Table.find({'table_type':TableType.RESERVATION}).count();
 				var numRes = 0;
 				this.reservations.forEach(function(res){
 
