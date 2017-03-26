@@ -151,6 +151,7 @@ export const TableCluster = Class.create({
 					var now = new Date();
 					var cluster = TableCluster.findOne({'size':size});
 					var new_reservations =[];
+					console.log(cluster.reservations);
 					cluster.reservations.forEach(function(res_id){
 		
 						var res = Reservation.findOne({'phoneNum':res_id.phoneNum});

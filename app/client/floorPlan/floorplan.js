@@ -10,17 +10,18 @@ Template.table.events({
     'click .ui.yellow.button' () {
 		var table = Table.findOne({ _id: this._id });
     	table.updateTableStatus(TableStatus.DIRTY);
-		table.updateOccupantsmax(0);
 
     },
     'click .red.right.corner.label' ()
     {
 	//removes the reservation from the table and from the waitlist
-        var table  = Table.findOne({ _id: this._id });
-	table.updateTableStatus(TableStatus.CLEAN);
-	var cluster = Cluster.findOne({'size':this.seats});
+    var table  = Table.findOne({ _id: this._id });
+	var cluster = TableCluster.findOne({'size':table.checknumofOccupant()});
 	cluster.popReservation(table.reservation);
-	table.removeReservaton();
+	table.removeReservation();
+	table.updateTableStatus(TableStatus.CLEAN);
+	table.updateOccupantsmax(0);
+
      },
     'click .green.right.corner.label' ()
     {
