@@ -1,12 +1,9 @@
-import '../../imports/api/table.js';
 import { Tables,Table, TableStatus, TableCluster } from '../../imports/api/table.js';
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
 
+
 Template.table.events({
-   /*  'click .icon.link' () {
-        console.log(event.currentTarget.id);
-    }, */
     'click .ui.yellow.button' () {
 		var table = Table.findOne({ _id: this._id });
     	table.updateTableStatus(TableStatus.DIRTY);
@@ -73,7 +70,6 @@ Template.floorplan.helpers({
         return Reservations.find();
     },
 	
-
 });
 
 Template.table.helpers({

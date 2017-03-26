@@ -12,19 +12,16 @@ export const TableStatus = Enum.create({
 		CLEAN: 'Clean',
 		RESERVED: 'Reserved',
 		TAKEN: 'Taken'
-
 	}
-
 });
 
 
 //types for each table
 export const TableType = Enum.create({
-	name : 'TableType',
-	identifiers :{
-		RESERVATION : 'Reservation',
-		WALKIN : 'Walkin'
-
+	name: 'TableType',
+	identifiers:{
+		RESERVATION: 'Reservation',
+		WALKIN: 'Walkin'
 	}
 });
 
@@ -56,9 +53,9 @@ export const Table = Class.create({
 	name: 'TableEntry',
 	secured: false,
 	collection: Tables,
-	fields : {
-		table_id : Number,
-		size : Number,
+	fields: {
+		table_id: Number,
+		size: Number,
 		occupants: Number,
 		table_status: TableStatus,
 		table_type :TableType,
@@ -73,6 +70,7 @@ export const Table = Class.create({
 		}
 	},
 	meteorMethods: {
+
  		reservation_intr() {
  			if(this.table_type != TableType.RESERVATION) { return; }
   			var table = this;
@@ -82,6 +80,7 @@ export const Table = Class.create({
  			table.reservation_intv*1000)
  		},
 		removeReservation(){
+			this.reservation.remote_delete();
 			this.reservation = null;
 			this.save();
 		},
@@ -98,7 +97,8 @@ export const Table = Class.create({
  			this.save();
 		},
 		checknumofOccupant() {
-		return this.occupants;
+			return this.occupants;
+
 		}
 	}
  
@@ -151,7 +151,7 @@ export const TableCluster = Class.create({
 					var now = new Date();
 					var cluster = TableCluster.findOne({'size':size});
 
-					console.log(cluster.reservations);
+					//console.log(cluster.reservations);
 					cluster.reservations.forEach(function(res_id){
 		
 						var res = Reservation.findOne({'phoneNum':res_id.phoneNum});
@@ -159,14 +159,15 @@ export const TableCluster = Class.create({
 							return;
 						}
 						var diff = ((res.date.getTime()*1-now.getTime()*1)/1000)/3600;
-						//console.log(diff);
+					
 						if(diff <2){
 							
 							var table; 
 							Table.find({'size':cluster.size,'table_type':TableType.RESERVATION,'table_status':TableStatus.CLEAN}).forEach(function(tbl){
 								table = tbl;
 								return;
-							});	
+							});
+						
 							res.assigned = true;
 							res.save();
 							table.table_status = TableStatus.RESERVED;

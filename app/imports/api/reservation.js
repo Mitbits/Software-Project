@@ -37,6 +37,9 @@ export const Reservation = Class.create({
 				if(this.date.getDate() != today.getDate())
 					return false;
 				return true;
+			},
+			remote_delete(){
+				Reservation.remove({'phoneNum':this.phoneNum});
 			}
 		}
 });

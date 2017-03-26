@@ -1,10 +1,11 @@
 <template name="floorplan">
-    <div class="ui four column grid">
+
+    <div class="ui four column grid" id="fourColumnGrid">
         {{#each tables}}
             {{>table}}
         {{/each}}
     </div>
-
+	
 </template>
 
 <template name="table" >
@@ -31,6 +32,7 @@
                     <i class="notched circle loading icon"></i>
                 </a>
             {{/if}}
+
             <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}
 			{{#if isTaken}}
 			<div><button class="ui yellow centered button">Print Bill</button></div>
@@ -56,7 +58,6 @@
                  -->
                 <!--<button class="ui teal button">Taken</button>-->
                 {{/if}}
-
 		</div>
-    </div>
+    	</div>
 </template>

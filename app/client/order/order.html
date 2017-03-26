@@ -1,71 +1,79 @@
-<template name="orderQueue">
-
-    <div class="ui sizer vertical segment">
-        <div class="ui center aligned huge header">Order Queue</div>
+<template name = "orderQueue">
+	<div class = "ui sizer vertical segment">
+		<div class = "ui center aligned huge header">Order Queue</div>
     </div>
-{{#HammerTouchArea gestureMap=templateGestures}}
+
     <div class="ui internally celled center aligned grid">
-      <div class="grey rounded spaced row">
-        <div class="two wide column">
-          Order ID
-        </div>
-        <div class="three wide column">
-          Item
-        </div>
-        <div class="two wide column">
-          Type
-        </div>
-        <div class="one wide column">
-          Quantity
-        </div>
-        <div class="eight wide column">
-          Description
-        </div>
-      </div>
+		<div class="grey rounded spaced row">
+			<div class="two wide column">
+				Order ID
+			</div>
+			<div class="three wide column">
+				Item
+			</div>
+			<div class="two wide column">
+				Type
+			</div>
+			<div class="one wide column">
+				Qty
+			</div>
+			<div class="two wide column">
+				Cook Time
+			</div>
+			<div class="four wide column">
+				Special Requests
+			</div>
 
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-      {{>orderRow}}
-    </div>
-    {{/HammerTouchArea}}
+            <div class="two wide column">
+                Actions
+            </div>
+		</div>
+		<!-- prints each orderRow depending on number of "Orders"-->
+
+		{{#each orders}}
+			{{>orderRow}}
+		{{/each}}
+	</div>
+
 </template>
 
 
-<template name="orderRow">
-
-  <div class="white rounded row" id="hammertap">
+<template name = "orderRow">
+  <div class = "white rounded row" id="tap">
+    <div class = "two wide column">
+      {{orderID}}
+    </div>
+    <div class = "three wide column">
+      {{itemName}}
+    </div>
+    <div class = "two wide column">
+      {{mealType}}
+    </div>
+    <div class = "one wide column">
+      1
+    </div>
+    <div class="two wide column" id="time">
+      {{cookTime}}:00
+    </div>
+    <div class="four wide column" id = "scrollfeature">
+      {{specialRequests}}
+    </div>
     <div class="two wide column">
-      145
-    </div>
-    <div class="three wide column">
-      Fries
-    </div>
-    <div class="two wide column">
-      Appetizer
-    </div>
-    <div class="one wide column">
-      2
-    </div>
-    <div class="eight wide column">
-      Classic
+      <button class="ui medium icon primary button" id="done-btn">
+        <i class="checkmark icon" id="done-btn-icon"></i>
+      </button>
+      <button class="ui medium icon disabled button" id="add-time-btn">
+        <i class="hourglass start icon" id="add-time-icon"></i>
+      </button>
     </div>
   </div>
+	<div class="white rounded row" id="undo">
+		<div class="sixteen wide column">
+		<button class="ui large icon primary button" id="undo-btn">
+			<i class="undo icon" id="done-btn-icon"></i>
+			Undo
+		</button>
+		</div>
+	</div>
 
 </template>
