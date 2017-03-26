@@ -24,6 +24,11 @@ Template.table.events({
         table.updateTableStatus(TableStatus.TAKEN);
 		}
     },
+	'click .ui.gray.right.corner.label' (){
+		var table = Table.findOne({ _id: this._id });
+        table.updateTableStatus(TableStatus.TAKEN);
+
+	},
 	 'click .plus.icon.link' () {
         let count = document.getElementById("counts");
         maxCount = 4;
