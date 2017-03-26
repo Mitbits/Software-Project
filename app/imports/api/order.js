@@ -71,5 +71,11 @@ export const Order = Class.create({
 				unique: true
 			}
 		}
+	},
+	meteorMethods: {
+		// Elementary function required for Demo 1 functionality.
+		placeOrder() {
+			this.save();
+		}
 	}
 });
