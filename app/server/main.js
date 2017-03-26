@@ -12,7 +12,7 @@ Meteor.startup(() => {
     Table.remove({});
     TableCluster.remove({});
     Reservation.remove({});
-	for(i=1;i<=4;i++){
+/* 	for(i=1;i<=3;i++){
 		var tablecluster = new TableCluster({
         "size":i,
         "reservations": []
@@ -20,9 +20,15 @@ Meteor.startup(() => {
 		    tablecluster.save();
 			tablecluster.tablechecker();
 
-	}
+	} */
 	
-   
+   var tablecluster = new TableCluster({
+        "size":4,
+        "reservations": []
+		});
+		    tablecluster.save();
+			tablecluster.tablechecker();
+
 
     for(i=1;i<=16;i++){
         //create astronomy table obj entry
