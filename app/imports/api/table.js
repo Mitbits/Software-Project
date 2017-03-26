@@ -146,11 +146,12 @@ export const TableCluster = Class.create({
 								table = tbl;
 								return;
 							});	
-							console.log(table);
 							res.assigned = true;
 							res.save();
 							table.table_status = TableStatus.RESERVED;
-							table.reservation = res;	
+							table.reservation = res;
+							console.log(res);
+							console.log(table);
 							table.save();
 						}
 

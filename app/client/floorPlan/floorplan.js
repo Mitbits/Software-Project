@@ -77,12 +77,15 @@ Template.table.helpers({
         }
     },
 	'restime': function() {
+	//console.log(this);
 	var hours = this.reservation.date.getHours() > 12 ? this.reservation.date.getHours() - 12 : this.reservation.date.getHours();
 	var ampm = this.reservation.date.getHours() >= 12 ? "P.M." : "A.M.";
 	hours = hours < 10 ? "0" + hours : hours;
 	var minutes = this.reservation.date.getMinutes() < 10 ? "0" + this.reservation.date.getMinutes() : this.reservation.date.getMinutes();
-	var reservationTime = hours + ":" + minutes + " " + ampm;   
-	$('#dateDisplay').append(reservationTime);   
+	var reservationTime = hours + ":" + minutes + " " + ampm;
+	//console.log(reservationTime);
+	//$('#'+this.table_id+'dateDisplay').append(reservationTime);   
+	return reservationTime;
 	}
 	
 });

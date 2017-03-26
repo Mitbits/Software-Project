@@ -14,7 +14,7 @@ Meteor.startup(() => {
     Reservation.remove({});
 
 
-	for(i=1;i<=3;i++){
+	for(i=1;i<=4;i++){
 		var tablecluster = new TableCluster({
 	"size":i,
 	"reservations": []
