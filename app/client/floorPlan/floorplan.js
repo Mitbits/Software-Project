@@ -17,28 +17,36 @@ Template.table.events({
     },
     'click .green.right.corner.label' ()
     {
+		if(Table.findOne({ _id: this._id }).checknumofOccupant() != 0) {
         Table.findOne({ _id: this._id }).updateTableStatus(TableStatus.TAKEN);
-		
+		Table.findOne({ _id: this._id }).updateOccupants(document.getElementById("counts"));
+		}
     },
 	 'click .plus.icon.link' () {
         let count = document.getElementById("counts");
         maxCount = 4;
-        if(count.innerHTML >= 0 && count.innerHTML < maxCount) {
+        if(Table.findOne({ _id: this._id }).checknumofOccupant() >= 0 && Table.findOne({ _id: this._id }).checknumofOccupant() < maxCount) {
             document.getElementById("minus").className = "big minus icon link";
-            count.innerHTML++;
+           // count.innerHTML++;
+			Table.findOne({ _id: this._id }).updateOccupants(1);
         }
         else {
             document.getElementById("plus").className = "big disabled plus icon link";
+			Table.findOne({ _id: this._id }).updateOccupantsmax(4);
+
         }
     },
     'click .minus.icon.link' () {
         let count = document.getElementById("counts");
-        if(count.innerHTML > 0 && count.innerHTML <= maxCount) {
+        if(Table.findOne({ _id: this._id }).checknumofOccupant() > 0 && Table.findOne({ _id: this._id }).checknumofOccupant() <= maxCount) {
             document.getElementById("minus").className = "big minus icon link";
             document.getElementById("plus").className = "big plus icon link";
-            count.innerHTML--;
-        } else {
+           // count.innerHTML--;
+			Table.findOne({ _id: this._id }).updateOccupants(-1);
+			} else {
             document.getElementById("minus").className = "big disabled minus icon link";
+			Table.findOne({ _id: this._id }).updateOccupantsmax(0);
+
         }
     }
 });
@@ -82,7 +90,7 @@ Template.table.helpers({
 	hours = hours < 10 ? "0" + hours : hours;
 	var minutes = this.reservation.date.getMinutes() < 10 ? "0" + this.reservation.date.getMinutes() : this.reservation.date.getMinutes();
 	var reservationTime = hours + ":" + minutes + " " + ampm;   
-	$('#dateDisplay').append(reservationTime);   
+	return reservationTime;   
 	}
 	
 });
