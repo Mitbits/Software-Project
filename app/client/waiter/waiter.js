@@ -57,14 +57,15 @@ Template.waiter.events({
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
 
+		
 		// Create new order with orderID as the highest orderID in collection + 1
 		new Order({
-			orderID: Order.findOne({}, { sort: {orderID: -1}}) + 1,
+			orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
 			waiterID: 69,
 			orderItems: orderArray,
 			timePlaced: new Date()
 		}).placeOrder();
-
+//
 
         Template.waiter.__helpers.get('selected')();
 
