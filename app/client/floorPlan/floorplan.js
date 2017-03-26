@@ -17,9 +17,10 @@ Template.table.events({
     },
     'click .green.right.corner.label' ()
     {
-		if(Table.findOne({ _id: this._id }).checknumofOccupant() != 0) {
-        Table.findOne({ _id: this._id }).updateTableStatus(TableStatus.TAKEN);
-		Table.findOne({ _id: this._id }).updateOccupants(document.getElementById("counts"));
+		var table = Table.findOne({ _id: this._id });
+		if(table.checknumofOccupant() != 0) {
+        table.updateTableStatus(TableStatus.TAKEN);
+		//table.updateOccupants(table.checknumofOccupant());
 		}
     },
 	 'click .plus.icon.link' () {
