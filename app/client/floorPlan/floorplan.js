@@ -7,8 +7,10 @@ Template.table.events({
    /*  'click .icon.link' () {
         console.log(event.currentTarget.id);
     }, */
-    'click .ui.teal.button' () {
-    	Table.findOne({ _id: this._id }).updateTableStatus(TableStatus.DIRTY);
+    'click .ui.yellow.button' () {
+		var table = Table.findOne({ _id: this._id });
+    	table.updateTableStatus(TableStatus.DIRTY);
+		table.updateOccupantsmax(0);
 
     },
     'click .red.right.corner.label' ()
@@ -20,7 +22,6 @@ Template.table.events({
 		var table = Table.findOne({ _id: this._id });
 		if(table.checknumofOccupant() != 0) {
         table.updateTableStatus(TableStatus.TAKEN);
-		//table.updateOccupants(table.checknumofOccupant());
 		}
     },
 	 'click .plus.icon.link' () {
