@@ -75,7 +75,7 @@
 
             <div class="ui three column grid" id="currentOrder">
                 {{#each selected}}
-                    {{>menuCards}}
+                    {{>selectedCards}}
                 {{/each}}
             </div>
         </div>
@@ -130,4 +130,20 @@
         </div>
     </div>
 </template>
+<template name="selectedCards">
+    <div class="column">
+        <div class="ui fluid card" id="menuCard">
 
+            <div class="content">
+                <div class="header">{{name}} <p class="floatRight">${{price}}</p></div>
+            </div>
+            <div class="content">
+                {{desc}}
+                <!--<br>-->
+                <!--<i id="floatLeft" class="edit icon"></i>-->
+                <p class="floatRight" id="grayText"><i class="hourglass start icon"></i>{{timeCook}} mins</p>
+            </div>
+
+        </div>
+    </div>
+</template>
