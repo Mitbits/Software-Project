@@ -173,13 +173,14 @@ body.menu-active div#content .menu-trigger {
 #drinksModal {
     position: fixed;
 }
-.floatRight {
+#floatRight {
     float: right;
 }
 #floatLeft{
     float: left;
 }
-#grayText {
+.grayText {
     color: gray;
 }
+
 

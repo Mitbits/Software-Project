@@ -3,6 +3,7 @@ import {Table,Tables, TableStatus, TableType, TableCluster} from '../imports/api
 import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
+import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
 
 // loops through all reservation tables checking if they can be made walkins 
 function check_reservation_interval(){
@@ -65,6 +66,7 @@ Meteor.startup(() => {
 	Tables.remove({});
 	Orders.remove({});
 	MenuItems.remove({});
+	selectedItems.remove({});
 
 	var menuItems = require('./menuItems.json');
 

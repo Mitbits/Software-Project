@@ -78,6 +78,11 @@
                     {{>selectedCards}}
                 {{/each}}
             </div>
+            <div class="ui buttons" id="floatRight">
+                <button class="ui negative button" id="cancelOrder">Cancel Order</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="placeOrder">Place Order</button>
+            </div>
         </div>
 
     </div>
@@ -115,15 +120,15 @@
         <div class="ui fluid card" id="menuCard">
 
             <div class="content">
-                <div class="header">{{itemName}} <p class="floatRight">${{itemPrice}}</p></div>
+                <div class="header">{{itemName}} <p id="floatRight">${{itemPrice}}</p></div>
             </div>
             <div class="content">
                 {{itemDescription}}
                 <!--<br>-->
                 <!--<i id="floatLeft" class="edit icon"></i>-->
-                <p class="floatRight" id="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
+                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
             </div>
-            <div class="ui bottom attached button">
+            <div class="ui bottom attached button" id="addItem">
                 <i class="add icon"></i>
                 Add Item
             </div>
@@ -135,15 +140,18 @@
         <div class="ui fluid card" id="menuCard">
 
             <div class="content">
-                <div class="header">{{name}} <p class="floatRight">${{price}}</p></div>
+                <div class="header">{{itemName}} <p id="floatRight">${{itemPrice}}</p></div>
             </div>
             <div class="content">
-                {{desc}}
+                {{itemDescription}}
                 <!--<br>-->
                 <!--<i id="floatLeft" class="edit icon"></i>-->
-                <p class="floatRight" id="grayText"><i class="hourglass start icon"></i>{{timeCook}} mins</p>
+                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
             </div>
-
+            <div class="ui bottom attached button" id="removeItem">
+                <i class="minus icon"></i>
+                Remove Item
+            </div>
         </div>
     </div>
 </template>
