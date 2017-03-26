@@ -13,8 +13,13 @@ Template.table.events({
     },
     'click .red.right.corner.label' ()
     {
-        Table.findOne({ _id: this._id }).updateTableStatus(TableStatus.CLEAN);
-    },
+	//removes the reservation from the table and from the waitlist
+        var table  = Table.findOne({ _id: this._id });
+	table.updateTableStatus(TableStatus.CLEAN);
+	var cluster = Cluster.findOne({'size':this.seats});
+	cluster.popReservation(table.reservation);
+	table.removeReservaton();
+     },
     'click .green.right.corner.label' ()
     {
 		if(Table.findOne({ _id: this._id }).checknumofOccupant() != 0) {
