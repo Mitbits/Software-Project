@@ -5,6 +5,7 @@ class CountDownTimer {
     this.tickFtns = [];
     this.running = false;
     this.reset = false;
+    this.resetTimeText = "";
   }
 
   start() {
@@ -18,7 +19,6 @@ class CountDownTimer {
 
     (function timer() {
       diff = that.duration - (((Date.now() - start) / 1000) | 0);
-      console.log(that.running);
       if (diff > 0 && that.reset == false) {
         setTimeout(timer, that.granularity);
       } else {

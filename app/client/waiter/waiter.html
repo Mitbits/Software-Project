@@ -72,8 +72,9 @@
             <br>
             <br>
             <br>
-            <div class="ui three column grid">
-                {{#each currentOrder}}
+
+            <div class="ui three column grid" id="currentOrder">
+                {{#each selected}}
                     {{>menuCards}}
                 {{/each}}
             </div>

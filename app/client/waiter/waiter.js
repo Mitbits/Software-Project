@@ -1,4 +1,4 @@
-import { MenuItems } from '../../imports/api/menuItem.js';
+import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
 
 var orderArray = [];
@@ -56,19 +56,19 @@ Template.waiter.events({
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
-		
-		var lastOrder = Orders.find({},{limit: 1, sort: {orderID: -1}});
-		var lastOrder2 = Order.find({},{limit: 1, sort: {orderID: -1}});
-		
-		console.log(lastOrder[0]);
-		console.log(lastOrder2[0]);
-		
+
+		// Create new order with orderID as the highest orderID in collection + 1
 		new Order({
-			orderID: lastOrder.orderID + 1,
+			orderID: Order.findOne({}, { sort: {orderID: -1}}) + 1,
 			waiterID: 69,
 			orderItems: orderArray,
 			timePlaced: new Date()
 		}).placeOrder();
+
+
+        Template.waiter.__helpers.get('selected')();
+
+
 		orderArray = [];
     },
     'click .drinkicon' () {
@@ -84,6 +84,7 @@ Template.menuCards.events({
         orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
         console.log(orderArray);
     },
+
 });
 
 
@@ -99,7 +100,13 @@ Template.waiter.helpers({
         return MenuItems.find({mealType: 2});
     },
     desserts() {
+        console.log(MenuItems.find({mealType: 3}));
         return MenuItems.find({mealType: 3});
+
+    },
+    selected() {
+        console.log("Item array" + itemArray);
+        return itemArray;
     },
 });
 
