@@ -121,12 +121,11 @@ export const TableCluster = Class.create({
 			tablechecker()
 			{
 				var size = this.size;
-				console.log(size);
 				Meteor.setInterval(function(){
 				function reserve(size) {
 					var now = new Date();
 					var cluster = TableCluster.findOne({'size':size});
-	
+					var new_reservations =[];
 					cluster.reservations.forEach(function(res_id){
 		
 						var res = Reservation.findOne({'phoneNum':res_id.phoneNum});
