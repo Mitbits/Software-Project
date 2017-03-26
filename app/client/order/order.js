@@ -125,7 +125,7 @@ var timeToString = function(min, sec) {
 var startCountDown = function($timeObj, duration, resetTimeText, timer) {
 	//var timer = new CountDownTimer(duration, 1000);
 	timer.onTick(function(min, sec, reset) {
-		if(timer.expired()) {
+		if(timer.expired() && !reset) {
 			timerExpired($timeObj);
 		}
 		if(reset) { // reset timer
