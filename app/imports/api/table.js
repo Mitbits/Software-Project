@@ -170,8 +170,7 @@ export const TableCluster = Class.create({
 							res.save();
 							table.table_status = TableStatus.RESERVED;
 							table.reservation = res;
-							console.log(res);
-							console.log(table);
+							table.occupants = res.seats;
 							table.save();
 						}
 
