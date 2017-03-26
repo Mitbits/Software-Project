@@ -40,7 +40,7 @@ export class PriorityManager{
 				itemName: menuItem.itemName,
 				mealType: ORDER_TYPE.getIdentifier(menuItem.mealType),
 				cookTime: menuItem.cookTime,
-				specialRequests: orderItem.specialRequests};
+				specialRequests: orderItem.specialRequests };
     }
 }
 

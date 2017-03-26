@@ -4,7 +4,7 @@ import { Order, Orders, orderItem } from '../../imports/api/order.js';
 var orderArray = [];
 var itemArray = [];
 
-var mItemID =1;
+var mItemID = 1;
 
 function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
     return new orderItem({
@@ -57,15 +57,18 @@ Template.waiter.events({
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
 		
+		var lastOrder = Orders.find({},{limit: 1, sort: {orderID: -1}});
+		var lastOrder2 = Order.find({},{limit: 1, sort: {orderID: -1}});
 		
+		console.log(lastOrder[0]);
+		console.log(lastOrder2[0]);
 		
-		var fatBoiORder = new Order({
-			orderID: 9,
+		new Order({
+			orderID: lastOrder.orderID + 1,
 			waiterID: 69,
 			orderItems: orderArray,
 			timePlaced: new Date()
-		});
-		fatBoiORder.placeOrder();
+		}).placeOrder();
 		orderArray = [];
     },
     'click .drinkicon' () {
