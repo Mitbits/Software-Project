@@ -22,7 +22,7 @@
         </div>
         <div id="appMenu" class = "displayNone">
             <div>
-                <h1 class="menuHeader">App</h1>
+                <h1 class="menuHeader">Appetizers</h1>
                 <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
             </div>
             <br>
@@ -30,7 +30,7 @@
             <br>
             <div class="ui three column grid">
                 {{#each apps}}
-                    {{>appCards}}
+                    {{>menuCards}}
                 {{/each}}
             </div>
         </div>
@@ -44,7 +44,7 @@
             <br>
             <div class="ui three column grid">
                 {{#each entrees}}
-                    {{>entreeCards}}
+                    {{>menuCards}}
                 {{/each}}
             </div>
         </div>
@@ -58,28 +58,40 @@
             <br>
             <div class="ui three column grid">
                 {{#each desserts}}
-                    {{>dessertCards}}
+                    {{>menuCards}}
                 {{/each}}
 
             </div>
         </div>
+
+        <div id="placeOrderMenu" class = "displayNone">
+            <div>
+                <h1 class="menuHeader">Place Order</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="ui three column grid" id="currentOrder">
+                {{#each currentOrder}}
+                    {{>menuCards}}
+                {{/each}}
+            </div>
+        </div>
+
     </div>
     <!--Drinks Menu Modal Start-->
     <div class="ui scrolling modal" id="drinksModal">
         <i class="close icon"></i>
         <div class="header">
-            Select Drink(s)
+            Drinks
         </div>
         <div class="content">
             <div class="ui three column grid">
                 {{#each drinks}}
-                    {{>drinksCards}}
+                    {{>menuCards}}
                 {{/each}}
             </div>
-        </div>
-        <div class="actions">
-            <div class="ui red deny button">Cancel</div>
-            <div class="ui green approve button">Add</div>
         </div>
     </div>
     <!--Drinks Menu Modal End-->
@@ -97,39 +109,24 @@
         }).call(this);
     </script>
 </template>
-<template name="drinksCards">
+<template name="menuCards">
     <div class="column">
-        <div class="ui fluid card" id="drinksCard">
+        <div class="ui fluid card" id="menuCard">
+
             <div class="content">
-                <a class="header">{{itemName}}</a>
+                <div class="header">{{itemName}} <p class="floatRight">${{itemPrice}}</p></div>
+            </div>
+            <div class="content">
+                {{itemDescription}}
+                <!--<br>-->
+                <!--<i id="floatLeft" class="edit icon"></i>-->
+                <p class="floatRight" id="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
+            </div>
+            <div class="ui bottom attached button">
+                <i class="add icon"></i>
+                Add Item
             </div>
         </div>
     </div>
 </template>
-<template name="appCards">
-    <div class="column">
-        <div class="ui fluid card" id="appCard">
-            <div class="content">
-                <a class="header">{{itemName}}</a>
-            </div>
-        </div>
-    </div>
-</template>
-<template name="entreeCards">
-    <div class="column">
-        <div class="ui fluid card" id="entreeCard">
-            <div class="content">
-                <a class="header">{{itemName}}</a>
-            </div>
-        </div>
-    </div>
-</template>
-<template name="dessertCards">
-    <div class="column">
-        <div class="ui fluid card" id="dessertCard">
-            <div class="content">
-                <a class="header">{{itemName}}</a>
-            </div>
-        </div>
-    </div>
-</template>
+

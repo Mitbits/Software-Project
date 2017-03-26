@@ -1,4 +1,19 @@
 import { MenuItems } from '../../imports/api/menuItem.js';
+import { Order, Orders, orderItem } from '../../imports/api/order.js';
+
+var orderArray = [];
+var itemArray = [];
+
+var mItemID =1;
+
+function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
+    return new orderItem({
+        "itemID": mItemID,
+        "priority": mPriority,
+        "menuItemID": mMenuItemID,
+        "specialRequests": mSpecialRequests
+    });
+};
 
 Template.waiter.events({
     'click .Appetizers' () {
@@ -6,6 +21,7 @@ Template.waiter.events({
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("appMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     'click .Entrees' () {
@@ -13,57 +29,83 @@ Template.waiter.events({
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone"
         $('.menu-active').removeClass('menu-active');
     },
-
     'click .FloorPlan' () {
         document.getElementById("floorPlan").className = "displayAll";
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
-
     'click .Desserts' () {
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayAll";
+        document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
 
+    },
+    'click .placeOrder' () {
+        document.getElementById("floorPlan").className = "displayNone";
+        document.getElementById("entreeMenu").className = "displayNone";
+        document.getElementById("appMenu").className = "displayNone";
+        document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayAll";
+        $('.menu-active').removeClass('menu-active');
+		
+		
+		
+		var fatBoiORder = new Order({
+			orderID: 9,
+			waiterID: 69,
+			orderItems: orderArray,
+			timePlaced: new Date()
+		});
+		fatBoiORder.placeOrder();
+		orderArray = [];
     },
     'click .drinkicon' () {
         console.log("hello")
         $('.ui.modal')
             .modal('show')
         ;
-    }
+    },
 });
 
-Template.drinksCards.events({
-    'click .ui.fluid.card'()
-    {
-        $('.ui.fluid.card').toggleClass("ui fluid card").toggleClass("ui blue fluid card");
-    }
-
+Template.menuCards.events({
+    'click .ui.bottom.attached.button'() {
+        orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
+        console.log(orderArray);
+    },
 });
+
+
 
 Template.waiter.helpers({
-    drinks()
-    {
+    drinks() {
         return MenuItems.find({mealType: 0});
     },
-    apps()
-    {
+	apps() {
         return MenuItems.find({mealType: 1});
     },
-    entrees()
-    {
+    entrees() {
         return MenuItems.find({mealType: 2});
     },
-    desserts()
-    {
+    desserts() {
         return MenuItems.find({mealType: 3});
     },
-
 });
+
+
+
+/*
+		for (i = 0; i < orderArray.length; i++) {
+			itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+			console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+		}
+		return itemArray;
+*/

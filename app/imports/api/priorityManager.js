@@ -1,62 +1,66 @@
-/**
- * Created by mitpatel on 3/24/17.
- */
-
+import { Mongo } from 'meteor/mongo';
+import { Class, Enum } from 'meteor/jagi:astronomy';
 import { Order, Orders } from './order.js';
 import { MenuItem, MenuItems, ORDER_TYPE} from './menuItem.js';
-export {PriorityManager};
 
-class PriorityManager{
-
+export class PriorityManager{
     static start() {
         var Appetizers = [];
         var Entrees = [];
         var Desserts = [];
 
-        var orders = Orders.find({},{sort: {timePlaced:1}});
+        var orders = Orders.find({}, { sort: { timePlaced: 1 } });
 
         orders.forEach(function (order) {
 
-            var meals = order.orderItems;// returns array of meals
+            var orderItems = order.orderItems; // returns array of orderItems
 
-            for (var meal of meals) {
-
-                var menuItem = MenuItems.findOne({itemID:meal.menuItemID});
+            for (var orderItem of orderItems) {
+                var menuItem = MenuItems.findOne({ itemID: orderItem.menuItemID });
 
                 if (menuItem.mealType == ORDER_TYPE.APPETIZER) {
-
-                    Appetizers.push(PriorityManager.combineMealAndMenuItem(order,meal,menuItem));
-
+                    Appetizers.push(PriorityManager.combineMealAndMenuItem(order, orderItem, menuItem));
                 }
-
                 else if (menuItem.mealType == ORDER_TYPE.ENTREE) {
-
-                    Entrees.push(PriorityManager.combineMealAndMenuItem(order,meal,menuItem));
-
+                    Entrees.push(PriorityManager.combineMealAndMenuItem(order, orderItem, menuItem));
                 }
-
-
                 else if (menuItem.mealType == ORDER_TYPE.DESSERT) {
-
-                    Desserts.push(PriorityManager.combineMealAndMenuItem(order,meal,menuItem));
-
+                    Desserts.push(PriorityManager.combineMealAndMenuItem(order, orderItem, menuItem));
                 }
             }
-
         });
 
         var combinedArray = Appetizers.concat(Entrees).concat(Desserts);
 
         return combinedArray;
-
     }
 
-
-    static combineMealAndMenuItem(order,meal,menuitem){
-
-        return{orderID:order.orderID, itemName:menuitem.itemName, mealType:ORDER_TYPE.getIdentifier(menuitem.mealType), cookTime:menuitem.cookTime,
-            specialRequests: meal.specialRequests};
-
+    static combineMealAndMenuItem(order, orderItem, menuItem) {
+        return{ orderID: order.orderID, 
+				itemName: menuItem.itemName,
+				mealType: ORDER_TYPE.getIdentifier(menuItem.mealType),
+				cookTime: menuItem.cookTime,
+				specialRequests: orderItem.specialRequests};
     }
-
 }
+
+export const orderQueue = Class.create ({
+	name: 'orderQueue',
+	fields: {
+		orderID: {
+			type: Number
+		},
+		itemName: {
+			type: String
+		},
+		mealType: {
+			type: ORDER_TYPE
+		},
+		cookTime: {
+			type: Number
+		},
+		specialRequests: {
+			type: String
+		}
+	}
+})
