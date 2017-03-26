@@ -66,19 +66,17 @@
 
         <div id="placeOrderMenu" class = "displayNone">
             <div>
-                <h1 class="menuHeader">PlaceOrder</h1>
+                <h1 class="menuHeader">Place Order</h1>
                 <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
             </div>
             <br>
             <br>
             <br>
-            <div class="ui three column grid">
-                {{#each apps}}
+            <div class="ui three column grid" id="currentOrder">
+                {{#each currentOrder}}
                     {{>menuCards}}
                 {{/each}}
             </div>
-
-
         </div>
 
     </div>

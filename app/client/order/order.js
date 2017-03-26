@@ -39,7 +39,6 @@ Template.orderQueue.helpers({
 	orders() {
 		console.log(PriorityManager.start());
 		return PriorityManager.start();
-
 	}
 });
 

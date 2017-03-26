@@ -2,6 +2,7 @@ import { MenuItems } from '../../imports/api/menuItem.js';
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
 
 var orderArray = [];
+var itemArray = [];
 
 var mItemID =1;
 
@@ -16,7 +17,6 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
 
 Template.waiter.events({
     'click .Appetizers' () {
-        console.log("test");
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("appMenu").className = "displayAll";
@@ -32,7 +32,6 @@ Template.waiter.events({
         document.getElementById("placeOrderMenu").className = "displayNone"
         $('.menu-active').removeClass('menu-active');
     },
-
     'click .FloorPlan' () {
         document.getElementById("floorPlan").className = "displayAll";
         document.getElementById("entreeMenu").className = "displayNone";
@@ -41,7 +40,6 @@ Template.waiter.events({
         document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
-
     'click .Desserts' () {
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayNone";
@@ -52,14 +50,23 @@ Template.waiter.events({
 
     },
     'click .placeOrder' () {
-        console.log("test111");
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayNone";
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
-
+		
+		
+		
+		var fatBoiORder = new Order({
+			orderID: 9,
+			waiterID: 69,
+			orderItems: orderArray,
+			timePlaced: new Date()
+		});
+		fatBoiORder.placeOrder();
+		orderArray = [];
     },
     'click .drinkicon' () {
         console.log("hello")
@@ -67,12 +74,10 @@ Template.waiter.events({
             .modal('show')
         ;
     },
-
-
 });
+
 Template.menuCards.events({
-    'click .ui.bottom.attached.button' ()
-    {
+    'click .ui.bottom.attached.button'() {
         orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
         console.log(orderArray);
     },
@@ -80,24 +85,27 @@ Template.menuCards.events({
 
 
 
-
 Template.waiter.helpers({
-    drinks()
-    {
+    drinks() {
         return MenuItems.find({mealType: 0});
     },
-    apps()
-    {
+	apps() {
         return MenuItems.find({mealType: 1});
     },
-    entrees()
-    {
+    entrees() {
         return MenuItems.find({mealType: 2});
     },
-    desserts()
-    {
+    desserts() {
         return MenuItems.find({mealType: 3});
     },
-
 });
 
+
+
+/*
+		for (i = 0; i < orderArray.length; i++) {
+			itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+			console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+		}
+		return itemArray;
+*/
