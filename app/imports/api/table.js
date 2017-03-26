@@ -81,6 +81,10 @@ export const Table = Class.create({
  			},
  			table.reservation_intv*1000)
  		},
+		removeReservation(){
+			this.reservation = null;
+			this.save();
+		},
  		updateTableStatus(toStatus) {
  			this.table_status = toStatus;
  			this.save();
@@ -113,6 +117,12 @@ export const TableCluster = Class.create({
 			{
 				//helper for saving on client side
 				return this.save();
+			},
+			popReservation(res){
+				//pops reservation entry from waitlist
+				var res_ind = this.reservations.findIndex((res_loop) =>(res.phoneNum == res_loop.phoneNum));
+				this.reservations.splice(res_ind,1);
+				this.save()
 			},
 			pushReservation(res){
 				//adds reservation entity to wait list
@@ -160,8 +170,7 @@ export const TableCluster = Class.create({
 							res.save();
 							table.table_status = TableStatus.RESERVED;
 							table.reservation = res;
-							console.log(res);
-							console.log(table);
+							table.occupants = res.seats;
 							table.save();
 						}
 
