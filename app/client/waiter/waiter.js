@@ -56,16 +56,21 @@ Template.waiter.events({
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
-		
-		
-		
+        for (i = 0; i < orderArray.length; i++) {
+            itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+            console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+        }
+        Template.waiter.__helpers.get('selected')();
+
+
+
 		var fatBoiORder = new Order({
 			orderID: 9,
 			waiterID: 69,
 			orderItems: orderArray,
 			timePlaced: new Date()
 		});
-		fatBoiORder.placeOrder();
+		//fatBoiORder.placeOrder();
 		orderArray = [];
     },
     'click .drinkicon' () {
@@ -81,6 +86,7 @@ Template.menuCards.events({
         orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
         console.log(orderArray);
     },
+
 });
 
 
@@ -96,7 +102,13 @@ Template.waiter.helpers({
         return MenuItems.find({mealType: 2});
     },
     desserts() {
+        console.log(MenuItems.find({mealType: 3}));
         return MenuItems.find({mealType: 3});
+
+    },
+    selected() {
+        console.log("Item array" + itemArray);
+        return itemArray;
     },
 });
 
