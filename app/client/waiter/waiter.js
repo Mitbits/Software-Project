@@ -71,7 +71,6 @@ Template.waiter.events({
     {
         orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
         console.log(orderArray);
-
     },
 
 });
