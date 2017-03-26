@@ -6,21 +6,15 @@ Template.table.events({
         console.log(event.currentTarget.id);
     },
     'click .ui.teal.button' () {
-    	Tables.update(this._id,{
-		$set: { table_status : TableStatus.DIRTY},
-	});
+		Table.findOne({ _id: this._id }).updateTableStatus(TableStatus.DIRTY);
     },
     'click .red.right.corner.label' ()
     {
-        Tables.update(this._id,{
-            $set: { table_status : TableStatus.CLEAN}
-        });
+		Table.findOne({ _id: this._id }).updateTableStatus(TableStatus.CLEAN);
     },
     'click .green.right.corner.label' ()
     {
-        Tables.update(this._id,{
-            $set: { table_status : TableStatus.TAKEN}
-        });
+		Table.findOne({ _id: this._id }).updateTableStatus(TableStatus.TAKEN);
     },
 });
 

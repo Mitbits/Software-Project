@@ -68,15 +68,18 @@ export const Table = Class.create({
 			}
 		}
 	},
-	meteorMethods :{
-		reservation_intr(){
-			if(this.table_type != TableType.RESERVATION){
-				return;
-			}
+	meteorMethods: {
+		reservation_intr() {
+			if(this.table_type != TableType.RESERVATION) { return; }
 			var table = this;
-			Meteor.setTimeout(function (){
+			Meteor.setTimeout(function() {
 				reservation_checker(table.table_id);
-			},table.reservation_intv*1000)
+			},
+			table.reservation_intv*1000)
+		},
+		updateTableStatus(toStatus) {
+			this.table_status = toStatus;
+			this.save();
 		}
 	}	
 
