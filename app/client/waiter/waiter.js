@@ -57,20 +57,20 @@ Template.waiter.events({
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
 
-		
-		// Create new order with orderID as the highest orderID in collection + 1
-		new Order({
-			orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
-			waiterID: 69,
-			orderItems: orderArray,
-			timePlaced: new Date()
-		}).placeOrder();
+
+        // Create new order with orderID as the highest orderID in collection + 1
+        new Order({
+            orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
+            waiterID: 69,
+            orderItems: orderArray,
+            timePlaced: new Date()
+        }).placeOrder();
 //
 
         Template.waiter.__helpers.get('selected')();
 
 
-		orderArray = [];
+        orderArray = [];
     },
     'click .drinkicon' () {
         console.log("hello")
@@ -94,7 +94,7 @@ Template.waiter.helpers({
     drinks() {
         return MenuItems.find({mealType: 0});
     },
-	apps() {
+    apps() {
         return MenuItems.find({mealType: 1});
     },
     entrees() {
@@ -114,9 +114,9 @@ Template.waiter.helpers({
 
 
 /*
-		for (i = 0; i < orderArray.length; i++) {
-			itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
-			console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
-		}
-		return itemArray;
-*/
+ for (i = 0; i < orderArray.length; i++) {
+ itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+ console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
+ }
+ return itemArray;
+ */
