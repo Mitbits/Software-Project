@@ -67,20 +67,18 @@ Template.waiter.events({
             .modal('show')
         ;
     },
+
+
+});
+Template.menuCards.events({
     'click .ui.bottom.attached.button' ()
     {
         orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
         console.log(orderArray);
     },
-
 });
 
-Template.drinksCards.events({
-    'click .ui.bottom.attached.button' ()
-    {
 
-    },
-});
 
 
 Template.waiter.helpers({
