@@ -32,7 +32,7 @@ export const TableType = Enum.create({
 function reservation_checker(id){
 	table =Table.findOne({'table_id': id});
 
-	if (table.table_type == TableType.RESERVATION && table.table_status==TableStatus.CLEAN){
+	if (table.table_type == TableType.RESERVATION && table.table_status ==TableStatus.CLEAN){
 		table.table_type = TableType.WALKIN;
 		//console.log("TO WALKIN");
 	} else if (table.table_type == TableType.WALKIN && table.table_status == TableStatus.CLEAN){
@@ -84,9 +84,19 @@ export const Table = Class.create({
  		updateTableStatus(toStatus) {
  			this.table_status = toStatus;
  			this.save();
-  		}
-  	}	
-  
+  		},
+		updateOccupants(numofoccupant) {
+ 			this.occupants = numofoccupant + this.occupants;
+ 			this.save();
+		},
+		updateOccupantsmax(num) {
+ 			this.occupants = num;
+ 			this.save();
+		},
+		checknumofOccupant() {
+		return this.occupants;
+		}
+	}
  
  });
 
