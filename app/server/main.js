@@ -103,7 +103,7 @@ Meteor.startup(() => {
 
 		var numberOfItems = getRandomNumber(1,11);
 
-		for(var i =1; i<=numberOfItems; i++)
+		for(var i = 1; i <= numberOfItems; i++)
 		{
 
 			var random_mPriority = getRandomNumber(1,10); // random value for now..
@@ -112,8 +112,8 @@ Meteor.startup(() => {
 
 			orderItems.push(createOrderItem(next_mItemID,random_mPriority, random_mMenuItemID, random_mSpecialRequests));
 			next_mItemID++;
-
 		}
+		next_mItemID = 1;
 		return orderItems;
 	}
 
