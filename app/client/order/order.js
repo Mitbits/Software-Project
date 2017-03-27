@@ -69,7 +69,7 @@ var doneButtonHandler = function(event, templateInstance) {
 				$deleteObj.remove();
 				$undoObj.remove();
 			}
-		}, 10000);
+		}, 5000);
 	});
 }
 
@@ -124,11 +124,11 @@ var timeToString = function(min, sec) {
 
 var startCountDown = function($timeObj, duration, resetTimeText, timer) {
 	//var timer = new CountDownTimer(duration, 1000);
-	timer.onTick(function(min, sec, reset) {
+	timer.onTick(function(min, sec) {
 		if(timer.expired() && !reset) {
 			timerExpired($timeObj);
 		}
-		if(reset) { // reset timer
+		if(timer.reset) { // reset timer
 			$timeObj.text(resetTimeText);
 		} else {
 			$timeObj.text(timeToString(min, sec));

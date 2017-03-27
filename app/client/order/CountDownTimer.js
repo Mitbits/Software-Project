@@ -28,7 +28,7 @@ class CountDownTimer {
 
       obj = CountDownTimer.parse(diff);
       that.tickFtns.forEach(function(ftn) {
-        ftn.call(this, obj.minutes, obj.seconds, that.reset);
+        ftn.call(this, obj.minutes, obj.seconds);
       }, that);
     }());
   }
