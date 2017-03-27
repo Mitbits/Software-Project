@@ -14,8 +14,12 @@ Template.table.events({
 	//removes the reservation from the table and from the waitlist
     var table  = Table.findOne({ _id: this._id });
 	var cluster = TableCluster.findOne({'size':table.checknumofOccupant()});
-	cluster.popReservation(table.reservation);
-	table.removeReservation();
+	if (table.table_status == TableStatus.RESERVED)
+	{
+		cluster.popReservation(table.reservation);
+		table.removeReservation();
+	}
+	
 	table.updateTableStatus(TableStatus.CLEAN);
 	table.updateOccupantsmax(0);
 

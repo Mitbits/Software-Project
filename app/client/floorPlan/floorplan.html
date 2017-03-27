@@ -42,7 +42,7 @@
                             {{#if isClean}}
                             <i class="big disabled minus icon link" id = "minus"></i>
                             <i class="big plus icon link" id="plus"></i>
-                            <br>
+                           
                             <div class="value" id="counts" style="color:white;">
 							{{occupants}}
                             </div>
@@ -52,7 +52,7 @@
 			</div>
 
             {{#if isReserved}}
-	    <h3> Reserved for name: {{reservation.firstName}}</h3> <p id="{{table_id}}dateDisplay">{{restime}}</p>
+	    <h3> Reserved for: {{reservation.firstName}}</h3> <p id="{{table_id}}dateDisplay">{{restime}}</p>
                
                 <!--             Reservation Interval {{reservation_intv}}<br>
                  -->
