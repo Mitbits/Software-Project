@@ -71,17 +71,12 @@ export const Table = Class.create({
 	},
 	meteorMethods: {
 
- 		reservation_intr() {
- 			if(this.table_type != TableType.RESERVATION) { return; }
-  			var table = this;
- 			Meteor.setTimeout(function() {
-  				reservation_checker(table.table_id);
- 			},
- 			table.reservation_intv*1000)
- 		},
+
 		removeReservation(){
 			this.reservation.remote_delete();
+
 			this.reservation = null;
+
 			this.save();
 		},
  		updateTableStatus(toStatus) {
@@ -140,7 +135,7 @@ export const TableCluster = Class.create({
 					if(res.date.getTime() == time.getTime())
 						numRes++;
 				});
-				console.log(numRes);
+
 				return (numRes+1<=numResTbls) ? true : false;
 			},
 			tablechecker()
@@ -173,7 +168,8 @@ export const TableCluster = Class.create({
 							table.table_status = TableStatus.RESERVED;
 							table.reservation = res;
 							table.occupants = res.seats;
-							table.save();
+																		table.save();
+
 						}
 
 					});
