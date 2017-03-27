@@ -54,7 +54,7 @@ Template.reservationPage.events({
 		});
 	reserve.sssave();
 	tc.pushReservation(reserve);
-        //window.location.href = 'Success';
+     window.location.href = 'Success';
 	
 	
     
