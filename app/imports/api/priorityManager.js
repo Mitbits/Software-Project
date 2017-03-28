@@ -3,7 +3,19 @@ import { Class, Enum } from 'meteor/jagi:astronomy';
 import { Order, Orders } from './order.js';
 import { MenuItem, MenuItems, ORDER_TYPE} from './menuItem.js';
 
+/**
+ *
+ * @class Calculates the priority of each of the orders within the order collection
+ *
+ *
+ *
+ */
+
 export class PriorityManager{
+    /**
+     * @function Starts the priority manager, initializes the different variables needed for the function, operates on those variables to calculate the priorities
+     * @returns {Array.<orderItems>} An array of order items in the correct order
+     */
     static start() {
         var Appetizers = [];
         var Entrees = [];
@@ -35,6 +47,13 @@ export class PriorityManager{
         return combinedArray;
     }
 
+    /**
+     * @function Combines information from both the Order object and the menuItem object
+     * @param order Order object that contains the different fields of an order
+     * @param orderItem A particular field of the an order instance that contains the list of items for a particular order
+     * @param menuItem An object that contains the information specific to each item on the menu
+     * @returns {{orderID: number, itemName: (orderQueue.fields.itemName|{type}|*|string|MenuItem.fields.itemName|selectedItem.fields.itemName), mealType, cookTime: (*|orderQueue.fields.cookTime|{type}|selectedItem.fields.cookTime|MenuItem.fields.cookTime|number), specialRequests: (orderQueue.fields.specialRequests|{type}|*|string|orderItem.fields.specialRequests)}}
+     */
     static combineMealAndMenuItem(order, orderItem, menuItem) {
         return{ orderID: order.orderID, 
 				itemName: menuItem.itemName,
@@ -43,7 +62,7 @@ export class PriorityManager{
 				specialRequests: orderItem.specialRequests };
     }
 }
-
+// Not commented for now, cause not used for the project yet
 export const orderQueue = Class.create ({
 	name: 'orderQueue',
 	fields: {
