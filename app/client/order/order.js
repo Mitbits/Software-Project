@@ -5,6 +5,11 @@ import '../../imports/api/priorityManager.js';
 import { PriorityManager } from '../../imports/api/priorityManager.js';
 
 Template.orderRow.events({
+    /**
+     * @function
+     * @name click div#tap
+     * @summary Catches all the events that occur on the page
+     */
 	'click div#tap': function(event, templateInstance) {
 		// check if user clicked on the buttons
 		if (!templateInstance.data.timer) {
@@ -38,6 +43,10 @@ Template.orderRow.events({
 	}
 });
 
+/**
+ * @name TimeObject Creator
+ * @summary Creates the time objects when the page is rendered.
+ */
 Template.orderRow.onRendered(function() {
 	// create timer
 	var {timeMin, timeSec, timeText, $timeObj} = getTime(null, this.$('div#time'));
@@ -47,11 +56,21 @@ Template.orderRow.onRendered(function() {
 });
 
 Template.orderQueue.helpers({
+    /**
+	 * @function orders
+	 * @returns {Array.<orderItems>}
+     */
 	orders() {
 		return PriorityManager.start();
 	}
 });
 
+/**
+ * @function doneButtonHandler
+ * @summary Allows user to get rid of an order from the order queue
+ * @param event
+ * @param templateInstance
+ */
 var doneButtonHandler = function(event, templateInstance) {
 	var $selectedObj = $(event.target);
 	var $deleteObj = $selectedObj.closest('#tap');
@@ -74,6 +93,12 @@ var doneButtonHandler = function(event, templateInstance) {
 }
 
 var deltaTime = 30;
+/**
+ * @function addTimeHandler
+ * @summary Adds a specified amount of time (30secs for now) to the current time of an Order
+ * @param event
+ * @param templateInstance
+ */
 var addTimeHandler = function(event, templateInstance) {
 	var { timeMin, timeSec, timeText, $timeObj } = getTime(event);
 	var duration = 60*timeMin + timeSec + deltaTime;
@@ -86,6 +111,12 @@ var addTimeHandler = function(event, templateInstance) {
 	startCountDown($timeObj, duration, timeText, templateInstance.data.timer);
 }
 
+/**
+ * @function startTimer
+ * @summary When the user clicks on an Order this function will start the timer for that order
+ * @param event
+ * @param templateInstance
+ */
 var startTimer = function(event, templateInstance) {
 	var {timeMin, timeSec, timeText, $timeObj} = getTime(event);
 	var duration = 60*timeMin + timeSec;
@@ -94,7 +125,13 @@ var startTimer = function(event, templateInstance) {
 	}
 	startCountDown($timeObj, duration, timeText, templateInstance.data.timer);
 }
-
+/**
+ * @function getTime
+ * @summary Gets the current time being shown to the user
+ * @param event
+ * @param {JQuery} $timeObj
+ * @returns {{timeMin: number, timeSec: number, timeText: string, $timeObj: JQuery}}
+ */
 var getTime = function(event, $timeObj) {
 	if(!$timeObj) {
 		var $selectedObj = $(event.target);
@@ -106,6 +143,13 @@ var getTime = function(event, $timeObj) {
   return {timeMin, timeSec, timeText, $timeObj};
 }
 
+/**
+ * @function timeToString
+ * @summary Converts numerical time to text form
+ * @param {Number} min - Minute Input
+ * @param {Number} sec - Second Input
+ * @returns {string}
+ */
 var timeToString = function(min, sec) {
 	var timeText = '';
 	if(min < 10) {
@@ -122,6 +166,14 @@ var timeToString = function(min, sec) {
 	return timeText;
 }
 
+/**
+ * @function startCountDown
+ * @summary Starts the count down and appropriately updates the screen
+ * @param {JQuery} $timeObj
+ * @param {Number} duration - Time length (seconds)
+ * @param {String} resetTimeText - sets screen display to appropriate time (mm:ss (units))
+ * @param {CountDownTimer} timer - holds data needed for numerous times
+ */
 var startCountDown = function($timeObj, duration, resetTimeText, timer) {
 	//var timer = new CountDownTimer(duration, 1000);
 	timer.onTick(function(min, sec) {
@@ -137,6 +189,12 @@ var startCountDown = function($timeObj, duration, resetTimeText, timer) {
   timer.start();
 }
 
+/**
+ * @function resetTimer
+ * @summary Resets the timer
+ * @param event
+ * @param templateInstance
+ */
 var resetTimer = function(event, templateInstance) {
 	/*if(!timeText) {
 		var $selectedObj = $(event.target);
@@ -147,6 +205,11 @@ var resetTimer = function(event, templateInstance) {
 	templateInstance.data.timer = null;
 }
 
+/**
+ * @function timerExpired
+ * @summary Highlights the row red when the timer time expires
+ * @param {JQuery} $timeObj A jquery object of the encapsulates the timer div
+ */
 var timerExpired = function($timeObj) {
 	var $orderRow = $timeObj.closest('div#tap');
 	$orderRow.removeClass('white');
