@@ -3,7 +3,11 @@ import {Reservations} from '../../imports/api/reservation.js';
 import { Reservation } from '../../imports/api/reservation.js';
 import { TableCluster } from '../../imports/api/table.js';
 Template.reservationPage.events({
-
+/**
+* @function
+* @name click .plus.icon.link 
+* @summary Increments count by 1 with maximum of 4
+*/
     'click .plus.icon.link' () {
         let count = document.getElementById("count");
         maxCount = 4;
@@ -15,6 +19,11 @@ Template.reservationPage.events({
             document.getElementById("plus").className = "big disabled plus icon link";
         }
     },
+/**
+* @function
+* @name click .minus.icon.link 
+* @summary Decrements count by 1 with minimum of 1
+*/
     'click .minus.icon.link' () {
         let count = document.getElementById("count");
         if(count.innerHTML > 1 && count.innerHTML <= maxCount) {
@@ -25,6 +34,12 @@ Template.reservationPage.events({
             document.getElementById("minus").className = "big disabled minus icon link";
         }
     },
+/**
+* @function
+* @name submit form 
+* @param {event}
+* @summary Obtains all Elements from reservation page and assigns them into reserve. reserve is then pushed into the database as a reservation.
+*/
     'submit form': function(event){
 	    console.log(new Date());
         event.preventDefault();
@@ -61,7 +76,12 @@ Template.reservationPage.events({
     }
 
 });
-
+/**
+* @function
+* @name reservations 
+* @summary Returns all Reservations from the database
+* @returns Reservation Collection
+*/ 
 Template.reservationPage.helpers({
     reservations() {
         return Reservations.find({});
