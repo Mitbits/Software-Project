@@ -5,7 +5,7 @@ export const MenuItems = new Mongo.Collection('menuitems');
 
 /**
  * @readonly
- * @enum {number}
+ * @enum {Number}
  * @summary Enum for order types.
  *
  * @todo Convert this Enum from type: Number to type: String and refactor code based on change

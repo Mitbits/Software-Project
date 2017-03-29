@@ -9,7 +9,6 @@ export const Customers = new Mongo.Collection('customers');
 /**
  * @global
  * @summary Validation parameter for unique ID numbers used in various classes.
- * @type {[*]}
  */
 var minID = [{
 	type: 'gt',
@@ -57,7 +56,7 @@ export const orderItem = Class.create({
  * @summary Represents an Order
  * @param {Number} orderID - Unique order identifier
  * @param {Number} waiterID - Waiter identifier for waiter that placed the order
- * @param {Array<orderItem>} - Contains all items for order
+ * @param {Array<orderItem>} orderItems - Contains all items for order
  * @param {Date} timePlaced - Time and date the order was created
  *
  * @todo Extend the order class to include a table identifier (integrate with the table class).
@@ -96,8 +95,7 @@ export const Order = Class.create({
 		/**
 		 * @function placeOrder
 		 * @summary Makes an order available to the order queue by storing an 'order' document in the database
-		 * @this Refers to an `Order` object handled by a waiter
-		 * @returns {WriteResult} Status of database write operation
+		 * @returns {Number} Status of database write operation
 		 */
 		placeOrder() {
 			return this.save();

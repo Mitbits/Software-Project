@@ -50,8 +50,7 @@ export const Reservation = Class.create({
         /**
 		 * @function sssave
 		 * @summary Saves/Writes reservation into the database
-		 * @this Refers to a 'Reservation' object
-		 * @returns {WriteResult} Status of database write operation
+		 * @returns {Number} Status of database write operation
          */
 		sssave() {
 			return this.save();
@@ -74,7 +73,6 @@ export const Reservation = Class.create({
         /**
 		 * @function remote_delete
 		 * @summary Deletes a Reservation matching the phone number
-		 * @this Refers to a 'Reservation' object
          */
 		remote_delete() {
 			Reservation.remove({'phoneNum': this.phoneNum});

@@ -43,8 +43,7 @@ export const selectedItem = Class.create({
         /**
          * @function saveItem
          * @summary Saves a `selectedItem` to the collection
-         * @this refers to a `selectedItem` object
-         * @returns {WriteResult} Status of database write operation
+         * @returns {Number} Status of database write operation
          */
         saveItem() {
            return this.save();
@@ -52,7 +51,7 @@ export const selectedItem = Class.create({
         /**
          * @function removeCollection
          * @summary Empties the selectedItems collection
-         * @returns {WriteResult} Status of database write operation
+         * @returns {Number} Status of database write operation
          */
         removeCollection() {
             return selectedItems.remove({});
@@ -61,7 +60,7 @@ export const selectedItem = Class.create({
          * @function removeItem
          * @summary Removes an item from selectedItems collection
          * @param {Number} id - itemID of the record to remove
-         * @returns {WriteResult} Status of database write operation
+         * @returns {Number} Status of database write operation
          */
         removeItem(id) {
             return selectedItems.remove({_id:id});
