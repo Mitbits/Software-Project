@@ -7,6 +7,8 @@ export const MenuItems = new Mongo.Collection('menuitems');
  * @readonly
  * @enum {number}
  * Enum for order types.
+ *
+ * @todo Convert this Enum from type: Number to type: String and refactor code based on change
  */
 export const ORDER_TYPE = Enum.create({
 	name: 'orderType',
