@@ -127,7 +127,7 @@ if (Meteor.isServer) {
 				tablecluster = TableCluster.findOne({'size':4});
 				tablecluster.tableChecker();
 
-				Meteor._sleepForMs(1000);
+				Meteor._sleepForMs(1500);
 				reservation = Reservation.findOne({'phoneNum':12});
 				assert.equal(reservation.assigned,true);
 

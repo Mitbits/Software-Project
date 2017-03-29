@@ -239,11 +239,16 @@ export const TableCluster = Class.create({
 			function reserve(size) {
 				var now = new Date();
 				var cluster = TableCluster.findOne({'size':size});
-
+				if (cluster == undefined){
+					return;
+				}
 				//console.log(cluster.reservations);
 				cluster.reservations.forEach(function(res_id) {
 
 					var res = Reservation.findOne({'phoneNum':res_id.phoneNum});
+					if(res == undefined){
+						return;
+					}
 					if(!res.isToday() || res.assigned) {
 						return;
 					}
