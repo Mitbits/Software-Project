@@ -1,18 +1,7 @@
 import { Mongo } from 'meteor/mongo';
-import { Class,Enum } from 'meteor/jagi:astronomy'
+import { Class } from 'meteor/jagi:astronomy';
+import { ORDER_TYPE } from './menuItem.js';
 export const selectedItems = new Mongo.Collection('selectedItems');
-
-export const ORDER_TYPE = Enum.create({
-    name: 'orderType',
-    identifiers: {
-        REFRESHMENT: 0,
-        APPETIZER: 1,
-        ENTREE: 2,
-        DESSERT: 3,
-        OTHER: 4,
-        CANCELLED: 5
-    }
-});
 
 export const selectedItem = Class.create({
     name: 'items',
