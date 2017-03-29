@@ -5,8 +5,8 @@ import { ORDER_TYPE } from './menuItem.js';
 export const selectedItems = new Mongo.Collection('selectedItems');
 
 /**
- * @class
- * @classdesc Represents items selected by the waiter while placing an order
+ * @class selectedItem
+ * @summary Represents items selected by the waiter while placing an order
  * @param {Number} itemID - Unique item identifier
  * @param {String} itemName - Name of the item
  * @param {String} itemDescription - Describes the item
@@ -41,7 +41,8 @@ export const selectedItem = Class.create({
     },
     meteorMethods: {
         /**
-         * @function Saves a `selectedItem` to the collection
+         * @function saveItem
+         * @summary Saves a `selectedItem` to the collection
          * @this refers to a `selectedItem` object
          * @returns {WriteResult} Status of database write operation
          */
@@ -49,14 +50,16 @@ export const selectedItem = Class.create({
            return this.save();
         },
         /**
-         * @function Empties the selectedItems collection
+         * @function removeCollection
+         * @summary Empties the selectedItems collection
          * @returns {WriteResult} Status of database write operation
          */
         removeCollection() {
             return selectedItems.remove({});
         },
         /**
-         * @function Removes an item from selectedItems collection
+         * @function removeItem
+         * @summary Removes an item from selectedItems collection
          * @param {Number} id - itemID of the record to remove
          * @returns {WriteResult} Status of database write operation
          */
@@ -64,6 +67,4 @@ export const selectedItem = Class.create({
             return selectedItems.remove({_id:id});
         },
     }
-
-
 });

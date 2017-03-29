@@ -8,7 +8,7 @@ export const Customers = new Mongo.Collection('customers');
 
 /**
  * @global
- * @desc Validation parameter for unique ID numbers used in various classes.
+ * @summary Validation parameter for unique ID numbers used in various classes.
  * @type {[*]}
  */
 var minID = [{
@@ -17,8 +17,8 @@ var minID = [{
 }]
 
 /**
- * A single item belonging to a set of one or more orderItems of a single order
  * @typedef {orderItem}
+ * @summary A single item belonging to a set of one or more orderItems of a single order
  */
 Type.create({
 	name: 'orderItem',
@@ -26,8 +26,8 @@ Type.create({
 })
 
 /**
- * @class
- * @classdesc - Represents an item for an order.
+ * @class orderItem
+ * @summary - Represents an item for an order.
  * @param {Number} itemID - Unique identifier representing an item within an order
  * @param {Number} priority - Priority number for item in the order queue
  * @param {Number} menuItemID - Indicates the menuItem this item represents
@@ -53,8 +53,8 @@ export const orderItem = Class.create({
 });
 
 /**
- * @class
- * @classdesc Represents an Order
+ * @class Order
+ * @summary Represents an Order
  * @param {Number} orderID - Unique order identifier
  * @param {Number} waiterID - Waiter identifier for waiter that placed the order
  * @param {Array<orderItem>} - Contains all items for order
@@ -94,7 +94,8 @@ export const Order = Class.create({
 	},
 	meteorMethods: {
 		/**
-		 * @function Makes an order available to the order queue by storing an 'order' document in the database
+		 * @function placeOrder
+		 * @summary Makes an order available to the order queue by storing an 'order' document in the database
 		 * @this Refers to an `Order` object handled by a waiter
 		 * @returns {WriteResult} Status of database write operation
 		 */
