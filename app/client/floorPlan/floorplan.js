@@ -13,7 +13,7 @@ Template.table.events({
     {
 	//removes the reservation from the table and from the waitlist
     var table  = Table.findOne({ _id: this._id });
-	var cluster = TableCluster.findOne({'size':table.checknumofOccupant()});
+	var cluster = TableCluster.findOne({'size':table.getNumOccupants()});
 	if (table.table_status == TableStatus.RESERVED)
 	{
 		cluster.popReservation(table.reservation);
@@ -21,13 +21,13 @@ Template.table.events({
 	}
 	
 	table.updateTableStatus(TableStatus.CLEAN);
-	table.updateOccupantsmax(0);
+	table.setOccupantLimit(0);
 
      },
     'click .green.right.corner.label' ()
     {
 		var table = Table.findOne({ _id: this._id });
-		if(table.checknumofOccupant() != 0) {
+		if(table.getNumOccupants() != 0) {
         table.updateTableStatus(TableStatus.TAKEN);
 		}
     },
@@ -39,27 +39,27 @@ Template.table.events({
 	 'click .plus.icon.link' () {
         let count = document.getElementById("counts");
         maxCount = 4;
-        if(Table.findOne({ _id: this._id }).checknumofOccupant() >= 0 && Table.findOne({ _id: this._id }).checknumofOccupant() < maxCount) {
+        if(Table.findOne({ _id: this._id }).getNumOccupants() >= 0 && Table.findOne({ _id: this._id }).getNumOccupants() < maxCount) {
             document.getElementById("minus").className = "big minus icon link";
            // count.innerHTML++;
-			Table.findOne({ _id: this._id }).updateOccupants(1);
+			Table.findOne({ _id: this._id }).addOccupants(1);
         }
         else {
             document.getElementById("plus").className = "big disabled plus icon link";
-			Table.findOne({ _id: this._id }).updateOccupantsmax(4);
+			Table.findOne({ _id: this._id }).setOccupantLimit(4);
 
         }
     },
     'click .minus.icon.link' () {
         let count = document.getElementById("counts");
-        if(Table.findOne({ _id: this._id }).checknumofOccupant() > 0 && Table.findOne({ _id: this._id }).checknumofOccupant() <= maxCount) {
+        if(Table.findOne({ _id: this._id }).getNumOccupants() > 0 && Table.findOne({ _id: this._id }).getNumOccupants() <= maxCount) {
             document.getElementById("minus").className = "big minus icon link";
             document.getElementById("plus").className = "big plus icon link";
            // count.innerHTML--;
-			Table.findOne({ _id: this._id }).updateOccupants(-1);
+			Table.findOne({ _id: this._id }).addOccupants(-1);
 			} else {
             document.getElementById("minus").className = "big disabled minus icon link";
-			Table.findOne({ _id: this._id }).updateOccupantsmax(0);
+			Table.findOne({ _id: this._id }).setOccupantLimit(0);
 
         }
     }
