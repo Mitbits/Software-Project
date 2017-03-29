@@ -2,6 +2,8 @@
 import {Reservations} from '../../imports/api/reservation.js';
 import { Reservation } from '../../imports/api/reservation.js';
 import { TableCluster } from '../../imports/api/table.js';
+
+export const temp = Template.reservationPage;
 Template.reservationPage.events({
 
     'click .plus.icon.link' () {

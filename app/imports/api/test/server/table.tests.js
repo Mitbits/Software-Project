@@ -1,9 +1,9 @@
 
 
 import { Meteor } from 'meteor/meteor';
-import {Table,TableStatus,TableType,TableCluster} from '../table.js';
+import {Table,TableStatus,TableType,TableCluster} from '../../table.js';
 import {assert } from 'meteor/practicalmeteor:chai';
-import {Reservation} from '../reservation.js';
+import {Reservation} from '../../reservation.js';
 
 if (Meteor.isServer) {
 	describe('Table', () => {
@@ -65,7 +65,7 @@ if (Meteor.isServer) {
 			});
 		});
 	}),
-	describe('TableCluster', ()=>{
+	describe('TableCluster/Table/Reservation Integration tests', ()=>{
 		describe('methods', ()=>{
 			beforeEach(()=>{
 				TableCluster.remove({});

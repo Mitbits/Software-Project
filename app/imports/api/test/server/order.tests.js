@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Order, Orders} from '../order.js';
+import {Order, Orders} from '../../order.js';
 import {chai} from 'meteor/practicalmeteor:chai';
 
 if(Meteor.isServer) {

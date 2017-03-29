@@ -1,8 +1,8 @@
 import {Meteor} from 'meteor/meteor';
-import {Order, Orders, orderItem} from '../order.js';
+import {Order, Orders, orderItem} from '../../order.js';
 import {chai} from 'meteor/practicalmeteor:chai';
-import {PriorityManager} from '../priorityManager.js';
-import {MenuItem, ORDER_TYPE} from '../menuItem.js';
+import {PriorityManager} from '../../priorityManager.js';
+import {MenuItem, ORDER_TYPE} from '../../menuItem.js';
 
 if(Meteor.isServer) {
   describe('Priority Manager', () => {

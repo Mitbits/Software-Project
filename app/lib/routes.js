@@ -36,3 +36,4 @@ FlowRouter.route('/waiter', {
         BlazeLayout.render("waiter");
     }
 });
+
