@@ -8,8 +8,7 @@ export const Customers = new Mongo.Collection('customers');
 
 /**
  * @global
- * @desc Validation parameter for unique ID numbers used in various classes.
- * @type {[*]}
+ * @summary Validation parameter for unique ID numbers used in various classes.
  */
 var minID = [{
 	type: 'gt',
@@ -17,8 +16,8 @@ var minID = [{
 }]
 
 /**
- * A single item belonging to a set of one or more orderItems of a single order
  * @typedef {orderItem}
+ * @summary A single item belonging to a set of one or more orderItems of a single order
  */
 Type.create({
 	name: 'orderItem',
@@ -26,8 +25,8 @@ Type.create({
 })
 
 /**
- * @class
- * @classdesc - Represents an item for an order.
+ * @class orderItem
+ * @summary - Represents an item for an order.
  * @param {Number} itemID - Unique identifier representing an item within an order
  * @param {Number} priority - Priority number for item in the order queue
  * @param {Number} menuItemID - Indicates the menuItem this item represents
@@ -53,11 +52,11 @@ export const orderItem = Class.create({
 });
 
 /**
- * @class
- * @classdesc Represents an Order
+ * @class Order
+ * @summary Represents an Order
  * @param {Number} orderID - Unique order identifier
  * @param {Number} waiterID - Waiter identifier for waiter that placed the order
- * @param {Array<orderItem>} - Contains all items for order
+ * @param {Array<orderItem>} orderItems - Contains all items for order
  * @param {Date} timePlaced - Time and date the order was created
  *
  * @todo Extend the order class to include a table identifier (integrate with the table class).
@@ -94,9 +93,9 @@ export const Order = Class.create({
 	},
 	meteorMethods: {
 		/**
-		 * @function Makes an order available to the order queue by storing an 'order' document in the database
-		 * @this Refers to an `Order` object handled by a waiter
-		 * @returns {WriteResult} Status of database write operation
+		 * @function placeOrder
+		 * @summary Makes an order available to the order queue by storing an 'order' document in the database
+		 * @returns {Number} Status of database write operation
 		 */
 		placeOrder() {
 			return this.save();

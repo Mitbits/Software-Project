@@ -4,8 +4,8 @@ import { Class } from 'meteor/jagi:astronomy'
 export const Reservations = new Mongo.Collection('reservations');
 
 /**
- * @class
- * @classdesc Represents reservation records from the client-side reservation system
+ * @class Reservation
+ * @summary Represents reservation records from the client-side reservation system
  * @param {String} firstName - First name of reservation holder
  * @param {String} lastName - Last name of reservation holder
  * @param {Number} phoneNum - Phone Number of reservation holder
@@ -48,15 +48,16 @@ export const Reservation = Class.create({
 	},
 	meteorMethods: {
         /**
-		 * @function Saves/Writes reservation into the database
-		 * @this Refers to a 'Reservation' object
-		 * @returns {WriteResult} Status of database write operation
+		 * @function sssave
+		 * @summary Saves/Writes reservation into the database
+		 * @returns {Number} Status of database write operation
          */
 		sssave() {
 			return this.save();
 		},
         /**
-		 * @function Checks if the date of the Reservation corressonds to the current server date
+		 * @function isToday
+		 * @summary Checks if the date of the Reservation corressonds to the current server date
          * @returns {boolean} True if date matches, false otherwise
          */
 		isToday() {
@@ -70,8 +71,8 @@ export const Reservation = Class.create({
 			return true;
 		},
         /**
-		 * @function Deletes a Reservation matching the phone number
-		 * @this Refers to a 'Reservation' object
+		 * @function remote_delete
+		 * @summary Deletes a Reservation matching the phone number
          */
 		remote_delete() {
 			Reservation.remove({'phoneNum': this.phoneNum});
