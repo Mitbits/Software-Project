@@ -10,7 +10,8 @@ import { MenuItem, MenuItems, ORDER_TYPE} from './menuItem.js';
 
 export class PriorityManager{
     /**
-     * @function Starts the priority manager, initializes the different variables needed for the function, operates on those variables to calculate the priorities
+     * @function start
+     * @summary Starts the priority manager, initializes the different variables needed for the function, operates on those variables to calculate the priorities
      * @returns {Array.<orderItems>} An array of order items in the correct order
      */
     static start() {
@@ -43,7 +44,8 @@ export class PriorityManager{
     }
 
     /**
-     * @function Combines information from both the Order object and the menuItem object
+     * @function combineMealAndMenuItems
+     * @summary Combines information from both the Order object and the menuItem object
      * @param order Order object that contains the different fields of an order
      * @param orderItem A particular field of the an order instance that contains the list of items for a particular order
      * @param menuItem An object that contains the information specific to each item on the menu

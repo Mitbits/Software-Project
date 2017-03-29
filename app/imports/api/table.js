@@ -7,7 +7,7 @@ export const TableClusters = new Mongo.Collection('TableClusters');
 /**
  * @readonly
  * @enum {String}
- * Enum for the current status of a table
+ * @summary Enum for the current status of a table
  */
 export const TableStatus = Enum.create({
 	name : 'TableStatus',
@@ -22,7 +22,7 @@ export const TableStatus = Enum.create({
 /**
  * @readonly
  * @enum {String}
- * Enum that represents the type of a table
+ * @summary Enum that represents the type of a table
  */
 export const TableType = Enum.create({
 	name: 'TableType',
@@ -33,7 +33,8 @@ export const TableType = Enum.create({
 });
 
 /**
- * @function Sets table statuses based on their existing current status.
+ * @function reservation_checker
+ * @summary Consistely checking for table reservations and sets table statuses based on their existing current status.
  * @param id
  */
 function reservation_checker(id){
@@ -54,7 +55,8 @@ function reservation_checker(id){
 
 	table.save();
     /**
-	 * @function Calls the reservation_check function on an interval to update table status
+	 * @function Meteor.setTimeout
+	 * @summary Calls the reservation_check function on an interval to update table status
      */
 	Meteor.setTimeout(function () {
 		reservation_checker(id);
@@ -62,8 +64,8 @@ function reservation_checker(id){
 }
 
 /**
- * @class
- * @class Represents a table at the restaurant
+ * @class Table
+ * @summary Represents a table at the restaurant
  * @param {Number} table_id - Unqiue table identifier
  * @param {Number} size - Size of the table in seats
  * @param {Number} occupants - Number of people seated at the table
@@ -107,7 +109,8 @@ export const Table = Class.create({
 	},
 	meteorMethods: {
         /**
-		 * @function Deletes a reservation entry from the table
+		 * @function removeReservation
+		 * @summary Deletes a reservation entry from the table
 		 * @returns Status of database write operation
 		 *
 		 * @todo Redo logic of this function. Seems repetitive.
@@ -118,7 +121,8 @@ export const Table = Class.create({
 			return this.save();
 		},
         /**
-		 * @function Changes the current table status to the specified status
+		 * @function updateTableStatus
+		 * @summary Changes the current table status to the specified status
          * @param toStatus
 		 * @returns Status of database write operation
          */
@@ -127,7 +131,8 @@ export const Table = Class.create({
  			return this.save();
   		},
         /**
-		 * @function
+		 * @function addOccupants
+		 * @summary Adds occupants to a table
          * @param {Number} numOccupants - number of occupants to be added to the table
 		 * @return Status of operation
          */
@@ -141,7 +146,8 @@ export const Table = Class.create({
 			}
 		},
         /**
-		 * @function
+		 * @function setOccupantLimit
+		 * @summary Set maximum number of occupants
          * @param {Number} numOccupants - limit to set for the number of occupants for a table
 		 * @return Status of database write operation
          */
@@ -150,7 +156,8 @@ export const Table = Class.create({
  			return this.save();
 		},
         /**
-		 * @function - gets the number of occupants at a table
+		 * @function getNumOccupants
+		 * @summary Gets the number of occupants at a table
          * @returns {Number|*} - number of occupants at a table
          */
 		getNumOccupants() {
@@ -160,8 +167,8 @@ export const Table = Class.create({
 });
 
 /**
- * @class
- * @classdesc A node that groups Table objects based on size. Also accounts for reserved tables.
+ * @class TableCluster
+ * @summary A node that groups Table objects based on size. Also accounts for reserved tables.
  * @param {Number} size - Size of the TableCluster
  * @param {Reservation} reservations - reservations of tables
  */
@@ -175,14 +182,16 @@ export const TableCluster = Class.create({
 	},
 	meteorMethods: {
         /**
-		 * @function Saves a table cluster entry from the client side.
+		 * @function sssave
+		 * @summary Saves a table cluster entry from the client side.
 		 * @returns Status of database write operation
          */
 		sssave() {
 			return this.save();
 		},
         /**
-		 * @function Removes a reservation from the wait list
+		 * @function popReservation
+		 * @summary Removes a reservation from the wait list
          * @param {Reservation} res - reservation to be removed
 		 * @returns Status of database write operation
          */
@@ -192,7 +201,8 @@ export const TableCluster = Class.create({
 			return this.save()
 		},
         /**
-		 * @function Adds a reservation to the wait list
+		 * @function pushReservation
+		 * @summary Adds a reservation to the wait list
          * @param res - reservation to be added
 		 * @returns Status of database write operation
          */
@@ -202,8 +212,9 @@ export const TableCluster = Class.create({
 			return this.save();
 		},
         /**
-		 * @function Checks if a reservation can be added to the wait list.
-         * @param time
+		 * @function checkValidReservation
+		 * @summary Checks if a reservation can be added to the wait list.
+         * @param {Number} time - Time to check the reservations
          * @returns {boolean} True if the number of reservation tables is less than the number reserved at some time.
          */
 		checkValidReservation(time) {
@@ -218,7 +229,8 @@ export const TableCluster = Class.create({
 			return (numRes + 1 <= numResTables) ? true : false;
 		},
         /**
-		 * @function Table management function that checks table statuses, reservations, & occupants on an interval
+		 * @function tableChecker
+		 * @summary Table management function that checks if there are avaialable tables for reservation by checking with current reservation and table statuses.
          */
 		tableChecker()
 		{
