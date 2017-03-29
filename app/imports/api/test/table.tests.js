@@ -59,9 +59,9 @@ if (Meteor.isServer) {
 			it('can update its occupants and check them',()=> {
 				var table = Table.findOne({'table_id':1});
 				assert.equal(table.occupants,0);
-				table.updateOccupantsmax(4);
+				table.setOccupantLimit(4);
 				table = Table.findOne({'table_id':1});
-				assert.equal(table.checknumofOccupant(),4);
+				assert.equal(table.getNumOccupants(),4);
 			});
 		});
 	}),
@@ -125,7 +125,7 @@ if (Meteor.isServer) {
 				var reservation = Reservation.findOne({'phoneNum':12});
 				tablecluster.pushReservation(reservation);
 				tablecluster = TableCluster.findOne({'size':4});
-				tablecluster.tablechecker();
+				tablecluster.tableChecker();
 
 				Meteor._sleepForMs(1000);
 				reservation = Reservation.findOne({'phoneNum':12});

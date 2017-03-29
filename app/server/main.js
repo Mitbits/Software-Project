@@ -38,7 +38,7 @@ Meteor.startup(() => {
 	"reservations": []
 		});
 	tablecluster.save();
-	tablecluster.tablechecker();
+	tablecluster.tableChecker();
 
      }
 
