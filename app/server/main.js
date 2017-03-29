@@ -5,27 +5,12 @@ import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
 
-// loops through all reservation tables checking if they can be made walkins 
-/*function check_reservation_interval(){
-
-	Table.find({$or: [{'table_type':TableType.RESERVATION},{'converted':true}]}).forEach(function(table_entry){
-
-		//if the table is not reserved, convert it to walk for this hour
-		if(table_entry.table_type == TableType.RESERVATION && table_entry.table_status != TableStatus.RESERVED){
-
-			table_entry.table_type = TableType.WALKIN;
-			table_entry.converted = true;
-			table_entry.save();
-		}
-		//if it was converted to walk and is not taken, convert back
-		else if(table_entry.converted == true && table_entry.table_status != TableStatus.TAKEN){
-			table_entry.table_type = TableType.RESERVATION;
-			table_entry.converted = false;
-			table_entry.save();
-		}
-	});
-}*/
-
+/**
+ * @file main.js
+ * @summary The code in this file is run every time meteor starts up. The file involves the creation of the sample data needed 
+ * for the project and pushing them to their respective collections
+ */
+//code to run on server at startup
 Meteor.startup(() => {
     Table.remove({});
     TableCluster.remove({});
@@ -41,8 +26,6 @@ Meteor.startup(() => {
 	tablecluster.tableChecker();
 
      }
-
-
 
     tablecluster.save();
 
@@ -70,10 +53,17 @@ Meteor.startup(() => {
 		});
 		menuitem_entry.save();
 	}
-	
+
 	// A wrapper function to create a new orderItem object.
 	// These items DO NOT get directly stored in a collection.
 	// An order object (which is stored) will hold this data. - @raj
+    /**
+	 * @function createOrderItem
+     * @param {Number} mItemID - Unique identifier representing an item within an order
+     * @param {Number} mPriority - Priority number for item in the order queue
+     * @param {Number} mMenuItemID - Indicates the menuItem this item represents
+     * @param {String} mSpecialRequests - Contains any requests by the customer to notify the chef about a particular item
+     */
 	function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
 		 return new orderItem({
 			"itemID": mItemID,
@@ -83,7 +73,13 @@ Meteor.startup(() => {
 		});
 	}
 
-
+    /**
+	 * @function getRandomNumber
+	 * @summary Generates a random number
+     * @param {Number} min - Lower bound of the random number
+     * @param max - Upper bound of the random number
+     * @returns {Number}
+     */
     function getRandomNumber(min, max)
 	{
 		min = Math.ceil(min);
@@ -97,6 +93,11 @@ Meteor.startup(() => {
 	// create list of items for a specific order
 	var next_mItemID = 1;
 
+    /**
+	 * @function createOrderItems
+	 * @summary Generates an array of random orderItems using the getRandomNumber and createOrderItem functions. 
+     * @returns {Array}
+     */
 	function createOrderItems()
 	{
 		var orderItems = [];
@@ -117,7 +118,7 @@ Meteor.startup(() => {
 		return orderItems;
 	}
 
-	
+
 	// Creating 5 order objects and storing in the collection.
 	// Each object is getting the same array of `order_items`
 	// Change if necessary for more diverse data - @raj
@@ -136,7 +137,7 @@ Meteor.startup(() => {
 
 		order_entry.save();
 	}
-	
+
 	for(i = 1; i <= 16; i++) {
 		//create astronomy table obj entry
 		//L_status just for testing
@@ -153,10 +154,4 @@ Meteor.startup(() => {
 		});
 		table_entry.save();
 	}
-
-	//set loop for reservation interval checkup 
-	//Meteor.setInterval(check_reservation_interval,Table.findOne({'table_type':TableType.RESERVATION})*3600*1000);
-	//Meteor.setInterval(check_reservation_interval,10*1000);
-
-  // code to run on server at startup
 });
