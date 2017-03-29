@@ -34,7 +34,7 @@ export const TableType = Enum.create({
 
 /**
  * @function reservation_checker
- * @summary Sets table statuses based on their existing current status.
+ * @summary Consistely checking for table reservations and sets table statuses based on their existing current status.
  * @param id
  */
 function reservation_checker(id){
@@ -230,7 +230,7 @@ export const TableCluster = Class.create({
 		},
         /**
 		 * @function tableChecker
-		 * @summary Table management function that checks table statuses, reservations, & occupants on an intervals
+		 * @summary Table management function that checks if there are avaialable tables for reservation by checking with current reservation and table statuses.
          */
 		tableChecker()
 		{
