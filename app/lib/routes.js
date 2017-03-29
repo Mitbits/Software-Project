@@ -4,8 +4,14 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 /**
  * @summary A simple router for Meteor and routes the pages based on the link entered in the BlazeLayout render.
  * @function FlowRouter.route
- * @param '/' Goes to the homepage
- * @param BlazeLayout.render("loginPage")
+ * @param / - BlazeLayout.render("loginPage")
+ * @param /floorplan -  BlazeLayout.render("floorplan")
+ * @param /Reserve - BlazeLayout.render("reservationPage");
+ * @param /Success - BlazeLayout.render("reservationSuccess");
+ * @param /orderqueue - BlazeLayout.render("orderQueue");
+ * @param /manager - BlazeLayout.render("manager");
+ * @param /waiter - BlazeLayout.render("waiter");
+ *
  */
 FlowRouter.route('/', {
     action: function() {
@@ -36,7 +42,7 @@ FlowRouter.route('/orderqueue', {
 });
 FlowRouter.route('/manager', {
     action: function() {
-        BlazeLayout.render("orderQueue");
+        BlazeLayout.render("manager");
     }
 });
 FlowRouter.route('/waiter', {

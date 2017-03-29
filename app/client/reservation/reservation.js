@@ -37,7 +37,7 @@ Template.reservationPage.events({
 /**
 * @function
 * @name submit form 
-* @param {event}
+* @param event
 * @summary Obtains all Elements from reservation page and assigns them into reserve. reserve is then pushed into the database as a reservation.
 */
     'submit form': function(event){

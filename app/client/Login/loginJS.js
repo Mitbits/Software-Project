@@ -1,4 +1,9 @@
 Template.landingpage.events({
+    /**
+     * @function submit #Register-form
+     * @param event
+     * @summary Gets all the values from each field in the registration form and uses the Meteor accounts package to create an account
+     */
     'submit #Register-form': function(event){
         event.preventDefault();
         var RegName = document.getElementById('name').value;
@@ -41,6 +46,11 @@ Template.landingpage.events({
 
 
     },
+    /**
+     * @function submit #login-form
+     * @param event
+     * @summary Gets all the values from the login form and then logs the user in with the Meteor login and redirects them to their respective page.
+     */
     'submit #login-form': function(event){
         event.preventDefault();
         var LoginEmail = document.getElementById('loginEmail').value;

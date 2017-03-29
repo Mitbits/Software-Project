@@ -19,9 +19,9 @@
   "projectRepo": "https://github.com/Mitbits/Software-Project/tree/master/app",
   // Values to be used in the `<head>` for the docs.
   "docsConfig": {
-    "title": "Meteor Project Documents for iRestaurant",
+    "title": "Technical Documentation for iRestaurant",
     "metas": {
-      "description": "Documentation for a meteor project for a Software Engineering class at Rutgers University."
+      "description": "Documentation for a Restaurant Automation project for a Software Engineering class at Rutgers University."
     }
   }
 }

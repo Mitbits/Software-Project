@@ -101,7 +101,7 @@ Template.floorplan.helpers({
 * @function
 * @name tables 
 * @summary Returns all Tables from the database
-* @returns {Table Collection}
+* @returns Table Collection
 */
     tables()
     {

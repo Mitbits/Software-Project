@@ -6,11 +6,10 @@ import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
 
 /**
- * @file main.js
+ *@function Meteor.startup
  * @summary The code in this file is run every time meteor starts up. The file involves the creation of the sample data needed 
  * for the project and pushing them to their respective collections
  */
-//code to run on server at startup
 Meteor.startup(() => {
     Table.remove({});
     TableCluster.remove({});

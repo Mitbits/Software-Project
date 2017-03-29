@@ -6,8 +6,7 @@ import { PriorityManager } from '../../imports/api/priorityManager.js';
 
 Template.orderRow.events({
     /**
-     * @function
-     * @name click div#tap
+     * @function click div#tap
      * @summary Catches all the events that occur on the page
      */
 	'click div#tap': function(event, templateInstance) {
@@ -129,8 +128,8 @@ var startTimer = function(event, templateInstance) {
  * @function getTime
  * @summary Gets the current time being shown to the user
  * @param event
- * @param {JQuery} $timeObj
- * @returns {{timeMin: number, timeSec: number, timeText: string, $timeObj: JQuery}}
+ * @param {Object} $timeObj
+ * @returns {{timeMin: number, timeSec: number, timeText: string, $timeObj: Object}}
  */
 var getTime = function(event, $timeObj) {
 	if(!$timeObj) {
@@ -169,7 +168,7 @@ var timeToString = function(min, sec) {
 /**
  * @function startCountDown
  * @summary Starts the count down and appropriately updates the screen
- * @param {JQuery} $timeObj
+ * @param {Object} $timeObj
  * @param {Number} duration - Time length (seconds)
  * @param {String} resetTimeText - sets screen display to appropriate time (mm:ss (units))
  * @param {CountDownTimer} timer - holds data needed for numerous times
@@ -208,7 +207,7 @@ var resetTimer = function(event, templateInstance) {
 /**
  * @function timerExpired
  * @summary Highlights the row red when the timer time expires
- * @param {JQuery} $timeObj A jquery object of the encapsulates the timer div
+ * @param {Object} $timeObj A jquery object of the encapsulates the timer div
  */
 var timerExpired = function($timeObj) {
 	var $orderRow = $timeObj.closest('div#tap');
