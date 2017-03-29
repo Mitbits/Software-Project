@@ -61,6 +61,8 @@ export const Reservation = Class.create({
          * @returns {boolean} True if date matches, false otherwise
          */
 		isToday() {
+			if (this.date == undefined)
+				return false;
 			var today = new Date();
 			if(this.date.getFullYear() != today.getFullYear())
 				return false;
