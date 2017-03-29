@@ -1,0 +1,251 @@
+<template name="landingpage">
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3 col-xs-12">
+            <!-- @ Start login box wrapper -->
+            <div class="blmd-wrapp">
+                <div class="blmd-color-conatiner ripple-effect-All"></div>
+                <div class="blmd-header-wrapp ">
+                    <div class="blmd-switches">
+                        <button class="btn btn-circle btn-lg btn-blmd ripple-effect btn-success blmd-switch-button">
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path class="xplusclick" fill="#FFFFFF" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="blmd-continer">
+                    <!-- @ Login form container -->
+                    <form action="post" class="clearfix" id="login-form">
+                        <h1>Login</h1>
+                        <div class="col-md-12">
+                            <div class="input-group blmd-form fields">
+                                <div class="blmd-line">
+                                    <input required  type="text" name="email" autocomplete="off" id="loginEmail" class="form-control">
+                                    <label class="blmd-label">E-mail</label>
+                                </div>
+                            </div>
+                            <div class="input-group blmd-form fields">
+                                <div class="blmd-line">
+                                    <input required type="password" name="password" autocomplete="off" id="loginPassword" class="form-control">
+                                    <label class="blmd-label">Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" id="login" class="btn btn-blmd ripple-effect btn-success btn-lg btn-block">Login</button>
+                        </div>
+                        <br/>
+                    </form>
+                    <!-- @ Login form container -->
+                    <form class="clearfix form-hidden register" id="Register-form">
+                        <h1>Register Account</h1>
+                        <div class="col-md-12">
+                            <div class="input-group blmd-form">
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="role" id ="role">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Pick a Role</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="4">Bus Boy</div>
+                                        <div class="item" data-value="3">Waiter</div>
+                                        <div class="item" data-value="2">Chef</div>
+                                        <div class="item" data-value="1">Host</div>
+                                        <div class="item" data-value="0">Manager</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group blmd-form">
+                                <div class="blmd-line field" >
+                                    <input type="text" name="Name" autocomplete="off" id="name" class="form-control">
+                                    <label class="blmd-label">Name</label>
+                                </div>
+                            </div>
+
+
+                            <div class="input-group blmd-form">
+                                <div class="blmd-line">
+                                    <input type="email" name="email" autocomplete="off" id="regemail" class="form-control">
+                                    <label class="blmd-label">Email</label>
+                                </div>
+                            </div>
+                            <div class="input-group blmd-form">
+                                <div class="blmd-line">
+                                    <input type="password" name="password" id="password1" autocomplete="off" class="form-control">
+                                    <label class="blmd-label">Password</label>
+                                </div>
+                            </div>
+                            <!--<div class="input-group blmd-form">-->
+                            <!--<div class="blmd-line">-->
+                            <!--<input type="password" name="rePassword" autocomplete="off" id="password" class="form-control">-->
+                            <!--<label class="blmd-label">Repeat Password</label>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-blmd ripple-effect btn-warning btn-lg btn-block" value="register">Register</button>
+                        </div>
+                        <br/>
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+        (function ($) {
+
+            // Ripple-effect animation
+            $(".ripple-effect").click(function (e) {
+                var rippler = $(this);
+
+                rippler.append("<span class='ink'></span>");
+
+                var ink = rippler.find(".ink:last-child");
+                // prevent quick double clicks
+                ink.removeClass("animate");
+
+                // set .ink diametr
+                if (!ink.height() && !ink.width()) {
+                    var d = Math.max(rippler.outerWidth(), rippler.outerHeight());
+                    ink.css({
+                        height: d,
+                        width: d
+                    });
+                }
+
+                // get click coordinates
+                var x = e.pageX - rippler.offset().left - ink.width() / 2;
+                var y = e.pageY - rippler.offset().top - ink.height() / 2;
+
+                // set .ink position and add class .animate
+                ink.css({
+                    top: y + 'px',
+                    left: x + 'px'
+                }).addClass("animate");
+
+                // remove ink after 1second from parent container
+                setTimeout(function(){
+                    ink.remove();
+                },1000)
+            })
+
+
+
+// Ripple-effect-All animation
+            function fullRipper(color,time){
+                setTimeout(function(){
+                    var rippler = $(".ripple-effect-All");
+                    if(rippler.find(".ink-All").length == 0){
+                        rippler.append("<span class='ink-All'></span>");
+
+
+                        var ink = rippler.find(".ink-All");
+                        // prevent quick double clicks
+                        //ink.removeClass("animate");
+
+                        // set .ink diametr
+                        if (!ink.height() && !ink.width()) {
+                            var d = Math.max(rippler.outerWidth(), rippler.outerHeight());
+                            ink.css({
+                                height: d,
+                                width: d
+                            });
+                        }
+
+                        // get click coordinates
+                        var x =0;
+                        var y =rippler.offset().top - ink.height()/1.5;
+
+                        // set .ink position and add class .animate
+                        ink.css({
+                            top: y + 'px',
+                            left: x + 'px',
+                            background:color
+                        }).addClass("animate");
+
+                        rippler.css('z-index',2);
+
+                        setTimeout(function(){
+                            ink.css({
+                                '-webkit-transform': 'scale(2.5)',
+                                '-moz-transform': 'scale(2.5)',
+                                '-ms-transform': 'scale(2.5)',
+                                '-o-transform': 'scale(2.5)',
+                                'transform': 'scale(2.5)'
+                            })
+                            rippler.css('z-index',0);
+                        },1500);
+                    }
+                },time)
+
+            }
+
+
+            // Form control border-bottom line
+            $('.blmd-line .form-control').bind('focus',function(){
+                $(this).parent('.blmd-line').addClass('blmd-toggled').removeClass("hf");
+            }).bind('blur',function(){
+                var val=$(this).val();
+                if(val){
+                    $(this).parent('.blmd-line').addClass("hf");
+                }else{
+                    $(this).parent('.blmd-line').removeClass('blmd-toggled');
+                }
+            })
+
+            // Change forms
+            $(".blmd-switch-button").click(function(){
+                var _this=$(this);
+                if(_this.hasClass('active')){
+                    setTimeout(function(){
+                        _this.removeClass('active');
+                        $(".ripple-effect-All").find(".ink-All").remove();
+                        $(".ripple-effect-All").css('z-index',0);
+                    },1300);
+                    $(".ripple-effect-All").find(".ink-All").css({
+                        '-webkit-transform': 'scale(0)',
+                        '-moz-transform': 'scale(0)',
+                        '-ms-transform': 'scale(0)',
+                        '-o-transform': 'scale(0)',
+                        'transform': 'scale(0)',
+                        'transition':'all 1.5s'
+                    })
+                    $(".ripple-effect-All").css('z-index',2);
+                    $('.xplusclick').css({ fill: "#FFFFFF" });
+                    $('#Register-form').addClass('form-hidden')
+                            .removeClass('animate');
+                    $('#login-form').removeClass('form-hidden');
+
+                }else{
+                    fullRipper("#00b0f0",750);
+                    _this.addClass('active');
+                    $('.xplusclick').css({ fill: "#00b0f0" });
+                    setTimeout(function(){
+                        $('#Register-form').removeClass('form-hidden')
+                                .addClass('animate');
+                        $('#login-form').addClass('form-hidden');
+                    },2000)
+
+                }
+            })
+        })(jQuery);
+        $('.ui.dropdown')
+                .dropdown()
+        ;
+    </script>
+
+
+</template>

@@ -1,0 +1,157 @@
+<template name="waiter">
+    <!-- Navigation -->
+    <nav id="slide-menu">
+        <ul>
+            <li class="FloorPlan"><img src="http://imgur.com/jQYF0Wl.png" height="25" width="25"> Floor Plan</li>
+            <li class="Appetizers"><img src="http://imgur.com/j5y9g0F.png" height="25" width="25"/> Appetizers</li>
+            <li class="Entrees"><img src="http://imgur.com/UJ6ZlhJ.png" height="25" width="25"/> Entrees</li>
+            <li class="Desserts"><img src="http://imgur.com/MgAzW9C.png" height="25" width="25"/> Desserts</li>
+            <li class="sep placeOrder"><img src="http://imgur.com/bFLgyrs.png" height="25" width="25"/> Place Order</li>
+            <li class="payBill"><img src="http://imgur.com/6Z2voOZ.png" height="30" width="30"/> Pay</li>
+            <li class="logout"><img src="http://imgur.com/0j8fZD1.png" height="25" width="25"/> Logout</li>
+
+            <!--drink png http://imgur.com/gI9NT37.png-->
+        </ul>
+    </nav>
+    <!-- Content panel -->
+    <div id="content">
+        <div class="menu-trigger"></div>
+        <div id = "floorPlan" class="woodBG">
+            <!--<h1 class="ios"> Floor Plan</h1>-->
+            {{>floorplan}}
+        </div>
+        <div id="appMenu" class = "displayNone">
+            <div>
+                <h1 class="menuHeader">Appetizers</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="ui three column grid">
+                {{#each apps}}
+                    {{>menuCards}}
+                {{/each}}
+            </div>
+        </div>
+        <div id="entreeMenu" class="displayNone">
+            <div>
+                <h1 class="menuHeader">Entrees</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="ui three column grid">
+                {{#each entrees}}
+                    {{>menuCards}}
+                {{/each}}
+            </div>
+        </div>
+        <div id="dessertsMenu" class="displayNone">
+            <div>
+                <h1 class="menuHeader">Desserts</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="ui three column grid">
+                {{#each desserts}}
+                    {{>menuCards}}
+                {{/each}}
+
+            </div>
+        </div>
+
+        <div id="placeOrderMenu" class = "displayNone">
+            <div>
+                <h1 class="menuHeader">Place Order</h1>
+                <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
+            </div>
+            <br>
+            <br>
+            <br>
+
+            <div class="ui three column grid" id="currentOrder">
+                {{#each selected}}
+                    {{>selectedCards}}
+                {{/each}}
+            </div>
+            <div class="ui buttons" id="floatRight">
+                <button class="ui negative button" id="cancelOrder">Cancel Order</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="placeOrder">Place Order</button>
+            </div>
+        </div>
+
+    </div>
+    <!--Drinks Menu Modal Start-->
+    <div class="ui scrolling modal" id="drinksModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Drinks
+        </div>
+        <div class="content">
+            <div class="ui three column grid">
+                {{#each drinks}}
+                    {{>menuCards}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <!--Drinks Menu Modal End-->
+    <script>
+        (function() {
+            var $body = document.body
+                    , $menu_trigger = $body.getElementsByClassName('menu-trigger')[0];
+
+            if ( typeof $menu_trigger !== 'undefined' ) {
+                $menu_trigger.addEventListener('click', function() {
+                    $body.className = ( $body.className == 'menu-active' )? '' : 'menu-active';
+                });
+            }
+
+        }).call(this);
+    </script>
+</template>
+<template name="menuCards">
+    <div class="column">
+        <div class="ui fluid card" id="menuCard">
+
+            <div class="content">
+                <div class="header">{{itemName}} <p id="floatRight">${{itemPrice}}</p></div>
+            </div>
+            <div class="content">
+                {{itemDescription}}
+                <!--<br>-->
+                <!--<i id="floatLeft" class="edit icon"></i>-->
+                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
+            </div>
+            <div class="ui bottom attached button" id="addItem">
+                <i class="add icon"></i>
+                Add Item
+            </div>
+        </div>
+    </div>
+</template>
+<template name="selectedCards">
+    <div class="column">
+        <div class="ui fluid card" id="menuCard">
+
+            <div class="content">
+                <div class="header">{{itemName}} <p id="floatRight">${{itemPrice}}</p></div>
+            </div>
+            <div class="content">
+                {{itemDescription}}
+                <!--<br>-->
+                <!--<i id="floatLeft" class="edit icon"></i>-->
+                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
+            </div>
+            <div class="ui bottom attached button" id="removeItem">
+                <i class="minus icon"></i>
+                Remove Item
+            </div>
+        </div>
+    </div>
+</template>
