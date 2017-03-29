@@ -94,11 +94,12 @@ export const Order = Class.create({
 	},
 	meteorMethods: {
 		/**
-		 * @func Makes an order available to the order queue by storing an 'order' document in the database
+		 * @function Makes an order available to the order queue by storing an 'order' document in the database
 		 * @this Refers to an `Order` object handled by a waiter
+		 * @returns {WriteResult} Status of database write operation
 		 */
 		placeOrder() {
-			this.save();
+			return this.save();
 		}
 	}
 });
