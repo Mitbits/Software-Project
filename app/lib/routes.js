@@ -50,4 +50,9 @@ FlowRouter.route('/waiter', {
         BlazeLayout.render("waiter");
     }
 });
+FlowRouter.route('/inventory', {
+    action: function() {
+        BlazeLayout.render("inventoryPage");
+    }
+});
 
