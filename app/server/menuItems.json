@@ -3,10 +3,22 @@
 		{
 			"id": 0,
 			"name": "Coffee",
-			"desc": "NULL",
+			"desc": "Home brewed coffee with specially imported beans from Mexico",
 			"type": 0,
 			"price": 1.95,
-			"cookTime": 3
+			"cookTime": 3,
+			"ingredients" : [
+				{
+
+					"name": "Milk",
+					"quantity": 1
+				},
+				{
+					"name": "Coffee Beans",
+					"quantity": 1
+				}
+				/*instead of names, make them ingredient item IDs and write down in a separate doc what they are.
+			]
 		},
 		{
 			"id": 1,
