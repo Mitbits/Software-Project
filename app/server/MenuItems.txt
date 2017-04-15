@@ -1,0 +1,68 @@
+0 Milk  fl oz
+1 Coffee Beans
+2 Tea Bag
+3 Orange juice fl oz
+4 Nacho Cheese lb 
+5 Chip fourth bag per order
+6 Tomato lb 
+7 Canned Beans num of cans 
+8 Chicken lb
+9 Bread crumbs lb
+10 Mozarella cheese lb
+11 Oil mL
+12 Sugar lb
+13 Salt lb
+14 Pepper lb
+15 Jalapeno 
+16 Potato lb
+17 Gravy fl oz
+18 Hot sauce fl oz
+19 Onions lb
+20 Steak lb
+21 Beef lb
+22 Butter lb
+23 Sirloin lb 
+24 Pasta lb
+25 Garlic lb
+26 Salmon lb
+27 Crab lb
+28 Lemon num of lemons
+29 Scallops lb
+30 Light Cream oz
+31 Vanilla Extract
+32 Ice Cream fl oz
+33 Chocolate Chip lb
+34 Brownie lb
+35 Cream Cheese lb
+36 Egg count
+37 Rasberry lb
+38 Blueberry lb
+39 Flour lb
+40 cornstarch lb
+41 StrawBerry lb
+42 Heavy Cream fl oz
+43 Apple Juice fl oz
+44 Cranberry Juice fl oz
+45 Grapefruit Juice fl oz
+
+
+
+
+"ingredients" : [
+				{
+					"item_id": 8,
+					"quantity": .5
+				},
+				{
+					"item_id": 9,
+					"quantity": .25
+				},
+				
+				
+				
+				
+				
+				
+				
+				
+				
