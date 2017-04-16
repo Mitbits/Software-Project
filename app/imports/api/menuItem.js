@@ -22,6 +22,7 @@ export const ORDER_TYPE = Enum.create({
 		OTHER: 4,
 		/** Cancelled order*/
 		CANCELLED: 5
+		
 	}
 });
 
