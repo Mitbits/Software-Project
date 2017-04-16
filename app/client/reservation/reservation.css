@@ -1,4 +1,4 @@
-.ui.form {
+#reserve_form {
     padding-left:3%;
     padding-right:3%;
 }
@@ -24,12 +24,12 @@
     text-transform: uppercase;
     text-align: center;
 }
-.plus.icon{
+#plus{
     float:right;
     padding-right:40px;
     margin-top:30px;
 }
-.minus.icon{
+#minus{
     float:left;
     padding-left:40px;
     margin-top:30px;

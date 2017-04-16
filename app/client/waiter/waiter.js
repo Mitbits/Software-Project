@@ -116,7 +116,7 @@ Template.waiter.events({
      * @summary Opens the drinks modal showcasing all the menu items classified as drinks
      */
     'click .drinkicon' () {
-        $('.ui.modal')
+        $('#drinksModal')
             .modal('show')
         ;
     },
