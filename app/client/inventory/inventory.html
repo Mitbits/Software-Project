@@ -49,8 +49,6 @@
                 <tr class="table-header">
                     <td>Name</td>
                     <td class="center">&nbsp;</td>
-                    <td class="center">&nbsp;</td>
-                    <td class="center">&nbsp;</td>
                     <td class="right">Quantity</td>
                     <td class="right">Price</td>
                     <td class="center">Buy More</td>
@@ -103,14 +101,15 @@
     <script>
         var html = document.getElementById("shoppingTbl").innerHTML;
         var totalCost = document.getElementById("totalCost").innerHTML;
+
     </script>
 </template>
 <template name="ingredientRow">
     <tr>
-        <td>{{itemName}}</td>
-        <td class="center">Quantity</td>
+        <td>{{invName}}</td>
+        <td class="center">{{invQuantity}} {{invUnits}}</td>
         <!-- add quantity & units here -->
-        <td class="center">$ {{itemPrice}}</td>
-        <td><button class="ui green button" id="buyMore">Buy</button></td>
+        <td class="center">$ {{invPrice}}</td>
+        <td><button class="ui green button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
     </tr>
 </template>

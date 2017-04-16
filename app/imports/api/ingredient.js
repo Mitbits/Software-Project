@@ -2,6 +2,8 @@ import { Mongo } from 'meteor/mongo';
 import { Class, Enum } from 'meteor/jagi:astronomy';
 import { Type } from 'meteor/jagi:astronomy';
 
+export const inventoryItems = new Mongo.Collection('inventoryTable');
+
 Type.create({
     name: 'inventoryItem',
     class: 'inventoryItem'
@@ -9,20 +11,27 @@ Type.create({
 
 export const inventoryItem = Class.create({
     name: 'inventoryItem',
+    collection: inventoryItems,
     fields: {
-        Name: {
+        invID: {
+            type: Number
+        },
+        invName: {
             type: String,
         },
-        Quantity: {
+        invUnits: {
+            type: String,
+        },
+        invQuantity: {
             type: Number
         },
-       Price: {
+        invPrice: {
             type: Number
         },
-        Units: {
-            type: String
+        invPerUnit: {
+            type: Number
         },
-        Threshold: {
+        invThreshold: {
             type: Number
         },
     }

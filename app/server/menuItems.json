@@ -11,11 +11,11 @@
 				"ingredients": [
 					{
 						"item_id": 0,
-						"quantity": 1
+						"quantity": 4
 					},
 					{
 						"item_id": 1,
-						"quantity": 1
+						"quantity": 30
 					},
 					{
 						"item_id": 12,
@@ -622,7 +622,7 @@
 						"quantity": 8
 					}
 				]
-			},
+			}
 		]
 	}
 }

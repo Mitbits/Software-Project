@@ -1,6 +1,6 @@
 0 Milk  fl oz
-1 Coffee Beans
-2 Tea Bag
+1 Coffee Beans g
+2 Tea Bag bag
 3 Orange juice fl oz
 4 Nacho Cheese lb 
 5 Chip fourth bag per order

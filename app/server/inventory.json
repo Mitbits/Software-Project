@@ -1,0 +1,124 @@
+{
+  "inventory": {
+      "items": [
+        {
+          "id": 0,
+          "name": "Milk",
+          "units": "fl. oz.",
+          "quantity": 1280,
+          "price": 2.50,
+          "perUnit": 32,
+          "threshold": 160
+        },
+        {
+          "id": 1,
+          "name": "Coffee Beans",
+          "units": "grams",
+          "quantity": 1500,
+          "price": 12.75,
+          "perUnit": 500,
+          "threshold": 250
+        },
+        {
+          "id": 2,
+          "name": "Tea Bags",
+          "units": "Bag(s)",
+          "quantity": 500,
+          "price": 7.45,
+          "perUnit": 100,
+          "threshold": 100
+        },
+        {
+          "id": 3,
+          "name": "Orange Juice",
+          "units": "fl. oz.",
+          "quantity": 1280,
+          "price": 2.98,
+          "perUnit": 64,
+          "threshold": 160
+        },
+        {
+          "id": 4,
+          "name": "Cheese",
+          "units": "lb",
+          "quantity": 10,
+          "price": 3.75,
+          "perUnit": 0.5,
+          "threshold": 3
+        },
+        {
+          "id": 5,
+          "name": "Chips",
+          "units": "Bag(s)",
+          "quantity": 20,
+          "price": 2.98,
+          "perUnit": 1,
+          "threshold": 10
+        },
+        {
+          "id": 6,
+          "name": "Tomato",
+          "units": "lb",
+          "quantity": 15,
+          "price": 2.85,
+          "perUnit": 1,
+          "threshold": 5
+        },
+        {
+          "id": 7,
+          "name": "Canned Beans",
+          "units": "Can(s)",
+          "quantity": 50,
+          "price": 0.75,
+          "perUnit": 1,
+          "threshold": 20
+        },
+        {
+          "id": 8,
+          "name": "Chicken",
+          "units": "lb",
+          "quantity": 30,
+          "price": 10.98,
+          "perUnit": 5,
+          "threshold": 10
+        },
+        {
+          "id": 9,
+          "name": "Bread Crumbs",
+          "units": "lb",
+          "quantity": 10,
+          "price": 1.08,
+          "perUnit": 1,
+          "threshold": 3
+        },
+        {
+          "id": 10,
+          "name": "Mozarella Cheese",
+          "units": "lb",
+          "quantity": 20,
+          "price": 10.75,
+          "perUnit": 5,
+          "threshold": 5
+        },
+        {
+          "id": 11,
+          "name": "Oil",
+          "units": "mL",
+          "quantity": 5000,
+          "price": 19.95,
+          "perUnit": 4500,
+          "threshold": 1000
+        },
+        {
+          "id": 12,
+          "name": "Chicken",
+          "units": "lb",
+          "quantity": 50,
+          "price": 6.98,
+          "perUnit": 5,
+          "threshold": 10
+        }
+      ]
+
+  }
+}

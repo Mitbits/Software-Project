@@ -4,6 +4,7 @@ import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
+import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
 
 /**
  *@function Meteor.startup
@@ -35,8 +36,10 @@ Meteor.startup(() => {
 	Orders.remove({});
 	MenuItems.remove({});
 	selectedItems.remove({});
+	inventoryItems.remove({});
 
 	var menuItems = require('./menuItems.json');
+	var InventoryItems = require('./inventory.json');
 
 	// Populate the menu with items from the JSON file.
 	// This only needs to be done once and is static.
@@ -51,6 +54,19 @@ Meteor.startup(() => {
 			"cookTime": menuItems.menu.items[i].cookTime
 		});
 		menuitem_entry.save();
+	}
+	for(i = 0; i < 12; i++) {
+		console.log("Sucess");
+		var inventory_entry = new inventoryItem({
+			"invID": InventoryItems.inventory.items[i].id,
+            "invName": InventoryItems.inventory.items[i].name,
+            "invUnits": InventoryItems.inventory.items[i].units,
+            "invQuantity": InventoryItems.inventory.items[i].quantity,
+            "invPrice": InventoryItems.inventory.items[i].price,
+            "invPerUnit": InventoryItems.inventory.items[i].perUnit,
+            "invThreshold": InventoryItems.inventory.items[i].threshold
+		});
+		inventory_entry.save();
 	}
 
 	// A wrapper function to create a new orderItem object.
