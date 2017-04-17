@@ -84,6 +84,19 @@ var doneButtonHandler = function(event, templateInstance) {
 		});
 		setTimeout(function() {
 			if(!clicked) {
+				var timeElapsed = templateInstance.data.timer.ranFor; // time left
+				/*
+				if(timeElapsed > 5)
+				{
+                    console.log(timeElapsed -6);
+				}
+				else {
+					console.log(timeElapsed);
+				}
+				*/
+
+
+				//console.log(templateInstance.data.timer);
 				$deleteObj.remove();
 				$undoObj.remove();
 			}
@@ -176,7 +189,7 @@ var timeToString = function(min, sec) {
 var startCountDown = function($timeObj, duration, resetTimeText, timer) {
 	//var timer = new CountDownTimer(duration, 1000);
 	timer.onTick(function(min, sec) {
-		if(timer.expired() && !reset) {
+		if(timer.expired() && !timer.reset) {
 			timerExpired($timeObj);
 		}
 		if(timer.reset) { // reset timer

@@ -8,6 +8,10 @@ import { MenuItem, MenuItems, ORDER_TYPE} from './menuItem.js';
  * @classdesc Calculates the priority of each of the orders within the order collection
  */
 
+export class actualCookTimeUpdater{
+    M
+}
+
 export class PriorityManager{
     /**
      * @function start
