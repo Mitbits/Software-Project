@@ -1,4 +1,4 @@
-import { Tables,Table, TableStatus, TableCluster } from '../../imports/api/table.js';
+import { Tables,Table, TableStatus, TableCluster, TableType } from '../../imports/api/table.js';
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
 
@@ -25,7 +25,8 @@ Template.table.events({
 	//removes the reservation from the table and from the waitlist
     var table  = Table.findOne({ _id: this._id });
 	var cluster = TableCluster.findOne({'size':table.getNumOccupants()});
-	if (table.table_status == TableStatus.RESERVED)
+	var rescount = cluster.ReservationCounter().length;
+	if (table.table_status == TableStatus.DIRTY && table.table_type == TableType.RESERVATION && rescount != 0)
 	{
 		cluster.popReservation(table.reservation);
 		table.removeReservation();
@@ -83,8 +84,9 @@ Template.table.events({
 */
     'click .minus.icon.link' () {
         let count = document.getElementById("counts");
+		var maxCount = 4;
         if(Table.findOne({ _id: this._id }).getNumOccupants() > 0 && Table.findOne({ _id: this._id }).getNumOccupants() <= maxCount) {
-            document.getElementById("minus").className = "big minus icon link";
+//            document.getElementById("minus").className = "big minus icon link";
             document.getElementById("plus").className = "big plus icon link";
            // count.innerHTML--;
 			Table.findOne({ _id: this._id }).addOccupants(-1);

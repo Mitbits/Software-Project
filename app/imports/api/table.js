@@ -137,13 +137,8 @@ export const Table = Class.create({
 		 * @return Status of operation
          */
 		addOccupants(numOccupants) {
-			if (numOccupants >= 1) {
                 this.occupants = numOccupants + this.occupants;
                 return this.save();
-            }
-            else {
-				return new Error("Can't add less than 1 occupant!");
-			}
 		},
         /**
 		 * @function setOccupantLimit
@@ -232,6 +227,9 @@ export const TableCluster = Class.create({
 		 * @function tableChecker
 		 * @summary Table management function that checks if there are avaialable tables for reservation by checking with current reservation and table statuses.
          */
+		 ReservationCounter(){
+			return this.reservations;
+		 },
 		tableChecker()
 		{
 			var size = this.size;

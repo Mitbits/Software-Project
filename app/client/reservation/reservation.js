@@ -73,7 +73,8 @@ Template.reservationPage.events({
 	tc.pushReservation(reserve);
      window.location.href = 'Success';
 	
-	
+	var TMClient = require('textmagic-rest-client');
+  
     
     }
 
