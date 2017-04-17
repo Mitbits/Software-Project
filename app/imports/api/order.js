@@ -48,6 +48,12 @@ export const orderItem = Class.create({
 		specialRequests: {
 			type: String
 		}
+	},
+	meteorMethods: {
+		setItemID(mID) {
+			this.itemID = mID;
+			return this.save();
+		}
 	}
 });
 
