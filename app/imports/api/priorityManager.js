@@ -14,7 +14,7 @@ export default function startPriorityManager() {
 	var Entrees = [];
 	var Desserts = [];
 	var config = require('./config.json');
-	var orders = Orders.find({}, { sort: { timePlaced: 1 }, "isCompleted": false });
+	var orders = Orders.find({ isCompleted: false }, { sort: { timePlaced: 1 } });
 	var mOrderQueueItems = [];
 	
 	orders.forEach(function (order) {

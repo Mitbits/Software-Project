@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Table,Tables, TableStatus, TableType, TableCluster } from '../imports/api/table.js';
+import { Table,Tables, TableStatus, TableType, TableCluster  } from '../imports/api/table.js';
 import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';

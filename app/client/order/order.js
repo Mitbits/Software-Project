@@ -96,10 +96,25 @@ var doneButtonHandler = function(event, templateInstance) {
 				}
 				*/
 
+
 				//console.log(templateInstance.data.timer);
+
+
+				Order.findOne({ orderID: templateInstance.data.orderID }).setItemCompleted(true, templateInstance.data.itemID - 1);
+				
+				var itemsCompleted = 0;
+				
+				Order.findOne({ orderID: templateInstance.data.orderID }).orderItems.forEach(function(element) {
+					if (element.isCompleted) { itemsCompleted++; }
+				});
+				
+				if (itemsCompleted == Order.findOne({ orderID: templateInstance.data.orderID }).orderItems.length) {
+					Order.findOne({ orderID: templateInstance.data.orderID }).setOrderCompleted(true);
+				}
+				
+
 				$deleteObj.remove();
 				$undoObj.remove();
-				templateInstance.isCompleted = true;
 			}
 		}, 5000);
 	});
