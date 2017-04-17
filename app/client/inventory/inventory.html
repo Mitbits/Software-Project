@@ -2,8 +2,11 @@
     <div class="container" ng-controller="index">
 
         <div class="box margin-right" id="shopping-list">
-            <h1>My Shopping List</h1>
-
+            <h1 id="titleH12">My Shopping List
+                <span class="tooltipSpan" data-inverted="" data-tooltip="Send Order" data-position="bottom center">
+                    <i class="small send icon link" id="shoppingSend"></i>
+                </span>
+            </h1>
            <!-- <div id="errorMessage"><i class="icon-cross"></i>Please enter all inputs!</div>
 
             <div id="successMessage"><i class="icon-checkmark"></i>Item added to shopping list!</div>
@@ -24,22 +27,28 @@
                 <table border="0" cellspacing="0" id="shoppingTbl">
                     <tr class="table-header">
                         <td></td>
-                        <td>Name</td>
+                        <td class="left">Name</td>
                         <td class="center">Quantity</td>
                         <td class="center">Price</td>
                     </tr>
-
                 </table>
+                <div id="shoppingList">
+                    <table border="0" cellspacing="0">
+                        {{#each shoppingArray}}
+                            {{>shoppingRow}}
+                        {{/each}}
+                    </table>
+                </div>
                 <div class="cost cf">
                     <span class="left">Total Cost:</span>
-                    <span class="right" id="totalCost">$ 0.00</span>
+                    <span class="right" id="totalCost">$ {{totalCost}}</span>
                 </div>
-                <button class="clear" >Clear Shopping List</button>
+                <button class="fluid ui button" id="clearList">Clear Shopping List</button>
             </div>
         </div>
 
         <div class="box" id="inventory">
-            <h1 id="inventoryH1">
+            <h1 id="titleH1">
                 Inventory
                 <span class="tooltipSpan" data-inverted="" data-tooltip="Add new" data-position="bottom center">
                     <i class="plus icon link" id="inventoryPlus"></i>
@@ -115,10 +124,13 @@
             {{else}}
                 <td><button class="ui green button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
         {{/if}}
-
-
-
-
-
+    </tr>
+</template>
+<template name="shoppingRow">
+    <tr>
+        <td class="smallTd"><i class="remove icon link"></i></td>
+        <td class="left">{{name}}</td>
+        <td class="center"> {{quantity}} {{units}} </td>
+        <td class="center">$ {{price}}</td>
     </tr>
 </template>
