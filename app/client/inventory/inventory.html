@@ -110,6 +110,15 @@
         <td class="center">{{invQuantity}} {{invUnits}}</td>
         <!-- add quantity & units here -->
         <td class="center">$ {{invPrice}}</td>
-        <td><button class="ui green button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
+        {{#if belowThreshold}}
+                <td><button class="ui red button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
+            {{else}}
+                <td><button class="ui green button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
+        {{/if}}
+
+
+
+
+
     </tr>
 </template>
