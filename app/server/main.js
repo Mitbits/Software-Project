@@ -1,10 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import {Table,Tables, TableStatus, TableType, TableCluster} from '../imports/api/table.js';
+import { Table,Tables, TableStatus, TableType, TableCluster } from '../imports/api/table.js';
 import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
-import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
-import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
+import { inventoryItem, inventoryItems } from '../imports/api/ingredient.js';
 
 /**
  *@function Meteor.startup
@@ -31,9 +30,7 @@ Meteor.startup(() => {
 	var curDate = new Date();
 
 	Tables.remove({});
-	Orders.remove({});
 	MenuItems.remove({});
-	selectedItems.remove({});
 	inventoryItems.remove({});
 
 	var menuItems = require('./menuItems.json');
