@@ -96,6 +96,7 @@ var doneButtonHandler = function(event, templateInstance) {
 				*/
 
 
+
 				//console.log(templateInstance.data.timer);
 				$deleteObj.remove();
 				$undoObj.remove();
