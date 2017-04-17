@@ -58,15 +58,9 @@ export const orderItem = Class.create({
 	meteorMethods: {
 		setItemID(mID) {
 			this.itemID = mID;
-			return this.save();
 		},
 		setCookTime(mTime) {
 			this.actualCookTime = mTime;
-			return this.save();
-		},
-		setItemCompleted(mIsCompleted) {
-			this.isCompleted = mIsCompleted;
-			return this.save();
 		}
 	}
 });
@@ -126,6 +120,10 @@ export const Order = Class.create({
 		setOrderCompleted(mIsCompleted) {
 			this.isCompleted = mIsCompleted;
 			return this.save();
+		},
+		setItemCompleted(mIsCompleted, mItemID) {
+			this.orderItems[mItemID].isCompleted = mIsCompleted;
+			this.save();
 		}
 	}
 });
