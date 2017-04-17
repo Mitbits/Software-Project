@@ -17,16 +17,14 @@ Meteor.startup(() => {
     Reservation.remove({});
 
 
-    for(i=1;i<=4;i++){
-	var tablecluster = new TableCluster({
-	"size":i,
-	"reservations": []
+    for(i = 1; i <= 4; i++) {
+		var tablecluster = new TableCluster({
+			"size":i,
+			"reservations": []
 		});
-	tablecluster.save();
-	tablecluster.tableChecker();
-
-     }
-
+		tablecluster.save();
+		tablecluster.tableChecker();
+    }
     tablecluster.save();
 
     // code to run on server at startup
@@ -55,8 +53,7 @@ Meteor.startup(() => {
 		});
 		menuitem_entry.save();
 	}
-	for(i = 0; i < 12; i++) {
-		console.log("Sucess");
+	for(i = 0; i < 45; i++) {
 		var inventory_entry = new inventoryItem({
 			"invID": InventoryItems.inventory.items[i].id,
             "invName": InventoryItems.inventory.items[i].name,
@@ -100,14 +97,14 @@ Meteor.startup(() => {
 	{
 		min = Math.ceil(min);
 		max = Math.floor(max);
-		return Math.floor(Math.random() * (max - min)) + min;
+		return (Math.floor(Math.random() * (max - min)) + min);
 	}
 
     // Creating an array of requests that can be used for different items
     var specialRequests = ["Less Oil ", "Half a Portion", "Less Butter", "None"];
 
 	// create list of items for a specific order
-	var next_mItemID = 1;
+	
 
     /**
 	 * @function createOrderItems
@@ -118,23 +115,19 @@ Meteor.startup(() => {
 	{
 		var orderItems = [];
 
-		var numberOfItems = getRandomNumber(1,11);
+		var numberOfItems = getRandomNumber(1, 11);
 
-		for(var i = 1; i <= numberOfItems; i++)
+		for (var i = 1, next_mItemID = 1; i <= numberOfItems; i++, next_mItemID++)
 		{
+			var random_mMenuItemID = getRandomNumber(0, 20);
+			var random_mSpecialRequests = specialRequests[getRandomNumber(0, 4)];
 
-			var random_mPriority = getRandomNumber(1,10); // random value for now..
-			var random_mMenuItemID = getRandomNumber(0,20);
-			var random_mSpecialRequests = specialRequests[getRandomNumber(0,4)];
-
-			orderItems.push(createOrderItem(next_mItemID,random_mPriority, random_mMenuItemID, random_mSpecialRequests));
-			next_mItemID++;
+			orderItems.push(createOrderItem(next_mItemID, 0, random_mMenuItemID, random_mSpecialRequests));
 		}
-		next_mItemID = 1;
 		return orderItems;
 	}
 
-
+/*
 	// Creating 5 order objects and storing in the collection.
 	// Each object is getting the same array of `order_items`
 	// Change if necessary for more diverse data - @raj
@@ -152,9 +145,9 @@ Meteor.startup(() => {
 			"isCompleted": false
 		});
 
-		order_entry.save();
+		//order_entry.save();
 	}
-
+*/
 	for(i = 1; i <= 16; i++) {
 		//create astronomy table obj entry
 		//L_status just for testing
