@@ -50,6 +50,9 @@ export const orderItem = Class.create({
 		},
 		actualCookTime: {
 			type: Number
+		},
+		isCompleted: {
+			type: Boolean
 		}
 	},
 	meteorMethods: {
@@ -59,6 +62,10 @@ export const orderItem = Class.create({
 		},
 		setCookTime(mTime) {
 			this.actualCookTime = mTime;
+			return this.save();
+		},
+		setItemCompleted(mIsCompleted) {
+			this.isCompleted = mIsCompleted;
 			return this.save();
 		}
 	}
@@ -114,6 +121,10 @@ export const Order = Class.create({
 		 * @returns {Number} Status of database write operation
 		 */
 		placeOrder() {
+			return this.save();
+		},
+		setOrderCompleted(mIsCompleted) {
+			this.isCompleted = mIsCompleted;
 			return this.save();
 		}
 	}

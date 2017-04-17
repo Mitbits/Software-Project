@@ -97,10 +97,10 @@ var doneButtonHandler = function(event, templateInstance) {
 				*/
 
 
-				//console.log(templateInstance.data.timer);
+				console.log(Order.findOne({ orderID: templateInstance.data.orderID }).orderItems[templateInstance.data.itemID - 1].setItemCompleted(true));
+				
 				$deleteObj.remove();
 				$undoObj.remove();
-				templateInstance.isCompleted = true;
 			}
 		}, 5000);
 	});

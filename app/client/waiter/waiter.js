@@ -19,7 +19,8 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
         "priority": mPriority,
         "menuItemID": mMenuItemID,
         "specialRequests": mSpecialRequests,
-		"actualCookTime": 0
+		"actualCookTime": 0,
+		"isCompleted": false
     });
 };
 
