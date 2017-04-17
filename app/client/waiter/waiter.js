@@ -91,8 +91,10 @@ Template.waiter.events({
      * @summary Takes all the Order items created by orderArray and fills in the rest of the fields of the order and places the order into the order collection
      */
     'click #placeOrder' () {
+		var mOrderID = 1;
+		if (!Order.find().count() == 0) { mOrderID = Order.findOne({}, { sort: {orderID: -1}}).orderID + 1; }
         new Order({
-            orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
+            orderID: mOrderID,
             waiterID: 69,
             orderItems: orderArray,
             timePlaced: new Date(),
@@ -107,6 +109,7 @@ Template.waiter.events({
      */
     'click #cancelOrder' () {
         orderArray = [];
+		rvOrderArray.set(orderArray);
     },
     /**
      * @function click .drinkicon
@@ -145,12 +148,11 @@ Template.selectedCards.events({
             }
         }
 		/** Update the itemIDs to fill in any potential gaps **/
-		for (i = 1; i <= orderArray.length; i++)
+		for (i = 0; i < orderArray.length; i++)
         {
-			orderArray[i].setItemID(i);
+			orderArray[i].itemID = i + 1;
 			rvOrderArray.set(orderArray);
         }
-        console.log(orderArray);
     },
 
 })
@@ -182,7 +184,6 @@ Template.waiter.helpers({
      * @summary returns all the objects from the database with the mealType of Enum 3, desserts.
      */
     desserts() {
-        //console.log(MenuItems.find({mealType: 3}));
         return MenuItems.find({mealType: 3});
 
     },
