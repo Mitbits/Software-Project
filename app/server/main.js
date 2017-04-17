@@ -84,7 +84,8 @@ Meteor.startup(() => {
 			"itemID": mItemID,
 			"priority": mPriority,
 			"menuItemID": mMenuItemID,
-			"specialRequests": mSpecialRequests
+			"specialRequests": mSpecialRequests,
+			"actualCookTime": 0
 		});
 	}
 
@@ -147,7 +148,8 @@ Meteor.startup(() => {
 			"waiterID": 1,
 			//"menuItemID": 7,
 			"orderItems": test,
-			"timePlaced": new Date()
+			"timePlaced": new Date(),
+			"isCompleted": false
 		});
 
 		order_entry.save();

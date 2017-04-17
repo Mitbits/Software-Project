@@ -2,7 +2,7 @@ import { CountDownTimer } from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
 import '../../imports/api/priorityManager.js';
-import { PriorityManager } from '../../imports/api/priorityManager.js';
+import { orderQueue } from '../../imports/api/priorityManager.js';
 
 Template.orderRow.events({
     /**
