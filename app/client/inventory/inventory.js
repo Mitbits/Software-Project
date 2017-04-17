@@ -60,9 +60,19 @@ Template.inventoryPage.helpers({
         console.log(inventoryItems.find({}));
         return inventoryItems.find({});
     },
+    shoppingTable() {
+        return shoppingList
+    },
     totalCost() {
 
-    },
-
+    }
+})
+Template.ingredientRow.helpers({
+    belowThreshold() {
+        if(this.invQuantity < this.invThreshold)
+        {
+            return true;
+        }
+    }
 })
 
