@@ -18,7 +18,8 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
         "itemID": mItemID,
         "priority": mPriority,
         "menuItemID": mMenuItemID,
-        "specialRequests": mSpecialRequests
+        "specialRequests": mSpecialRequests,
+		"actualCookTime": 0
     });
 };
 
@@ -94,7 +95,8 @@ Template.waiter.events({
             orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
             waiterID: 69,
             orderItems: orderArray,
-            timePlaced: new Date()
+            timePlaced: new Date(),
+			isCompleted: false
         }).placeOrder();
         orderArray = [];
 		rvOrderArray = ([]);
