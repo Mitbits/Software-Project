@@ -50,8 +50,7 @@ Meteor.startup(() => {
 		});
 		menuitem_entry.save();
 	}
-	for(i = 0; i < 12; i++) {
-		console.log("Sucess");
+	for(i = 0; i < 45; i++) {
 		var inventory_entry = new inventoryItem({
 			"invID": InventoryItems.inventory.items[i].id,
             "invName": InventoryItems.inventory.items[i].name,
