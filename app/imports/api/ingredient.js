@@ -7,7 +7,7 @@ export const inventoryItems = new Mongo.Collection('inventoryTable');
 Type.create({
     name: 'inventoryItem',
     class: 'inventoryItem'
-})
+});
 
 export const inventoryItem = Class.create({
     name: 'inventoryItem',
@@ -33,6 +33,12 @@ export const inventoryItem = Class.create({
         },
         invThreshold: {
             type: Number
-        },
+        }
+    },
+    meteorMethods: {
+        updateQuantity(diff) {
+            this.invQuantity += diff;
+            return this.save();
+        }
     }
 });

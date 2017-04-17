@@ -195,14 +195,12 @@ input[type='checkbox'] {
     padding-top: 5px;
     font-family: 'Lato', sans-serif;
     text-align: center;
-    padding-left:15%;
 }
 #titleH12{
     color: #3a3a3a;
     padding-top: 5px;
     font-family: 'Lato', sans-serif;
     text-align: center;
-    padding-left:15%;
 }
 #inventoryList {
     max-height: 500px;

@@ -58,6 +58,6 @@ export const MenuItem = Class.create({
 		cookTime: {
 			type: Number
 		}
-	}
+	},
 });
 

@@ -2,8 +2,9 @@
     <div class="container" ng-controller="index">
 
         <div class="box margin-right" id="shopping-list">
-            <h1 id="titleH12">My Shopping List
-                <span class="tooltipSpan" data-inverted="" data-tooltip="Send Order" data-position="bottom center">
+            <h1 id="titleH12">
+                My Shopping List
+                <span class="tooltipSpan" data-inverted="" data-tooltip="Checkout" data-position="bottom center">
                     <i class="small send icon link" id="shoppingSend"></i>
                 </span>
             </h1>
@@ -50,9 +51,6 @@
         <div class="box" id="inventory">
             <h1 id="titleH1">
                 Inventory
-                <span class="tooltipSpan" data-inverted="" data-tooltip="Add new" data-position="bottom center">
-                    <i class="plus icon link" id="inventoryPlus"></i>
-                </span>
             </h1>
             <table border="0" cellspacing="0">
                 <tr class="table-header">
@@ -73,40 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="ui modal" id="addIngredientModal">
-        <i class="close icon"></i>
-        <div class="header">
-            Add New Item to Inventory
-        </div>
-        <div class="content">
-            <div class="ui form" id="inventoryForm">
-                <div class="field">
-                    <label>Item Name</label>
-                    <input type="text" placeholder="Name">
-                </div>
-                <div class="field">
-                    <label>Quantity</label>
-                    <input type="text" placeholder="Quantity">
-                </div>
 
-
-                <div class="field">
-                    <label>Price per Unit</label>
-                    <input type="text" placeholder="Price per Unit (ex: $5 per lb)">
-                </div>
-                <div class="field">
-                    <label>Units</label>
-                    <input type="text" placeholder="Units (ex: lbs, cups, oz">
-                </div>
-            </div>
-
-                <button class="ui red right floated button"> Cancel </button>
-                <button class="ui green right floated button"> Add Item</button>
-            <br>
-            <br>
-        </div>
-
-    </div>
     <script>
         var html = document.getElementById("shoppingTbl").innerHTML;
         var totalCost = document.getElementById("totalCost").innerHTML;
@@ -118,7 +83,7 @@
         <td>{{invName}}</td>
         <td class="center">{{invQuantity}} {{invUnits}}</td>
         <!-- add quantity & units here -->
-        <td class="center">$ {{invPrice}}</td>
+        <td class="center">$ {{decimalPrice}}</td>
         {{#if belowThreshold}}
                 <td><button class="ui red button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
             {{else}}
@@ -131,6 +96,47 @@
         <td class="smallTd"><i class="remove icon link"></i></td>
         <td class="left">{{name}}</td>
         <td class="center"> {{quantity}} {{units}} </td>
-        <td class="center">$ {{price}}</td>
+        <td class="center">$ {{decimalPrice}}</td>
     </tr>
+</template>
+<template name="addItemModal">
+    <div class="ui modal" id="addIngredientModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Add New Item to Inventory
+        </div>
+        <div class="content">
+            <div class="ui form" id="inventoryForm">
+                <div class="field">
+                    <label>Item Name</label>
+                    <input type="text" placeholder="Name" id="itemName">
+                </div>
+                <div class="field">
+                    <label>Quantity</label>
+                    <input type="text" placeholder="Quantity" id ="itemQuantity">
+                </div>
+                <div class="field">
+                    <label>Price</label>
+                    <input type="text" placeholder="Price per Unit (ex: $5 per lb)" id="itemPrice">
+                </div>
+                <div class="field">
+                    <label>How many?</label>
+                    <input type="text" placeholder="How many items for the above price?" id="itemPerUnit">
+                </div>
+                <div class="field">
+                    <label>Units</label>
+                    <input type="text" placeholder="Units (ex: lbs, cups, oz" id="itemUnits">
+                </div>
+                <div class="field">
+                    <label>Threshold</label>
+                    <input type="text" placeholder="Threshold before you need to order more" id="itemThreshold">
+                </div>
+            </div>
+            <button class="ui red right floated button"> Cancel </button>
+            <button class="ui green right floated button" id="addItemForm"> Add Item</button>
+            <br>
+            <br>
+        </div>
+
+    </div>
 </template>
