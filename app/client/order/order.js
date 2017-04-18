@@ -14,7 +14,7 @@ Template.orderRow.events({
     'click div#tap': function(event, templateInstance) {
         // check if user clicked on the buttons
         if (!templateInstance.data.timer) {
-            console.log('timer not found');
+            console.log('timer not found' + templateInstance.data.itemName);
         }
         var id = event.target.id;
         if(id == 'done-btn' || id == 'done-btn-icon') {
@@ -53,6 +53,7 @@ Template.orderRow.onRendered(function() {
     var {timeMin, timeSec, timeText, $timeObj} = getTime(null, this.$('div#time'));
     var duration = 60*timeMin + timeSec;
     this.data.timer = new CountDownTimer(duration, 1000);
+    console.log('ran');
     this.$('div#undo').hide();
 });
 
@@ -123,14 +124,26 @@ var doneButtonHandler = function(event, templateInstance) {
 				//calculating average time
 				 if (actualTimeTaken > 5) {
 				 	var newAverageCookTime = ((actualTimeTaken - 6) + (expectedCookTime * 60)) / (2);
-					var newAverageCookTimeMins = newAverageCookTime / 60 ;
+					var newAverageCookTimeMins = (newAverageCookTime / 60);
+					/*
+					if(newAverageCookTimeMins < 10 ) {
+                        newAverageCookTimeMins = newAverageCookTimeMins.toPrecision(3);
+                    }
+                    else if(newAverageCookTimeMins > 10 && newAverageCookTimeMins < 100) {
+                        newAverageCookTimeMins = newAverageCookTimeMins.toPrecision(4);
+                    }
+					newAverageCookTimeMins = parseFloat(newAverageCookTimeMins);
 
+                    */
 				 	Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(newAverageCookTimeMins, templateInstance.data.itemID - 1);
 					MenuItem.findOne({ itemID: templateInstance.data.menuItemID}).setCookTime(newAverageCookTimeMins);
 				 }
 				 else {
                      var newAverageCookTime = ((actualTimeTaken) + (expectedCookTime)) / (2);
-                     var newAverageCookTimeMins = newAverageCookTime / 60 ;
+                     var newAverageCookTimeMins = (newAverageCookTime / 60);
+                     newAverageCookTimeMins = newAverageCookTimeMins.toPrecision(4);
+                     newAverageCookTimeMins = parseFloat(newAverageCookTimeMins);
+
                      Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(newAverageCookTimeMins, templateInstance.data.itemID - 1);
                      MenuItem.findOne({ itemID: templateInstance.data.menuItemID }).setCookTime(newAverageCookTimeMins);
                  }
