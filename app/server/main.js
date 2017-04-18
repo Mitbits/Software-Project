@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Table,Tables, TableStatus, TableType, TableCluster  } from '../imports/api/table.js';
 import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
-import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
+import { MenuItem, MenuItems, ingredientsArray } from '../imports/api/menuItem.js';
 import { inventoryItem, inventoryItems } from '../imports/api/ingredient.js';
 
 /**
@@ -35,21 +35,30 @@ Meteor.startup(() => {
 
 	var menuItems = require('./menuItems.json');
 	var InventoryItems = require('./inventory.json');
+	//console.log(menuItems.menu.items[0].ingredients.length);
 
-	// Populate the menu with items from the JSON file.
-	// This only needs to be done once and is static.
-	// Needs to be changed in the future - @raj
-	for(i = 0; i < 20; i++) {
-		var menuitem_entry = new MenuItem({
-			"itemID": menuItems.menu.items[i].id,
-			"itemName": menuItems.menu.items[i].name,
-			"itemDescription": menuItems.menu.items[i].desc,
-			"mealType": menuItems.menu.items[i].type,
-			"itemPrice": menuItems.menu.items[i].price,
-			"cookTime": menuItems.menu.items[i].cookTime
-		});
-		menuitem_entry.save();
+   	for (var i = 0; i < menuItems.menu.items.length; i++) {
+        var ingredientArr = [];
+        for (var j = 0; j < menuItems.menu.items[i].ingredients.length; j++) {
+            //console.log(menuItems.menu.items[i].ingredients[j]);
+            ingredientArr.push(new ingredientsArray({
+            	"ingItemID": menuItems.menu.items[i].ingredients[j].itemID,
+				"ingQuantity": menuItems.menu.items[i].ingredients[j].quantity
+			}));
+        }
+        //console.log(ingredientArr)
+        new MenuItem({
+            "itemID": menuItems.menu.items[i].id,
+            "itemName": menuItems.menu.items[i].name,
+            "itemDescription": menuItems.menu.items[i].description,
+            "mealType": menuItems.menu.items[i].type,
+            "itemPrice": menuItems.menu.items[i].price,
+            "cookTime": menuItems.menu.items[i].cookTime,
+            "ingredients": ingredientArr,
+			"timesOrdered": 0
+        }).save();
 	}
+
 	for(i = 0; i < 45; i++) {
 		var inventory_entry = new inventoryItem({
 			"invID": InventoryItems.inventory.items[i].id,
@@ -58,7 +67,8 @@ Meteor.startup(() => {
             "invQuantity": InventoryItems.inventory.items[i].quantity,
             "invPrice": InventoryItems.inventory.items[i].price,
             "invPerUnit": InventoryItems.inventory.items[i].perUnit,
-            "invThreshold": InventoryItems.inventory.items[i].threshold
+            "invThreshold": InventoryItems.inventory.items[i].threshold,
+			"invTimesUsed": 0
 		});
 		inventory_entry.save();
 	}

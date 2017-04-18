@@ -124,6 +124,7 @@ export const Order = Class.create({
 		setItemCompleted(mIsCompleted, mItemID) {
 			this.orderItems[mItemID].isCompleted = mIsCompleted;
 			this.save();
+			return this.orderItems[mItemID].menuItemID;
 		}
 	}
 });

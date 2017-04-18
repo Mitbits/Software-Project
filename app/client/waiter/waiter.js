@@ -102,7 +102,7 @@ Template.waiter.events({
 			isCompleted: false
         }).placeOrder();
         orderArray = [];
-		rvOrderArray = ([]);
+        rvOrderArray.set(orderArray);
     },
     /**
      * @function click #cancelOrder

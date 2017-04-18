@@ -76,7 +76,7 @@ Template.inventoryPage.events({
         console.log("Hullo");
         for(var i = 0; i < shoppingList.length; i++) {
             var updateItem = inventoryItem.findOne({invID: shoppingList[i].id});
-            updateItem.updateQuantity(shoppingList[i].quantity);
+            updateItem.addQuantity(shoppingList[i].quantity);
         }
         shoppingList = [];
         rvShoppingList.set(shoppingList);
@@ -111,7 +111,7 @@ Template.addItemModal.events({
 Template.inventoryPage.helpers({
     ingredients() {
         //console.log(inventoryItems.find({invThreshold: {$gt: 'invQuantity'}}));
-        return inventoryItems.find({});
+        return inventoryItems.find({},{sort: {invTimesUsed: -1}});
     },
     shoppingArray() {
         //console.log(rvShoppingList.get());
@@ -122,7 +122,10 @@ Template.inventoryPage.helpers({
         for(var i =0; i < shoppingList.length; i++) {
             totalCost+= shoppingList[i].price
         }
-        if(totalCost < 10 ) {
+        if(totalCost < 0 ){
+            var tC = totalCost.toPrecision(2);
+        }
+        else if(totalCost < 10 && totalCost > 0 ) {
             var tC = totalCost.toPrecision(3);
         }
         else if(totalCost > 10 && totalCost < 100) {
@@ -147,31 +150,48 @@ Template.ingredientRow.helpers({
     },
     decimalPrice () {
         var price = this.invPrice;
-        if(this.invPrice < 10)
-        {
+        if(price < 0 ){
+            price = price.toPrecision(2);
+        }
+        else if(price  < 10 && price  > 0) {
             price = price.toPrecision(3);
         }
-        else if(this.invPrice > 10 && this.price < 100)
-        {
+        else if(price  > 10 && price  < 100) {
             price = price.toPrecision(4);
         }
         return price;
+    },
+    precisionQuantity () {
+        var pQuantity = this.invQuantity;
+        if(pQuantity < 10){
+            pQuantity = pQuantity.toPrecision(3);
+        }
+        else if(pQuantity > 10 && pQuantity < 100) {
+            pQuantity = pQuantity.toPrecision(4);
+        }
+        else if(pQuantity > 100 && pQuantity < 1000){
+            pQuantity = pQuantity.toPrecision(5);
+        }
+        else if(pQuantity > 1000) {
+            pQuantity = pQuantity.toPrecision(6);
+        }
+        return pQuantity;
     }
 })
 
 Template.shoppingRow.helpers({
     decimalPrice () {
         var price = this.price;
-        if(this.price < 10)
-        {
+        if(price < 0 ) {
+            price = price.toPrecision(2);
+        }
+        else if(price < 10 && price > 0) {
             price = price.toPrecision(3);
         }
-        else if(this.price > 10 && this.price < 100)
-        {
+        else if(price > 10 && price < 100) {
             price = price.toPrecision(4);
         }
-        else if(this.price > 100)
-        {
+        else if(price > 100) {
             price = price.toPrecision(5);
         }
         return price;

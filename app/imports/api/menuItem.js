@@ -25,6 +25,17 @@ export const ORDER_TYPE = Enum.create({
 		
 	}
 });
+export const ingredientsArray = Class.create({
+    name: 'ingredientsArray',
+    fields: {
+        ingItemID: {
+            type: Number
+        },
+        ingQuantity: {
+            type: Number
+        }
+    }
+});
 
 /**
  * @class MenuItem
@@ -57,7 +68,22 @@ export const MenuItem = Class.create({
 		},
 		cookTime: {
 			type: Number
+		},
+		ingredients: {
+			type: [ingredientsArray]
+		},
+		timesOrdered: {
+			type: Number
 		}
 	},
+	meteorMethods: {
+    	incrementTimesOrdered() {
+    		this.timesOrdered++;
+    		this.save();
+		}
+	}
 });
+
+
+
 

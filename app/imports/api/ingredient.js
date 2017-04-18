@@ -33,12 +33,23 @@ export const inventoryItem = Class.create({
         },
         invThreshold: {
             type: Number
+        },
+        invTimesUsed: {
+            type: Number
         }
     },
     meteorMethods: {
-        updateQuantity(diff) {
+        addQuantity(diff) {
             this.invQuantity += diff;
-            return this.save();
+            this.save();
+        },
+        subtractQuantity(diff) {
+            this.invQuantity -= diff;
+            this.save();
+        },
+        incrementTimesUsed() {
+            this.invTimesUsed += 1;
+            this.save();
         }
     }
 });

@@ -2,7 +2,9 @@ import { CountDownTimer } from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
 import { orderQueue } from '../../imports/api/priorityManager.js';
+import { MenuItems, MenuItem } from '../../imports/api/menuItem.js'
 import startPriorityManager from '../../imports/api/priorityManager.js';
+import { inventoryItems, inventoryItem} from '../../imports/api/ingredient.js';
 
 Template.orderRow.events({
     /**
@@ -97,16 +99,31 @@ var doneButtonHandler = function(event, templateInstance) {
 				 */
 
 
-                Order.findOne({ orderID: templateInstance.data.orderID }).setItemCompleted(true, templateInstance.data.itemID - 1);
+                var element1 = Order.findOne({ orderID: templateInstance.data.orderID }).setItemCompleted(true, templateInstance.data.itemID - 1);
+                console.log(MenuItem.findOne({itemID: element1}).ingredients.length);
+                var length = MenuItem.findOne({itemID: element1}).ingredients.length;
+                console.log(MenuItem.findOne({itemID: element1}).itemName);
+                MenuItem.findOne({itemID: element1}).incrementTimesOrdered();
+                for(var i = 0; i < length; i++)
+                {
+
+                    var item = MenuItem.findOne({itemID: element1}).ingredients[i].ingItemID;
+                    var quantity = MenuItem.findOne({itemID: element1}).ingredients[i].ingQuantity;
+                    inventoryItem.findOne({invID: item}).subtractQuantity(quantity);
+                    inventoryItem.findOne({invID: item}).incrementTimesUsed();
+                }
 
                 var itemsCompleted = 0;
 
                 Order.findOne({ orderID: templateInstance.data.orderID }).orderItems.forEach(function(element) {
-                    if (element.isCompleted) { itemsCompleted++; }
+                    if (element.isCompleted) {
+                        itemsCompleted++;
+                    }
                 });
 
                 if (itemsCompleted == Order.findOne({ orderID: templateInstance.data.orderID }).orderItems.length) {
                     Order.findOne({ orderID: templateInstance.data.orderID }).setOrderCompleted(true);
+
                 }
 
                 $deleteObj.remove();
