@@ -55,4 +55,8 @@ FlowRouter.route('/inventory', {
         BlazeLayout.render("inventoryPage");
     }
 });
-
+FlowRouter.route('/stat', {
+  action: function() {
+    BlazeLayout.render('stat');
+  }
+});
