@@ -88,11 +88,11 @@ var doneButtonHandler = function(event, templateInstance) {
             if(!clicked) {
                 //var timeElapsed = templateInstance.data.timer.ranFor; // time left
 
-				var expectedCookTime = (MenuItem.findOne({itemID: templateInstance.data.menuItemID}).cookTime);
+				var expectedCookTime = (MenuItem.findOne({ itemID: templateInstance.data.menuItemID }).cookTime);
 				var timeRemaining = templateInstance.data.timer.ranFor;
-				var actualTimeTaken = (expectedCookTime* 60) - timeRemaining;
+				var actualTimeTaken = (expectedCookTime * 60) - timeRemaining;
 
-
+				// setting items and order to completed
                 Order.findOne({ orderID: templateInstance.data.orderID }).setItemCompleted(true, templateInstance.data.itemID - 1);
 
                 var itemsCompleted = 0;
@@ -105,20 +105,20 @@ var doneButtonHandler = function(event, templateInstance) {
                     Order.findOne({ orderID: templateInstance.data.orderID }).setOrderCompleted(true);
                 }
 
+				//calculating average time
+				 if (actualTimeTaken > 5) {
+				 	var newAverageCookTime = ((actualTimeTaken - 6) + (expectedCookTime * 60)) / (2);
+					var newAverageCookTimeMins = newAverageCookTime / 60 ;
 
-				 if(actualTimeTaken > 5)
-				 {
-
-				 	//var newAverageCookTime = (actualTimeTaken-6) + Order.findOne()
-				 	Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(actualTimeTaken-6, templateInstance.data.itemID - 1)
-
+				 	Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(newAverageCookTimeMins, templateInstance.data.itemID - 1);
+					MenuItem.findOne({ itemID: templateInstance.data.menuItemID}).setCookTime(newAverageCookTimeMins);
 				 }
 				 else {
-                	Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(actualTimeTaken, templateInstance.data.itemID - 1)
-
-				 }
-
-
+                     var newAverageCookTime = ((actualTimeTaken) + (expectedCookTime)) / (2);
+                     var newAverageCookTimeMins = newAverageCookTime / 60 ;
+                     Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(newAverageCookTimeMins, templateInstance.data.itemID - 1);
+                     MenuItem.findOne({ itemID: templateInstance.data.menuItemID }).setCookTime(newAverageCookTimeMins);
+                 }
 
                 $deleteObj.remove();
                 $undoObj.remove();

@@ -59,5 +59,11 @@ export const MenuItem = Class.create({
 			type: Number
 		}
 	},
+    meteorMethods: {
+        setCookTime(mTime) {
+            this.cookTime = mTime;
+            return this.save();
+        }
+    }
 });
 
