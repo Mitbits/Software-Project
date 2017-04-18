@@ -80,8 +80,12 @@ export const MenuItem = Class.create({
     	incrementTimesOrdered() {
     		this.timesOrdered++;
     		this.save();
-		}
-	}
+		},
+		setCookTime(mTime) {
+            this.cookTime = mTime;
+            return this.save();
+        }
+    }
 });
 
 
