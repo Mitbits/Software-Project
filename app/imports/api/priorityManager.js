@@ -29,6 +29,7 @@ export default function startPriorityManager() {
 			mOrderQueueItems.push(mOrderQueueItem = new orderQueueItem({
 				orderID: order.orderID,
 				itemID: orderItem.itemID,
+				menuItemID: orderItem.menuItemID,
 				itemName: menuItem.itemName,
 				mealType: ORDER_TYPE.getIdentifier(menuItem.mealType),
 				cookTime: menuItem.cookTime,
@@ -173,6 +174,9 @@ export const orderQueueItem = Class.create ({
 			type: Number
 		},
 		itemID: {
+			type: Number
+		},
+		menuItemID: {
 			type: Number
 		},
 		itemName: {

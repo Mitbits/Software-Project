@@ -59,9 +59,7 @@ export const orderItem = Class.create({
 		setItemID(mID) {
 			this.itemID = mID;
 		},
-		setCookTime(mTime) {
-			this.actualCookTime = mTime;
-		}
+
 	}
 });
 
@@ -124,6 +122,14 @@ export const Order = Class.create({
 		setItemCompleted(mIsCompleted, mItemID) {
 			this.orderItems[mItemID].isCompleted = mIsCompleted;
 			this.save();
+		},
+        setCookTime(mTime, mItemID) {
+            this.orderItems[mItemID].actualCookTime = mTime;
+            this.save();
+        },
+		getCookTime(mItemID){
+			var currentCookTime = this.orderItems[mItemID];
+			return currentCookTime;
 		}
 	}
 });

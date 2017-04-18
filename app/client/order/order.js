@@ -1,6 +1,7 @@
 import { CountDownTimer } from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
+import { MenuItems, MenuItem } from '../../imports/api/menuItem.js';
 import { orderQueue } from '../../imports/api/priorityManager.js';
 import startPriorityManager from '../../imports/api/priorityManager.js';
 
@@ -85,16 +86,11 @@ var doneButtonHandler = function(event, templateInstance) {
         });
         setTimeout(function() {
             if(!clicked) {
-                var timeElapsed = templateInstance.data.timer.ranFor; // time left
-				/*
-				 if(timeElapsed > 5)
-				 {
-				 console.log(timeElapsed -6);
-				 }
-				 else {
-				 console.log(timeElapsed);
-				 }
-				 */
+                //var timeElapsed = templateInstance.data.timer.ranFor; // time left
+
+				var expectedCookTime = (MenuItem.findOne({itemID: templateInstance.data.menuItemID}).cookTime);
+				var timeRemaining = templateInstance.data.timer.ranFor;
+				var actualTimeTaken = (expectedCookTime* 60) - timeRemaining;
 
 
                 Order.findOne({ orderID: templateInstance.data.orderID }).setItemCompleted(true, templateInstance.data.itemID - 1);
@@ -108,6 +104,21 @@ var doneButtonHandler = function(event, templateInstance) {
                 if (itemsCompleted == Order.findOne({ orderID: templateInstance.data.orderID }).orderItems.length) {
                     Order.findOne({ orderID: templateInstance.data.orderID }).setOrderCompleted(true);
                 }
+
+
+				 if(actualTimeTaken > 5)
+				 {
+
+				 	//var newAverageCookTime = (actualTimeTaken-6) + Order.findOne()
+				 	Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(actualTimeTaken-6, templateInstance.data.itemID - 1)
+
+				 }
+				 else {
+                	Order.findOne({ orderID: templateInstance.data.orderID }).setCookTime(actualTimeTaken, templateInstance.data.itemID - 1)
+
+				 }
+
+
 
                 $deleteObj.remove();
                 $undoObj.remove();

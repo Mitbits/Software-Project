@@ -30,12 +30,13 @@ Meteor.startup(() => {
 	var curDate = new Date();
 
 	Tables.remove({});
-	MenuItems.remove({});
+	//MenuItems.remove({});
 	inventoryItems.remove({});
 
-	var menuItems = require('./menuItems.json');
+	//var menuItems = require('./menuItems.json');
 	var InventoryItems = require('./inventory.json');
 
+	/*
 	// Populate the menu with items from the JSON file.
 	// This only needs to be done once and is static.
 	// Needs to be changed in the future - @raj
@@ -50,6 +51,7 @@ Meteor.startup(() => {
 		});
 		menuitem_entry.save();
 	}
+	*/
 	for(i = 0; i < 45; i++) {
 		var inventory_entry = new inventoryItem({
 			"invID": InventoryItems.inventory.items[i].id,
