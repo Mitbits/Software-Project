@@ -31,3 +31,7 @@ accounts-base
 accounts-password
 accounts-ui
 practicalmeteor:mocha
+email
+meteorhacks:ssr
+check
+ejson
