@@ -165,7 +165,7 @@ Meteor.startup(() => {
 		table_entry.save();
 	}
 	
-	process.env.MAIL_URL='smtp://postmaster%40sandbox4f2ba506e15f4189a60b0f4a7e9acec2.mailgun.org:f97da3da7f27992e8e4fb4719945049f@smtp.mailgun.org:587';
+	process.env.MAIL_URL='smtp://irestaurant12%40gmail.com:ece4life@smtp.gmail.com:587';
 	Meteor.methods ({
 		'sendEmail' : function(to,subj,text){
 			this.unblock();
