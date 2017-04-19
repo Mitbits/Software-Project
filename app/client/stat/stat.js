@@ -1,8 +1,9 @@
 var dataItems; // dataItems object
+import {createChart} from './chart.js';
 
 Template.stat.onRendered(function() {
 
-  var data = [4, 8, 15, 16, 23, 42];
+  /*var data = [4, 8, 15, 16, 23, 42];
 
   var x = d3.scale.linear()
       .domain([0, d3.max(data)])
@@ -13,7 +14,15 @@ Template.stat.onRendered(function() {
       .data(data)
     .enter().append("div")
       .style("width", function(d) { return x(d) + "px"; })
-      .text(function(d) { return d; });
+      .text(function(d) { return d; });*/
+  var data = [
+    {date:new Date('2013-01-01'),n:120},
+    {date:new Date('2013-01-02'),n:240},
+    {date:new Date('2013-01-03'),n:360},
+    {date:new Date('2013-01-04'),n:480}
+  ];
+
+  createChart(data, '.chart', 900);
 
 });
 
