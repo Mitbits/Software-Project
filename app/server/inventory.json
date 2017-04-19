@@ -111,57 +111,12 @@
         },
         {
           "id": 12,
-          "name": "Sugar",
-          "units": "lb",
-          "quantity": 10,
-          "price": 3.00,
-          "perUnit": 4,
-          "threshold": 5
-        },
-        {
-          "id": 13,
-          "name": "Salt",
-          "units": "lb",
-          "quantity": 10,
-          "price": 3.00,
-          "perUnit": 4,
-          "threshold": 5
-        },
-        {
-          "id": 14,
-          "name": "Pepper",
-          "units": "lb",
-          "quantity": 10,
-          "price": 3.00,
-          "perUnit": 4,
-          "threshold": 5
-        },
-        {
-          "id": 15,
-          "name": "Jalapeno",
+          "name": "Chicken",
           "units": "lb",
           "quantity": 50,
-          "price": 0.99,
-          "perUnit": 1,
-          "threshold": 10
-        },
-        {
-          "id": 16,
-          "name": "Potato",
-          "units": "lb",
-          "quantity": 50,
-          "price": 12.99,
+          "price": 6.98,
           "perUnit": 5,
           "threshold": 10
-        },
-        {
-          "id": 17,
-          "name": "Gravy",
-          "units": "fl. oz.",
-          "quantity": 300,
-          "price": 13.68,
-          "perUnit": 126,
-          "threshold": 100
         }
       ]
 

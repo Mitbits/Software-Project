@@ -1,4 +1,4 @@
-import { Tables,Table, TableStatus, TableCluster } from '../../imports/api/table.js';
+import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports/api/table.js';
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
 
@@ -24,17 +24,19 @@ Template.table.events({
     {
 	//removes the reservation from the table and from the waitlist
     var table  = Table.findOne({ _id: this._id });
-	var cluster = TableCluster.findOne({'size':table.getNumOccupants()});
-	if (table.table_status == TableStatus.RESERVED)
-	{
-		cluster.popReservation(table.reservation);
-		table.removeReservation();
-	}
-	
-	table.updateTableStatus(TableStatus.CLEAN);
-	table.setOccupantLimit(0);
 
-     },
+   
+ 
+    if (table.table_status == TableStatus.DIRTY)
+	{
+	console.log("here");
+
+      	table.clean(); 
+    }
+
+
+
+},
 /**
 * @function
 * @name click .green.right.corner.label 
@@ -43,8 +45,8 @@ Template.table.events({
     'click .green.right.corner.label' ()
     {
 		var table = Table.findOne({ _id: this._id });
-		if(table.getNumOccupants() != 0) {
-        table.updateTableStatus(TableStatus.TAKEN);
+		if(table.occupants != 0) {
+        		table.updateTableStatus(TableStatus.TAKEN);
 		}
     },
 /**
@@ -63,18 +65,17 @@ Template.table.events({
 * @summary Increments Table Occupants by 1 with maximum of 4
 */
 	 'click .plus.icon.link' () {
-        let count = document.getElementById("counts");
-        maxCount = 4;
-        if(Table.findOne({ _id: this._id }).getNumOccupants() >= 0 && Table.findOne({ _id: this._id }).getNumOccupants() < maxCount) {
-            document.getElementById("minus").className = "big minus icon link";
-           // count.innerHTML++;
-			Table.findOne({ _id: this._id }).addOccupants(1);
-        }
-        else {
-            document.getElementById("plus").className = "big disabled plus icon link";
-			Table.findOne({ _id: this._id }).setOccupantLimit(4);
 
-        }
+	let table = Table.findOne({_id: this._id});
+
+	if (table.occupants < table.size){
+		document.getElementById("minus").className = "big minus icon link"
+		table.increaseOccupants();
+	}
+	else{
+		 document.getElementById("plus").className = "big disabled plus icon link";
+	}
+
     },
 /**
 * @function
@@ -82,17 +83,16 @@ Template.table.events({
 * @summary Decrements Table Occupants by 1 with minimum of 0
 */
     'click .minus.icon.link' () {
-        let count = document.getElementById("counts");
-        if(Table.findOne({ _id: this._id }).getNumOccupants() > 0 && Table.findOne({ _id: this._id }).getNumOccupants() <= maxCount) {
-            document.getElementById("minus").className = "big minus icon link";
-            document.getElementById("plus").className = "big plus icon link";
-           // count.innerHTML--;
-			Table.findOne({ _id: this._id }).addOccupants(-1);
-			} else {
-            document.getElementById("minus").className = "big disabled minus icon link";
-			Table.findOne({ _id: this._id }).setOccupantLimit(0);
+	let table = Table.findOne({_id: this._id});
+	if (table.occupants>=0){
+		table.decreaseOccupants();
+ 		document.getElementById("minus").className = "big minus icon link";
+            	document.getElementById("plus").className = "big plus icon link";
 
-        }
+	}
+	else{
+		document.getElementById("minus").className = "big disabled minus icon link";
+	}
     }
 });
 
@@ -120,6 +120,9 @@ Template.table.helpers({
 * @summary Checks if current table is Dirty
 * @returns {Boolean}
 */
+    'notMerged':function(){
+	return !this.merged;
+    },
     'isDirty': function() {
         if(this.table_status == 'Dirty') {
             return true;

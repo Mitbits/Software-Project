@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import {Table,Tables, TableStatus, TableType, TableCluster} from '../imports/api/table.js';
+import {Table,Tables, TableStatus, TableType, TableManager} from '../imports/api/table.js';
 import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
@@ -12,23 +12,13 @@ import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
  * for the project and pushing them to their respective collections
  */
 Meteor.startup(() => {
+
     Table.remove({});
-    TableCluster.remove({});
     Reservation.remove({});
 
-
-    for(i=1;i<=4;i++){
-	var tablecluster = new TableCluster({
-	"size":i,
-	"reservations": []
-		});
-	tablecluster.save();
-	tablecluster.tableChecker();
-
-     }
-
-    tablecluster.save();
-
+    var table_manager = new TableManager();
+    table_manager.save();
+    table_manager.startPollReservations();
     // code to run on server at startup
 	var curDate = new Date();
 
@@ -119,7 +109,7 @@ Meteor.startup(() => {
 
 		var numberOfItems = getRandomNumber(1,11);
 
-		for(var i =1; i<=numberOfItems; i++)
+		for(var i = 1; i <= numberOfItems; i++)
 		{
 
 			var random_mPriority = getRandomNumber(1,10); // random value for now..
@@ -128,8 +118,8 @@ Meteor.startup(() => {
 
 			orderItems.push(createOrderItem(next_mItemID,random_mPriority, random_mMenuItemID, random_mSpecialRequests));
 			next_mItemID++;
-
 		}
+		next_mItemID = 1;
 		return orderItems;
 	}
 
@@ -152,21 +142,33 @@ Meteor.startup(() => {
 
 		order_entry.save();
 	}
-
+    /* 
 	for(i = 1; i <= 16; i++) {
 		//create astronomy table obj entry
 		//L_status just for testing
 		var table_type = (i%4) ? TableType.WALKIN : TableType.RESERVATION;
 		var table_entry = new Table({
-			"table_id": i,
+			
 			"size": 4,
-			"occupants" : 0,
-			"table_status": TableStatus.CLEAN,
+		
 			"table_type": table_type,
-			"reservation_intv":1,
-			"converted" : false,
-			"billPaid"	: false,
 		});
 		table_entry.save();
-	}
+	}*/
+    
+    var table_entry = new Table({
+        "size": 2,
+        "table_type":TableType.RESERVATION
+    
+    });
+    table_entry.save();
+     var table_entry = new Table({
+        "size": 2,
+        "table_type":TableType.RESERVATION
+    
+    });
+    table_entry.save();
+    
+
+    
 });

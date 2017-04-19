@@ -9,6 +9,7 @@
 </template>
 
 <template name="table" >
+{{#if notMerged}}
     <div class="column" >
 
 		<div class="ui raised inverted segment" style="color:white">
@@ -44,7 +45,7 @@
                             <i class="big plus icon link" id="plus"></i>
                            
                             <div class="value" id="counts" style="color:white;">
-							{{occupants}}
+				    {{occupants}}	
                             </div>
 							{{/if}}
 
@@ -60,4 +61,5 @@
                 {{/if}}
 		</div>
     	</div>
+{{/if}}
 </template>

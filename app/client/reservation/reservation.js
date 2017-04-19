@@ -1,7 +1,7 @@
 
 import {Reservations} from '../../imports/api/reservation.js';
 import { Reservation } from '../../imports/api/reservation.js';
-import { TableCluster } from '../../imports/api/table.js';
+import { TableManager } from '../../imports/api/table.js';
 
 export const temp = Template.reservationPage;
 Template.reservationPage.events({
@@ -54,11 +54,12 @@ Template.reservationPage.events({
         //var Time
         console.log(FirstName, LastName, PhoneNum, Email, Seats, date);
 	//fetch table clust of given size and check if res can be added
-	var tc = TableCluster.findOne({"size": Seats*1});
-	if(!tc.checkValidReservation(new Date(date))){
+	var manager = TableManager.findOne({});
+    /*
+	if(!manager.verifyReservation(new Date(date))){
 		alert("Not enough tables");
 		return;
-	}
+	}*/
 	//construct res
 	var reserve = new Reservation({
 		"firstName": FirstName,
@@ -69,9 +70,9 @@ Template.reservationPage.events({
 	    "date": new Date(date),
 
 		});
-	reserve.sssave();
-	tc.pushReservation(reserve);
-     window.location.href = 'Success';
+	reserve.reservation_save();
+	manager.pushReservation(reserve);
+    window.location.href = 'Success';
 	
 	
     
