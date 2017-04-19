@@ -5,7 +5,7 @@ class CountDownTimer {
     this.tickFtns = [];
     this.running = false;
     this.reset = false;
-    this.ranFor = duration;
+    this.timeLeft = duration;
 
     this.resetTimeText = "";
   }
@@ -29,7 +29,7 @@ class CountDownTimer {
       }
 
       obj = CountDownTimer.parse(diff);
-      that.ranFor--;
+      that.timeLeft--;
 
       that.tickFtns.forEach(function(ftn) {
         ftn.call(this, obj.minutes, obj.seconds);
