@@ -4,6 +4,14 @@ import { ReactiveVar } from 'meteor/reactive-var'
 
 var orderArray = []
 var rvOrderArray = new ReactiveVar([]);
+var topDrinksArray = [];
+var rvtopDrinksArray = new ReactiveVar([]);
+var topAppsArray = [];
+var rvtopAppsArray = new ReactiveVar([]);
+var topEntreesArray = [];
+var rvtopEntreesArray = new ReactiveVar([]);
+var topDessertsArray = [];
+var rvtopDessertsArray = new ReactiveVar([]);
 
 /**
  * @function createOrderItem
@@ -72,6 +80,8 @@ Template.waiter.events({
         document.getElementById("dessertsMenu").className = "displayAll";
         document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
+
+
 
     },
     /**
@@ -156,7 +166,7 @@ Template.selectedCards.events({
         }
     },
 
-})
+});
 
 Template.waiter.helpers({
     /**
@@ -195,6 +205,49 @@ Template.waiter.helpers({
     selected() {
         return(rvOrderArray.get());
     },
+    topThreeDrinks() {
+
+        var i = 0;
+        MenuItems.find({mealType: 0}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topDrinksArray[i] = element.itemID;
+                console.log(element.itemID);
+                i++;
+            }
+        })
+        rvtopDrinksArray.set(topDrinksArray);
+        var i = 0;
+        MenuItems.find({mealType: 1}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topAppsArray[i] = element.itemID;
+                console.log(element.itemID);
+                i++;
+            }
+
+        })
+        rvtopAppsArray.set(topAppsArray);
+        var i = 0;
+        MenuItems.find({mealType: 2}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topEntreesArray[i] = element.itemID;
+                console.log(element.itemID);
+                i++;
+            }
+
+        })
+        rvtopEntreesArray.set(topEntreesArray);
+        var i = 0;
+        MenuItems.find({mealType: 3}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topDessertsArray[i] = element.itemID;
+                console.log(element.itemID);
+                i++;
+            }
+        })
+        rvtopDessertsArray.set(topDessertsArray);
+        return;
+    },
+
 });
 
 Template.selectedCards.helpers({
@@ -214,4 +267,37 @@ Template.selectedCards.helpers({
 		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.cookTime;
 	}
+});
+
+Template.menuCards.helpers({
+    'isTopOne': function () {
+        topDrinksArray = rvtopDrinksArray.get();
+        topAppsArray = rvtopAppsArray.get();
+        topEntreesArray = rvtopEntreesArray.get();
+        topDessertsArray = rvtopDessertsArray.get();
+        if (this.itemID == topDrinksArray[0] || this.itemID == topAppsArray[0] || this.itemID == topEntreesArray[0] || this.itemID == topDessertsArray[0])
+        {
+            return true;
+        }
+    },
+    'isTopTwo': function() {
+        topDrinksArray = rvtopDrinksArray.get();
+        topAppsArray = rvtopAppsArray.get();
+        topEntreesArray = rvtopEntreesArray.get();
+        topDessertsArray = rvtopDessertsArray.get();
+        if (this.itemID == topDrinksArray[1] || this.itemID == topAppsArray[1] || this.itemID == topEntreesArray[1] || this.itemID == topDessertsArray[1])
+        {
+            return true;
+        }
+    },
+    'isTopThree': function() {
+        topDrinksArray = rvtopDrinksArray.get();
+        topAppsArray = rvtopAppsArray.get();
+        topEntreesArray = rvtopEntreesArray.get();
+        topDessertsArray = rvtopDessertsArray.get();
+        if (this.itemID == topDrinksArray[2] || this.itemID == topAppsArray[2] || this.itemID == topEntreesArray[2] || this.itemID == topDessertsArray[2])
+        {
+            return true;
+        }
+    },
 })
