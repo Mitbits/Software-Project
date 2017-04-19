@@ -1,11 +1,10 @@
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
-import { selectedItem,selectedItems } from '../../imports/api/selectedItems.js';
+import { ReactiveVar } from 'meteor/reactive-var'
 
-var orderArray = [];
-var itemArray = [];
+var orderArray = []
+var rvOrderArray = new ReactiveVar([]);
 
-var mItemID = 1;
 /**
  * @function createOrderItem
  * @summary Creates an order item with the following parameters
@@ -19,7 +18,8 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
         "itemID": mItemID,
         "priority": mPriority,
         "menuItemID": mMenuItemID,
-        "specialRequests": mSpecialRequests
+        "specialRequests": mSpecialRequests,
+		"actualCookTime": 0
     });
 };
 
@@ -84,32 +84,32 @@ Template.waiter.events({
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
-        Template.menuCards.__helpers.get('cards')();
-
+		Template.waiter.__helpers.get('selected')();
     },
     /**
      * @function click #placeOrder
      * @summary Takes all the Order items created by orderArray and fills in the rest of the fields of the order and places the order into the order collection
      */
     'click #placeOrder' () {
+		var mOrderID = 1;
+		if (!Order.find().count() == 0) { mOrderID = Order.findOne({}, { sort: {orderID: -1}}).orderID + 1; }
         new Order({
-            orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
+            orderID: mOrderID,
             waiterID: 69,
             orderItems: orderArray,
-            timePlaced: new Date()
+            timePlaced: new Date(),
+			isCompleted: false
         }).placeOrder();
-        new selectedItem().removeCollection();
         orderArray = [];
-        itemArray = [];
+		rvOrderArray = ([]);
     },
     /**
      * @function click #cancelOrder
      * @summary Drops all the selected items for the order
      */
     'click #cancelOrder' () {
-        new selectedItem().removeCollection();
-        itemArray = [];
         orderArray = [];
+		rvOrderArray.set(orderArray);
     },
     /**
      * @function click .drinkicon
@@ -129,51 +129,33 @@ Template.menuCards.events({
      * @summary Creates the order item for the selected item and pushes the order back into the orderArray
      */
     'click #addItem'() {
-        orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
-        //console.log(orderArray);
+        orderArray.push(createOrderItem(orderArray.length + 1, 2, this.itemID, "NONE"));
+		rvOrderArray.set(orderArray);
     },
 });
+
 Template.selectedCards.events({
     /**
      * @function click #removeItem
      * @summary Removes the respective item from the orderArray so it is not placed in the final order
      */
     'click #removeItem' (){
-        new selectedItem().removeItem(this._id);
         for (i = 0; i < orderArray.length; i++)
         {
-            if(orderArray[i].menuItemID == this.itemID) {
-                orderArray.splice(i,1);
+            if (orderArray[i].itemID == this.itemID) {
+                orderArray.splice(i, 1);
                 break;
             }
         }
-        console.log(orderArray);
+		/** Update the itemIDs to fill in any potential gaps **/
+		for (i = 0; i < orderArray.length; i++)
+        {
+			orderArray[i].itemID = i + 1;
+			rvOrderArray.set(orderArray);
+        }
     },
 
 })
-
-Template.menuCards.helpers({
-    /**
-     * @function cards
-     * @summary Loops through the order array and adds the selected items to allow the application to display the data
-     */
-    cards() {
-        for (i = 0; i < orderArray.length; i++) {
-            itemArray.push(MenuItems.findOne({itemID: orderArray[i].menuItemID}));
-            //console.log(MenuItems.findOne({ itemID: orderArray[i].menuItemID }));
-            var item = MenuItems.findOne({itemID: orderArray[i].menuItemID});
-            console.log("item" + item);
-            new selectedItem({
-                itemID: item.itemID,
-                itemName: item.itemName,
-                itemDescription: item.itemDescription,
-                mealType: item.mealType,
-                itemPrice: item.itemPrice,
-                cookTime: item.cookTime,
-            }).saveItem();
-        }
-    }
-});
 
 Template.waiter.helpers({
     /**
@@ -202,7 +184,6 @@ Template.waiter.helpers({
      * @summary returns all the objects from the database with the mealType of Enum 3, desserts.
      */
     desserts() {
-        //console.log(MenuItems.find({mealType: 3}));
         return MenuItems.find({mealType: 3});
 
     },
@@ -211,16 +192,25 @@ Template.waiter.helpers({
      * @summary returns all the objects from the selectedItems collection
      */
     selected() {
-        return(selectedItems.find({}));
+        return(rvOrderArray.get());
     },
 });
 
-
-
-/*
- for (i = 0; i < orderArray.length; i++) {
- itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
- console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
- }
- return itemArray;
- */
+Template.selectedCards.helpers({
+	itemName(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.itemName;
+	},
+	itemPrice(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.itemPrice;
+	},
+	itemDescription(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.itemDescription;
+	},
+	cookTime(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.cookTime;
+	}
+})

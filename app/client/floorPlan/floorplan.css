@@ -26,8 +26,25 @@
 }
 .check.icon{
     color: white;
+    padding-right: 35%;
+
 }
 .ui.button.yellow{
 	margin-top: 50px;
 	margin-left: 10px;
+}
+.checked.icon{
+   padding-right: 35%;
+   margin-top: -5px;
+
+}
+.notched.circle.loading.icon{
+	margin-left: -100px;
+	margin-right: 17px;
+	margin-top: -10px;
+
+}
+.trash.icon{
+   margin-top: -10px;
+   padding-right: 40%;
 }

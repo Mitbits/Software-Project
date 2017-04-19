@@ -140,13 +140,13 @@
         <div class="ui fluid card" id="menuCard">
 
             <div class="content">
-                <div class="header">{{itemName}} <p id="floatRight">${{itemPrice}}</p></div>
+                <div class="header">{{itemName this}} <p id="floatRight">${{itemPrice this}}</p></div>
             </div>
             <div class="content">
-                {{itemDescription}}
+                {{itemDescription this}}
                 <!--<br>-->
                 <!--<i id="floatLeft" class="edit icon"></i>-->
-                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
+                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime this}} mins</p>
             </div>
             <div class="ui bottom attached button" id="removeItem">
                 <i class="minus icon"></i>

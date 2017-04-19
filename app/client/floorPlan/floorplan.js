@@ -1,4 +1,6 @@
+
 import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports/api/table.js';
+
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
 
@@ -25,11 +27,13 @@ Template.table.events({
 	//removes the reservation from the table and from the waitlist
     var table  = Table.findOne({ _id: this._id });
 
+
    
  
     if (table.table_status == TableStatus.DIRTY)
+
 	{
-	console.log("here");
+
 
       	table.clean(); 
     }
@@ -83,11 +87,13 @@ Template.table.events({
 * @summary Decrements Table Occupants by 1 with minimum of 0
 */
     'click .minus.icon.link' () {
+
 	let table = Table.findOne({_id: this._id});
 	if (table.occupants>=0){
 		table.decreaseOccupants();
  		document.getElementById("minus").className = "big minus icon link";
             	document.getElementById("plus").className = "big plus icon link";
+
 
 	}
 	else{

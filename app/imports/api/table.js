@@ -160,6 +160,7 @@ export const Table = Class.create({
 			}
 			this.occupants++;
 			this.save();
+
 		},
 		decreaseOccupants(){
 			if (this.occupants<=0){
@@ -215,6 +216,7 @@ export const TableManager = Class.create({
 			});
 			return (numRes + 1 <= numResTables) ? true : false;
 		},
+
         pushReservation(reservation){
             this.reservations.push(reservation);
             this.save();
@@ -236,6 +238,7 @@ export const TableManager = Class.create({
 	getTables(num,size,table_type,table_status){
 		 var table_list = [];
 		 var count = 0;
+
 
 		 Table.find({'size':size,'table_type': table_type, 'table_status': table_status,'merged':false,'occupants':0}).forEach(function(tbl){
 			if(count < num){

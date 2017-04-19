@@ -47,6 +47,19 @@ export const orderItem = Class.create({
 		},
 		specialRequests: {
 			type: String
+		},
+		actualCookTime: {
+			type: Number
+		}
+	},
+	meteorMethods: {
+		setItemID(mID) {
+			this.itemID = mID;
+			return this.save();
+		},
+		setCookTime(mTime) {
+			this.actualCookTime = mTime;
+			return this.save();
 		}
 	}
 });
@@ -79,6 +92,9 @@ export const Order = Class.create({
 		},
 		timePlaced: {
 			type: Date
+		},
+		isCompleted: {
+			type: Boolean
 		}
 	},
 	indexes: {

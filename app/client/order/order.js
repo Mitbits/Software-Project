@@ -1,8 +1,8 @@
 import { CountDownTimer } from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
-import '../../imports/api/priorityManager.js';
-import { PriorityManager } from '../../imports/api/priorityManager.js';
+import { orderQueue } from '../../imports/api/priorityManager.js';
+import startPriorityManager from '../../imports/api/priorityManager.js';
 
 Template.orderRow.events({
     /**
@@ -28,7 +28,7 @@ Template.orderRow.events({
 		var isActive = classesApplied.includes('active');
 		var $addTimeBtn = $colorObj.find('#add-time-btn');
 
-		if(isActive) { //change it to normal- white
+		if (isActive) { //change it to normal- white
 			$colorObj.removeClass('active');
 			$colorObj.addClass('white');
 			$addTimeBtn.addClass('disabled');
@@ -60,7 +60,8 @@ Template.orderQueue.helpers({
 	 * @returns {Array.<orderItems>}
      */
 	orders() {
-		return PriorityManager.start();
+		console.log("orders() helper func");
+		return startPriorityManager();
 	}
 });
 
@@ -84,8 +85,23 @@ var doneButtonHandler = function(event, templateInstance) {
 		});
 		setTimeout(function() {
 			if(!clicked) {
+				var timeElapsed = templateInstance.data.timer.ranFor; // time left
+				/*
+				if(timeElapsed > 5)
+				{
+                    console.log(timeElapsed -6);
+				}
+				else {
+					console.log(timeElapsed);
+				}
+				*/
+
+
+
+				//console.log(templateInstance.data.timer);
 				$deleteObj.remove();
 				$undoObj.remove();
+				templateInstance.isCompleted = true;
 			}
 		}, 5000);
 	});
@@ -176,7 +192,7 @@ var timeToString = function(min, sec) {
 var startCountDown = function($timeObj, duration, resetTimeText, timer) {
 	//var timer = new CountDownTimer(duration, 1000);
 	timer.onTick(function(min, sec) {
-		if(timer.expired() && !reset) {
+		if(timer.expired() && !timer.reset) {
 			timerExpired($timeObj);
 		}
 		if(timer.reset) { // reset timer
