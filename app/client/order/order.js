@@ -55,7 +55,6 @@ Template.orderRow.onRendered(function() {
     var {timeMin, timeSec, timeText, $timeObj} = getTime(null, this.$('div#time'));
     var duration = 60*timeMin + timeSec;
     this.data.timer = new CountDownTimer(duration, 1000);
-    console.log('ran');
     this.$('div#undo').hide();
 });
 
@@ -65,8 +64,17 @@ Template.orderQueue.helpers({
      * @returns {Array.<orderItems>}
      */
     orders() {
-        console.log("orders() helper func");
-        return startPriorityManager();
+        //console.log("orders() helper func");
+        var data = startPriorityManager();
+        for(var obj of data) {
+
+            var cookTime = parseInt(obj.cookTime * 60);
+            console.log(cookTime);
+            var min = parseInt(cookTime / 60);
+            var sec = parseInt(cookTime % 60);
+            obj.cookTimeStr = timeToString(min, sec);
+        }
+        return data;
     }
 });
 
