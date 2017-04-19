@@ -95,6 +95,7 @@ var doneButtonHandler = function(event, templateInstance) {
 				var expectedCookTime = (MenuItem.findOne({ itemID: templateInstance.data.menuItemID }).cookTime);
 				var timeRemaining = 0;
 				if(templateInstance.data.timer){
+
                     timeRemaining = templateInstance.data.timer.ranFor;
 
                 }
