@@ -1,17 +1,17 @@
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
-import { Order, Orders, orderItem } from '../../imports/api/order.js';
+import { Order, orderItem } from '../../imports/api/order.js';
 import { ReactiveVar } from 'meteor/reactive-var'
 
-var orderArray = []
-var rvOrderArray = new ReactiveVar([]);
-var topDrinksArray = [];
-var rvtopDrinksArray = new ReactiveVar([]);
-var topAppsArray = [];
-var rvtopAppsArray = new ReactiveVar([]);
-var topEntreesArray = [];
-var rvtopEntreesArray = new ReactiveVar([]);
-var topDessertsArray = [];
-var rvtopDessertsArray = new ReactiveVar([]);
+let orderArray = [];
+let rvOrderArray = new ReactiveVar([]);
+let topDrinksArray = [];
+let rvtopDrinksArray = new ReactiveVar([]);
+let topAppsArray = [];
+let rvtopAppsArray = new ReactiveVar([]);
+let topEntreesArray = [];
+let rvtopEntreesArray = new ReactiveVar([]);
+let topDessertsArray = [];
+let rvtopDessertsArray = new ReactiveVar([]);
 
 /**
  * @function createOrderItem
@@ -30,8 +30,7 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
 		"actualCookTime": MenuItem.findOne({itemID: mMenuItemID}).cookTime,
 		"isCompleted": false
     });
-};
-
+}
 Template.waiter.events({
     /**
      * @function click .Appetizers
@@ -54,7 +53,7 @@ Template.waiter.events({
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
-        document.getElementById("placeOrderMenu").className = "displayNone"
+        document.getElementById("placeOrderMenu").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     /**
@@ -207,64 +206,60 @@ Template.waiter.helpers({
     },
     topThreeDrinks() {
 
-        var i = 0;
+        let i = 0;
         MenuItems.find({mealType: 0}, {sort: {timesOrdered: -1}}).forEach(function (element) {
             if (i < 3) {
                 topDrinksArray[i] = element.itemID;
-                console.log(element.itemID);
                 i++;
             }
-        })
+        });
         rvtopDrinksArray.set(topDrinksArray);
-        var i = 0;
+        i = 0;
         MenuItems.find({mealType: 1}, {sort: {timesOrdered: -1}}).forEach(function (element) {
             if (i < 3) {
                 topAppsArray[i] = element.itemID;
-                console.log(element.itemID);
                 i++;
             }
 
-        })
+        });
         rvtopAppsArray.set(topAppsArray);
-        var i = 0;
+        i = 0;
         MenuItems.find({mealType: 2}, {sort: {timesOrdered: -1}}).forEach(function (element) {
             if (i < 3) {
                 topEntreesArray[i] = element.itemID;
-                console.log(element.itemID);
                 i++;
             }
 
-        })
+        });
         rvtopEntreesArray.set(topEntreesArray);
-        var i = 0;
+        i = 0;
         MenuItems.find({mealType: 3}, {sort: {timesOrdered: -1}}).forEach(function (element) {
             if (i < 3) {
                 topDessertsArray[i] = element.itemID;
-                console.log(element.itemID);
                 i++;
             }
-        })
+        });
         rvtopDessertsArray.set(topDessertsArray);
-        return;
+
     },
 
 });
 
 Template.selectedCards.helpers({
 	itemName(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemName;
 	},
 	itemPrice(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemPrice;
 	},
 	itemDescription(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemDescription;
 	},
 	cookTime(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.cookTime;
 	}
 });
@@ -300,4 +295,4 @@ Template.menuCards.helpers({
             return true;
         }
     },
-})
+});
