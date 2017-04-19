@@ -1,19 +1,17 @@
 import { Mongo } from 'meteor/mongo';
 import { Class, Enum } from 'meteor/jagi:astronomy';
 import { Type } from 'meteor/jagi:astronomy';
-import { MenuItem } from './menuItem.js';
 
 export const Orders = new Mongo.Collection('orders');
-export const Customers = new Mongo.Collection('customers');
 
 /**
  * @global
  * @summary Validation parameter for unique ID numbers used in various classes.
  */
-var minID = [{
+let minID = [{
 	type: 'gt',
 	param: 0
-}]
+}];
 
 /**
  * @typedef {orderItem}
@@ -22,7 +20,7 @@ var minID = [{
 Type.create({
 	name: 'orderItem',
 	class: 'orderItem'
-})
+});
 
 /**
  * @class orderItem
@@ -39,9 +37,6 @@ export const orderItem = Class.create({
 			type: Number,
 			validators: minID
 		},
-		priority: {
-			type: Number
-		},
 		menuItemID: {
 			type: Number
 		},
@@ -54,12 +49,6 @@ export const orderItem = Class.create({
 		isCompleted: {
 			type: Boolean
 		}
-	},
-	meteorMethods: {
-		setItemID(mID) {
-			this.itemID = mID;
-		},
-
 	}
 });
 
@@ -128,9 +117,9 @@ export const Order = Class.create({
             this.orderItems[mItemID].actualCookTime = mTime;
             this.save();
         },
+		/** Not sure why this function is needed @Mit **/
 		getCookTime(mItemID){
-			var currentCookTime = this.orderItems[mItemID];
-			return currentCookTime;
+			return this.orderItems[mItemID];
 		}
 	}
 });
