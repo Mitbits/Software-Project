@@ -9,7 +9,6 @@ import { MenuItem, MenuItems, ORDER_TYPE} from './menuItem.js';
  * @returns {Array.<orderItems>} An array of order items in the correct order
  **/
 export default function startPriorityManager() {
-	console.log("starting priority manager");
 	var Appetizers = [];
 	var Entrees = [];
 	var Desserts = [];
@@ -24,28 +23,29 @@ export default function startPriorityManager() {
 		var orderItems = order.orderItems; // returns array of orderItems
 		
 		orderItems.forEach(function(orderItem) {
-			var menuItem = MenuItems.findOne({ itemID: orderItem.menuItemID });
-			
-			mOrderQueueItems.push(mOrderQueueItem = new orderQueueItem({
-				orderID: order.orderID,
-				itemID: orderItem.itemID,
-				menuItemID: orderItem.menuItemID,
-				itemName: menuItem.itemName,
-				mealType: ORDER_TYPE.getIdentifier(menuItem.mealType),
-				cookTime: menuItem.cookTime,
-				specialRequests: orderItem.specialRequests,
-				priorityVal: 0
-			}));
+            if (orderItem.isCompleted == false) {
+				var menuItem = MenuItems.findOne({ itemID: orderItem.menuItemID });
+				mOrderQueueItems.push(mOrderQueueItem = new orderQueueItem({
+					orderID: order.orderID,
+					itemID: orderItem.itemID,
+					menuItemID: orderItem.menuItemID,
+					itemName: menuItem.itemName,
+					mealType: ORDER_TYPE.getIdentifier(menuItem.mealType),
+					cookTime: menuItem.cookTime,
+					specialRequests: orderItem.specialRequests,
+					priorityVal: 0
+				}));
 
-			if (menuItem.mealType == ORDER_TYPE.APPETIZER) {
-				nApp++;
+				if (menuItem.mealType == ORDER_TYPE.APPETIZER) {
+					nApp++;
+				}
+				else if (menuItem.mealType == ORDER_TYPE.ENTREE) {
+					nEnt++;
+				}
+				else if (menuItem.mealType == ORDER_TYPE.DESSERT) {
+					nDes++;
+				}
 			}
-			else if (menuItem.mealType == ORDER_TYPE.ENTREE) {
-				nEnt++;
-			}
-			else if (menuItem.mealType == ORDER_TYPE.DESSERT) {
-				nDes++;
-			}			
 		});
 		
 		if (!nApp) {
