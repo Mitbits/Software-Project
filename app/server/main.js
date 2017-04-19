@@ -166,15 +166,16 @@ Meteor.startup(() => {
 	}
 	
 	process.env.MAIL_URL='smtp://irestaurant12%40gmail.com:ece4life@smtp.gmail.com:587';
+    SSR.compileTemplate('htmlEmail', Assets.getText('reservation-email.html'));
 	Meteor.methods ({
-		'sendEmail' : function(to,subj,text){
+		'sendEmail' : function(to,subj,emailData){
 			this.unblock();
-			
+
 			Email.send({
 				to: to,
 				from: 'iRestaurant@ires.com',
 				subject: subj,
-				text: text
+				html: SSR.render('htmlEmail', emailData),
 			});
 		}
 	})

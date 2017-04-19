@@ -71,14 +71,18 @@ Template.reservationPage.events({
 		});
 	reserve.sssave();
 	tc.pushReservation(reserve);
-  // window.location.href = 'Success';
-	
+    //window.location.href = 'Success';
+    var emailData = {
+        name: FirstName,
+        date: date,
+        seats: Seats*1
+    }
 	
 	
 	var subj = "Reservation"; 	
 	var toAddr = Email;
-	var body = "Hello " + FirstName + "\n\nYour reservation has been confirmed for " + date + " For a Table of " + Seats*1 + " \nSee you there!";
-	Meteor.call('sendEmail',Email,subj,body);
+	//var body = "Hello " + FirstName + "\n\nYour reservation has been confirmed for " + date + " For a Table of " + Seats*1 + " \nSee you there!";
+	Meteor.call('sendEmail',Email,subj,emailData);
 	
 	
     
