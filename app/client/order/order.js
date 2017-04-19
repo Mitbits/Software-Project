@@ -3,8 +3,8 @@ import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
 import { MenuItems, MenuItem } from '../../imports/api/menuItem.js';
 import { orderQueue } from '../../imports/api/priorityManager.js';
-import startPriorityManager from '../../imports/api/priorityManager.js';
 import { inventoryItems, inventoryItem} from '../../imports/api/ingredient.js';
+import updatePriorityManager from '../../imports/api/priorityManager.js';
 
 Template.orderRow.events({
     /**
@@ -65,7 +65,7 @@ Template.orderQueue.helpers({
      */
     orders() {
         //console.log("orders() helper func");
-        var data = startPriorityManager();
+        var data = updatePriorityManager();
         for(var obj of data) {
 
             var cookTime = parseInt(obj.cookTime * 60);
@@ -144,7 +144,7 @@ var doneButtonHandler = function(event, templateInstance) {
           .setCookTime(newAverageCookTimeMins, templateInstance.data.itemID - 1);
         MenuItem.findOne({ itemID: templateInstance.data.menuItemID })
           .setCookTime(newAverageCookTimeMins);
-
+        /** rerender template and call priority manager here **/
 
                 $deleteObj.remove();
                 $undoObj.remove();
