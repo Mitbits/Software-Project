@@ -17,6 +17,7 @@ let AVG_ORDER_TIMES = [[],[],[]];
 
 export default function updatePriorityManager() {
 	let orders = Orders.find({ isCompleted: false }, { sort: { timePlaced: 1 } });
+
 	let mOrderQueueItems = [];
 
 	/** Create a new time node if there no nodes created **/
@@ -66,26 +67,57 @@ export default function updatePriorityManager() {
 				}
 			}
 		});
-		console.log("orderID: " + order.orderID);
-		if (!nApp) {
+		//console.log("orderID: " + order.orderID);
+
+		if (nApp) {
+
+			//console.log("nApp value is " + nApp);
             AVG_ORDER_TIMES[0].push([
                 order.orderID,
                 tApp / nApp
             ]);
         }
-		if (!nEnt) {
+
+        else {
+
+            AVG_ORDER_TIMES[0].push([
+                order.orderID,
+                0
+            ]);
+		}
+
+
+		if (nEnt) {
+
             AVG_ORDER_TIMES[1].push([
                 order.orderID,
                 tEnt / nEnt
             ]);
         }
-        if (!nDes) {
+
+        else {
+
+			AVG_ORDER_TIMES[1].push([
+				order.orderID,
+				0
+			]);
+		}
+
+        if (nDes) {
+
             AVG_ORDER_TIMES[2].push([
                 order.orderID,
                 tDes / nDes
             ]);
         }
 
+        else {
+
+            AVG_ORDER_TIMES[2].push([
+                order.orderID,
+                0
+            ]);
+		}
 		if (!nApp) {
 			if (!nEnt) {
 				/** only dessert **/
