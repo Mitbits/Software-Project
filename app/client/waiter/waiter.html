@@ -21,6 +21,7 @@
             {{>floorplan}}
         </div>
         <div id="appMenu" class = "displayNone">
+            {{topThreeDrinks}}
             <div>
                 <h1 class="menuHeader">Appetizers</h1>
                 <div class="drinkicon"><img src="http://imgur.com/JelmzRy.png"/></div>
@@ -72,7 +73,6 @@
             <br>
             <br>
             <br>
-
             <div class="ui three column grid" id="currentOrder">
                 {{#each selected}}
                     {{>selectedCards}}
@@ -118,9 +118,17 @@
 <template name="menuCards">
     <div class="column">
         <div class="ui fluid card" id="menuCard">
-
             <div class="content">
-                <div class="header">{{itemName}} <p id="floatRight">${{itemPrice}}</p></div>
+                <div class="header">
+                    {{#if isTopOne}}
+                        <a class="ui green circular label">1</a>
+                    {{else if isTopTwo}}
+                        <a class="ui yellow circular label">2</a>
+                    {{else if isTopThree}}
+                        <a class="ui red circular label">3</a>
+                    {{/if}}
+                    {{itemName}} <p id="floatRight">${{itemPrice}}</p>
+                </div>
             </div>
             <div class="content">
                 {{itemDescription}}
@@ -138,7 +146,6 @@
 <template name="selectedCards">
     <div class="column">
         <div class="ui fluid card" id="menuCard">
-
             <div class="content">
                 <div class="header">{{itemName this}} <p id="floatRight">${{itemPrice this}}</p></div>
             </div>
