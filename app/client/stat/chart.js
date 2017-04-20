@@ -5,6 +5,7 @@ var createChart = function(data, selection, width) {
               .yscale.domain([0])
               .width(width)
               .margin.left(40);
+  $(selection).empty();
   chart(selection);
 }
 

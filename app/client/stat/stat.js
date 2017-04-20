@@ -1,6 +1,7 @@
 var dataItems; // dataItems object
 import {createChart} from './chart.js';
 import {AvgCookTime,AvgCookTimes} from '../../imports/api/data/avgCookTime.js';
+//import {Kitchen} from './kitchen.js';
 
 Template.stat.onRendered(function() {
 
@@ -20,19 +21,6 @@ Template.stat.onRendered(function() {
 
 });
 
-var makeGraphs = function() {
-  var data = [
-    {date:new Date('2013-01-01'),n:120},
-    {date:new Date('2013-01-02'),n:240},
-    {date:new Date('2013-01-03'),n:360},
-    {date:new Date('2013-01-04'),n:480}
-  ];
-
-  dataItems.getKitchenData();
-  data = dataItems.data.Kitchen.AvgCookTimes;
-  console.log(data);
-  createChart(data, '.chart', 900);
-}
 
 Template.stat.onCreated(function() {
   dataItems = new DataItems();
@@ -62,35 +50,26 @@ Template.stat.events({
     $($clickedItem).addClass('active');
 
     dataItems.populateData(clickedName);
-    makeGraphs();
   }
 });
 
 class DataItems {
   constructor() {
-    this.data = {
-      'General' : {},
-      'Reservations' : {},
-      'Kitchen' : {},
-      'Busboy' : {},
-      'Billing' : {},
-    }
-    this.names = Object.keys(this.data);
+    this.names = [
+      'General',
+      'Reservations',
+      'Kitchen',
+      'Busboy',
+      'Billing'
+    ];
   }
 
 
   populateData(name) { // change the frontend based on 'name'
-
+    if(name === 'Kitchen') {
+      //kitchen.createDisplay();
+    }
   }
 
-  getKitchenData() {
-    var avgCookTimes = [];
-    AvgCookTimes.find({}).forEach(
-      function(ct){
-        console.log(ct);
-        avgCookTimes.push(ct);
-    });
-    this.data.Kitchen.AvgCookTimes = avgCookTimes;
-    console.log(avgCookTimes);
-  }
+
 }

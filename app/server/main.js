@@ -19,6 +19,12 @@ Meteor.startup(() => {
       initAvgCookTime();
     }
 
+     AvgCookTimes.find({menuItemID: 3}).forEach(
+       function(ct) {
+         console.log(ct);
+       }
+     );
+
     Table.remove({});
     TableCluster.remove({});
     Reservation.remove({});
