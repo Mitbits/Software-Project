@@ -76,9 +76,20 @@ Template.reservationPage.events({
     window.location.href = 'Success';
 
     //window.location.href = 'Success';
+	var day = reserve.date.getDate();
+	var month = reserve.date.getMonth()+1;
+	var year = reserve.date.getFullYear();
+	var datee = month + "/" + day + "/" + year;
+	var hours = reserve.date.getHours() > 12 ? reserve.date.getHours() - 12 : reserve.date.getHours();
+	var ampm = reserve.date.getHours() >= 12 ? "P.M." : "A.M.";
+	hours = hours < 10 ? "0" + hours : hours;
+	var minutes = reserve.date.getMinutes() < 10 ? "0" + reserve.date.getMinutes() : reserve.date.getMinutes();
+	var reservationTime = hours + ":" + minutes + " " + ampm;   
+
     var emailData = {
         name: FirstName,
-        date: date,
+        date: datee,
+		time: reservationTime,
         seats: Seats*1
     }
 	
