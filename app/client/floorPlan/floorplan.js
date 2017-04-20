@@ -5,6 +5,75 @@ import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
 
 
+
+
+Template.floorplan.events({
+	'click #merge_button' (){
+		// check of the button to enter the merge interface was clicked
+		if($(event.target).attr("clicked") == "false"){
+			//bring up the merge confirmation button and cancel button
+			$(event.target).attr("clicked",true);
+			$(event.target).html("Merge");
+			$(event.target).after("<button class=\"ui button\" id=\"cancel\">Cancel</button>");
+
+			$("#cancel").click(function(){
+				//when cancel is clicked it will change the state back, for all tables, to not being a merge candidate
+				Table.find({'checked_for_merge':true}).forEach(function(table){
+					$("#"+table.table_id).css("background","#1b1c1d");
+					//uncheck merge candidacy
+					table.change_for_merge();
+
+				});
+				//return interface back
+				$("#merge_button").html("Manual Merge");
+				$("#merge_button").attr("clicked", false);
+				$("#cancel").remove();
+				$(".ui.small.blue.bottom.right.attached.label").remove();
+
+				
+			});
+			//add the check box to each table when in merge interface
+			Table.find({'table_type':TableType.WALKIN}).forEach(function(table_obj){
+				$("#"+table_obj.table_id).append("<div class= \"ui small blue bottom right attached label\"><input class=\"merge_check\" type=\"checkbox\"></div>");
+			});
+			//change table to merge candidate when check box is clicked
+			$(".merge_check").click(function(e){
+				Table.findOne({"table_id":parseInt($(e.target).parent().parent().attr("id"))}).change_for_merge();
+				
+			});
+	
+		} else{
+			//merging
+			var tables = [];
+			//get all candidates
+			Table.find({'checked_for_merge' : true}).forEach(function(table_obj){
+				//return them to normal for when they unmerge and put into merge component list
+				tables.push(table_obj.table_id);
+				table_obj.change_for_merge();
+			
+			});
+			//a merge must have more than 2 components	
+			if(tables.length >= 2){
+				var manager = TableManager.findOne({});
+				try{
+					manager.mergeTable(tables,null);
+				} catch(e){
+					//error will be merging two or more tables of different table type
+					alert(e);
+				}
+			}else{
+				alert("Need more than 2 tables to merge");
+			}
+			//trigger cancel click
+			$("#cancel").trigger("click");
+
+			
+		}
+
+	}
+
+});
+
 Template.table.events({
 
 /**
@@ -15,6 +84,17 @@ Template.table.events({
     'click .ui.yellow.button' () {
 		var table = Table.findOne({ _id: this._id });
     	table.updateTableStatus(TableStatus.DIRTY);
+
+    },
+
+    'click .small.red.bottom.left.attached.label' (){
+	    //break up merged table
+		var manager = TableManager.findOne({});
+	    //fetch the id from the parent inverted segment
+		var table   =Table.findOne({'table_id':parseInt($(event.target).parent().attr("id"))});
+
+		manager.unmergeTable(table.table_id);
+
 
     },
 /**
@@ -41,6 +121,7 @@ Template.table.events({
 
 
 },
+
 /**
 * @function
 * @name click .green.right.corner.label 
@@ -49,8 +130,10 @@ Template.table.events({
     'click .green.right.corner.label' ()
     {
 		var table = Table.findOne({ _id: this._id });
-		if(table.occupants != 0) {
-        		table.updateTableStatus(TableStatus.TAKEN);
+		var counts = $("#counts");	
+	    	if((occupants=parseInt(counts.html()   )) != 0) {
+			table.setOccupants(occupants);
+			table.updateTableStatus(TableStatus.TAKEN);
 		}
     },
 /**
@@ -60,7 +143,7 @@ Template.table.events({
 */
 	'click .ui.gray.right.corner.label' (){
 		var table = Table.findOne({ _id: this._id });
-        table.updateTableStatus(TableStatus.TAKEN);
+        	table.updateTableStatus(TableStatus.TAKEN);
 
 	},
 /**
@@ -71,10 +154,11 @@ Template.table.events({
 	 'click .plus.icon.link' () {
 
 	let table = Table.findOne({_id: this._id});
+	var counts = $("#counts");
 
-	if (table.occupants < table.size){
+	if ((occupants = parseInt(counts.html()))< table.size){
+		counts.html(""+(++occupants));
 		document.getElementById("minus").className = "big minus icon link"
-		table.increaseOccupants();
 	}
 	else{
 		 document.getElementById("plus").className = "big disabled plus icon link";
@@ -87,10 +171,10 @@ Template.table.events({
 * @summary Decrements Table Occupants by 1 with minimum of 0
 */
     'click .minus.icon.link' () {
+	var counts = $("#counts");
 
-	let table = Table.findOne({_id: this._id});
-	if (table.occupants>=0){
-		table.decreaseOccupants();
+	if ((occupants = parseInt(counts.html()))>0){
+		counts.html("occupants",""+(--occupants));
  		document.getElementById("minus").className = "big minus icon link";
             	document.getElementById("plus").className = "big plus icon link";
 
@@ -113,6 +197,11 @@ Template.floorplan.helpers({
     {
         return Table.find();
     },
+
+    merging(){
+
+	return (($("#merge_button").attr("clicked") == "true") ? true: false); 
+    }
 	/* reservations() {
         return Reservations.find();
     }, */
@@ -126,14 +215,21 @@ Template.table.helpers({
 * @summary Checks if current table is Dirty
 * @returns {Boolean}
 */
-    'notMerged':function(){
+	//used by blaze to check if table is a 'merged table'
+    'isMergedTable': function(){
+	return (this.table_components.length == 0||this.table_type!=TableType.WALKIN)? false: true;
+    },
+	//used by blaze to check if table is a component of a 'merged table'
+    'notMergeComponent':function(){
 	return !this.merged;
     },
+
     'isDirty': function() {
         if(this.table_status == 'Dirty') {
             return true;
         }
     },
+
 /**
 * @function
 * @name isClean 

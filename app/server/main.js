@@ -12,7 +12,7 @@ import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
  * for the project and pushing them to their respective collections
  */
 Meteor.startup(() => {
-
+    TableManager.remove({});
     Table.remove({});
     Reservation.remove({});
 
@@ -143,6 +143,7 @@ Meteor.startup(() => {
 	}
 
 */
+	
 	for(i = 1; i <= 16; i++) {
 		//create astronomy table obj entry
 		//L_status just for testing
@@ -155,7 +156,7 @@ Meteor.startup(() => {
 		});
 		table_entry.save();
 	}
-    /*
+   /* 
     var table_entry = new Table({
         "size": 2,
         "table_type":TableType.RESERVATION
@@ -167,8 +168,8 @@ Meteor.startup(() => {
         "table_type":TableType.RESERVATION
     
     });
-    table_entry.save();
-    */
+    table_entry.save();*/
+    
     
 
     

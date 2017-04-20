@@ -11,10 +11,14 @@
     margin-right: 20px;
 }
 .ui.inverted.segment{
-    background: rgba(27, 28, 29, 0.9);
+   background: rgba(27, 28, 29, 0.9);
+
     height: 130px;
 	border: outset;
+
 }
+
+
 .ui.inverted.segment:hover{
     background: rgba(27, 28, 29,1);
     box-shadow: 10px 10px 5px #3e3e3e;
