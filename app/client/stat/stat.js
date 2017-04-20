@@ -1,5 +1,6 @@
 var dataItems; // dataItems object
 import {createChart} from './chart.js';
+import {AvgCookTime,AvgCookTimes} from '../../imports/api/data/avgCookTime.js';
 
 Template.stat.onRendered(function() {
 
@@ -15,6 +16,11 @@ Template.stat.onRendered(function() {
     .enter().append("div")
       .style("width", function(d) { return x(d) + "px"; })
       .text(function(d) { return d; });*/
+
+
+});
+
+var makeGraphs = function() {
   var data = [
     {date:new Date('2013-01-01'),n:120},
     {date:new Date('2013-01-02'),n:240},
@@ -22,9 +28,11 @@ Template.stat.onRendered(function() {
     {date:new Date('2013-01-04'),n:480}
   ];
 
+  dataItems.getKitchenData();
+  data = dataItems.data.Kitchen.AvgCookTimes;
+  console.log(data);
   createChart(data, '.chart', 900);
-
-});
+}
 
 Template.stat.onCreated(function() {
   dataItems = new DataItems();
@@ -43,6 +51,7 @@ Template.stat.helpers({
     }
     return html;
   }
+
 });
 
 Template.stat.events({
@@ -53,6 +62,7 @@ Template.stat.events({
     $($clickedItem).addClass('active');
 
     dataItems.populateData(clickedName);
+    makeGraphs();
   }
 });
 
@@ -71,5 +81,16 @@ class DataItems {
 
   populateData(name) { // change the frontend based on 'name'
 
+  }
+
+  getKitchenData() {
+    var avgCookTimes = [];
+    AvgCookTimes.find({}).forEach(
+      function(ct){
+        console.log(ct);
+        avgCookTimes.push(ct);
+    });
+    this.data.Kitchen.AvgCookTimes = avgCookTimes;
+    console.log(avgCookTimes);
   }
 }

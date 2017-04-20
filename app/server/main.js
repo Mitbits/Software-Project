@@ -5,26 +5,32 @@ import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
 import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
-
+import {AvgCookTime, AvgCookTimes} from '../imports/api/data/avgCookTime.js';
+import {initAvgCookTime} from './dataDriver.js';
 /**
  *@function Meteor.startup
  * @summary The code in this file is run every time meteor starts up. The file involves the creation of the sample data needed 
  * for the project and pushing them to their respective collections
  */
 Meteor.startup(() => {
+    AvgCookTimes.remove({});
+    var count = AvgCookTimes.find({}).count();
+    if(count === 0) {
+      initAvgCookTime();
+    }
+
     Table.remove({});
     TableCluster.remove({});
     Reservation.remove({});
 
 
-    for(i=1;i<=4;i++){
-	var tablecluster = new TableCluster({
-	"size":i,
-	"reservations": []
-		});
-	tablecluster.save();
-	tablecluster.tableChecker();
-
+    for(let i=1;i<=4;i++){
+    	var tablecluster = new TableCluster({
+    	"size":i,
+    	"reservations": []
+    		});
+    	tablecluster.save();
+    	tablecluster.tableChecker();
      }
 
     tablecluster.save();
@@ -44,7 +50,7 @@ Meteor.startup(() => {
 	// Populate the menu with items from the JSON file.
 	// This only needs to be done once and is static.
 	// Needs to be changed in the future - @raj
-	for(i = 0; i < 20; i++) {
+	for(let i = 0; i < 20; i++) {
 		var menuitem_entry = new MenuItem({
 			"itemID": menuItems.menu.items[i].id,
 			"itemName": menuItems.menu.items[i].name,
@@ -55,8 +61,7 @@ Meteor.startup(() => {
 		});
 		menuitem_entry.save();
 	}
-	for(i = 0; i < 12; i++) {
-		console.log("Sucess");
+	for(let i = 0; i < 12; i++) {
 		var inventory_entry = new inventoryItem({
 			"invID": InventoryItems.inventory.items[i].id,
             "invName": InventoryItems.inventory.items[i].name,
