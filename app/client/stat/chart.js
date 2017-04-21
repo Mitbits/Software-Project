@@ -1,12 +1,12 @@
-var createChart = function(data, selection, width) {
+var createChart = function(options) {
   var chart = d3.timeseries()
-              .addSerie(data,{x:'time',y:'cookTime'},{interpolate:'monotone',color:"#333"})
-              .addSerie(data,{x:'time',y:'avgCookTime'},{interpolate:'monotone',color:'#666'})
+              .addSerie(options.data,{x:options.x,y:options.y},{interpolate:'monotone',color:"#333"})
+              .addSerie(options.data,{x:options.x,y:options.y2},{interpolate:'monotone',color:'#666'})
               .yscale.domain([0])
-              .width(width)
+              .width(900)
               .margin.left(40);
-  $(selection).empty();
-  chart(selection);
+  $(options.selection).empty();
+  chart(options.selection);
 }
 
 export {createChart};

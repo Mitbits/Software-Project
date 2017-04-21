@@ -1,9 +1,11 @@
 import {createChart} from './chart.js';
 import {AvgCookTime,AvgCookTimes} from '../../imports/api/data/avgCookTime.js';
+import {IngUsage,AvgIngUsage} from '../../imports/api/data/avgIngUsage.js';
 import {MenuItems} from '../../imports/api/menuItem.js';
+import {inventoryItems} from '../../imports/api/ingredient.js';
 
 let listHTML= '';
-
+let listIngHTML = '';
 
 Template.kitchen.helpers({
   listMenuItems: function() {
@@ -16,6 +18,18 @@ Template.kitchen.helpers({
       createCookTimeDisplay(0);
     }
     return listHTML;
+  },
+
+  listIngredients: function() {
+    if(listIngHTML === '') {
+      let invItems = inventoryItems.find({});
+      invItems.forEach(function(ing) {
+        listIngHTML += '<option value="' + ing.invID + '">' +
+          ing.invName + '</option>';
+      });
+      createIngUsageDisplay(0);
+    }
+    return listIngHTML;
   }
 });
 
@@ -24,6 +38,11 @@ Template.kitchen.events({
     var $clickedItem = $('#cookTimeItems option:selected');
     var clickedID = parseInt($clickedItem.attr('value'));
     createCookTimeDisplay(clickedID);
+  },
+  'change #ingredients': function(event) { // menu item clicked render proper change
+    var $clickedItem = $('#ingredients option:selected');
+    var clickedID = parseInt($clickedItem.attr('value'));
+    createIngUsageDisplay(clickedID);
   }
 });
 
@@ -34,7 +53,18 @@ const createCookTimeDisplay = function(itemID) {
       avgCookTimes.push(ct);
   });
   //console.log(avgCookTimes);
-  createChart(avgCookTimes, '#cookTimeGraph', 900);
+  createChart({data: avgCookTimes,x:'time',y:'cookTime',y2:'avgCookTime',selection:'#cookTimeGraph'});
+}
+
+const createIngUsageDisplay = function(itemID) {
+  let avgIngUsage = [];
+  AvgIngUsage.find({ingID: itemID}).forEach(
+    function(ct){
+      avgIngUsage.push(ct);
+  });
+  //console.log(avgCookTimes);
+
+  createChart({data: avgIngUsage,x:'time',y:'quantity',y2:'avgQuantity',selection:'#ingUsageGraph'});
 }
 
 const Kitchen = {};

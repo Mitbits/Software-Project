@@ -5,25 +5,14 @@ import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
 import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
-import {AvgCookTime, AvgCookTimes} from '../imports/api/data/avgCookTime.js';
-import {initAvgCookTime} from './dataDriver.js';
+import {initData} from './dataDriver.js';
 /**
  *@function Meteor.startup
  * @summary The code in this file is run every time meteor starts up. The file involves the creation of the sample data needed 
  * for the project and pushing them to their respective collections
  */
 Meteor.startup(() => {
-    AvgCookTimes.remove({});
-    var count = AvgCookTimes.find({}).count();
-    if(count === 0) {
-      initAvgCookTime();
-    }
-
-     AvgCookTimes.find({menuItemID: 3}).forEach(
-       function(ct) {
-         console.log(ct);
-       }
-     );
+    initData();
 
     Table.remove({});
     TableCluster.remove({});
