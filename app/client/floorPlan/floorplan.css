@@ -14,7 +14,10 @@
     background: rgba(27, 28, 29, 0.9);
     height: 130px;
     border: outset;
+
 }
+
+
 .ui.inverted.segment:hover{
     background: rgba(27, 28, 29,1);
     box-shadow: 10px 10px 5px #3e3e3e;
@@ -48,7 +51,9 @@
    margin-top: -10px;
    padding-right: 40%;
 }
+
 .ui.raised.inverted.segment.selectedTable {
     border-style: dashed;
     border-color: red;
 }
+

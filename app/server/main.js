@@ -13,7 +13,7 @@ import { Bill } from '../imports/api/billsJS.js';
  * for the project and pushing them to their respective collections
  */
 Meteor.startup(() => {
-
+    TableManager.remove({});
     Table.remove({});
     Reservation.remove({});
 
@@ -144,19 +144,33 @@ Meteor.startup(() => {
 	}
 
 */
+	
 	for(i = 1; i <= 16; i++) {
 		//create astronomy table obj entry
 		//L_status just for testing
-		var table_type = (i%4) ? TableType.WALKIN : TableType.RESERVATION;
+		var table_type = (i%4) ? TableType.WALKIN : TableType.WALKIN;
+		var table_size = 2
+		
+		if(i%4==1)
+			table_size = 8
+		else if(i%4==2)
+			table_size = 6
+		else if(i%4==3)
+			table_size = 4 
+		else 
+			table_size = 2;
+		if(i>12)
+			table_type = TableType.RESERVATION;
 		var table_entry = new Table({
 			
-			"size": 4,
-		
+			
+			"size": 2,
 			"table_type": table_type,
+			
 		});
 		table_entry.save();
 	}
-    /*
+   /* 
     var table_entry = new Table({
         "size": 2,
         "table_type":TableType.RESERVATION
@@ -168,8 +182,8 @@ Meteor.startup(() => {
         "table_type":TableType.RESERVATION
     
     });
-    table_entry.save();
-    */
+    table_entry.save();*/
+    
     
 
     

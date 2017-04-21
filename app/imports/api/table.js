@@ -121,12 +121,24 @@ export const Table = Class.create({
                 return [];
             }
         },
-	//somewhat deals with the issue of the race between changin the
-        // plus/minus on a table and reserving it...
-        //TODO: maybe a better way to deal with this or add some other policy
+	//detects if table is a candidate for manual merging (checked off)
+	checked_for_merge:{
+            type: Boolean,
+	    optional: true,
+	    default: function(){
+		return false;
+	    }
+	}
+
             
 	},
 	meteorMethods: {
+		//makes a table a candidate for manual merging
+		change_for_merge(){
+			this.checked_for_merge = !this.checked_for_merge;
+			this.save();
+			return this.checked_for_merge;
+		},
      		clean(){
 			if(this.reservation != null){
 				var manager = TableManager.findOne({});
@@ -153,24 +165,36 @@ export const Table = Class.create({
  			this.table_status = toStatus;
  			return this.save();
   		},
+        /**
+         * @function addOccupants
+         * @summary Adds occupants to a table
+         * @param {Number} numOccupants - number of occupants to be added to the table
+         * @return Status of operation
+         */
+        addOccupants(numOccupants) {
+                this.occupants = numOccupants + this.occupants;
+                return this.save();
 
-		increaseOccupants(){
-			if (this.occupants>= this.size){
-				return;
-			}
-			this.occupants++;
-			this.save();
-
-		},
-		decreaseOccupants(){
-			if (this.occupants<=0){
-				return;
-			}
-			this.occupants--;
-			this.save();
-		}
-
-	}
+        },
+        /**
+         * @function setOccupantLimit
+         * @summary Set maximum number of occupants
+         * @param {Number} numOccupants - limit to set for the number of occupants for a table
+         * @return Status of database write operation
+         */
+        setOccupantLimit(numOccupants) {
+            this.occupants = numOccupants;
+            return this.save();
+        },
+        /**
+         * @function getNumOccupants
+         * @summary Gets the number of occupants at a table
+         * @returns {Number|*} - number of occupants at a table
+         */
+        getNumOccupants() {
+            return this.occupants;
+        }
+    }
 });
 
 
@@ -270,27 +294,40 @@ export const TableManager = Class.create({
 	// 'tables' contains the id's of tables to merge
         mergeTable(tables,res){
 	    var size = 0;
+	    var table_type = null;
+	//make sure tables are of the same type...shouldn't be a problem since interface doesn't allow for 
+		//mixed type merging...could technically remove
 	    tables.forEach(function(table_id){
-		var table_obj = null;
-		Table.find({'table_id':table_id}).forEach(function(obj){
-			table_obj = obj;
-		});
+		table_obj = Table.findOne({'table_id':table_id});
+	
+		table_type = (table_type == null) ? table_obj.table_type : table_type;
+	
+		if(table_type != table_obj.table_type)
+			throw ("table types do not match");
+
+	    });
+	//put table id's into array
+	    tables.forEach(function(table_id){
+		table_obj = Table.findOne({'table_id':table_id});
 		table_obj.merged = true;
 		table_obj.save();
 		size+= table_obj.size;
 		return;
 	    });
-
+	//form merged table
             var table_merged = new Table({
                 "size": size,
-                "occupants":res.seats,
-                "table_status": TableStatus.RESERVED,
-                "table_type": TableType.RESERVATION,
+                "occupants":(res!=null) ?res.seats: 0,
+                "table_status": (res!=null)? TableStatus.RESERVED: TableStatus.Taken,
+                "table_type": (res!=null) ?TableType.RESERVATION: TableType.WALKIN,
                 "table_components": tables
             });
-	    res.assigned = true;
-	    res.save();
-	    table_merged.reservation = res;
+	//attach reservation if reserved
+	    if (res != null){
+	    	res.assigned = true;
+	    	res.save();
+	    	table_merged.reservation = res;
+	    }
 	    table_merged.save();
 	    return;          
             
@@ -298,6 +335,7 @@ export const TableManager = Class.create({
 	//breaks table_merged into its components and deletes it
         unmergeTable(table_merged_id){
 	    //pass table id since meteor is stupid
+            //break table up into its components
 	    var table_merged = Table.findOne({'table_id':table_merged_id});
             var tables = table_merged.table_components;
             tables.forEach(function(table){

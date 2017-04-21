@@ -42,7 +42,7 @@ function setTableID(tableID) {
 
 Template.table.events({
     'click .tableID' () {
-        $('#table'+this._id).toggleClass("selectedTable");
+        $("#"+this.table_id).toggleClass("selectedTable");
         var tableID = this.table_id;
         setTableID(tableID);
     }
