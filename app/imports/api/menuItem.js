@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import {Class, Enum} from 'meteor/jagi:astronomy';
+import { Class, Enum } from 'meteor/jagi:astronomy';
+import { inventoryItem } from './ingredient.js';
 
 export const MenuItems = new Mongo.Collection('menuitems');
 
@@ -25,6 +26,19 @@ export const ORDER_TYPE = Enum.create({
 		
 	}
 });
+
+export const POPULARITY = Enum.create({
+	name: 'popularity',
+	identifiers: {
+		/** Basic meal stages*/
+		EXCLUSIVE: 0,
+		HIGH: 1,
+		MEDIUM: 2,
+		LOW: 3,
+		DEFAULT: -1
+	}
+});
+
 export const ingredientsArray = Class.create({
     name: 'ingredientsArray',
     fields: {
@@ -74,6 +88,12 @@ export const MenuItem = Class.create({
 		},
 		timesOrdered: {
 			type: Number
+		},
+		itemPopularity: {
+			type: POPULARITY
+		},
+		popularityRange: {
+			type: [Number]
 		}
 	},
 	meteorMethods: {
@@ -84,7 +104,11 @@ export const MenuItem = Class.create({
 		setCookTime(mTime) {
             this.cookTime = mTime;
             return this.save();
-        }
+        },
+		getIngredientPrice(mIngID) {
+			let mInventoryItem = inventoryItem.findOne({ invID: mIngID });
+			return mInventoryItem.invPrice / mInventoryItem.invPerUnit;
+		}
     }
 });
 

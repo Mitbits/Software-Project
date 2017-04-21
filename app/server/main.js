@@ -4,6 +4,7 @@ import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems, ingredientsArray } from '../imports/api/menuItem.js';
 import { inventoryItem, inventoryItems } from '../imports/api/ingredient.js';
+import { popularItem, itemLeaderBoard } from '../imports/api/mealSuggestions.js';
 
 /**
  *@function Meteor.startup
@@ -14,7 +15,7 @@ Meteor.startup(() => {
     Table.remove({});
     TableCluster.remove({});
     Reservation.remove({});
-
+	popularItem.remove({});
 
     for(i = 1; i <= 4; i++) {
 		var tablecluster = new TableCluster({
@@ -30,49 +31,54 @@ Meteor.startup(() => {
 	var curDate = new Date();
 
 	Tables.remove({});
-	MenuItems.remove({});
-	inventoryItems.remove({});
-
+	
 	var menuItems = require('./menuItems.json');
 	var InventoryItems = require('./inventory.json');
 	//console.log(menuItems.menu.items[0].ingredients.length);
 
-   	for (var i = 0; i < menuItems.menu.items.length; i++) {
-        var ingredientArr = [];
-        for (var j = 0; j < menuItems.menu.items[i].ingredients.length; j++) {
-            //console.log(menuItems.menu.items[i].ingredients[j]);
-            ingredientArr.push(new ingredientsArray({
-            	"ingItemID": menuItems.menu.items[i].ingredients[j].itemID,
-				"ingQuantity": menuItems.menu.items[i].ingredients[j].quantity
-			}));
-        }
-        //console.log(ingredientArr)
-        new MenuItem({
-            "itemID": menuItems.menu.items[i].id,
-            "itemName": menuItems.menu.items[i].name,
-            "itemDescription": menuItems.menu.items[i].description,
-            "mealType": menuItems.menu.items[i].type,
-            "itemPrice": menuItems.menu.items[i].price,
-            "cookTime": menuItems.menu.items[i].cookTime,
-            "ingredients": ingredientArr,
-			"timesOrdered": 0
-        }).save();
+	if (MenuItem.find().count() == 0) {
+		MenuItems.remove({});
+		for (var i = 0; i < menuItems.menu.items.length; i++) {
+			var ingredientArr = [];
+			for (var j = 0; j < menuItems.menu.items[i].ingredients.length; j++) {
+				//console.log(menuItems.menu.items[i].ingredients[j]);
+				ingredientArr.push(new ingredientsArray({
+					"ingItemID": menuItems.menu.items[i].ingredients[j].itemID,
+					"ingQuantity": menuItems.menu.items[i].ingredients[j].quantity
+				}));
+			}
+			//console.log(ingredientArr)
+			new MenuItem({
+				"itemID": menuItems.menu.items[i].id,
+				"itemName": menuItems.menu.items[i].name,
+				"itemDescription": menuItems.menu.items[i].description,
+				"mealType": menuItems.menu.items[i].type,
+				"itemPrice": menuItems.menu.items[i].price,
+				"cookTime": menuItems.menu.items[i].cookTime,
+				"ingredients": ingredientArr,
+				"timesOrdered": 0,
+				"itemPopularity": -1
+			}).save();
+		}
 	}
-
-	for(i = 0; i < 45; i++) {
-		var inventory_entry = new inventoryItem({
-			"invID": InventoryItems.inventory.items[i].id,
-            "invName": InventoryItems.inventory.items[i].name,
-            "invUnits": InventoryItems.inventory.items[i].units,
-            "invQuantity": InventoryItems.inventory.items[i].quantity,
-            "invPrice": InventoryItems.inventory.items[i].price,
-            "invPerUnit": InventoryItems.inventory.items[i].perUnit,
-            "invThreshold": InventoryItems.inventory.items[i].threshold,
-			"invTimesUsed": 0
-		});
-		inventory_entry.save();
+	
+	if (inventoryItem.find().count() == 0) {
+		inventoryItems.remove({});
+		for(i = 0; i < InventoryItems.inventory.items.length; i++) {
+			var inventory_entry = new inventoryItem({
+				"invID": InventoryItems.inventory.items[i].id,
+				"invName": InventoryItems.inventory.items[i].name,
+				"invUnits": InventoryItems.inventory.items[i].units,
+				"invQuantity": InventoryItems.inventory.items[i].quantity,
+				"invPrice": InventoryItems.inventory.items[i].price,
+				"invPerUnit": InventoryItems.inventory.items[i].perUnit,
+				"invThreshold": InventoryItems.inventory.items[i].threshold,
+				"invTimesUsed": 0
+			});
+			inventory_entry.save();
+		}
 	}
-
+//
 	// A wrapper function to create a new orderItem object.
 	// These items DO NOT get directly stored in a collection.
 	// An order object (which is stored) will hold this data. - @raj
@@ -170,5 +176,35 @@ Meteor.startup(() => {
 			"billPaid"	: false,
 		});
 		table_entry.save();
+	}
+	
+	
+	console.log("Calculating Priority");
+	
+	let items = [];
+	console.log("Number of MenuItems: " + MenuItem.find().count());
+	for (let menuItem = 0; menuItem < MenuItems.find().count(); menuItem++) {
+		let COST = 0, REVENUE = 0, PROFIT = 0, costOfMeal = 0;
+		let MEAL = MenuItem.findOne({ itemID: menuItem });
+		console.log("MEAL: " + MEAL.itemName);
+		
+		for (let ing = 0; ing < MEAL.ingredients.length; ing++) {
+			console.log(MEAL.ingredients[ing].ingItemID);
+			costOfMeal += MEAL.getIngredientPrice(MEAL.ingredients[ing].ingItemID) * MEAL.ingredients[ing].ingQuantity;
+		}
+		
+		console.log(MEAL.timesOrdered);
+		COST = costOfMeal * MEAL.timesOrdered;
+		REVENUE = MEAL.timesOrdered * MEAL.itemPrice;
+		PROFIT = REVENUE - COST;
+		
+		new popularItem({
+			"rank": 0,
+			"menuItemID": MEAL.itemID,
+			"cost": COST,
+			"profit": PROFIT,
+			"revenue": REVENUE 
+		}).save;
+		console.log("\t\tCOST: " + COST + "\t\tREVENUE: " + REVENUE + "\t\tPROFIT: " + PROFIT);
 	}
 });
