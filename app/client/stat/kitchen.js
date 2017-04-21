@@ -34,7 +34,6 @@ Template.kitchen.helpers({
   },
 
   createNumOrdersGraph: function() {
-    console.log('here');
     createNumOrdersDisplay();
   }
 });
@@ -80,7 +79,6 @@ const createNumOrdersDisplay = function() {
       numOrders.push(ct);
   });
 
-  console.log('here2');
   createChart({data: numOrders,x:'time',y:'numOrders',y2:'avgNumOrders',selection:'#numOrdersGraph'});
 }
 
