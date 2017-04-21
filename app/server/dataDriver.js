@@ -1,5 +1,6 @@
 import {AvgCookTime, AvgCookTimes} from '../imports/api/data/avgCookTime.js';
 import {IngUsage, AvgIngUsage} from '../imports/api/data/avgIngUsage.js';
+import {NumOrders, AvgNumOrders} from '../imports/api/data/avgNumOrders.js';
 import {MenuItems} from '../imports/api/menuItem.js';
 import {inventoryItems} from '../imports/api/ingredient.js';
 
@@ -69,8 +70,34 @@ export const initAvgIngUsage = function() {
   });
 }
 
+export const initAvgNumOrders = function() {
+  let today = new Date();
+  let start = new Date(today.setFullYear(today.getFullYear() - 1));
+
+  let avgOrders = 0;
+  for(let i = 0; i < 365; i++) {
+    let maxOrders = getRandomInt(50, 100);
+    let minOrders = getRandomInt(10, 40);
+    let slope = Math.floor((maxOrders - minOrders)/7);
+
+    for(let j = 0; j < 7 && i < 365; j++) {
+
+      let nextDay = new Date(start.setDate(start.getDate() + 1));
+      let numOrders = slope * i + minOrders + getRandomInt(-5, 10);
+      avgOrders = (i*avgOrders + numOrders)/(i+1);
+      let newEntry = new NumOrders({
+        'time' : nextDay,
+        'numOrders' : numOrders,
+        'avgNumOrders': avgOrders
+      });
+      newEntry.save();
+      i++;
+    }
+  }
+}
+
 export const initData = function() {
-  AvgIngUsage.remove({});
+  AvgNumOrders.remove({});
   var count = AvgCookTimes.find({}).count();
   if(count === 0) {
     initAvgCookTime();
@@ -79,6 +106,11 @@ export const initData = function() {
   count = AvgIngUsage.find({}).count();
   if(count == 0) {
     initAvgIngUsage();
+  }
+
+  count = AvgNumOrders.find({}).count();
+  if(count == 0) {
+    initAvgNumOrders();
   }
 }
 

@@ -1,6 +1,7 @@
 import {createChart} from './chart.js';
 import {AvgCookTime,AvgCookTimes} from '../../imports/api/data/avgCookTime.js';
 import {IngUsage,AvgIngUsage} from '../../imports/api/data/avgIngUsage.js';
+import {NumOrders, AvgNumOrders} from '../../imports/api/data/avgNumOrders.js';
 import {MenuItems} from '../../imports/api/menuItem.js';
 import {inventoryItems} from '../../imports/api/ingredient.js';
 
@@ -30,6 +31,11 @@ Template.kitchen.helpers({
       createIngUsageDisplay(0);
     }
     return listIngHTML;
+  },
+
+  createNumOrdersGraph: function() {
+    console.log('here');
+    createNumOrdersDisplay();
   }
 });
 
@@ -65,6 +71,17 @@ const createIngUsageDisplay = function(itemID) {
   //console.log(avgCookTimes);
 
   createChart({data: avgIngUsage,x:'time',y:'quantity',y2:'avgQuantity',selection:'#ingUsageGraph'});
+}
+
+const createNumOrdersDisplay = function() {
+  let numOrders = [];
+  AvgNumOrders.find({}).forEach(
+    function(ct) {
+      numOrders.push(ct);
+  });
+
+  console.log('here2');
+  createChart({data: numOrders,x:'time',y:'numOrders',y2:'avgNumOrders',selection:'#numOrdersGraph'});
 }
 
 const Kitchen = {};
