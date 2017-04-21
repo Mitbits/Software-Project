@@ -1,10 +1,11 @@
 import { Meteor } from 'meteor/meteor';
-import {Table,Tables, TableStatus, TableType, TableManager} from '../imports/api/table.js';
+import { Table, Tables, TableStatus, TableType, TableManager} from '../imports/api/table.js';
 import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
-import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
+import { inventoryItem, inventoryItems } from '../imports/api/ingredient.js';
+import { Bill } from '../imports/api/billsJS.js';
 
 /**
  *@function Meteor.startup

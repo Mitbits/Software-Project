@@ -12,7 +12,7 @@
 {{#if notMerged}}
     <div class="column" >
 
-		<div class="ui raised inverted segment" style="color:white">
+		<div class="ui raised inverted segment" id="table{{_id}}" style="color:white" >
             {{#if isDirty}}
                 <a class="ui red right corner label">
                     <i class="trash outline icon"></i>
@@ -34,7 +34,7 @@
                 </a>
             {{/if}}
 
-            <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}
+            <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i><p class="tableID">Table {{table_id}}</p>
 			{{#if isTaken}}
 			<div><button class="ui yellow centered button">Print Bill</button></div>
 			{{/if}}

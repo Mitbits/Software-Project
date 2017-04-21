@@ -3,8 +3,6 @@ import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports
 
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
-
-
 Template.table.events({
 
 /**
@@ -15,6 +13,7 @@ Template.table.events({
     'click .ui.yellow.button' () {
 		var table = Table.findOne({ _id: this._id });
     	table.updateTableStatus(TableStatus.DIRTY);
+        $('#table'+this._id).removeClass("selectedTable");
 
     },
 /**
@@ -99,8 +98,12 @@ Template.table.events({
 	else{
 		document.getElementById("minus").className = "big disabled minus icon link";
 	}
-    }
+    },
+
 });
+
+
+
 
 Template.floorplan.helpers({
 /**

@@ -25,7 +25,7 @@
             <button id="addItem" ng-click="addItem()">Add Item</button>
 -->
             <div class="list">
-                <table border="0" cellspacing="0" id="shoppingTbl">
+                <table class="inventoryTable" border="0" cellspacing="0" id="shoppingTbl">
                     <tr class="table-header">
                         <td></td>
                         <td class="left">Name</td>
@@ -34,7 +34,7 @@
                     </tr>
                 </table>
                 <div id="shoppingList">
-                    <table border="0" cellspacing="0">
+                    <table class="inventoryTable" border="0" cellspacing="0">
                         {{#each shoppingArray}}
                             {{>shoppingRow}}
                         {{/each}}
@@ -52,7 +52,7 @@
             <h1 id="titleH1">
                 Inventory
             </h1>
-            <table border="0" cellspacing="0">
+            <table class="inventoryTable" border="0" cellspacing="0">
                 <tr class="table-header">
                     <td>Name</td>
                     <td class="center">&nbsp;</td>
@@ -62,7 +62,7 @@
                 </tr>
             </table>
             <div class="list" id="inventoryList">
-                <table border="0" cellspacing="0">
+                <table class="inventoryTable" border="0" cellspacing="0">
                     <!--<div ng-hide="inventory.length" class="center">Your inventory is empty.</div>-->
                     {{#each ingredients}}
                         {{> ingredientRow}}
@@ -73,6 +73,7 @@
     </div>
 
     <script>
+
         var html = document.getElementById("shoppingTbl").innerHTML;
         var totalCost = document.getElementById("totalCost").innerHTML;
 

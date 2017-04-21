@@ -83,6 +83,9 @@ export const Order = Class.create({
 			type: Number,
 			validators: minID
 		},
+		tableID: {
+			type: Number
+		},
 		waiterID: {
 			type: Number,
 			validators: minID

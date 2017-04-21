@@ -1,9 +1,15 @@
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
-import { ReactiveVar } from 'meteor/reactive-var'
+import { Bill, billItem, Bills } from '../../imports/api/billsJS.js';
 
-var orderArray = []
-var rvOrderArray = new ReactiveVar([]);
+import { ReactiveVar } from 'meteor/reactive-var';
+
+let orderArray = [];
+let selectedTable = 0;
+let rvOrderArray = new ReactiveVar([]);
+let totalCost;
+let itemQueue = [];
+
 
 /**
  * @function createOrderItem
@@ -23,6 +29,25 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
     });
 };
 
+function createBillItem(mBillItemName, mBillItemPrice) {
+    return new billItem({
+        "billItemName": mBillItemName,
+        "billItemPrice": mBillItemPrice
+    });
+};
+function setTableID(tableID) {
+    selectedTable = tableID;
+    console.log(selectedTable);
+};
+
+Template.table.events({
+    'click .tableID' () {
+        $('#table'+this._id).toggleClass("selectedTable");
+        var tableID = this.table_id;
+        setTableID(tableID);
+    }
+});
+
 Template.waiter.events({
     /**
      * @function click .Appetizers
@@ -34,6 +59,7 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     /**
@@ -45,7 +71,8 @@ Template.waiter.events({
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
-        document.getElementById("placeOrderMenu").className = "displayNone"
+        document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     /**
@@ -58,6 +85,7 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     /**
@@ -70,6 +98,7 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayAll";
         document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
 
     },
@@ -83,6 +112,7 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayAll";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
 		Template.waiter.__helpers.get('selected')();
     },
@@ -95,13 +125,29 @@ Template.waiter.events({
 		if (!Order.find().count() == 0) { mOrderID = Order.findOne({}, { sort: {orderID: -1}}).orderID + 1; }
         new Order({
             orderID: mOrderID,
+            tableID: selectedTable,
             waiterID: 69,
             orderItems: orderArray,
             timePlaced: new Date(),
 			isCompleted: false
         }).placeOrder();
         orderArray = [];
-		rvOrderArray = ([]);
+		rvOrderArray.set(orderArray);
+        totalCost = 0;
+        let custID = Orders.findOne({tableID: selectedTable},{sort: {timePlaced: -1}});
+        let billItems = Orders.findOne({tableID: selectedTable},{sort: {timePlaced: -1}}).orderItems;
+        billItems.forEach(function(element) {
+            let menuItem = MenuItems.findOne({ itemID: element.menuItemID });
+            let billItem = createBillItem(menuItem.itemName, menuItem.itemPrice);
+            itemQueue.push(billItem);
+        });
+        b = new Bill({
+            "billItems": itemQueue,
+            "billTimeCreated": new Date(),
+            "billTable": selectedTable,
+            "billPaid": false,
+        });
+        b.generateReceipt();
     },
     /**
      * @function click #cancelOrder
@@ -120,6 +166,23 @@ Template.waiter.events({
             .modal('show')
         ;
     },
+    'click .payBill' () {
+        document.getElementById("floorPlan").className = "displayNone";
+        document.getElementById("entreeMenu").className = "displayNone";
+        document.getElementById("appMenu").className = "displayNone";
+        document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayAll";
+        $('.menu-active').removeClass('menu-active');
+
+    },
+    'click #payButton' () {
+        $(".receipt").slideUp("slow");
+        $(".paid").slideDown("slow");
+        let PaidBill = Bill.findOne({},{sort:{billTimeCreated : -1}});
+        PaidBill.payBill();
+
+    }
 
 });
 
@@ -194,6 +257,107 @@ Template.waiter.helpers({
     selected() {
         return(rvOrderArray.get());
     },
+    orderList() {
+        //console.log(rvItemQueue.get());
+        return Bills.findOne({},{sort:{billTimeCreated : -1}}).billItems;
+    },
+    getTotalCost() {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+
+    },
+    Date () {
+        var date = Bills.findOne({},{sort:{billTimeCreated : -1}}).billTimeCreated;
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var minute = date.getMinutes();
+        var hour = date.getHours();
+        date = (hour + ":" + minute + " " + month + "/" + day + "/" + year);
+        return date;
+    },
+    barcode () {
+        return Bills.findOne({},{sort:{billTimeCreated : -1}})._id;
+    },
+    fifteenPercent () {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        totalCost = 0.15*totalCost;
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+    },
+    eighteenPercent() {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems;
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        totalCost = 0.18*totalCost;
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+    },
+    twentyPercent() {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        totalCost = 0.20*totalCost;
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+    }
 });
 
 Template.selectedCards.helpers({
@@ -214,3 +378,4 @@ Template.selectedCards.helpers({
 		return menuItem.cookTime;
 	}
 })
+
