@@ -13,6 +13,7 @@ import { popularItem, itemLeaderBoard } from '../imports/api/mealSuggestions.js'
  */
 Meteor.startup(() => {
     Table.remove({});
+	Order.remove({});
     TableCluster.remove({});
     Reservation.remove({});
 	popularItem.remove({});
@@ -95,7 +96,8 @@ Meteor.startup(() => {
 			"priority": mPriority,
 			"menuItemID": mMenuItemID,
 			"specialRequests": mSpecialRequests,
-			"actualCookTime": 0
+			"actualCookTime": 0,
+			"isCompleted": false
 		});
 	}
 
@@ -140,27 +142,26 @@ Meteor.startup(() => {
 		return orderItems;
 	}
 
-/*
+
 	// Creating 5 order objects and storing in the collection.
 	// Each object is getting the same array of `order_items`
 	// Change if necessary for more diverse data - @raj
-	for (var i = 1; i <= 5; i++) {
+	
+	for (var i = Date.now() - 7862400000; i <= Date.now(); i += 86400000) {
 
 		var test = createOrderItems();
 
 		var order_entry = new Order({
 			"orderID": i,
-			//"orderType": (i % 3),
 			"waiterID": 1,
-			//"menuItemID": 7,
 			"orderItems": test,
-			"timePlaced": new Date(),
+			"timePlaced": new Date(i),
 			"isCompleted": false
 		});
 
-		//order_entry.save();
+		order_entry.save();
 	}
-*/
+
 	for(i = 1; i <= 16; i++) {
 		//create astronomy table obj entry
 		//L_status just for testing
@@ -171,9 +172,9 @@ Meteor.startup(() => {
 			"occupants" : 0,
 			"table_status": TableStatus.CLEAN,
 			"table_type": table_type,
-			"reservation_intv":1,
+			"reservation_intv": 1,
 			"converted" : false,
-			"billPaid"	: false,
+			"billPaid"	: false
 		});
 		table_entry.save();
 	}
@@ -181,30 +182,35 @@ Meteor.startup(() => {
 	
 	console.log("Calculating Priority");
 	
-	let items = [];
+	let weekItems = [], monthItems = [], quarterItems = [];
 	console.log("Number of MenuItems: " + MenuItem.find().count());
+	
+	let last7Days = new Date(Date.now() - 604800000)
+	let weekOrders = Order.find({ 
+		timePlaced: { 
+			$gt: { last7Days }
+		} 
+	});
+	console.log(weekOrders);
+	
 	for (let menuItem = 0; menuItem < MenuItems.find().count(); menuItem++) {
 		let COST = 0, REVENUE = 0, PROFIT = 0, costOfMeal = 0;
 		let MEAL = MenuItem.findOne({ itemID: menuItem });
-		console.log("MEAL: " + MEAL.itemName);
 		
 		for (let ing = 0; ing < MEAL.ingredients.length; ing++) {
-			console.log(MEAL.ingredients[ing].ingItemID);
 			costOfMeal += MEAL.getIngredientPrice(MEAL.ingredients[ing].ingItemID) * MEAL.ingredients[ing].ingQuantity;
 		}
 		
-		console.log(MEAL.timesOrdered);
 		COST = costOfMeal * MEAL.timesOrdered;
 		REVENUE = MEAL.timesOrdered * MEAL.itemPrice;
 		PROFIT = REVENUE - COST;
-		
+	
 		new popularItem({
-			"rank": 0,
+			//"rank": 0,
 			"menuItemID": MEAL.itemID,
 			"cost": COST,
 			"profit": PROFIT,
 			"revenue": REVENUE 
 		}).save;
-		console.log("\t\tCOST: " + COST + "\t\tREVENUE: " + REVENUE + "\t\tPROFIT: " + PROFIT);
 	}
 });
