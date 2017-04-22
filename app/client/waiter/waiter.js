@@ -152,6 +152,10 @@ Template.selectedCards.events({
     'click #removeItem' (){
         for (i = 0; i < orderArray.length; i++)
         {
+			if (i == 0) {
+				orderArray.shift();
+				break;
+			}
             if (orderArray[i].itemID == this.itemID) {
                 orderArray.splice(i, 1);
                 break;
@@ -161,8 +165,8 @@ Template.selectedCards.events({
 		for (i = 0; i < orderArray.length; i++)
         {
 			orderArray[i].itemID = i + 1;
-			rvOrderArray.set(orderArray);
         }
+		rvOrderArray.set(orderArray);
     },
 
 });
