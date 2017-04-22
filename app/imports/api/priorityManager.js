@@ -130,7 +130,8 @@ export default function updatePriorityManager() {
 				}
 			}
 		});
-		
+	});
+		/*
 		let orderItemsS1 = [], orderItemsS2 = [], orderItemsS3 = [];
 		mOrderQueueItems.forEach(function(element){
 		
@@ -212,7 +213,7 @@ export default function updatePriorityManager() {
 			return b[1] - a[1];
         });
 	});
-	/*
+	
 	let numS1 = 0, numS2 = 0, numS3 = 0;
 	
 	console.log(AVG_ORDER_TIMES);
