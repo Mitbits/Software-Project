@@ -91,9 +91,6 @@ export const MenuItem = Class.create({
 		},
 		itemPopularity: {
 			type: POPULARITY
-		},
-		popularityRange: {
-			type: [Number]
 		}
 	},
 	meteorMethods: {

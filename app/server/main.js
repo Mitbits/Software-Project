@@ -147,18 +147,19 @@ Meteor.startup(() => {
 	// Each object is getting the same array of `order_items`
 	// Change if necessary for more diverse data - @raj
 	
+	var count = 1;
 	for (var i = Date.now() - 7862400000; i <= Date.now(); i += 86400000) {
-
+		
 		var test = createOrderItems();
 
 		var order_entry = new Order({
-			"orderID": i,
+			"orderID": count,
 			"waiterID": 1,
 			"orderItems": test,
 			"timePlaced": new Date(i),
 			"isCompleted": true
 		});
-
+		count++;
 		order_entry.save();
 	}
 
