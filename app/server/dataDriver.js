@@ -5,7 +5,6 @@ import {TimeSpent, AvgTimeSpent} from '../imports/api/data/avgTimeSpent.js';
 import {PopItem, PopItems} from '../imports/api/data/popularItems.js';
 import {MenuItems, ORDER_TYPE} from '../imports/api/menuItem.js';
 import {inventoryItems} from '../imports/api/ingredient.js';
-import {Bills, billItem, Bill} from '../imports/api/billsJS.js';
 
 export const initAvgCookTime = function() {
   let menuItems = MenuItems.find({});
@@ -130,20 +129,6 @@ export const initPopItems = function() {
     });
     newEntry.save();
   });
-}
-
-export const getBillData = function(date) {
-  var data = [];
-  Bills.find({}).forEach(function(bill) {
-    if(bill.billTimeCreated.toDateString() !== date.toDateString()) {
-      return;
-    }
-    data.push({
-      id : bill._id,
-      billItems : bill.billItems
-    });
-  });
-  return data;
 }
 
 export const initData = function() {
