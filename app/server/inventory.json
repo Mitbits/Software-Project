@@ -312,7 +312,7 @@
         "name": "Brownie",
         "units": "lb",
         "quantity": 25,
-        "price": 14.99,
+        "price": 4.99,
         "perUnit": 1,
         "threshold": 8
       },

@@ -96,7 +96,7 @@ export const MenuItem = Class.create({
 	meteorMethods: {
     	incrementTimesOrdered() {
     		this.timesOrdered++;
-    		this.save();
+    		return this.save();
 		},
 		setCookTime(mTime) {
             this.cookTime = mTime;
@@ -105,6 +105,10 @@ export const MenuItem = Class.create({
 		getIngredientPrice(mIngID) {
 			let mInventoryItem = inventoryItem.findOne({ invID: mIngID });
 			return mInventoryItem.invPrice / mInventoryItem.invPerUnit;
+		},
+		setItemPopularity(mItemPopularity) {
+			this.itemPopularity = mItemPopularity;
+			return this.save();
 		}
     }
 });

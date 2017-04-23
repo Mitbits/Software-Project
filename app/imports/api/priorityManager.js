@@ -266,6 +266,7 @@ export default function updatePriorityManager() {
     mOrderQueueItems.sort(function(a, b) {
         return (b.priorityVal) - parseFloat(a.priorityVal);
     });
+	
 	return mOrderQueueItems;
 }
 

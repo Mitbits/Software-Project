@@ -1,14 +1,14 @@
 import { Meteor } from 'meteor/meteor';
-import { Table,Tables, TableStatus, TableType, TableCluster  } from '../imports/api/table.js';
 import { Reservation } from '../imports/api/reservation.js';
 import { Order, Orders, orderItem } from '../imports/api/order.js';
-import { MenuItem, MenuItems, ingredientsArray } from '../imports/api/menuItem.js';
 import { inventoryItem, inventoryItems } from '../imports/api/ingredient.js';
-import { popularItem, itemLeaderBoard } from '../imports/api/mealSuggestions.js';
+import { MenuItem, MenuItems, ingredientsArray } from '../imports/api/menuItem.js';
+import { Table,Tables, TableStatus, TableType, TableCluster  } from '../imports/api/table.js';
+import { popularItem, itemLeaderboard, POPULARITY_PERIOD } from '../imports/api/mealSuggestions.js';
 
 /**
  *@function Meteor.startup
- * @summary The code in this file is run every time meteor starts up. The file involves the creation of the sample data needed 
+ * @summary The code in this file is run every time meteor starts up. The file involves the creation of the sample data needed
  * for the project and pushing them to their respective collections
  */
 Meteor.startup(() => {
@@ -16,8 +16,10 @@ Meteor.startup(() => {
 	Order.remove({});
     TableCluster.remove({});
     Reservation.remove({});
+	MenuItem.remove({});
 	popularItem.remove({});
 
+	export var allItems;
     for(i = 1; i <= 4; i++) {
 		var tablecluster = new TableCluster({
 			"size":i,
@@ -181,37 +183,133 @@ Meteor.startup(() => {
 	}
 	
 	
-	console.log("Calculating Priority");
+	console.log("\n::: Begin Meal Suggester :::\n");
 	
 	let weekItems = [], monthItems = [], quarterItems = [];
-	console.log("Number of MenuItems: " + MenuItem.find().count());
 	
-	let last7Days = new Date(Date.now() - 604800000)
-	let weekOrders = Order.find({ 
-		timePlaced: { 
-			$gt: { last7Days }
-		} 
+	/** It's assumed that MenuItems are being pulled in sorted order as I already set it up in
+		the database. So if you change it then you need to change this as well. 
+		**/
+	let allMenuItems = MenuItems.find();
+	
+	allMenuItems.forEach(function(menuItem) {
+		weekItems.push([0, menuItem.itemID]);
+		monthItems.push([0, menuItem.itemID]);
+		quarterItems.push([0, menuItem.itemID]);
 	});
-	console.log(weekOrders);
 	
-	for (let menuItem = 0; menuItem < MenuItems.find().count(); menuItem++) {
-		let COST = 0, REVENUE = 0, PROFIT = 0, costOfMeal = 0;
-		let MEAL = MenuItem.findOne({ itemID: menuItem });
-		
-		for (let ing = 0; ing < MEAL.ingredients.length; ing++) {
-			costOfMeal += MEAL.getIngredientPrice(MEAL.ingredients[ing].ingItemID) * MEAL.ingredients[ing].ingQuantity;
+	let lastWeekDate = new Date(Date.now() - 604800000);
+	let	lastMonthDate = new Date(Date.now() - 2592000000);
+	let	lastQuarterDate = new Date(Date.now() - 7824600000);
+	
+	let lastWeekOrders = Orders.find({ timePlaced: { $gt: lastWeekDate } });
+	let lastMonthOrders = Orders.find({ timePlaced: { $gt: lastMonthDate } });
+	let lastQuarterOrders = Orders.find({ timePlaced: { $gt: lastQuarterDate } });
+
+	console.log("\nCounting Last Week Items...")
+	lastWeekOrders.forEach(function(order) {
+		order.orderItems.forEach(function(orderItem) {
+			weekItems[orderItem.menuItemID][0]++;
+		});
+	});
+	//console.log(weekItems);
+	
+	console.log("\nCounting Last Month Items...");
+	lastMonthOrders.forEach(function(order) {
+		order.orderItems.forEach(function(orderItem) {
+			monthItems[orderItem.menuItemID][0]++;
+		});
+	});
+	//console.log(monthItems);
+	
+	console.log("\nCounting Last Quarter Items...");
+	lastQuarterOrders.forEach(function(order) {
+		order.orderItems.forEach(function(orderItem) {
+			quarterItems[orderItem.menuItemID][0]++;
+		});
+	});
+	//console.log(quarterItems);
+	
+	generateStats(weekItems, 0);
+	generateStats(monthItems, 1);
+	generateStats(quarterItems, 2);
+	
+	assignRanks();
+	assignPopularity();
+	
+	function generateStats(itemCountArray, timePeriod) {
+		console.log("Generating Statistics...");
+		for (let menuItem = 0; menuItem < MenuItems.find().count(); menuItem++) {
+			let COST = 0, REVENUE = 0, PROFIT = 0, costOfMeal = 0;
+			let MEAL = MenuItem.findOne({ itemID: menuItem });
+			
+			for (let ing = 0; ing < MEAL.ingredients.length; ing++) {
+				costOfMeal += MEAL.getIngredientPrice(MEAL.ingredients[ing].ingItemID) * MEAL.ingredients[ing].ingQuantity;
+			}
+			
+			let nTimesOrdered = itemCountArray[MEAL.itemID][0];
+			COST = costOfMeal * nTimesOrdered;
+			REVENUE = nTimesOrdered * MEAL.itemPrice;
+			PROFIT = REVENUE - COST;
+			
+			console.log("Cost of " + MEAL.itemName + ": " + costOfMeal + "\tProfit: " + PROFIT);
+			let pI = new popularItem({
+				"period": timePeriod,
+				"menuItemID": MEAL.itemID,
+				"cost": COST,
+				"profit": PROFIT,
+				"revenue": REVENUE,
+				"rank": 0
+			}).save();
 		}
-		
-		COST = costOfMeal * MEAL.timesOrdered;
-		REVENUE = MEAL.timesOrdered * MEAL.itemPrice;
-		PROFIT = REVENUE - COST;
-	
-		new popularItem({
-			//"rank": 0,
-			"menuItemID": MEAL.itemID,
-			"cost": COST,
-			"profit": PROFIT,
-			"revenue": REVENUE 
-		}).save;
 	}
+	
+	function assignRanks() {
+		let maxRank = MenuItem.find().count() * 3;
+		let rankCount = 1;
+		
+		allItems = popularItem.find({}, { sort: { profit: -1 } });
+		
+		for (let per = 0; per <= 2; per++) {
+			allItems.forEach(function(popItem) {
+				if (popItem.rank == 0 && popItem.period == per) {
+					popItem.setRank(rankCount);
+					rankCount++;
+				}
+			});
+		}
+	}
+	
+	function assignPopularity() {
+		let allMenuItems = MenuItem.find({});
+		
+		allMenuItems.forEach(function(element) {
+			let popItems = popularItem.find({ menuItemID: element.itemID });
+			
+			let flag = [0, 0, 0];
+			popItems.forEach(function(popItem) {
+				if (popItem.rank >= 1 && popItem.rank <= 5 ||
+					popItem.rank >= 26 && popItem.rank <= 31 ||
+					popItem.rank >= 51 && popItem.rank <= 56) {
+						flag[popItem.period] = 1;
+				}
+			});
+			console.log(flag);
+			
+			if (flag[0] == 1 && flag[1] == 1 && flag[2] == 1) {
+				element.setItemPopularity(0); // Exclusive
+			}
+			else if (flag[0] == 1 && flag[1] == 1) {
+				element.setItemPopularity(2); //Medium
+			}
+			else if (flag[1] == 1 && flag[2] == 1) {
+				element.setItemPopularity(1); //High
+			}
+			else {
+				element.setItemPopularity(3); // Low
+			}
+		});
+	}
+
+	console.log("\n::: End Meal Suggester :::\n");
 });

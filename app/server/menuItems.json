@@ -28,7 +28,7 @@
 				"name": "Herbal Teas",
 				"description": "NULL",
 				"type": 0,
-				"price": 2.25,
+				"price": 1.99,
 				"cookTime": 3,
 				"ingredients": [
 					{
@@ -42,7 +42,7 @@
 				"name": "Orange Juices",
 				"description": "NULL",
 				"type": 0,
-				"price": 3.50,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
@@ -56,7 +56,7 @@
 				"name": "Iced Tea",
 				"description": "with a free refill",
 				"type": 0,
-				"price": 1.95,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
@@ -74,7 +74,7 @@
 				"name": "Milk",
 				"description": "Refreshening glass of milk",
 				"type": 0,
-				"price": 2.25,
+				"price": 1.49,
 				"cookTime": 3,
 				"ingredients": [
 					{
@@ -88,7 +88,7 @@
 				"name": "Nachos Supreme",
 				"description": "Homemade chili topped with shredded, lettuce, diced tomato, monterey jack cheese, jalapenos over tortillas with salsa, sour cream.",
 				"type": 1,
-				"price": 9.95,
+				"price": 6.50,
 				"cookTime": 10,
 				"ingredients": [
 					{
@@ -122,7 +122,7 @@
 				"name": "Chicken Fingers",
 				"description": "Fried golden brown with honey mustard sauce, with french fries.",
 				"type": 1,
-				"price": 8.50,
+				"price": 4.00,
 				"cookTime": 12,
 				"ingredients": [
 					{
@@ -166,7 +166,7 @@
 				"name": "Hot Wings",
 				"description": "A southern recipe, served with ranch dressing and celery sticks.",
 				"type": 1,
-				"price": 8.25,
+				"price": 4.50,
 				"cookTime": 12,
 				"ingredients": [
 					{
@@ -196,7 +196,7 @@
 				"name": "Disco Fries",
 				"description": "Topped with brown gravy & melted mozzarella cheese.",
 				"type": 1,
-				"price": 4.75,
+				"price": 3.50,
 				"cookTime": 8,
 				"ingredients": [
 					{
@@ -226,7 +226,7 @@
 				"name": "Chopped Sirloin Steak",
 				"description": "With fried onions and gravy",
 				"type": 2,
-				"price": 15.95,
+				"price": 34.99,
 				"cookTime": 20,
 				"ingredients": [
 					{
@@ -268,7 +268,7 @@
 				"name": "Roasted Spring Chicken",
 				"description": "Slow roasted with herbs stuffing",
 				"type": 2,
-				"price": 14.95,
+				"price": 10.95,
 				"cookTime": 20,
 				"ingredients": [
 					{
@@ -298,7 +298,7 @@
 				"name": "Penne Vodka Pasta",
 				"description": "Penne tossed with tomato cream",
 				"type": 2,
-				"price": 13.95,
+				"price": 12.99,
 				"cookTime": 15,
 				"ingredients": [
 					{
@@ -332,7 +332,7 @@
 				"name": "Stuffed Salmon",
 				"description": "Baked filet of salmon stuffed with crabmeat",
 				"type": 2,
-				"price": 19.95,
+				"price": 34.99,
 				"cookTime": 15,
 				"ingredients": [
 					{
@@ -366,7 +366,7 @@
 				"name": "Succulent Sea Scallops",
 				"description": "Broiled served with roasted potatoes and vegetable medley",
 				"type": 2,
-				"price": 21.95,
+				"price": 35.99,
 				"cookTime": 15,
 				"ingredients": [
 					{
@@ -396,7 +396,7 @@
 				"name": "Vanilla Milk Shakes",
 				"description": "Delightful sweet vanilla flavored milkshake",
 				"type": 3,
-				"price": 4.95,
+				"price": 3.50,
 				"cookTime": 6,
 				"ingredients": [
 					{
@@ -422,7 +422,7 @@
 				"name": "Ice Cream",
 				"description": "Delightful Dessert",
 				"type": 3,
-				"price": 2.95,
+				"price": 2.00,
 				"cookTime": 4,
 				"ingredients": [
 					{
@@ -444,7 +444,7 @@
 				"name": "Homemade Cheesecake",
 				"description": "Rich, Creamy Classic Cheesecake",
 				"type": 3,
-				"price": 4.95,
+				"price": 12.99,
 				"cookTime": 10,
 				"ingredients": [
 					{
@@ -508,7 +508,7 @@
 				"name": "Brownie Sundae",
 				"description": "NULL",
 				"type": 3,
-				"price": 5.95,
+				"price": 10.95,
 				"cookTime": 7,
 				"ingredients": [
 					{
@@ -538,7 +538,7 @@
 				"name": "Apple Juice",
 				"description": "Fresh Apple Juice",
 				"type": 0,
-				"price": 3.50,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
@@ -552,7 +552,7 @@
 				"name": "Cranberry Juice",
 				"description": "Fresh Cranberry Juice",
 				"type": 0,
-				"price": 3.50,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
@@ -580,7 +580,7 @@
 				"name": "Chocolate Milk Shakes",
 				"description": "Delicious Chocolate Milk Shake",
 				"type": 3,
-				"price": 4.95,
+				"price": 2.50,
 				"cookTime": 6,
 				"ingredients": [
 					{
@@ -606,7 +606,7 @@
 				"name": "Strawberry Milk Shakes",
 				"description": "Delicious Strawberry Milk Shake",
 				"type": 3,
-				"price": 4.95,
+				"price": 2.50,
 				"cookTime": 6,
 				"ingredients": [
 					{

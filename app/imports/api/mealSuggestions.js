@@ -6,23 +6,25 @@ import { inventoryItem } from './ingredient.js';
 
 export const itemLeaderboard = new Mongo.Collection('itemLeaderboard');
 
-/**
- * @global
- * @summary Validation parameter for unique ID numbers used in various classes.
- */
- 
-let minID = [{
-	type: 'gt',
-	param: 0
-}];
+export const POPULARITY_PERIOD = Enum.create({
+	name: 'popularity_period',
+	identifiers: {
+		/** P **/
+		WEEK: 0,
+		MONTH: 1,
+		QUARTER: 2
+	}
+});
 
 export const popularItem = Class.create({
 	name: 'popularItem',
 	collection: itemLeaderboard,
 	fields: {
 		rank: {
-			type: Number,
-			validators: minID
+			type: Number
+		},
+		period: {
+			type: POPULARITY_PERIOD
 		},
 		menuItemID: {
 			type: Number
@@ -31,10 +33,16 @@ export const popularItem = Class.create({
 			type: Number
 		},
 		profit: {
-			type: Boolean
+			type: Number
 		},
 		revenue: {
 			type: Number
 		},
+	},
+	meteorMethods: {
+		setRank(mRank) {
+			this.rank = mRank;
+			return this.save();
+		}
 	}
 });
