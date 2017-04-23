@@ -6,7 +6,6 @@ import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
 import {inventoryItem, inventoryItems} from '../imports/api/ingredient.js';
 import {initData} from './dataDriver.js';
-import { inventoryItem, inventoryItems } from '../imports/api/ingredient.js';
 import { Bill } from '../imports/api/billsJS.js';
 
 /**
