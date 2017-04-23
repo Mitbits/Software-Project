@@ -24,8 +24,27 @@ var createPieChart = function(options) {
   });
 }
 
+var createBarChart = function(options) {
+
+	 var chart = c3.generate({
+		 bindto: '#reservationChart',//options.selection,
+		 data : {
+			columns: options.data,
+			type: 'bar'
+		 },
+		 bar: {
+			width: {
+				ratio: 0.5
+			}
+		 }
+
+	 });
+
+}
+
+
 const getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export {createChart, createPieChart};
+export {createChart, createPieChart,createBarChart};

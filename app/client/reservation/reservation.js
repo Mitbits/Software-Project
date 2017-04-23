@@ -1,8 +1,7 @@
 
-import {Reservations} from '../../imports/api/reservation.js';
-import { Reservation } from '../../imports/api/reservation.js';
+import {Reservations, Reservation} from '../../imports/api/reservation.js';
 import { TableManager } from '../../imports/api/table.js';
-
+import {ArchivedReservation, ArchivedReservations} from '../../imports/api/data/reservation.js'
 export const temp = Template.reservationPage;
 Template.reservationPage.events({
 /**
@@ -60,6 +59,27 @@ Template.reservationPage.events({
 		alert("Not enough tables");
 		return;
 	}*/
+		
+	var arcRes = ArchivedReservation.findOne({
+		'date' : parseInt(new Date(date).getHours())
+
+	 });
+	 console.log(arcRes);
+	 if(arcRes){
+		 arcRes.count+=1;
+		 arcRes.reservation_save();
+	 } else{
+		console.log(parseInt(new Date(date).getHours()));
+		console.log(new Date(date));
+		console.log((new Date(date)).getHours());
+		var ares = new ArchivedReservation({
+			'date': parseInt(new Date(date).getHours()),
+			'count': 1
+
+		});
+		 ares.arcres_save();
+		 }
+	
 	//construct res
 	var reserve = new Reservation({
 		"firstName": FirstName,
@@ -73,7 +93,7 @@ Template.reservationPage.events({
 
 	reserve.reservation_save();
 	manager.pushReservation(reserve);
-    window.location.href = 'Success';
+    //window.location.href = 'Success';
 
     //window.location.href = 'Success';
 	var day = reserve.date.getDate();
