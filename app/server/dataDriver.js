@@ -2,7 +2,8 @@ import {AvgCookTime, AvgCookTimes} from '../imports/api/data/avgCookTime.js';
 import {IngUsage, AvgIngUsage} from '../imports/api/data/avgIngUsage.js';
 import {NumOrders, AvgNumOrders} from '../imports/api/data/avgNumOrders.js';
 import {TimeSpent, AvgTimeSpent} from '../imports/api/data/avgTimeSpent.js';
-import {MenuItems} from '../imports/api/menuItem.js';
+import {PopItem, PopItems} from '../imports/api/data/popularItems.js';
+import {MenuItems, ORDER_TYPE} from '../imports/api/menuItem.js';
 import {inventoryItems} from '../imports/api/ingredient.js';
 
 export const initAvgCookTime = function() {
@@ -116,8 +117,22 @@ export const initAvgTimeSpent = function() {
   }
 }
 
+export const initPopItems = function() {
+  let menuItems = MenuItems.find({});
+  menuItems.forEach(function(menuItem) {
+    let amount = getRandomInt(10, 500);
+    let newEntry = new PopItem({
+      'menuItemID': menuItem.itemID,
+      'itemName' : menuItem.itemName,
+      'mealType': menuItem.mealType,
+      'numCooked': amount
+    });
+    newEntry.save();
+  });
+}
+
 export const initData = function() {
-  AvgTimeSpent.remove({});
+  PopItems.remove({});
   var count = AvgCookTimes.find({}).count();
   if(count === 0) {
     initAvgCookTime();
@@ -136,6 +151,11 @@ export const initData = function() {
   count = AvgTimeSpent.find({}).count();
   if(count == 0) {
     initAvgTimeSpent();
+  }
+
+  count = PopItems.find({}).count();
+  if(count == 0) {
+    initPopItems();
   }
 }
 

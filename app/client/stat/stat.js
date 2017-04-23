@@ -3,6 +3,8 @@ import {createChart} from './chart.js';
 import {AvgCookTime,AvgCookTimes} from '../../imports/api/data/avgCookTime.js';
 //import {Kitchen} from './kitchen.js';
 
+var prevSelected = 'general';
+
 Template.stat.onRendered(function() {
 
   /*var data = [4, 8, 15, 16, 23, 42];
@@ -24,6 +26,9 @@ Template.stat.onRendered(function() {
 
 Template.stat.onCreated(function() {
   dataItems = new DataItems();
+  for(var item of dataItems.names) {
+    $('div#'+item.toLowerCase()).hide();
+  }
 });
 
 Template.stat.helpers({
@@ -49,7 +54,9 @@ Template.stat.events({
     $('a.menu-item.active').removeClass('active');
     $($clickedItem).addClass('active');
 
-    dataItems.populateData(clickedName);
+    $('div#'+prevSelected).hide();
+    $('div#'+clickedName.toLowerCase()).show();
+    prevSelected = clickedName.toLowerCase();
   }
 });
 

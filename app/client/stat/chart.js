@@ -1,3 +1,4 @@
+
 var createChart = function(options) {
   var chart = d3.timeseries()
               .addSerie(options.data,{x:options.x,y:options.y},{interpolate:'monotone',color:"#333"})
@@ -9,4 +10,15 @@ var createChart = function(options) {
   chart(options.selection);
 }
 
-export {createChart};
+var createPieChart = function(options) {
+
+  var chart = c3.generate({
+      bindto: options.selection,
+      data: {
+          columns: options.data,
+          type : 'pie',
+      }
+  });
+}
+
+export {createChart, createPieChart};
