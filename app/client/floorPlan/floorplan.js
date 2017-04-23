@@ -31,7 +31,7 @@ Template.floorplan.events({
 				
 			});
 			//add the check box to each table when in merge interface
-			Table.find({'table_type':TableType.WALKIN}).forEach(function(table_obj){
+			Table.find({'table_type':TableType.WALKIN, 'table_status':TableStatus.CLEAN}).forEach(function(table_obj){
 				$("#"+table_obj.table_id).append("<div class= \"ui small blue bottom right attached label\"><input class=\"merge_check\" type=\"checkbox\"></div>");
 			});
 			//change table to merge candidate when check box is clicked

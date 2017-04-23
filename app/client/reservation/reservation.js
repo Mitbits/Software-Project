@@ -12,7 +12,7 @@ Template.reservationPage.events({
 */
     'click .plus.icon.link' () {
         let count = document.getElementById("count");
-        maxCount = 4;
+        maxCount = 8;
         if(count.innerHTML >= 1 && count.innerHTML < maxCount) {
             document.getElementById("minus").className = "big minus icon link";
             count.innerHTML++;
