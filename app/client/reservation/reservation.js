@@ -1,7 +1,7 @@
 
 import {Reservations} from '../../imports/api/reservation.js';
 import { Reservation } from '../../imports/api/reservation.js';
-import { TableCluster } from '../../imports/api/table.js';
+import { TableManager } from '../../imports/api/table.js';
 
 export const temp = Template.reservationPage;
 Template.reservationPage.events({
@@ -54,11 +54,12 @@ Template.reservationPage.events({
         //var Time
         console.log(FirstName, LastName, PhoneNum, Email, Seats, date);
 	//fetch table clust of given size and check if res can be added
-	var tc = TableCluster.findOne({"size": Seats*1});
-	if(!tc.checkValidReservation(new Date(date))){
+	var manager = TableManager.findOne({});
+    /*
+	if(!manager.verifyReservation(new Date(date))){
 		alert("Not enough tables");
 		return;
-	}
+	}*/
 	//construct res
 	var reserve = new Reservation({
 		"firstName": FirstName,
@@ -69,14 +70,39 @@ Template.reservationPage.events({
 	    "date": new Date(date),
 
 		});
-	reserve.sssave();
-	tc.pushReservation(reserve);
-     window.location.href = 'Success';
+
+	reserve.reservation_save();
+	manager.pushReservation(reserve);
+    window.location.href = 'Success';
+
+    //window.location.href = 'Success';
+	var day = reserve.date.getDate();
+	var month = reserve.date.getMonth()+1;
+	var year = reserve.date.getFullYear();
+	var datee = month + "/" + day + "/" + year;
+	var hours = reserve.date.getHours() > 12 ? reserve.date.getHours() - 12 : reserve.date.getHours();
+	var ampm = reserve.date.getHours() >= 12 ? "P.M." : "A.M.";
+	hours = hours < 10 ? "0" + hours : hours;
+	var minutes = reserve.date.getMinutes() < 10 ? "0" + reserve.date.getMinutes() : reserve.date.getMinutes();
+	var reservationTime = hours + ":" + minutes + " " + ampm;   
+
+    var emailData = {
+        name: FirstName,
+        date: datee,
+		time: reservationTime,
+        seats: Seats*1
+    }
+	
+	
+	var subj = "Reservation"; 	
+	var toAddr = Email;
+	//var body = "Hello " + FirstName + "\n\nYour reservation has been confirmed for " + date + " For a Table of " + Seats*1 + " \nSee you there!";
+	Meteor.call('sendEmail',Email,subj,emailData);
+
 	
 	
     
-    }
-
+	}
 });
 /**
 * @function

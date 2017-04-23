@@ -1,11 +1,16 @@
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
-import { selectedItem,selectedItems } from '../../imports/api/selectedItems.js';
+import { Bill, billItem, Bills } from '../../imports/api/billsJS.js';
 
-var orderArray = [];
-var itemArray = [];
+import { ReactiveVar } from 'meteor/reactive-var';
 
-var mItemID = 1;
+let orderArray = [];
+let selectedTable = 0;
+let rvOrderArray = new ReactiveVar([]);
+let totalCost;
+let itemQueue = [];
+
+
 /**
  * @function createOrderItem
  * @summary Creates an order item with the following parameters
@@ -19,9 +24,29 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
         "itemID": mItemID,
         "priority": mPriority,
         "menuItemID": mMenuItemID,
-        "specialRequests": mSpecialRequests
+        "specialRequests": mSpecialRequests,
+		"actualCookTime": 0
     });
 };
+
+function createBillItem(mBillItemName, mBillItemPrice) {
+    return new billItem({
+        "billItemName": mBillItemName,
+        "billItemPrice": mBillItemPrice
+    });
+};
+function setTableID(tableID) {
+    selectedTable = tableID;
+    console.log(selectedTable);
+};
+
+Template.table.events({
+    'click .tableID' () {
+        $("#"+this.table_id).toggleClass("selectedTable");
+        var tableID = this.table_id;
+        setTableID(tableID);
+    }
+});
 
 Template.waiter.events({
     /**
@@ -34,6 +59,7 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     /**
@@ -45,7 +71,8 @@ Template.waiter.events({
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayAll";
         document.getElementById("dessertsMenu").className = "displayNone";
-        document.getElementById("placeOrderMenu").className = "displayNone"
+        document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     /**
@@ -58,6 +85,7 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
     },
     /**
@@ -70,6 +98,7 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayAll";
         document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
 
     },
@@ -83,33 +112,50 @@ Template.waiter.events({
         document.getElementById("appMenu").className = "displayNone";
         document.getElementById("dessertsMenu").className = "displayNone";
         document.getElementById("placeOrderMenu").className = "displayAll";
+        document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
-        Template.menuCards.__helpers.get('cards')();
-
+		Template.waiter.__helpers.get('selected')();
     },
     /**
      * @function click #placeOrder
      * @summary Takes all the Order items created by orderArray and fills in the rest of the fields of the order and places the order into the order collection
      */
     'click #placeOrder' () {
+		var mOrderID = 1;
+		if (!Order.find().count() == 0) { mOrderID = Order.findOne({}, { sort: {orderID: -1}}).orderID + 1; }
         new Order({
-            orderID: Order.findOne({}, { sort: {orderID: -1}}).orderID + 1,
+            orderID: mOrderID,
+            tableID: selectedTable,
             waiterID: 69,
             orderItems: orderArray,
-            timePlaced: new Date()
+            timePlaced: new Date(),
+			isCompleted: false
         }).placeOrder();
-        new selectedItem().removeCollection();
         orderArray = [];
-        itemArray = [];
+		rvOrderArray.set(orderArray);
+        totalCost = 0;
+        let custID = Orders.findOne({tableID: selectedTable},{sort: {timePlaced: -1}});
+        let billItems = Orders.findOne({tableID: selectedTable},{sort: {timePlaced: -1}}).orderItems;
+        billItems.forEach(function(element) {
+            let menuItem = MenuItems.findOne({ itemID: element.menuItemID });
+            let billItem = createBillItem(menuItem.itemName, menuItem.itemPrice);
+            itemQueue.push(billItem);
+        });
+        b = new Bill({
+            "billItems": itemQueue,
+            "billTimeCreated": new Date(),
+            "billTable": selectedTable,
+            "billPaid": false,
+        });
+        b.generateReceipt();
     },
     /**
      * @function click #cancelOrder
      * @summary Drops all the selected items for the order
      */
     'click #cancelOrder' () {
-        new selectedItem().removeCollection();
-        itemArray = [];
         orderArray = [];
+		rvOrderArray.set(orderArray);
     },
     /**
      * @function click .drinkicon
@@ -120,6 +166,23 @@ Template.waiter.events({
             .modal('show')
         ;
     },
+    'click .payBill' () {
+        document.getElementById("floorPlan").className = "displayNone";
+        document.getElementById("entreeMenu").className = "displayNone";
+        document.getElementById("appMenu").className = "displayNone";
+        document.getElementById("dessertsMenu").className = "displayNone";
+        document.getElementById("placeOrderMenu").className = "displayNone";
+        document.getElementById("printBill").className = "displayAll";
+        $('.menu-active').removeClass('menu-active');
+
+    },
+    'click #payButton' () {
+        $(".receipt").slideUp("slow");
+        $(".paid").slideDown("slow");
+        let PaidBill = Bill.findOne({},{sort:{billTimeCreated : -1}});
+        PaidBill.payBill();
+
+    }
 
 });
 
@@ -129,51 +192,33 @@ Template.menuCards.events({
      * @summary Creates the order item for the selected item and pushes the order back into the orderArray
      */
     'click #addItem'() {
-        orderArray.push(createOrderItem(mItemID, 2, this.itemID, "NONE"));
-        //console.log(orderArray);
+        orderArray.push(createOrderItem(orderArray.length + 1, 2, this.itemID, "NONE"));
+		rvOrderArray.set(orderArray);
     },
 });
+
 Template.selectedCards.events({
     /**
      * @function click #removeItem
      * @summary Removes the respective item from the orderArray so it is not placed in the final order
      */
     'click #removeItem' (){
-        new selectedItem().removeItem(this._id);
         for (i = 0; i < orderArray.length; i++)
         {
-            if(orderArray[i].menuItemID == this.itemID) {
-                orderArray.splice(i,1);
+            if (orderArray[i].itemID == this.itemID) {
+                orderArray.splice(i, 1);
                 break;
             }
         }
-        console.log(orderArray);
+		/** Update the itemIDs to fill in any potential gaps **/
+		for (i = 0; i < orderArray.length; i++)
+        {
+			orderArray[i].itemID = i + 1;
+			rvOrderArray.set(orderArray);
+        }
     },
 
 })
-
-Template.menuCards.helpers({
-    /**
-     * @function cards
-     * @summary Loops through the order array and adds the selected items to allow the application to display the data
-     */
-    cards() {
-        for (i = 0; i < orderArray.length; i++) {
-            itemArray.push(MenuItems.findOne({itemID: orderArray[i].menuItemID}));
-            //console.log(MenuItems.findOne({ itemID: orderArray[i].menuItemID }));
-            var item = MenuItems.findOne({itemID: orderArray[i].menuItemID});
-            console.log("item" + item);
-            new selectedItem({
-                itemID: item.itemID,
-                itemName: item.itemName,
-                itemDescription: item.itemDescription,
-                mealType: item.mealType,
-                itemPrice: item.itemPrice,
-                cookTime: item.cookTime,
-            }).saveItem();
-        }
-    }
-});
 
 Template.waiter.helpers({
     /**
@@ -202,7 +247,6 @@ Template.waiter.helpers({
      * @summary returns all the objects from the database with the mealType of Enum 3, desserts.
      */
     desserts() {
-        //console.log(MenuItems.find({mealType: 3}));
         return MenuItems.find({mealType: 3});
 
     },
@@ -211,16 +255,127 @@ Template.waiter.helpers({
      * @summary returns all the objects from the selectedItems collection
      */
     selected() {
-        return(selectedItems.find({}));
+        return(rvOrderArray.get());
     },
+    orderList() {
+        //console.log(rvItemQueue.get());
+        return Bills.findOne({},{sort:{billTimeCreated : -1}}).billItems;
+    },
+    getTotalCost() {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+
+    },
+    Date () {
+        var date = Bills.findOne({},{sort:{billTimeCreated : -1}}).billTimeCreated;
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var minute = date.getMinutes();
+        var hour = date.getHours();
+        date = (hour + ":" + minute + " " + month + "/" + day + "/" + year);
+        return date;
+    },
+    barcode () {
+        return Bills.findOne({},{sort:{billTimeCreated : -1}})._id;
+    },
+    fifteenPercent () {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        totalCost = 0.15*totalCost;
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+    },
+    eighteenPercent() {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems;
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        totalCost = 0.18*totalCost;
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+    },
+    twentyPercent() {
+        let totalCost = 0;
+        let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
+        itemPrice.forEach(function(element) {
+            totalCost += element.billItemPrice;
+        })
+        totalCost = 0.20*totalCost;
+        if(totalCost < 10)
+        {
+            totalCost = totalCost.toPrecision(3);
+        }
+        else if(totalCost > 10 && totalCost < 100)
+        {
+            totalCost = totalCost.toPrecision(4);
+        }
+        else if(totalCost > 100)
+        {
+            totalCost = totalCost.toPrecision(5);
+        }
+        return totalCost;
+    }
 });
 
+Template.selectedCards.helpers({
+	itemName(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.itemName;
+	},
+	itemPrice(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.itemPrice;
+	},
+	itemDescription(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.itemDescription;
+	},
+	cookTime(order) {
+		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		return menuItem.cookTime;
+	}
+})
 
-
-/*
- for (i = 0; i < orderArray.length; i++) {
- itemArray.push(MenuItems.findOne({ itemID: orderArray[i].itemID }));
- console.log(MenuItems.findOne({ itemID: orderArray[i].itemID }));
- }
- return itemArray;
- */

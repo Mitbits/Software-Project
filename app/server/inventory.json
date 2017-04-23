@@ -1,169 +1,422 @@
 {
   "inventory": {
-      "items": [
-        {
-          "id": 0,
-          "name": "Milk",
-          "units": "fl. oz.",
-          "quantity": 1280,
-          "price": 2.50,
-          "perUnit": 32,
-          "threshold": 160
-        },
-        {
-          "id": 1,
-          "name": "Coffee Beans",
-          "units": "grams",
-          "quantity": 1500,
-          "price": 12.75,
-          "perUnit": 500,
-          "threshold": 250
-        },
-        {
-          "id": 2,
-          "name": "Tea Bags",
-          "units": "Bag(s)",
-          "quantity": 500,
-          "price": 7.45,
-          "perUnit": 100,
-          "threshold": 100
-        },
-        {
-          "id": 3,
-          "name": "Orange Juice",
-          "units": "fl. oz.",
-          "quantity": 1280,
-          "price": 2.98,
-          "perUnit": 64,
-          "threshold": 160
-        },
-        {
-          "id": 4,
-          "name": "Cheese",
-          "units": "lb",
-          "quantity": 10,
-          "price": 3.75,
-          "perUnit": 0.5,
-          "threshold": 3
-        },
-        {
-          "id": 5,
-          "name": "Chips",
-          "units": "Bag(s)",
-          "quantity": 20,
-          "price": 2.98,
-          "perUnit": 1,
-          "threshold": 10
-        },
-        {
-          "id": 6,
-          "name": "Tomato",
-          "units": "lb",
-          "quantity": 15,
-          "price": 2.85,
-          "perUnit": 1,
-          "threshold": 5
-        },
-        {
-          "id": 7,
-          "name": "Canned Beans",
-          "units": "Can(s)",
-          "quantity": 50,
-          "price": 0.75,
-          "perUnit": 1,
-          "threshold": 20
-        },
-        {
-          "id": 8,
-          "name": "Chicken",
-          "units": "lb",
-          "quantity": 30,
-          "price": 10.98,
-          "perUnit": 5,
-          "threshold": 10
-        },
-        {
-          "id": 9,
-          "name": "Bread Crumbs",
-          "units": "lb",
-          "quantity": 10,
-          "price": 1.08,
-          "perUnit": 1,
-          "threshold": 3
-        },
-        {
-          "id": 10,
-          "name": "Mozarella Cheese",
-          "units": "lb",
-          "quantity": 20,
-          "price": 10.75,
-          "perUnit": 5,
-          "threshold": 5
-        },
-        {
-          "id": 11,
-          "name": "Oil",
-          "units": "mL",
-          "quantity": 5000,
-          "price": 19.95,
-          "perUnit": 4500,
-          "threshold": 1000
-        },
-        {
-          "id": 12,
-          "name": "Sugar",
-          "units": "lb",
-          "quantity": 10,
-          "price": 3.00,
-          "perUnit": 4,
-          "threshold": 5
-        },
-        {
-          "id": 13,
-          "name": "Salt",
-          "units": "lb",
-          "quantity": 10,
-          "price": 3.00,
-          "perUnit": 4,
-          "threshold": 5
-        },
-        {
-          "id": 14,
-          "name": "Pepper",
-          "units": "lb",
-          "quantity": 10,
-          "price": 3.00,
-          "perUnit": 4,
-          "threshold": 5
-        },
-        {
-          "id": 15,
-          "name": "Jalapeno",
-          "units": "lb",
-          "quantity": 50,
-          "price": 0.99,
-          "perUnit": 1,
-          "threshold": 10
-        },
-        {
-          "id": 16,
-          "name": "Potato",
-          "units": "lb",
-          "quantity": 50,
-          "price": 12.99,
-          "perUnit": 5,
-          "threshold": 10
-        },
-        {
-          "id": 17,
-          "name": "Gravy",
-          "units": "fl. oz.",
-          "quantity": 300,
-          "price": 13.68,
-          "perUnit": 126,
-          "threshold": 100
-        }
-      ]
+
+    "items": [
+      {
+        "id": 0,
+        "name": "Milk",
+        "units": "fl. oz.",
+        "quantity": 1280,
+        "price": 2.50,
+        "perUnit": 32,
+        "threshold": 160
+      },
+      {
+        "id": 1,
+        "name": "Coffee Beans",
+        "units": "grams",
+        "quantity": 1500,
+        "price": 12.75,
+        "perUnit": 500,
+        "threshold": 250
+      },
+      {
+        "id": 2,
+        "name": "Tea Bags",
+        "units": "Bag(s)",
+        "quantity": 500,
+        "price": 7.45,
+        "perUnit": 100,
+        "threshold": 100
+      },
+      {
+        "id": 3,
+        "name": "Orange Juice",
+        "units": "fl. oz.",
+        "quantity": 1280,
+        "price": 2.98,
+        "perUnit": 64,
+        "threshold": 160
+      },
+      {
+        "id": 4,
+        "name": "Cheese",
+        "units": "lb",
+        "quantity": 10,
+        "price": 3.75,
+        "perUnit": 0.5,
+        "threshold": 3
+      },
+      {
+        "id": 5,
+        "name": "Chips",
+        "units": "Bag(s)",
+        "quantity": 20,
+        "price": 2.98,
+        "perUnit": 1,
+        "threshold": 10
+      },
+      {
+        "id": 6,
+        "name": "Tomato",
+        "units": "lb",
+        "quantity": 15,
+        "price": 2.85,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 7,
+        "name": "Canned Beans",
+        "units": "Can(s)",
+        "quantity": 50,
+        "price": 0.75,
+        "perUnit": 1,
+        "threshold": 20
+      },
+      {
+        "id": 8,
+        "name": "Chicken",
+        "units": "lb",
+        "quantity": 30,
+        "price": 10.98,
+        "perUnit": 5,
+        "threshold": 10
+      },
+      {
+        "id": 9,
+        "name": "Bread Crumbs",
+        "units": "lb",
+        "quantity": 10,
+        "price": 1.08,
+        "perUnit": 1,
+        "threshold": 3
+      },
+      {
+        "id": 10,
+        "name": "Mozarella Cheese",
+        "units": "lb",
+        "quantity": 20,
+        "price": 10.75,
+        "perUnit": 5,
+        "threshold": 5
+      },
+      {
+        "id": 11,
+        "name": "Oil",
+        "units": "mL",
+        "quantity": 5000,
+        "price": 19.95,
+        "perUnit": 4500,
+        "threshold": 1000
+      },
+      {
+        "id": 12,
+        "name": "Sugar",
+        "units": "lb",
+        "quantity": 10,
+        "price": 3.00,
+        "perUnit": 4,
+        "threshold": 5
+      },
+      {
+        "id": 13,
+        "name": "Salt",
+        "units": "lb",
+        "quantity": 10,
+        "price": 3.00,
+        "perUnit": 4,
+        "threshold": 5
+      },
+      {
+        "id": 14,
+        "name": "Pepper",
+        "units": "lb",
+        "quantity": 10,
+        "price": 3.00,
+        "perUnit": 4,
+        "threshold": 5
+      },
+      {
+        "id": 15,
+        "name": "Jalapeno",
+        "units": "lb",
+        "quantity": 50,
+        "price": 0.99,
+        "perUnit": 1,
+        "threshold": 10
+      },
+      {
+        "id": 16,
+        "name": "Potato",
+        "units": "lb",
+        "quantity": 50,
+        "price": 12.99,
+        "perUnit": 5,
+        "threshold": 10
+      },
+      {
+        "id": 17,
+        "name": "Gravy",
+        "units": "fl. oz.",
+        "quantity": 300,
+        "price": 13.68,
+        "perUnit": 126,
+        "threshold": 100
+      },
+      {
+        "id": 18,
+        "name": "Hot Sauce",
+        "units": "fl. oz.",
+        "quantity": 300,
+        "price": 2,
+        "perUnit": 100,
+        "threshold": 100
+      },
+      {
+        "id": 19,
+        "name": "Onions",
+        "units": "lb",
+        "quantity": 20,
+        "price": 2,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 20,
+        "name": "Steak",
+        "units": "lb",
+        "quantity": 30,
+        "price": 14.99,
+        "perUnit": 1,
+        "threshold": 8
+      },
+      {
+        "id": 21,
+        "name": "Beef",
+        "units": "lb",
+        "quantity": 30,
+        "price": 3.70,
+        "perUnit": 1,
+        "threshold": 8
+      },
+      {
+        "id": 22,
+        "name": "Butter",
+        "units": "lb",
+        "quantity": 15,
+        "price": 3,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 23,
+        "name": "Sirloin",
+        "units": "lb",
+        "quantity": 20,
+        "price": 13.99,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 24,
+        "name": "Pasta",
+        "units": "lb",
+        "quantity": 15,
+        "price": 3.88,
+        "perUnit": 1,
+        "threshold": 4
+      },
+      {
+        "id": 25,
+        "name": "Garlic",
+        "units": "lb",
+        "quantity": 25,
+        "price": 1.99,
+        "perUnit": 1,
+        "threshold": 8
+      },
+      {
+        "id": 26,
+        "name": "Salmon",
+        "units": "lb",
+        "quantity": 20,
+        "price": 13.33,
+        "perUnit": 1,
+        "threshold": 4
+      },
+      {
+        "id": 27,
+        "name": "Crab",
+        "units": "lb",
+        "quantity": 12,
+        "price": 5.99,
+        "perUnit": 1,
+        "threshold": 4
+      },
+      {
+        "id": 28,
+        "name": "Lemon",
+        "units": "lb",
+        "quantity": 15,
+        "price": 0.88,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 29,
+        "name": "Scallops",
+        "units": "lb",
+        "quantity": 10,
+        "price": 10.00,
+        "perUnit": 1,
+        "threshold": 3
+      },
+      {
+        "id": 30,
+        "name": "Light Cream",
+        "units": "fl. oz.",
+        "quantity": 12,
+        "price": 3.53,
+        "perUnit": 1,
+        "threshold": 3
+      },
+      {
+        "id": 31,
+        "name": "Vanilla Extract",
+        "units": "fl. .oz",
+        "quantity": 50,
+        "price": 24.53,
+        "perUnit": 16,
+        "threshold": 10
+      },
+      {
+        "id": 32,
+        "name": "Ice Cream",
+        "units": "fl. oz.",
+        "quantity": 500,
+        "price": 2.97,
+        "perUnit": 48,
+        "threshold": 100
+      },
+      {
+        "id": 33,
+        "name": "Chocolate Chip",
+        "units": "lb",
+        "quantity": 10,
+        "price": 1.99,
+        "perUnit": 1,
+        "threshold": 3
+      },
+      {
+        "id": 34,
+        "name": "Brownie",
+        "units": "lb",
+        "quantity": 25,
+        "price": 14.99,
+        "perUnit": 1,
+        "threshold": 8
+      },
+      {
+        "id": 35,
+        "name": "Cream Cheese",
+        "units": "lb",
+        "quantity": 14,
+        "price": 4.99,
+        "perUnit": 1,
+        "threshold": 6
+      },
+      {
+        "id": 36,
+        "name": "Egg",
+        "units": "egg(s)",
+        "quantity": 100,
+        "price": 5.99,
+        "perUnit": 24,
+        "threshold": 40
+      },
+      {
+        "id": 37,
+        "name": "Rasberry",
+        "units": "lb",
+        "quantity": 15,
+        "price": 4.92,
+        "perUnit": 1,
+        "threshold": 4
+      },
+      {
+        "id": 38,
+        "name": "Blueberry",
+        "units": "lb",
+        "quantity": 15,
+        "price": 4.35,
+        "perUnit": 1,
+        "threshold": 4
+      },
+      {
+        "id": 39,
+        "name": "Flour",
+        "units": "lb",
+        "quantity": 20,
+        "price": 1.79,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 40,
+        "name": "Cornstarch",
+        "units": "lb",
+        "quantity": 100,
+        "price": 15.88,
+        "perUnit": 50,
+        "threshold": 20
+      },
+      {
+        "id": 41,
+        "name": "Strawberry",
+        "units": "lb",
+        "quantity": 25,
+        "price": 0.61,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 42,
+        "name": "Heavy Cream",
+        "units": "lb",
+        "quantity": 20,
+        "price": 3.53,
+        "perUnit": 1,
+        "threshold": 5
+      },
+      {
+        "id": 43,
+        "name": "Apple Juice",
+        "units": "fl. oz.",
+        "quantity": 800,
+        "price": 2.08,
+        "perUnit": 64,
+        "threshold": 200
+      },
+      {
+        "id": 44,
+        "name": "Cranberry Juice",
+        "units": "fl. oz.",
+        "quantity": 800,
+        "price": 2.43,
+        "perUnit": 64,
+        "threshold": 200
+      },
+      {
+        "id": 45,
+        "name": "Grapefruit Juice",
+        "units": "fl. oz.",
+        "quantity": 800,
+        "price": 2.78,
+        "perUnit": 64,
+        "threshold": 200
+      }
+    ]
 
   }
 }

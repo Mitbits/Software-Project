@@ -1,6 +1,6 @@
 <template name="floorplan">
-
-    <div class="ui four column grid" id="fourColumnGrid">
+    <button id="merge_button" class="ui primary button" clicked="false"> Manual Merge</button>
+     <div class="ui four column grid" id="fourColumnGrid">
         {{#each tables}}
             {{>table}}
         {{/each}}
@@ -9,9 +9,13 @@
 </template>
 
 <template name="table" >
+{{#if notMergeComponent}}
     <div class="column" >
 
-		<div class="ui raised inverted segment" style="color:white">
+	    <div class="ui raised inverted segment" id="{{table_id}}" style="color:white">
+	    {{#if isMergedTable}}
+	    <div class = "ui small red bottom left  attached label">Unmerge</div>  
+	    {{/if}}
             {{#if isDirty}}
                 <a class="ui red right corner label">
                     <i class="trash outline icon"></i>
@@ -33,7 +37,7 @@
                 </a>
             {{/if}}
 
-            <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i>Table {{table_id}}
+            <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i><p class="tableID">Table {{table_id}}</p>
 			{{#if isTaken}}
 			<div><button class="ui yellow centered button">Print Bill</button></div>
 			{{/if}}
@@ -44,7 +48,7 @@
                             <i class="big plus icon link" id="plus"></i>
                            
                             <div class="value" id="counts" style="color:white;">
-							{{occupants}}
+				    {{occupants}}	
                             </div>
 							{{/if}}
 
@@ -60,4 +64,5 @@
                 {{/if}}
 		</div>
     	</div>
+{{/if}}
 </template>

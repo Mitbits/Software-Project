@@ -85,6 +85,67 @@
             </div>
         </div>
 
+        <div id="printBill" class= "displayNone">
+            <h1> Print Bill </h1>
+            <div class="container1">
+                <div class="tab"></div>
+                <div class="paid"><p>Bill Paid Successfully</p></div>
+                <div class="receipt">
+                    <br>
+                    <div class="paper">
+                        <div class="title">iRestaurant</div>
+                        <div class="date">{{Date}}</div>
+                        <table class="receiptTable">
+                            <tbody>
+                            {{#each orderList}}
+                                {{>billRow}}
+                            {{/each}}
+                            <tr>
+                                <td class="bold1">Total Cost:</td>
+                                <td class="bold1 right1">$ {{getTotalCost}}</td>
+                            </tr>
+                            <tr><td colspan="2" class="center1"><input type="button" id="payButton" value="Pay Now" onClick="pay()"/></td></tr>
+                            <br>
+                            </tbody>
+                        </table>
+
+                        <div class="sign">
+                            Tip Suggestions:
+                            <table class="receiptTable">
+                                <tbody>
+                                <tr>
+                                   <td>15%</td>
+                                    <td class="right1">$ {{fifteenPercent}}</td>
+                                </tr>
+                                <tr>
+                                    <td>18%</td>
+                                    <td class="right1">$ {{eighteenPercent}}</td>
+                                </tr>
+                                <tr>
+                                    <td>20%</td>
+                                    <td class="right1">$ {{twentyPercent}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="center1">
+                            <div class="barcode"></div>
+                            <br/>
+                                Order ID:
+                                {{barcode}}
+                            <br/>
+                            <div class="thankyou">
+                                Thank you for your business
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!--Drinks Menu Modal Start-->
     <div class="ui scrolling modal" id="drinksModal">
@@ -102,6 +163,11 @@
     </div>
     <!--Drinks Menu Modal End-->
     <script>
+        function pay()
+        {
+            $(".receipt").slideUp("slow");
+            $(".paid").slideDown("slow");
+        }
         (function() {
             var $body = document.body
                     , $menu_trigger = $body.getElementsByClassName('menu-trigger')[0];
@@ -140,13 +206,13 @@
         <div class="ui fluid card" id="menuCard">
 
             <div class="content">
-                <div class="header">{{itemName}} <p id="floatRight">${{itemPrice}}</p></div>
+                <div class="header">{{itemName this}} <p id="floatRight">${{itemPrice this}}</p></div>
             </div>
             <div class="content">
-                {{itemDescription}}
+                {{itemDescription this}}
                 <!--<br>-->
                 <!--<i id="floatLeft" class="edit icon"></i>-->
-                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime}} mins</p>
+                <p id="floatRight" class="grayText"><i class="hourglass start icon"></i>{{cookTime this}} mins</p>
             </div>
             <div class="ui bottom attached button" id="removeItem">
                 <i class="minus icon"></i>
@@ -154,4 +220,11 @@
             </div>
         </div>
     </div>
+</template>
+
+<template name="billRow">
+    <tr>
+        <td>{{billItemName}}</td>
+        <td class="right1">$ {{billItemPrice}}</td>
+    </tr>
 </template>

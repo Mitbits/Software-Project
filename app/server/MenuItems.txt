@@ -13,7 +13,7 @@
 12 Sugar lb
 13 Salt lb
 14 Pepper lb
-15 Jalapeno lb
+15 Jalapeno 
 16 Potato lb
 17 Gravy fl oz
 18 Hot sauce fl oz

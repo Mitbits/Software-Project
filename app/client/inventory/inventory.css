@@ -37,28 +37,28 @@
 }
 
 
-table {
+table.inventoryTable {
     border: none;
     outline: none;
     width: 100%;
 }
-table tr.table-header td {
+table.inventoryTable tr.table-header td {
     font-size: 0.7em;
     font-weight: bolder;
 }
-table td {
+table.inventoryTable td {
     padding: 0.75em 0.5em;
 }
-table td:first-child {
+table.inventoryTable td:first-child {
     text-align: left;
 }
-table td:nth-child(3) {
+table.inventoryTable td:nth-child(3) {
     text-align: center;
 }
-table td:last-child, table td:nth-child(4) {
+table.inventoryTable td:last-child, table td:nth-child(4) {
     text-align: right;
 }
-table tr:nth-child(2n+2) {
+table.inventoryTable tr:nth-child(2n+2) {
     background: #ebebeb;
 }
 
@@ -179,6 +179,10 @@ input[type='checkbox'] {
     float:right;
     margin-left:10px;
 }
+#shoppingSend{
+    float:right;
+    margin-left:10px;
+}
 #inventoryForm {
     padding: 10px;
 }
@@ -186,20 +190,32 @@ input[type='checkbox'] {
     float:right;
     padding-left: 13px;
 }
-#inventoryH1{
+#titleH1{
     color: #3a3a3a;
     padding-top: 5px;
     font-family: 'Lato', sans-serif;
     text-align: center;
-    padding-left:15%;
+}
+#titleH12{
+    color: #3a3a3a;
+    padding-top: 5px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
 }
 #inventoryList {
     max-height: 500px;
     overflow: scroll;
 }
+#shoppingList {
+    max-height: 410px;
+    overflow:scroll;
+}
 #miniInput {
     width: 50px;
     height: 25px;
+}
+.smallTd {
+    width: 10px;
 }
 
 

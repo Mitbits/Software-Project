@@ -52,7 +52,7 @@ export const Reservation = Class.create({
 		 * @summary Saves/Writes reservation into the database
 		 * @returns {Number} Status of database write operation
          */
-		sssave() {
+		reservation_save() {
 			return this.save();
 		},
         /**
