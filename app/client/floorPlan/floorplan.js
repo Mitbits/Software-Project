@@ -81,9 +81,7 @@ Template.table.events({
 * @summary Updates table status to dirty from taken
 */
     'click .ui.yellow.button' () {
-		var table = Table.findOne({ _id: this._id });
-    	table.updateTableStatus(TableStatus.DIRTY);
-        $('#table'+this._id).removeClass("selectedTable");
+        $("#"+this.table_id).removeClass("selectedTable");
 
     },
 

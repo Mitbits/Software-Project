@@ -1,6 +1,7 @@
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
 import { Bill, billItem, Bills } from '../../imports/api/billsJS.js';
+import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports/api/table.js';
 
 import { ReactiveVar } from 'meteor/reactive-var';
 
@@ -45,7 +46,8 @@ Template.table.events({
         $("#"+this.table_id).toggleClass("selectedTable");
         var tableID = this.table_id;
         setTableID(tableID);
-    }
+    },
+
 });
 
 Template.waiter.events({
@@ -175,13 +177,15 @@ Template.waiter.events({
         document.getElementById("printBill").className = "displayAll";
         $('.menu-active').removeClass('menu-active');
 
+
     },
     'click #payButton' () {
         $(".receipt").slideUp("slow");
         $(".paid").slideDown("slow");
         let PaidBill = Bill.findOne({},{sort:{billTimeCreated : -1}});
         PaidBill.payBill();
-
+        var table = Table.findOne({ table_id: selectedTable });
+        table.updateTableStatus(TableStatus.DIRTY);
     }
 
 });
