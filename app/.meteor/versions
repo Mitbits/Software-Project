@@ -78,6 +78,7 @@ practicalmeteor:mocha@2.4.5_6
 practicalmeteor:mocha-core@1.0.1
 practicalmeteor:sinon@1.14.1_2
 promise@0.8.8
+rajit:bootstrap3-datepicker@1.6.4
 random@1.0.10
 rate-limit@1.0.7
 reactive-dict@1.1.8

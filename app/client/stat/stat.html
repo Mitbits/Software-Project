@@ -1,6 +1,6 @@
 <template name="stat">
   <div class="ui top inverted menu">
-    <div class="item"><span class="large text">Statistics</span></div>
+    <div class="item"><span class="large text">Manager</span></div>
     {{{menuItems}}}
   </div>
   <section class="mainContent">
@@ -9,6 +9,9 @@
     </div>
     <div id="kitchen" style="display:none;">
       {{>kitchen}}
+    </div>
+    <div id="archive" style="display:none;">
+      {{>archive}}
     </div>
   </section>
 </template>

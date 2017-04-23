@@ -66,17 +66,8 @@ class DataItems {
       'General',
       'Reservations',
       'Kitchen',
-      'Busboy',
+      'Archive',
       'Billing'
     ];
   }
-
-
-  populateData(name) { // change the frontend based on 'name'
-    if(name === 'Kitchen') {
-      //kitchen.createDisplay();
-    }
-  }
-
-
 }
