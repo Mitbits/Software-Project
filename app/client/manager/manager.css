@@ -108,6 +108,7 @@ h2.sub.header {
     border-radius: 50%;
     display: inline-block;
     height: 150px;
+    width: 150px;
     margin: 50px 0;
     padding: 40px;
     box-shadow: 0 4px 15px -10px rgba(0, 0, 0, 0.1), 0 5px 15px 1px rgba(0, 0, 0, 0.18), 0 0 0 15px #fff, 0 0 0 22px #e45b6c, 0 55px 50px -20px rgba(34, 36, 38, 0.25);

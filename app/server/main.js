@@ -18,6 +18,7 @@ Meteor.startup(() => {
     Reservation.remove({});
 	MenuItem.remove({});
 	popularItem.remove({});
+	inventoryItems.remove({});
 
 	export var allItems;
     for(i = 1; i <= 4; i++) {
