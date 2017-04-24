@@ -513,7 +513,7 @@
 				"ingredients": [
 					{
 						"itemID": 42,
-						"quantity": 6
+						"quantity": 0.6
 					},
 					{
 						"itemID": 33,
@@ -521,7 +521,7 @@
 					},
 					{
 						"itemID": 34,
-						"quantity": 2
+						"quantity": 1
 					},
 					{
 						"itemID": 1,
