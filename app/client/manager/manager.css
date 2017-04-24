@@ -36,11 +36,14 @@ h1.manager, h2.manager, h3.manager, h4.manager, h5.manager, h6.manager {
 }
 
 h1.manager1, h2.manager1 {
-    font-size: 1.5em;
+    font-size: 1em;
+}
+.itemNameDiv {
+    height: 70px;
 }
 
 h2.sub.header {
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 .managerRow {
@@ -52,7 +55,7 @@ h2.sub.header {
     display: -ms-flexbox;
     display: flex;
     background: #fff;
-    min-width: 60%;
+    width: 90%;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15), 0 55px 50px -20px rgba(34, 36, 38, 0.25);
@@ -108,6 +111,7 @@ h2.sub.header {
     border-radius: 50%;
     display: inline-block;
     height: 150px;
+    width: 150px;
     margin: 50px 0;
     padding: 40px;
     box-shadow: 0 4px 15px -10px rgba(0, 0, 0, 0.1), 0 5px 15px 1px rgba(0, 0, 0, 0.18), 0 0 0 15px #fff, 0 0 0 22px #e45b6c, 0 55px 50px -20px rgba(34, 36, 38, 0.25);
@@ -185,12 +189,14 @@ h2.sub.header {
 
 .leaderboard {
     height: 100%;
+    width: 100%;
     counter-reset: leaderboard-counter;
 }
 .leaderboard dt {
     position: relative;
     padding-left: 40px;
     margin-bottom: 10px;
+    width: 100%;
 }
 .leaderboard dt:before {
     content: counter(leaderboard-counter);
@@ -202,6 +208,7 @@ h2.sub.header {
     line-height: .8;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.8);
+    width: 100%;
 }
 .leaderboard dd {
     display: -webkit-box;
