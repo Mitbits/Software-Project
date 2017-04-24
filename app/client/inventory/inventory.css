@@ -113,7 +113,6 @@ table.inventoryTable tr:nth-child(2n+2) {
     left: 5px;
     top: 13px;
     color: #aaa;
-    z-index: 1;
 }
 
 .searchButton.full {

@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import {Class, Enum} from 'meteor/jagi:astronomy';
+import { Class, Enum } from 'meteor/jagi:astronomy';
+import { inventoryItem } from './ingredient.js';
 
 export const MenuItems = new Mongo.Collection('menuitems');
 
@@ -24,6 +25,30 @@ export const ORDER_TYPE = Enum.create({
 		CANCELLED: 5
 		
 	}
+});
+
+export const POPULARITY = Enum.create({
+	name: 'popularity',
+	identifiers: {
+		/** Basic meal stages*/
+		EXCLUSIVE: 0,
+		HIGH: 1,
+		MEDIUM: 2,
+		LOW: 3,
+		DEFAULT: -1
+	}
+});
+
+export const ingredientsArray = Class.create({
+    name: 'ingredientsArray',
+    fields: {
+        ingItemID: {
+            type: Number
+        },
+        ingQuantity: {
+            type: Number
+        }
+    }
 });
 
 /**
@@ -57,7 +82,37 @@ export const MenuItem = Class.create({
 		},
 		cookTime: {
 			type: Number
+		},
+		ingredients: {
+			type: [ingredientsArray]
+		},
+		timesOrdered: {
+			type: Number
+		},
+		itemPopularity: {
+			type: POPULARITY
 		}
 	},
+	meteorMethods: {
+    	incrementTimesOrdered() {
+    		this.timesOrdered++;
+    		return this.save();
+		},
+		setCookTime(mTime) {
+            this.cookTime = mTime;
+            return this.save();
+        },
+		getIngredientPrice(mIngID) {
+			let mInventoryItem = inventoryItem.findOne({ invID: mIngID });
+			return mInventoryItem.invPrice / mInventoryItem.invPerUnit;
+		},
+		setItemPopularity(mItemPopularity) {
+			this.itemPopularity = mItemPopularity;
+			return this.save();
+		}
+    }
 });
+
+
+
 

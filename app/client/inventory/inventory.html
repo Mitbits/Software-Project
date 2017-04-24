@@ -82,9 +82,9 @@
 <template name="ingredientRow">
     <tr>
         <td>{{invName}}</td>
-        <td class="center">{{invQuantity}} {{invUnits}}</td>
+        <td class="center">{{precisionQuantity}} {{invUnits}}</td>
         <!-- add quantity & units here -->
-        <td class="center">$ {{decimalPrice}}</td>
+        <td class="center">${{decimalPrice}}</td>
         {{#if belowThreshold}}
                 <td><button class="ui red button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
             {{else}}

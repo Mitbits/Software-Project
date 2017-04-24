@@ -1,15 +1,25 @@
+import { ReactiveVar } from 'meteor/reactive-var';
+
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { Order, Orders, orderItem } from '../../imports/api/order.js';
 import { Bill, billItem, Bills } from '../../imports/api/billsJS.js';
 import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports/api/table.js';
 
-import { ReactiveVar } from 'meteor/reactive-var';
 
-let orderArray = [];
+
 let selectedTable = 0;
-let rvOrderArray = new ReactiveVar([]);
 let totalCost;
 let itemQueue = [];
+let orderArray = [];
+let rvOrderArray = new ReactiveVar([]);
+let topDrinksArray = [];
+let rvtopDrinksArray = new ReactiveVar([]);
+let topAppsArray = [];
+let rvtopAppsArray = new ReactiveVar([]);
+let topEntreesArray = [];
+let rvtopEntreesArray = new ReactiveVar([]);
+let topDessertsArray = [];
+let rvtopDessertsArray = new ReactiveVar([]);
 
 
 /**
@@ -26,7 +36,8 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
         "priority": mPriority,
         "menuItemID": mMenuItemID,
         "specialRequests": mSpecialRequests,
-		"actualCookTime": 0
+		"actualCookTime": MenuItem.findOne({itemID: mMenuItemID}).cookTime,
+		"isCompleted": false
     });
 };
 
@@ -103,6 +114,8 @@ Template.waiter.events({
         document.getElementById("printBill").className = "displayNone";
         $('.menu-active').removeClass('menu-active');
 
+
+
     },
     /**
      * @function click .placeOrder
@@ -150,6 +163,7 @@ Template.waiter.events({
             "billPaid": false,
         });
         b.generateReceipt();
+        rvOrderArray.set(orderArray);
     },
     /**
      * @function click #cancelOrder
@@ -209,6 +223,10 @@ Template.selectedCards.events({
     'click #removeItem' (){
         for (i = 0; i < orderArray.length; i++)
         {
+			if (i == 0) {
+				orderArray.shift();
+				break;
+			}
             if (orderArray[i].itemID == this.itemID) {
                 orderArray.splice(i, 1);
                 break;
@@ -218,11 +236,11 @@ Template.selectedCards.events({
 		for (i = 0; i < orderArray.length; i++)
         {
 			orderArray[i].itemID = i + 1;
-			rvOrderArray.set(orderArray);
         }
+		rvOrderArray.set(orderArray);
     },
 
-})
+});
 
 Template.waiter.helpers({
     /**
@@ -344,42 +362,108 @@ Template.waiter.helpers({
     twentyPercent() {
         let totalCost = 0;
         let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
-        itemPrice.forEach(function(element) {
+        itemPrice.forEach(function (element) {
             totalCost += element.billItemPrice;
         })
-        totalCost = 0.20*totalCost;
-        if(totalCost < 10)
-        {
+        totalCost = 0.20 * totalCost;
+        if (totalCost < 10) {
             totalCost = totalCost.toPrecision(3);
         }
-        else if(totalCost > 10 && totalCost < 100)
-        {
+        else if (totalCost > 10 && totalCost < 100) {
             totalCost = totalCost.toPrecision(4);
         }
-        else if(totalCost > 100)
-        {
+        else if (totalCost > 100) {
             totalCost = totalCost.toPrecision(5);
         }
         return totalCost;
+    },
+    topThreeDrinks() {
+
+        let i = 0;
+        MenuItems.find({mealType: 0}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topDrinksArray[i] = element.itemID;
+                i++;
+            }
+        });
+        rvtopDrinksArray.set(topDrinksArray);
+        i = 0;
+        MenuItems.find({mealType: 1}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topAppsArray[i] = element.itemID;
+                i++;
+            }
+
+        });
+        rvtopAppsArray.set(topAppsArray);
+        i = 0;
+        MenuItems.find({mealType: 2}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topEntreesArray[i] = element.itemID;
+                i++;
+            }
+
+        });
+        rvtopEntreesArray.set(topEntreesArray);
+        i = 0;
+        MenuItems.find({mealType: 3}, {sort: {timesOrdered: -1}}).forEach(function (element) {
+            if (i < 3) {
+                topDessertsArray[i] = element.itemID;
+                i++;
+            }
+        });
+        rvtopDessertsArray.set(topDessertsArray);
     }
 });
 
 Template.selectedCards.helpers({
 	itemName(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemName;
 	},
 	itemPrice(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemPrice;
 	},
 	itemDescription(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemDescription;
 	},
 	cookTime(order) {
-		var menuItem = MenuItems.findOne({itemID: order.menuItemID});
+		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.cookTime;
 	}
-})
+});
 
+Template.menuCards.helpers({
+    'isTopOne': function () {
+        topDrinksArray = rvtopDrinksArray.get();
+        topAppsArray = rvtopAppsArray.get();
+        topEntreesArray = rvtopEntreesArray.get();
+        topDessertsArray = rvtopDessertsArray.get();
+        if (this.itemID == topDrinksArray[0] || this.itemID == topAppsArray[0] || this.itemID == topEntreesArray[0] || this.itemID == topDessertsArray[0])
+        {
+            return true;
+        }
+    },
+    'isTopTwo': function() {
+        topDrinksArray = rvtopDrinksArray.get();
+        topAppsArray = rvtopAppsArray.get();
+        topEntreesArray = rvtopEntreesArray.get();
+        topDessertsArray = rvtopDessertsArray.get();
+        if (this.itemID == topDrinksArray[1] || this.itemID == topAppsArray[1] || this.itemID == topEntreesArray[1] || this.itemID == topDessertsArray[1])
+        {
+            return true;
+        }
+    },
+    'isTopThree': function() {
+        topDrinksArray = rvtopDrinksArray.get();
+        topAppsArray = rvtopAppsArray.get();
+        topEntreesArray = rvtopEntreesArray.get();
+        topDessertsArray = rvtopDessertsArray.get();
+        if (this.itemID == topDrinksArray[2] || this.itemID == topAppsArray[2] || this.itemID == topEntreesArray[2] || this.itemID == topDessertsArray[2])
+        {
+            return true;
+        }
+    }
+});

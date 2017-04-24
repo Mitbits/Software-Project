@@ -1,3 +1,159 @@
 <template name="manager">
+    <!--
     <h1> Manager Page, WIP</h1>
+    <h2> Meal Suggester</h2>
+
+    -->
+<html>
+
+
+<div class="manager">
+
+
+<div class="card">
+    <section class="card-info card-section hideBlock" id = "itemToDisplay">
+        <i class="ion-navicon menu"></i>
+        <i class="ion-ios-search search"></i>
+        <div class="itemNameDiv">
+        <h3 class="user-header">
+        {{itemNAME}}
+        <br>
+        <br>
+        </h3>
+        </div>
+
+        <div class="dial">
+            <h2 class="dial-value manager manager1">
+                Rank
+            </h2>
+            <h3 class="dial-title manager manager1">
+                {{itemRANK}}
+            </h3>
+
+        </div>
+
+        <section class="user managerRow" >
+            <h1 class="user-header manager manager1">
+                <br>
+                <br>
+
+                PROFIT:
+                $ {{itemPROFIT}}
+                <br>
+                COST:
+                $ {{itemCOST}}
+                <br>
+                REVENUE:
+                $ {{itemREVENUE}}
+
+
+            </h1>
+        </section>
+
+        <!--<section class="statistics">
+
+        </section>-->
+
+
+
+    </section>
+    <section class="card-details card-section">
+
+
+        <h2 class="manager manager1">Exclusive</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsExclusive}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+
+    <section class="card-details card-section">
+
+        <!--<nav class="menu">-->
+        <!--<article class="menu-item menu-item-active">-->
+        <!--Global-->
+        <!--</article>-->
+        <!--<article class="menu-item">-->
+        <!--Friends-->
+        <!--</article>-->
+        <!--</nav>-->
+        <h2 class="manager manager1">High</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsHigh}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+
+    <section class="card-details card-section">
+
+        <!--<nav class="menu">-->
+        <!--<article class="menu-item menu-item-active">-->
+        <!--Global-->
+        <!--</article>-->
+        <!--<article class="menu-item">-->
+        <!--Friends-->
+        <!--</article>-->
+        <!--</nav>-->
+        <h2 class="manager manager1">Medium</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsMedium}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+
+    <section class="card-details card-section">
+
+        <!--<nav class="menu">-->
+        <!--<article class="menu-item menu-item-active">-->
+        <!--Global-->
+        <!--</article>-->
+        <!--<article class="menu-item">-->
+        <!--Friends-->
+        <!--</article>-->
+        <!--</nav>-->
+        <h2 class="manager manager1">Low</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsLow}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+</div>
+</div>
+</html>
 </template>
+
+
+<template name="itemRow">
+    <tr>
+        <div class = particularItem>
+             <td>{{itemName}}</td>
+        </div>
+
+    </tr>
+</template>
+
+<!--
+<template name="levelCard">
+
+
+</template>-->

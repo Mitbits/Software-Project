@@ -4,21 +4,21 @@
 			{
 				"id": 0,
 				"name": "Coffee",
-				"desc": "NULL",
+				"description": "NULL",
 				"type": 0,
 				"price": 1.95,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 0,
+						"itemID": 0,
 						"quantity": 4
 					},
 					{
-						"item_id": 1,
+						"itemID": 1,
 						"quantity": 30
 					},
 					{
-						"item_id": 12,
+						"itemID": 12,
 						"quantity": 0.03
 					}
 				]
@@ -26,13 +26,13 @@
 			{
 				"id": 1,
 				"name": "Herbal Teas",
-				"desc": "NULL",
+				"description": "NULL",
 				"type": 0,
-				"price": 2.25,
+				"price": 1.99,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 2,
+						"itemID": 2,
 						"quantity": 1
 					}
 				]
@@ -40,13 +40,13 @@
 			{
 				"id": 2,
 				"name": "Orange Juices",
-				"desc": "NULL",
+				"description": "NULL",
 				"type": 0,
-				"price": 3.50,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 3,
+						"itemID": 3,
 						"quantity": 8
 					}
 				]
@@ -54,17 +54,17 @@
 			{
 				"id": 3,
 				"name": "Iced Tea",
-				"desc": "with a free refill",
+				"description": "with a free refill",
 				"type": 0,
-				"price": 1.95,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 2,
+						"itemID": 2,
 						"quantity": 1
 					},
 					{
-						"item_id": 12,
+						"itemID": 12,
 						"quantity":0.03
 					}
 				]
@@ -72,13 +72,13 @@
 			{
 				"id": 4,
 				"name": "Milk",
-				"desc": "Refreshening glass of milk",
+				"description": "Refreshening glass of milk",
 				"type": 0,
-				"price": 2.25,
+				"price": 1.49,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 0,
+						"itemID": 0,
 						"quantity": 8
 					}
 				]
@@ -86,51 +86,55 @@
 			{
 				"id": 5,
 				"name": "Nachos Supreme",
-				"desc": "Homemade chili topped with shredded, lettuce, diced tomato, monterey jack cheese, jalapenos over tortillas with salsa, sour cream.",
+				"description": "Homemade chili topped with shredded, lettuce, diced tomato, monterey jack cheese, jalapenos over tortillas with salsa, sour cream.",
 				"type": 1,
-				"price": 9.95,
+				"price": 6.50,
 				"cookTime": 10,
 				"ingredients": [
 					{
-						"item_id": 4,
+						"itemID": 4,
 						"quantity":0.10
 					},
 					{
-						"item_id": 5,
+						"itemID": 5,
 						"quantity":0.25
 					},
 					{
-						"item_id": 6,
+						"itemID": 6,
 						"quantity": 0.3
 					},
 					{
-						"item_id": 7,
+						"itemID": 7,
 						"quantity": 1
 					},
 					{
-						"item_id": 11,
+						"itemID": 11,
 						"quantity": 30
+					},
+					{
+						"itemID": 15,
+						"quantity": 1
 					}
 				]
 			},
 			{
 				"id": 6,
 				"name": "Chicken Fingers",
-				"desc": "Fried golden brown with honey mustard sauce, with french fries.",
+				"description": "Fried golden brown with honey mustard sauce, with french fries.",
 				"type": 1,
-				"price": 8.50,
+				"price": 4.00,
 				"cookTime": 12,
 				"ingredients": [
 					{
-						"item_id": 8,
+						"itemID": 8,
 						"quantity":0.5
 					},
 					{
-						"item_id": 9,
+						"itemID": 9,
 						"quantity":0.25
 					},
 					{
-						"item_id": 11,
+						"itemID": 11,
 						"quantity": 300
 					}
 				]
@@ -138,21 +142,21 @@
 			{
 				"id": 7,
 				"name": "Mozarella Sticks",
-				"desc": "Fried golden brown with marinara sauce.",
+				"description": "Fried golden brown with marinara sauce.",
 				"type": 1,
 				"price": 6.50,
 				"cookTime": 12,
 				"ingredients": [
 					{
-						"item_id": 10,
+						"itemID": 10,
 						"quantity":0.25
 					},
 					{
-						"item_id": 9,
+						"itemID": 9,
 						"quantity":0.15
 					},
 					{
-						"item_id": 11,
+						"itemID": 11,
 						"quantity": 150
 					}
 				]
@@ -160,29 +164,29 @@
 			{
 				"id": 8,
 				"name": "Hot Wings",
-				"desc": "A southern recipe, served with ranch dressing and celery sticks.",
+				"description": "A southern recipe, served with ranch dressing and celery sticks.",
 				"type": 1,
-				"price": 8.25,
+				"price": 4.50,
 				"cookTime": 12,
 				"ingredients": [
 					{
-						"item_id": 8,
+						"itemID": 8,
 						"quantity":0.5
 					},
 					{
-						"item_id": 9,
+						"itemID": 9,
 						"quantity":0.25
 					},
 					{
-						"item_id": 11,
+						"itemID": 11,
 						"quantity": 300
 					},
 					{
-						"item_id": 14,
+						"itemID": 14,
 						"quantity":0.10
 					},
 					{
-						"item id": 18,
+						"itemID": 18,
 						"quantity": 1.5
 					}
 				]
@@ -190,29 +194,29 @@
 			{
 				"id": 9,
 				"name": "Disco Fries",
-				"desc": "Topped with brown gravy & melted mozzarella cheese.",
+				"description": "Topped with brown gravy & melted mozzarella cheese.",
 				"type": 1,
-				"price": 4.75,
+				"price": 3.50,
 				"cookTime": 8,
 				"ingredients": [
 					{
-						"item_id": 16,
+						"itemID": 16,
 						"quantity":0.5
 					},
 					{
-						"item_id": 11,
+						"itemID": 11,
 						"quantity": 100
 					},
 					{
-						"item_id": 13,
+						"itemID": 13,
 						"quantity":0.09
 					},
 					{
-						"item id": 10,
+						"itemID": 10,
 						"quantity":0.15
 					},
 					{
-						"item_id": 17,
+						"itemID": 17,
 						"quantity": 3
 					}
 				]
@@ -220,41 +224,41 @@
 			{
 				"id": 10,
 				"name": "Chopped Sirloin Steak",
-				"desc": "With fried onions and gravy",
+				"description": "With fried onions and gravy",
 				"type": 2,
-				"price": 15.95,
+				"price": 34.99,
 				"cookTime": 20,
 				"ingredients": [
 					{
-						"item_id": 23,
+						"itemID": 23,
 						"quantity": 1.5
 					},
 					{
-						"item_id": 22,
+						"itemID": 22,
 						"quantity":0.06
 					},
 					{
-						"item_id": 20,
+						"itemID": 20,
 						"quantity":0.5
 					},
 					{
-						"item_id": 11,
+						"itemID": 11,
 						"quantity":0.10
 					},
 					{
-						"item_id": 13,
+						"itemID": 13,
 						"quantity":0.015
 					},
 					{
-						"item_id": 14,
+						"itemID": 14,
 						"quantity": 0.015
 					},
 					{
-						"item_id": 19,
+						"itemID": 19,
 						"quantity":0.5
 					},
 					{
-						"item_id": 17,
+						"itemID": 17,
 						"quantity": 3
 					}
 				]
@@ -262,29 +266,29 @@
 			{
 				"id": 11,
 				"name": "Roasted Spring Chicken",
-				"desc": "Slow roasted with herbs stuffing",
+				"description": "Slow roasted with herbs stuffing",
 				"type": 2,
-				"price": 14.95,
+				"price": 10.95,
 				"cookTime": 20,
 				"ingredients": [
 					{
-						"item_id": 8,
+						"itemID": 8,
 						"quantity": 1.5
 					},
 					{
-						"item_id": 13,
+						"itemID": 13,
 						"quantity":0.06
 					},
 					{
-						"item_id": 14,
+						"itemID": 14,
 						"quantity": 0.06
 					},
 					{
-						"item_id": 16,
+						"itemID": 16,
 						"quantity": 0.25
 					},
 					{
-						"item_id": 22,
+						"itemID": 22,
 						"quantity": 0.10
 					}
 				]
@@ -292,33 +296,33 @@
 			{
 				"id": 12,
 				"name": "Penne Vodka Pasta",
-				"desc": "Penne tossed with tomato cream",
+				"description": "Penne tossed with tomato cream",
 				"type": 2,
-				"price": 13.95,
+				"price": 12.99,
 				"cookTime": 15,
 				"ingredients": [
 					{
-						"item_id": 24,
+						"itemID": 24,
 						"quantity": 1
 					},
 					{
-						"item_id": 10,
+						"itemID": 10,
 						"quantity": 0.25
 					},
 					{
-						"item_id": 25,
+						"itemID": 25,
 						"quantity": 0.15
 					},
 					{
-						"item_id": 14,
+						"itemID": 14,
 						"quantity": 0.08
 					},
 					{
-						"item_id": 13,
+						"itemID": 13,
 						"quantity":0.03
 					},
 					{
-						"item_id": 6,
+						"itemID": 6,
 						"quantity": 1.75
 					}
 				]
@@ -326,33 +330,33 @@
 			{
 				"id": 13,
 				"name": "Stuffed Salmon",
-				"desc": "Baked filet of salmon stuffed with crabmeat",
+				"description": "Baked filet of salmon stuffed with crabmeat",
 				"type": 2,
-				"price": 19.95,
+				"price": 34.99,
 				"cookTime": 15,
 				"ingredients": [
 					{
-						"item_id": 27,
+						"itemID": 27,
 						"quantity": 1
 					},
 					{
-						"item_id": 26,
+						"itemID": 26,
 						"quantity": 1.65
 					},
 					{
-						"item_id": 27,
+						"itemID": 27,
 						"quantity": 0.5
 					},
 					{
-						"item_id": 13,
+						"itemID": 13,
 						"quantity": 0.05
 					},
 					{
-						"item_id": 14,
+						"itemID": 14,
 						"quantity":0.05
 					},
 					{
-						"item_id": 22,
+						"itemID": 22,
 						"quantity": 0.10
 					}
 				]
@@ -360,29 +364,29 @@
 			{
 				"id": 14,
 				"name": "Succulent Sea Scallops",
-				"desc": "Broiled served with roasted potatoes and vegetable medley",
+				"description": "Broiled served with roasted potatoes and vegetable medley",
 				"type": 2,
-				"price": 21.95,
+				"price": 35.99,
 				"cookTime": 15,
 				"ingredients": [
 					{
-						"item_id": 29,
+						"itemID": 29,
 						"quantity": 2
 					},
 					{
-						"item_id": 30,
+						"itemID": 30,
 						"quantity": 4
 					},
 					{
-						"item_id": 22,
+						"itemID": 22,
 						"quantity":0.25
 					},
 					{
-						"item_id": 28,
+						"itemID": 28,
 						"quantity": 1
 					},
 					{
-						"item_id": 13,
+						"itemID": 13,
 						"quantity": 0.05
 					}
 				]
@@ -390,25 +394,25 @@
 			{
 				"id": 15,
 				"name": "Vanilla Milk Shakes",
-				"desc": "Delightful sweet vanilla flavored milkshake",
+				"description": "Delightful sweet vanilla flavored milkshake",
 				"type": 3,
-				"price": 4.95,
+				"price": 3.50,
 				"cookTime": 6,
 				"ingredients": [
 					{
-						"item_id": 12,
+						"itemID": 12,
 						"quantity": 0.03
 					},
 					{
-						"item_id": 0,
+						"itemID": 0,
 						"quantity": 6
 					},
 					{
-						"item_id": 31,
+						"itemID": 31,
 						"quantity": 0.01
 					},
 					{
-						"item_id": 32,
+						"itemID": 32,
 						"quantity": 8
 					}
 				]
@@ -416,21 +420,21 @@
 			{
 				"id": 16,
 				"name": "Ice Cream",
-				"desc": "Delightful Dessert",
+				"description": "Delightful Dessert",
 				"type": 3,
-				"price": 2.95,
+				"price": 2.00,
 				"cookTime": 4,
 				"ingredients": [
 					{
-						"item_id": 32,
+						"itemID": 32,
 						"quantity": 8
 					},
 					{
-						"item_id": 33,
+						"itemID": 33,
 						"quantity": 0.01
 					},
 					{
-						"item_id": 34,
+						"itemID": 34,
 						"quantity": 0.01
 					}
 				]
@@ -438,29 +442,29 @@
 			{
 				"id": 17,
 				"name": "Homemade Cheesecake",
-				"desc": "Rich, Creamy Classic Cheesecake",
+				"description": "Rich, Creamy Classic Cheesecake",
 				"type": 3,
-				"price": 4.95,
+				"price": 12.99,
 				"cookTime": 10,
 				"ingredients": [
 					{
-						"item_id": 12,
+						"itemID": 12,
 						"quantity":0.09
 					},
 					{
-						"item_id": 22,
+						"itemID": 22,
 						"quantity":0.33
 					},
 					{
-						"item_id": 35,
+						"itemID": 35,
 						"quantity": 2
 					},
 					{
-						"item_id": 31,
+						"itemID": 31,
 						"quantity": 0.03
 					},
 					{
-						"item_id": 36,
+						"itemID": 36,
 						"quantity": 4
 					}
 				]
@@ -468,33 +472,33 @@
 			{
 				"id": 18,
 				"name": "Homemade Fruit Pies",
-				"desc": "NULL",
+				"description": "NULL",
 				"type": 3,
 				"price": 3.50,
 				"cookTime": 10,
 				"ingredients": [
 					{
-						"item_id": 39,
+						"itemID": 39,
 						"quantity": 0.15
 					},
 					{
-						"item_id": 13,
+						"itemID": 13,
 						"quantity": 0.015
 					},
 					{
-						"item_id": 41,
+						"itemID": 41,
 						"quantity": 0.10
 					},
 					{
-						"item_id": 37,
+						"itemID": 37,
 						"quantity": 0.20
 					},
 					{
-						"item_id": 38,
+						"itemID": 38,
 						"quantity": 0.20
 					},
 					{
-						"item_id": 40,
+						"itemID": 40,
 						"quantity": 0.09
 					}
 				]
@@ -502,29 +506,29 @@
 			{
 				"id": 19,
 				"name": "Brownie Sundae",
-				"desc": "NULL",
+				"description": "NULL",
 				"type": 3,
-				"price": 5.95,
+				"price": 10.95,
 				"cookTime": 7,
 				"ingredients": [
 					{
-						"item_id": 42,
-						"quantity": 6
+						"itemID": 42,
+						"quantity": 0.6
 					},
 					{
-						"item_id": 33,
+						"itemID": 33,
 						"quantity": 0.75
 					},
 					{
-						"item_id": 34,
-						"quantity": 2
+						"itemID": 34,
+						"quantity": 1
 					},
 					{
-						"item_id": 1,
+						"itemID": 1,
 						"quantity": 0.30
 					},
 					{
-						"item_id": 32,
+						"itemID": 32,
 						"quantity": 4
 					}
 				]
@@ -532,13 +536,13 @@
 			{
 				"id": 20,
 				"name": "Apple Juice",
-				"desc": "Fresh Apple Juice",
+				"description": "Fresh Apple Juice",
 				"type": 0,
-				"price": 3.50,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 43,
+						"itemID": 43,
 						"quantity": 8
 					}
 				]
@@ -546,13 +550,13 @@
 			{
 				"id": 21,
 				"name": "Cranberry Juice",
-				"desc": "Fresh Cranberry Juice",
+				"description": "Fresh Cranberry Juice",
 				"type": 0,
-				"price": 3.50,
+				"price": 1.00,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 44,
+						"itemID": 44,
 						"quantity": 8
 					}
 				]
@@ -560,65 +564,65 @@
 			{
 				"id": 22,
 				"name": "Grapefruit Juice",
-				"desc": "Fresh Grapefruit Juice",
+				"description": "Fresh Grapefruit Juice",
 				"type": 0,
 				"price": 3.50,
 				"cookTime": 3,
 				"ingredients": [
 					{
-						"item_id": 45,
+						"itemID": 45,
 						"quantity": 8
 					}
 				]
 			},
 			{
-				"id": 15,
+				"id": 23,
 				"name": "Chocolate Milk Shakes",
-				"desc": "Delicious Chocolate Milk Shake",
+				"description": "Delicious Chocolate Milk Shake",
 				"type": 3,
-				"price": 4.95,
+				"price": 2.50,
 				"cookTime": 6,
 				"ingredients": [
 					{
-						"item_id": 12,
+						"itemID": 12,
 						"quantity": 0.03
 					},
 					{
-						"item_id": 0,
+						"itemID": 0,
 						"quantity": 6
 					},
 					{
-						"item_id": 33,
+						"itemID": 33,
 						"quantity": 0.5
 					},
 					{
-						"item_id": 32,
+						"itemID": 32,
 						"quantity": 8
 					}
 				]
 			},
 			{
-				"id": 15,
+				"id": 24,
 				"name": "Strawberry Milk Shakes",
-				"desc": "Delicious Strawberry Milk Shake",
+				"description": "Delicious Strawberry Milk Shake",
 				"type": 3,
-				"price": 4.95,
+				"price": 2.50,
 				"cookTime": 6,
 				"ingredients": [
 					{
-						"item_id": 12,
+						"itemID": 12,
 						"quantity": 0.03
 					},
 					{
-						"item_id": 0,
+						"itemID": 0,
 						"quantity": 6
 					},
 					{
-						"item_id": 41,
+						"itemID": 41,
 						"quantity": 0.5
 					},
 					{
-						"item_id": 32,
+						"itemID": 32,
 						"quantity": 8
 					}
 				]
