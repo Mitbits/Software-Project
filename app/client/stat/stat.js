@@ -66,8 +66,7 @@ class DataItems {
       'General',
       'Reservations',
       'Kitchen',
-      'Archive',
-      'Billing'
+      'Archive'
     ];
   }
 }
