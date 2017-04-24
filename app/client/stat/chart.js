@@ -3,6 +3,7 @@ const secondaryColors = ['#502812', '#892034', '#6F256C', '#004236', '#9F9B74'];
 
 
 var createChart = function(options) {
+	console.log(options.data);
   var chart = d3.timeseries()
               .addSerie(options.data,{x:options.x,y:options.y},{interpolate:'monotone',color:primaryColors[getRandomInt(0,4)]})
               .addSerie(options.data,{x:options.x,y:options.y2},{interpolate:'monotone',color:secondaryColors[getRandomInt(0,4)]})
@@ -12,6 +13,17 @@ var createChart = function(options) {
   $(options.selection).empty();
   chart(options.selection);
 }
+
+var createChartSingleY = function(options) {
+  var chart = d3.timeseries()
+              .addSerie(options.data,{x:options.x,y:options.y},{interpolate:'monotone',color:primaryColors[getRandomInt(0,4)]})
+              .yscale.domain([0])
+              .width(900)
+              .margin.left(40);
+  $(options.selection).empty();
+  chart(options.selection);
+}
+
 
 var createPieChart = function(options) {
 
@@ -28,4 +40,4 @@ const getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export {createChart, createPieChart};
+export {createChart, createPieChart,createChartSingleY};

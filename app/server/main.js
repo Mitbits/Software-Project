@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Table, Tables, TableStatus, TableType, TableManager} from '../imports/api/table.js';
 import { Reservation } from '../imports/api/reservation.js';
+import {ArchivedReservation,ArchivedReservations} from  '../imports/api/data/reservation.js'; 
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { MenuItem, MenuItems } from '../imports/api/menuItem.js';
 import { selectedItem,selectedItems } from '../imports/api/selectedItems.js';
@@ -14,10 +15,20 @@ import { Bill } from '../imports/api/billsJS.js';
  * for the project and pushing them to their respective collections
  */
 Meteor.startup(() => {
+
     initData();
     TableManager.remove({});
     Table.remove({});
     Reservation.remove({});
+    ArchivedReservation.remove({});
+    var date = new Date();
+      for(var i =0; i<24; i++){
+	new ArchivedReservation({
+		"Hour": new Date(date.setHours(i)),
+		"Count": Math.ceil(Math.random()*100)
+	}).save();
+
+    }
 
 
     var table_manager = new TableManager();
