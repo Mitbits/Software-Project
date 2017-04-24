@@ -159,7 +159,7 @@ Meteor.startup(() => {
 			table_size = 6 
 		else 
 			table_size = 8;
-		if(i>12)
+		if(i>8)
 			table_type = TableType.RESERVATION;
 		var table_entry = new Table({
 			
