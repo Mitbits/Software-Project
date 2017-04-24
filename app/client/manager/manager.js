@@ -25,7 +25,7 @@ Template.itemRow.events({
         itemName = this.itemName;
         rvItemName.set(itemName)
 
-        itemRank = popularItem.findOne({menuItemID: this.itemID}).rank;
+        itemRank = this.itemPopularity;
         rvItemRank.set(itemRank);
 
         itemProfit = popularItem.findOne({menuItemID: this.itemID}).profit;
@@ -78,13 +78,10 @@ Template.itemRow.events({
         rvItemCost.set(itemCost);
         rvItemRevenue.set(itemRevenue);
 
-
-
-
     }
 });
 
-Template.manager.helpers({
+Template.menuSuggestions.helpers({
     itemsExclusive(){
         return MenuItem.find({itemPopularity: 0});
     },
@@ -98,7 +95,23 @@ Template.manager.helpers({
         return MenuItem.find({itemPopularity: 3});
     },
     itemRANK() {
-        return (rvItemRank.get());
+        let rank;
+        if(rvItemRank.get() == 0) {
+            rank = "Exclusive";
+            return rank;
+        }
+        else if(rvItemRank.get() == 1){
+            rank = "High";
+            return rank;
+        }
+        else if(rvItemRank.get() == 2){
+            rank = "Medium";
+            return rank;
+        }
+        else if(rvItemRank.get() == 3){
+            rank = "Low";
+            return rank;
+        }
     },
     itemNAME(){
         return (rvItemName.get());
@@ -112,8 +125,6 @@ Template.manager.helpers({
     itemREVENUE(){
         return(rvItemRevenue.get());
     }
-
-
 
 });
 

@@ -16,11 +16,11 @@ import { popularItem, itemLeaderboard, POPULARITY_PERIOD } from '../imports/api/
 Meteor.startup(() => {
     TableManager.remove({});
     Table.remove({});
-	Order.remove({}); //remove late
+	//Order.remove({}); //remove late
     Reservation.remove({});
-	MenuItem.remove({});
+	//MenuItem.remove({});
 	popularItem.remove({});
-	inventoryItems.remove({});
+	//inventoryItems.remove({});
 
 
     var table_manager = new TableManager();
@@ -147,23 +147,23 @@ Meteor.startup(() => {
 	// Creating 5 order objects and storing in the collection.
 	// Each object is getting the same array of `order_items`
 	// Change if necessary for more diverse data - @raj
-	
-	var count = 1;
-	for (var i = Date.now() - 7862400000; i <= Date.now(); i += 86400000) {
-		
-		var test = createOrderItems();
-
-		var order_entry = new Order({
-			"orderID": count,
-			"tableID": 0,
-			"waiterID": 1,
-			"orderItems": test,
-			"timePlaced": new Date(i),
-			"isCompleted": true
-		});
-		count++;
-		order_entry.save();
-	}
+	//
+	// var count = 1;
+	// for (var i = Date.now() - 7862400000; i <= Date.now(); i += 86400000) {
+    //
+	// 	var test = createOrderItems();
+    //
+	// 	var order_entry = new Order({
+	// 		"orderID": count,
+	// 		"tableID": 0,
+	// 		"waiterID": 1,
+	// 		"orderItems": test,
+	// 		"timePlaced": new Date(i),
+	// 		"isCompleted": true
+	// 	});
+	// 	count++;
+	// 	order_entry.save();
+	// }
 
 
 	for(i = 1; i <= 16; i++) {

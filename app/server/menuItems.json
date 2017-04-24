@@ -4,7 +4,7 @@
 			{
 				"id": 0,
 				"name": "Coffee",
-				"description": "NULL",
+				"description": "Freshly Brewed Coffee",
 				"type": 0,
 				"price": 1.95,
 				"cookTime": 3,
@@ -26,7 +26,7 @@
 			{
 				"id": 1,
 				"name": "Herbal Teas",
-				"description": "NULL",
+				"description": "Fresh Tea",
 				"type": 0,
 				"price": 1.99,
 				"cookTime": 3,
@@ -39,8 +39,8 @@
 			},
 			{
 				"id": 2,
-				"name": "Orange Juices",
-				"description": "NULL",
+				"name": "Orange Juice",
+				"description": "Fresh glass of orange juice",
 				"type": 0,
 				"price": 1.00,
 				"cookTime": 3,
@@ -54,7 +54,7 @@
 			{
 				"id": 3,
 				"name": "Iced Tea",
-				"description": "with a free refill",
+				"description": "With a free refill",
 				"type": 0,
 				"price": 1.00,
 				"cookTime": 3,
@@ -72,7 +72,7 @@
 			{
 				"id": 4,
 				"name": "Milk",
-				"description": "Refreshening glass of milk",
+				"description": "Refreshing glass of milk",
 				"type": 0,
 				"price": 1.49,
 				"cookTime": 3,
@@ -330,7 +330,7 @@
 			{
 				"id": 13,
 				"name": "Stuffed Salmon",
-				"description": "Baked filet of salmon stuffed with crabmeat",
+				"description": "Baked fillet of salmon stuffed with crabmeat",
 				"type": 2,
 				"price": 34.99,
 				"cookTime": 15,
@@ -471,8 +471,8 @@
 			},
 			{
 				"id": 18,
-				"name": "Homemade Fruit Pies",
-				"description": "NULL",
+				"name": "Homemade Fruit Pie",
+				"description": "Fresh fruit pie",
 				"type": 3,
 				"price": 3.50,
 				"cookTime": 10,
@@ -506,7 +506,7 @@
 			{
 				"id": 19,
 				"name": "Brownie Sundae",
-				"description": "NULL",
+				"description": "Fresh Baked brownie sundae",
 				"type": 3,
 				"price": 10.95,
 				"cookTime": 7,

@@ -40,9 +40,9 @@ FlowRouter.route('/orderqueue', {
         BlazeLayout.render("orderQueue");
     }
 });
-FlowRouter.route('/manager', {
+FlowRouter.route('/menuSuggestions', {
     action: function() {
-        BlazeLayout.render("manager");
+        BlazeLayout.render("menuSuggestions");
     }
 });
 FlowRouter.route('/waiter', {
