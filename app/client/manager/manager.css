@@ -218,7 +218,7 @@ h2.sub.header {
 
 #leaderBoardList {
     max-height: 500px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .hideBlock {

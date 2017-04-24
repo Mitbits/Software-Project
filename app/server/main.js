@@ -252,7 +252,6 @@ Meteor.startup(() => {
 			REVENUE = nTimesOrdered * MEAL.itemPrice;
 			PROFIT = REVENUE - COST;
 			
-			console.log("Cost of " + MEAL.itemName + ": " + costOfMeal + "\tProfit: " + PROFIT);
 			let pI = new popularItem({
 				"period": timePeriod,
 				"menuItemID": MEAL.itemID,
@@ -294,16 +293,21 @@ Meteor.startup(() => {
 						flag[popItem.period] = 1;
 				}
 			});
-			console.log(flag);
 			
 			if (flag[0] == 1 && flag[1] == 1 && flag[2] == 1) {
 				element.setItemPopularity(0); // Exclusive
 			}
-			else if (flag[0] == 1 && flag[1] == 1) {
+			else if (flag[0] == 1 && flag[1] == 1 && flag[2]== 0) {
 				element.setItemPopularity(2); //Medium
 			}
-			else if (flag[1] == 1 && flag[2] == 1) {
+			else if (flag[1] == 1 && flag[2] == 1 && flag[0] == 0) {
 				element.setItemPopularity(1); //High
+			}
+			else if (flag[1] == 1 && flag[0] == 0 && flag[2] == 0) {
+				element.setItemPopularity(2);
+			}
+			else if (flag[0] == 1 && flag[1] == 0 && flag[2] == 0) {
+				element.setItemPopularity(1);
 			}
 			else {
 				element.setItemPopularity(3); // Low
