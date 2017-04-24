@@ -29,13 +29,13 @@ div.manager {
     justify-content: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1.manager, h2.manager, h3.manager, h4.manager, h5.manager, h6.manager {
     margin: 0;
     padding: 0;
     font-weight: 300;
 }
 
-h1, h2 {
+h1.manager1, h2.manager1 {
     font-size: 1.5em;
 }
 
@@ -227,5 +227,6 @@ h2.sub.header {
 
 .displayBlock {
     display: block;
+    /*width: 271px;*/
 }
 

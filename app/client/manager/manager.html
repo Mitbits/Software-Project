@@ -16,31 +16,34 @@
         <i class="ion-ios-search search"></i>
 
         <h1 class="user-header">
-        ITEM NAME
+        {{itemNAME}}
         <br>
         <br>
         </h1>
 
         <div class="dial">
-            <h2 class="dial-value">
+            <h2 class="dial-value manager manager1">
                 Rank
             </h2>
-            <h3 class="dial-title">
-                {{cookTIME}}
+            <h3 class="dial-title manager manager1">
+                {{itemRANK}}
             </h3>
 
         </div>
 
         <section class="user managerRow" >
-            <h1 class="user-header">
+            <h1 class="user-header manager manager1">
                 <br>
                 <br>
 
                 PROFIT:
+                $ {{itemPROFIT}}
                 <br>
                 COST:
+                $ {{itemCOST}}
                 <br>
                 REVENUE:
+                $ {{itemREVENUE}}
 
 
             </h1>
@@ -56,10 +59,10 @@
     <section class="card-details card-section">
 
 
-        <h2>Exclusive</h2>
+        <h2 class="manager manager1">Exclusive</h2>
         <dl class="leaderboard" id = leaderBoardList>
 
-            {{#each items}}
+            {{#each itemsExclusive}}
                 {{> itemRow}}
             {{/each}}
 
@@ -78,10 +81,10 @@
         <!--Friends-->
         <!--</article>-->
         <!--</nav>-->
-        <h2>High</h2>
+        <h2 class="manager manager1">High</h2>
         <dl class="leaderboard" id = leaderBoardList>
 
-            {{#each items}}
+            {{#each itemsHigh}}
                 {{> itemRow}}
             {{/each}}
 
@@ -100,10 +103,10 @@
         <!--Friends-->
         <!--</article>-->
         <!--</nav>-->
-        <h2>Medium</h2>
+        <h2 class="manager manager1">Medium</h2>
         <dl class="leaderboard" id = leaderBoardList>
 
-            {{#each items}}
+            {{#each itemsMedium}}
                 {{> itemRow}}
             {{/each}}
 
@@ -122,10 +125,10 @@
         <!--Friends-->
         <!--</article>-->
         <!--</nav>-->
-        <h2>Low</h2>
+        <h2 class="manager manager1">Low</h2>
         <dl class="leaderboard" id = leaderBoardList>
 
-            {{#each items}}
+            {{#each itemsLow}}
                 {{> itemRow}}
             {{/each}}
 
