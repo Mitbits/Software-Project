@@ -2,12 +2,18 @@ import {Meteor} from 'meteor/meteor';
 import {Order, Orders, orderItem} from '../../order.js';
 import {chai} from 'meteor/practicalmeteor:chai';
 import {PriorityManager} from '../../priorityManager.js';
-import {MenuItem, ORDER_TYPE} from '../../menuItem.js';
+import {MenuItem, ORDER_TYPE, ingredientsArray, POPULARITY} from '../../menuItem.js';
 
 if(Meteor.isServer) {
   describe('Priority Manager', () => {
     describe('methods', () => {
       beforeEach(() => {
+        var ing = new ingredientsArray({
+            ingItemID: 2,
+            ingQuantity: 34
+        });
+        
+        var ingArray = [ing];
         MenuItem.remove({});
         item = new MenuItem({
           itemID: 1,
@@ -15,7 +21,10 @@ if(Meteor.isServer) {
       		itemDescription: "None",
       		mealType: 1,
       		itemPrice: 0.00,
-      		cookTime: 12
+      		cookTime: 12,
+            ingredients: ingArray,
+            timesOrdered: 2,
+            itemPopularity: POPULARITY.MEDIUM
         });
         item.save();
         item = new MenuItem({
@@ -24,7 +33,10 @@ if(Meteor.isServer) {
           itemDescription: "None",
           mealType: 2,
           itemPrice: 0.00,
-          cookTime: 12
+          cookTime: 12,
+            ingredients: ingArray,
+            timesOrdered: 2,
+           itemPopularity: POPULARITY.MEDIUM
         });
         item.save();
         item = new MenuItem({
@@ -33,7 +45,10 @@ if(Meteor.isServer) {
           itemDescription: "None",
           mealType: 3,
           itemPrice: 0.00,
-          cookTime: 12
+          cookTime: 12,
+            ingredients: ingArray,
+            timesOrdered: 2,
+            itemPopularity: POPULARITY.MEDIUM
         });
         item.save();
       }),
