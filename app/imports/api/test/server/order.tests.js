@@ -53,6 +53,8 @@ if(Meteor.isServer) {
           waiterID: 2,
           orderItems: [],
           timePlaced: new Date(),
+            tableID: 1,
+            isCompleted: true
         });
         try {
           order.save();
