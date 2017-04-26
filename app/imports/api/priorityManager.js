@@ -4,11 +4,49 @@ import { MenuItem, MenuItems, ORDER_TYPE} from './menuItem.js';
 
 //const orderQueueItems = new Mongo.Collection('orderQueueItems');
 
+export const PriorityManager = function(){
+	this.arr = [];
+	this.start = function(){
+
+		return (this.arr.length==0) ? [] :this.arr ;
+	},
+        this.set_order = function(order){
+
+		this.arr.push(order);
+	}
+	this.set_orders = function(order){
+		var item1 = MenuItem.findOne({'itemID':order.orderItems[0].menuItemID});
+		var item2 = MenuItem.findOne({'itemID':order.orderItems[1].menuItemID});
+		var item3 = MenuItem.findOne({'itemID':order.orderItems[2].menuItemID});
+		var array = [item1,item2,item3];
+		var output = [];
+		for(var i =1; i<=3; i++){
+		
+			for(var j = 0; j<3; j++){
+				if(array[j].mealType == i){
+					output.push(array[j]);
+					break;
+				}
+			}
+		}
+		return output;
+
+
+
+
+	}
+
+}
+
+
 /**
  * @function start
  * @summary Starts the priority manager, initializes the different variables needed for the function, operates on those variables to calculate the priorities
  * @returns {Array.<orderItems>} An array of order items in the correct order
  **/
+
+
+
 
 /** Node time picked based on longest item to cook **/
 

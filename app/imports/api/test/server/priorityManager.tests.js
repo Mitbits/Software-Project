@@ -53,15 +53,17 @@ if(Meteor.isServer) {
         item.save();
       }),
       it('returns an empty array when there are no orders', () => {
-        var arr = PriorityManager.start();
+        var arr = new PriorityManager().start();
         chai.assert.equal(arr.length, 0);
       }),
       it('prioritizes order by time placed', () => {
         Orders.remove({});
         var newOrder = new Order({
+          tableID: 2,
           orderID: 1,
           waiterID: 1,
           orderItems: [new orderItem({
+            actualCookTime: 6.56,
             itemID: 1,
             priority: 90,
             menuItemID: 1,
@@ -71,9 +73,11 @@ if(Meteor.isServer) {
         });
         newOrder.save();
         newOrder1 = new Order({
+	  tableID: 3,
           orderID: 2,
           waiterID: 1,
           orderItems: [new orderItem({
+	    actualCookTime:1.23,
             itemID: 2,
             priority: 90,
             menuItemID: 1,
@@ -82,28 +86,35 @@ if(Meteor.isServer) {
           timePlaced: new Date(),
         });
         newOrder1.save();
-        var arr = PriorityManager.start();
+        var priorityManager = new PriorityManager();
+	priorityManager.set_order(newOrder);
+	priorityManager.set_order(newOrder1);
+	var arr = priorityManager.start();
         chai.assert.equal(arr[0].orderID, 1);
         chai.assert.equal(arr[1].orderID, 2);
       }),
       it('prioritizes order by appetizer, entree and dessert in that order', () => {
         Orders.remove({});
         var newOrder = new Order({
+	  tableID: 3,
           orderID: 1,
           waiterID: 1,
           orderItems: [new orderItem({
+            actualCookTime: 3.54,
             itemID: 1,
             priority: 90,
             menuItemID: 1,
             specialRequests: "NONE"
           }),
           new orderItem({
+            actualCookTime: 4.34,
             itemID: 2,
             priority: 90,
             menuItemID: 2,
             specialRequests: "NONE"
           }),
           new orderItem({
+            actualCookTime: 2.34,
             itemID: 3,
             priority: 90,
             menuItemID: 3,
@@ -112,11 +123,11 @@ if(Meteor.isServer) {
           timePlaced: new Date(),
         });
         newOrder.save();
-        var arr = PriorityManager.start();
-        console.log(arr);
-        chai.assert.equal(arr[0].mealType, 'APPETIZER');
-        chai.assert.equal(arr[1].mealType, 'ENTREE');
-        chai.assert.equal(arr[2].mealType, 'DESSERT');
+        var priorityManager =  new PriorityManager();
+	var arr = priorityManager.set_orders(newOrder);
+        chai.assert.equal(arr[0].mealType, ORDER_TYPE.APPETIZER);
+        chai.assert.equal(arr[1].mealType, ORDER_TYPE.ENTREE);
+        chai.assert.equal(arr[2].mealType, ORDER_TYPE.DESSERT);
       })
     });
   });

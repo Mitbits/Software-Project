@@ -1,7 +1,7 @@
 
 
 import { Meteor } from 'meteor/meteor';
-import {Table,TableStatus,TableType,TableCluster} from '../../table.js';
+import {Table,TableStatus,TableType,TableCluster,TableManager} from '../../table.js';
 import {assert } from 'meteor/practicalmeteor:chai';
 import {Reservation} from '../../reservation.js';
 
@@ -25,6 +25,7 @@ if (Meteor.isServer) {
 					"billPaid"	: false,
 				});
 				table_entry.save();
+				new TableManager({}).save();
 
 			}),
 			it('can remove a reservation', () => {
@@ -37,10 +38,11 @@ if (Meteor.isServer) {
 					'date'     : new Date('03/22/2017 4:00 PM'),
 				});
 				reservation.save();
+				TableManager.findOne({}).pushReservation(reservation);
 				var table = Table.findOne({'table_id':1});
 				table.reservation = reservation;
 				table.save();
-				table.removeReservation();
+				table.clean();
 				table = Table.findOne({'table_id':1});
 				assert.equal(table.reservation,null);
 			}),
@@ -68,14 +70,10 @@ if (Meteor.isServer) {
 	describe('TableCluster/Table/Reservation Integration tests', ()=>{
 		describe('methods', ()=>{
 			beforeEach(()=>{
-				TableCluster.remove({});
 				Reservation.remove({});
 				Table.remove({});
-				var tablecluster = new TableCluster({
-				"size":4,
-				"reservations": []
-					});
-				tablecluster.save();
+				TableManager.remove({});
+				new TableManager({}).save();
 				var reservation = new Reservation({
 					'firstName': "Bob",
 					'lastName' : "Sam",
@@ -102,30 +100,30 @@ if (Meteor.isServer) {
 			}),
 			it('can add a reservation to the wait queue', ()=>{
 				var reservation = Reservation.findOne({'phoneNum':12});
-				var tablecluster = TableCluster.findOne({'size':4});
-				assert.equal(tablecluster.reservations.length,0);
-				tablecluster.pushReservation(reservation);
-				tablecluster = TableCluster.findOne({'size':4});
-				assert.equal(tablecluster.reservations.length,1);
-				assert.equal(tablecluster.reservations[0].phoneNum,12);
+				var tablemanager = TableManager.findOne({});
+				assert.equal(tablemanager.reservations.length,0);
+				tablemanager.pushReservation(reservation);
+				tablemanager = TableManager.findOne({});
+				assert.equal(tablemanager.reservations.length,1);
+				assert.equal(tablemanager.reservations[0].phoneNum,12);
 				
 			}),
 			it('can pop a reservation from its wait queue', ()=>{
 				var reservation = Reservation.findOne({'phoneNum':12});
-				var tablecluster = TableCluster.findOne({'size':4});
-				tablecluster.pushReservation(reservation);
-				tablecluster = TableCluster.findOne({'size':4});
-				assert.equal(tablecluster.reservations.length,1);
-				tablecluster.popReservation(reservation);
-				tablecluster = TableCluster.findOne({'size':4});
-				assert.equal(tablecluster.reservations.length,0);
+				var tablemanager = TableManager.findOne({});
+				tablemanager.pushReservation(reservation);
+				tablemanager = TableManager.findOne({});
+				assert.equal(tablemanager.reservations.length,1);
+				tablemanager.popReservation(reservation);
+				tablemanager = TableManager.findOne({});
+				assert.equal(tablemanager.reservations.length,0);
 			}),
 			it('can reserve a table for a customer', () => {
-				var tablecluster = TableCluster.findOne({'size':4});
+				var tablemanager = TableManager.findOne({});
 				var reservation = Reservation.findOne({'phoneNum':12});
-				tablecluster.pushReservation(reservation);
-				tablecluster = TableCluster.findOne({'size':4});
-				tablecluster.tableChecker();
+				tablemanager.pushReservation(reservation);
+				tablemanager = TableManager.findOne({});
+				tablemanager.startPollReservations();
 
 				Meteor._sleepForMs(1500);
 				reservation = Reservation.findOne({'phoneNum':12});
@@ -133,12 +131,12 @@ if (Meteor.isServer) {
 
 			}),
 			it('can test for a valid reservation', ()=>{
-				var tablecluster = TableCluster.findOne({'size':4});
+				var tablemanager = TableManager.findOne({});
 				var reservation = Reservation.findOne({'phoneNum':12});
-				var ret = tablecluster.checkValidReservation(reservation.date);
+				var ret = tablemanager.verifyReservation(reservation.date);
 				assert.equal(ret,true);
 
-				tablecluster.pushReservation(reservation);
+				tablemanager.pushReservation(reservation);
 				var new_reservation = new Reservation({
 					'firstName': "Bob",
 					'lastName' : "Sam",
@@ -149,7 +147,7 @@ if (Meteor.isServer) {
 
 				});
 				new_reservation.save();
-				ret = tablecluster.checkValidReservation(new_reservation.date);
+				ret = tablemanager.verifyReservation(new_reservation.date);
 				assert.equal(ret,false);
 
 			});
