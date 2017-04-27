@@ -1,6 +1,6 @@
 import { Class, Enum, Type } from 'meteor/jagi:astronomy';
 import { Orders } from './order.js';
-import { MenuItem, MenuItems, ORDER_TYPE} from './menuItem.js';
+import { MenuItem, MenuItems, ORDER_TYPE } from './menuItem.js';
 
 //const orderQueueItems = new Mongo.Collection('orderQueueItems');
 
