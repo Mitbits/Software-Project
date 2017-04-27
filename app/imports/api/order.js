@@ -47,7 +47,11 @@ export const orderItem = Class.create({
 			type: Number
 		},
 		isCompleted: {
-			type: Boolean
+			type: Boolean,
+			optional: true,
+			default: function(){
+				return false;
+			}
 		}
 	}
 });
@@ -85,7 +89,11 @@ export const Order = Class.create({
 			type: Date
 		},
 		isCompleted: {
-			type: Boolean
+			type: Boolean,
+			optional: true,
+			default: function(){
+				return false;
+			}
 		}
 	},
 	indexes: {
