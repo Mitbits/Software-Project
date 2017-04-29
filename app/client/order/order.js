@@ -114,7 +114,7 @@ var doneButtonHandler = function(event, templateInstance) {
         var element1 = Order.findOne({ orderID: templateInstance.data.orderID })
           .setItemCompleted(true, templateInstance.data.itemID - 1);
         //console.log(MenuItem.findOne({itemID: element1}).ingredients.length);
-        var length = MenuItem.findOne({itemID: element1}).ingredients.length;
+
         //console.log(MenuItem.findOne({itemID: element1}).itemName);
         MenuItem.findOne({itemID: element1}).incrementTimesOrdered();
         for(var i = 0; i < length; i++) {

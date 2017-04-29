@@ -42,7 +42,7 @@ FlowRouter.route('/orderqueue', {
 });
 FlowRouter.route('/manager', {
     action: function() {
-        BlazeLayout.render("manager");
+        BlazeLayout.render("menuSuggestions");
     }
 });
 FlowRouter.route('/waiter', {
