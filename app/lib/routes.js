@@ -9,7 +9,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
  * @param /Reserve - BlazeLayout.render("reservationPage");
  * @param /Success - BlazeLayout.render("reservationSuccess");
  * @param /orderqueue - BlazeLayout.render("orderQueue");
- * @param /manager - BlazeLayout.render("manager");
+ * @param /manager - BlazeLayout.render("menuSuggestions");
  * @param /waiter - BlazeLayout.render("waiter");
  *
  */

@@ -1,16 +1,14 @@
 import { Meteor } from 'meteor/meteor';
-
 import {initData} from './dataDriver.js';
 import { Bill } from '../imports/api/billsJS.js';
 import { Reservation } from '../imports/api/reservation.js';
-
 import { Order, Orders, orderItem } from '../imports/api/order.js';
 import { inventoryItem, inventoryItems } from '../imports/api/ingredient.js';
 import { MenuItem, MenuItems, ingredientsArray } from '../imports/api/menuItem.js';
 import {ArchivedReservation,ArchivedReservations} from  '../imports/api/data/reservation.js';
 import { Table,Tables, TableStatus, TableType, TableManager  } from '../imports/api/table.js';
 import { popularItem, itemLeaderboard, POPULARITY_PERIOD } from '../imports/api/mealSuggestions.js';
-
+export var allItems;
 
 /**
  *@function Meteor.startup
@@ -40,7 +38,7 @@ Meteor.startup(() => {
     var table_manager = new TableManager();
     table_manager.save();
     table_manager.startPollReservations();
-    export var allItems;
+
 
 
     // code to run on server at startup
