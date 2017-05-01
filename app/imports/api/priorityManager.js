@@ -4,41 +4,6 @@ import { MenuItem, MenuItems, ORDER_TYPE } from './menuItem.js';
 
 //const orderQueueItems = new Mongo.Collection('orderQueueItems');
 
-export const PriorityManager = function(){
-	this.arr = [];
-	this.start = function(){
-
-		return (this.arr.length==0) ? [] :this.arr ;
-	},
-        this.set_order = function(order){
-
-		this.arr.push(order);
-	}
-	this.set_orders = function(order){
-		var item1 = MenuItem.findOne({'itemID':order.orderItems[0].menuItemID});
-		var item2 = MenuItem.findOne({'itemID':order.orderItems[1].menuItemID});
-		var item3 = MenuItem.findOne({'itemID':order.orderItems[2].menuItemID});
-		var array = [item1,item2,item3];
-		var output = [];
-		for(var i =1; i<=3; i++){
-		
-			for(var j = 0; j<3; j++){
-				if(array[j].mealType == i){
-					output.push(array[j]);
-					break;
-				}
-			}
-		}
-		return output;
-
-
-
-
-	}
-
-}
-
-
 /**
  * @function start
  * @summary Starts the priority manager, initializes the different variables needed for the function, operates on those variables to calculate the priorities
@@ -71,16 +36,16 @@ export default function updatePriorityManager() {
 		}))
 	}*/
 	AVG_ORDER_TIMES = [[],[],[]];
-	
-    orders.forEach(function (order) {		
+
+    orders.forEach(function (order) {
 		let nApp = 0, nEnt = 0, nDes = 0;
-		
+
 		let tS1 = 0, tS2 = 0, tS3 = 0;
 		let nS1 = 0, nS2 = 0, nS3 = 0;
-		 
+
 		let prtyApp = 0, prtyEnt = 0, prtyDes = 0;
 		let orderItems = order.orderItems; // returns array of orderItems
-		
+
 		orderItems.forEach(function(orderItem) {
             if (orderItem.isCompleted == false) {
 				var menuItem = MenuItems.findOne({ itemID: orderItem.menuItemID });
@@ -139,7 +104,7 @@ export default function updatePriorityManager() {
                 prtyApp = S1, prtyEnt = S2, prtyDes = S3;
             }
 		}
-		
+
 		console.log("orderID:: " + order.orderID);
 		/** Assign priority values based on stage **/
 		mOrderQueueItems.forEach(function(orderItem) {
@@ -153,7 +118,7 @@ export default function updatePriorityManager() {
 				else if (orderItem.mealType == "DESSERT") {
 					orderItem.priorityVal = prtyDes;
 				}
-				
+
 				if (orderItem.priorityVal == S1) {
 					tS1 += orderItem.cookTime;
 					nS1++;
@@ -172,34 +137,34 @@ export default function updatePriorityManager() {
 		/*
 		let orderItemsS1 = [], orderItemsS2 = [], orderItemsS3 = [];
 		mOrderQueueItems.forEach(function(element){
-		
+
 			if(element.priorityVal == S1){
-				
+
 				orderItemsS1.push(element);
 			}
 			else if(element.priorityVal == S2){
 				orderItemsS2.push(element);
-				
+
 			}
 			else if(element.priorityVal == S3){
 				orderItemsS3.push(element);
 			}
-		
-		
+
+
 		});
-		
+
 		orderItemsS1.sort(function(a, b) {
 			return b[5] - a[5];
 		});
-		
+
 		orderItemsS2.sort(function(a, b) {
 			return b[5] - a[5];
 		});
-		
+
 		orderItemsS3.sort(function(a, b) {
 			return b[5] - a[5];
 		});
-			
+
 		if (nS1) {
             AVG_ORDER_TIMES[0].push([
                 order.orderID,
@@ -243,7 +208,7 @@ export default function updatePriorityManager() {
                 0,0,
 				[]
             ]);
-		}		
+		}
 	});
 
 	AVG_ORDER_TIMES.forEach(function(element) {
@@ -251,25 +216,25 @@ export default function updatePriorityManager() {
 			return b[1] - a[1];
         });
 	});
-	
+
 	let numS1 = 0, numS2 = 0, numS3 = 0;
-	
+
 	console.log(AVG_ORDER_TIMES);
-	
+
 	let numS1ItemsMit = 0;
 	AVG_ORDER_TIMES[0].forEach(function(order) {
 		numS1ItemsMit += order[3].length
 		console.log(AVG_ORDER_TIMES[0][3]);
 	});
 	console.log("numS1ItemsMit: " + numS1ItemsMit);
-	
+
 	for (let mit = 0; mit < numS1ItemsMit; mit++) {
 		let avgMax = [[]], numS1Items;
-		
+
 		AVG_ORDER_TIMES[0].forEach(function(order) {
 			let cookTimeSum = 0;
 			for (let i = 0; i < order[3].length; i++) {
-				cookTimeSum += order[3][i].cookTime; 
+				cookTimeSum += order[3][i].cookTime;
 				numS1Items++;
 			}
 			let avgTime = cookTimeSum / order[3].length;
@@ -282,7 +247,7 @@ export default function updatePriorityManager() {
 		avgMax.sort(function(a, b) {
 			return b[0] - a[0];
         });
-		
+
 		AVG_ORDER_TIMES[0].forEach(function(order) {
 			console.log("order[0]: " + order[0]);
 			console.log("avgMax[0][1]: " + avgMax);
@@ -293,8 +258,8 @@ export default function updatePriorityManager() {
 			}
 		});
 	}
-	
-	
+
+
 	*/
 	//console.log("AVG ARRAY");
     //console.log(AVG_ORDER_TIMES);
@@ -304,7 +269,7 @@ export default function updatePriorityManager() {
     mOrderQueueItems.sort(function(a, b) {
         return (b.priorityVal) - parseFloat(a.priorityVal);
     });
-	
+
 	return mOrderQueueItems;
 }
 
@@ -391,3 +356,37 @@ export const orderQueueItem = Class.create({
 		}
 	}
 });
+
+export const PriorityManager = function(){
+	this.arr = [];
+	this.start = function(){
+
+		return (this.arr.length==0) ? [] :this.arr ;
+	},
+        this.set_order = function(order){
+
+		this.arr.push(order);
+	}
+	this.set_orders = function(order){
+		var item1 = MenuItem.findOne({'itemID':order.orderItems[0].menuItemID});
+		var item2 = MenuItem.findOne({'itemID':order.orderItems[1].menuItemID});
+		var item3 = MenuItem.findOne({'itemID':order.orderItems[2].menuItemID});
+		var array = [item1,item2,item3];
+		var output = [];
+		for(var i =1; i<=3; i++){
+
+			for(var j = 0; j<3; j++){
+				if(array[j].mealType == i){
+					output.push(array[j]);
+					break;
+				}
+			}
+		}
+		return output;
+
+
+
+
+	}
+
+}
