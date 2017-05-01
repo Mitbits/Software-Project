@@ -10,7 +10,7 @@ if (Meteor.isServer) {
 		describe('methods', () =>{
 
 
-			beforeEach(() => {;
+			beforeEach(() => {
 				Table.remove({});
 				Reservation.remove({});
 
@@ -152,6 +152,54 @@ if (Meteor.isServer) {
 
 			});
 		});
+	}),
+	describe('Merging', () => {
+		describe('methods', ()=>{
+			beforeEach(() =>{
+				TableManager.remove({});	
+				Table.remove({});
+				Reservation.remove({});
+				new TableManager({}).save();
+				new Table({
+					"size":3,
+					"table_status":TableStatus.CLEAN,
+					"table_type": TableType.RESERVATION
+				}).save();
+				new Table({
+					"size": 3,
+					"table_status": TableStatus.CLEAN,
+					"table_type": TableType.RESERVATION
+				}).save();
+				var now = new Date();
+				now.setMinutes(now.getMinutes()+5);
+				new Reservation({
+					firstName: "john",
+					lastName: "doe",
+					phoneNum: 2222222222,
+					email: "lol@lol.com",
+					seats: 6,
+					date: now
+				}).save();
+
+			}),
+			it('merge reservations tables',()=>{
+				var tables_count = 0;
+			
+				assert.equal(Table.find({size:Reservation.findOne({}).seats/2}).count(),2);
+				assert.equal(Table.find({size:Reservation.findOne({}).seats}).count(),0)
+				TableManager.findOne({}).startPollReservations();
+				TableManager.findOne({}).pushReservation(Reservation.findOne({}));
+				Meteor._sleepForMs(1500);
+				assert.equal(Table.find({size:6}).count(),1);
+				assert.equal(Table.find({size:3}).count(),2);
+				assert.equal(Table.findOne({size:Reservation.findOne({}).seats/2}).merged,true)
+				assert.equal(Table.findOne({size:Reservation.findOne({}).seats}).table_components.length,2);
+
+			})
+		})
+
+
 	});
+
 
 }

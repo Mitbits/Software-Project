@@ -366,10 +366,12 @@ export const TableManager = Class.create({
 			if(!res.isToday() || res.assigned) {
 				return;
 			}
+		
  
 		    var time_difference = Math.floor(((res.date.getTime()*1-now.getTime()*1)/1000)/3600);
 		    var size = res.seats;
 		    if (time_difference < manager.reservation_intv ) {
+			  
 				var table  = null;
 				//needs to be multiple of two
 			    	//round up
@@ -384,6 +386,7 @@ export const TableManager = Class.create({
 			    	else {
 					table = manager.getTables(2,size/2,TableType.RESERVATION,TableStatus.CLEAN);
 					if(table != null && table.length == 2){
+ 						console.log("M"+res.firstName);
 						manager.mergeTable(table,res);
 						return;
 					}else{
@@ -395,6 +398,7 @@ export const TableManager = Class.create({
 					
 					}
 				}
+			    console.log("WTF");
 			    	manager.popReservation(res);
 				return;
 		    }
