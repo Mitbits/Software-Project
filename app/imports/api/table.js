@@ -279,7 +279,7 @@ export const TableManager = Class.create({
 
 	},
         assignTable(table,res){
-	    console.log(table);
+	   
 	    var table_obj = Table.findOne({'table_id':table});
 	    
             res.assigned = true;
@@ -386,7 +386,7 @@ export const TableManager = Class.create({
 			    	else {
 					table = manager.getTables(2,size/2,TableType.RESERVATION,TableStatus.CLEAN);
 					if(table != null && table.length == 2){
- 						console.log("M"+res.firstName);
+ 					
 						manager.mergeTable(table,res);
 						return;
 					}else{
