@@ -1,3 +1,7 @@
+// written by: Prabhjot Singh
+// tested by: Dylan Herman
+// debugged by: Raj Patel
+// assisted by: Mit Patel
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
@@ -40,19 +44,33 @@ function createOrderItem(mItemID, mPriority, mMenuItemID, mSpecialRequests) {
 		"isCompleted": false
     });
 };
-
+/**
+ * @function createBillItem
+ * @summary Creates an a bill item with the following parameters
+ * @param mBillItemName
+ * @param mBillItemPrice
+ */
 function createBillItem(mBillItemName, mBillItemPrice) {
     return new billItem({
         "billItemName": mBillItemName,
         "billItemPrice": mBillItemPrice
     });
 };
+/**
+ * @function setTableID
+ * @summary sets the tableID to the selected table
+ * @param tableID
+ */
 function setTableID(tableID) {
     selectedTable = tableID;
     console.log(selectedTable);
 };
 
 Template.table.events({
+    /**
+     * @function click .tableID
+     * @summary Adds a red dashed border around the selected table and calls setTableID
+     */
     'click .tableID' () {
         $("#"+this.table_id).toggleClass("selectedTable");
         var tableID = this.table_id;
@@ -182,6 +200,10 @@ Template.waiter.events({
             .modal('show')
         ;
     },
+    /**
+     * @function click .payBill
+     * @summary Displays the bill for the table and hides the rest along with the sidebar
+     */
     'click .payBill' () {
         document.getElementById("floorPlan").className = "displayNone";
         document.getElementById("entreeMenu").className = "displayNone";
@@ -193,6 +215,10 @@ Template.waiter.events({
 
 
     },
+    /**
+     * @function click #payButton
+     * @summary Marks the bill as paid and sets the respective table to dirty
+     */
     'click #payButton' () {
         $(".receipt").slideUp("slow");
         $(".paid").slideDown("slow");
@@ -274,15 +300,24 @@ Template.waiter.helpers({
     },
     /**
      * @function selected
-     * @summary returns all the objects from the selectedItems collection
+     * @summary returns all the objects from the orderArray reactive variable
      */
     selected() {
         return(rvOrderArray.get());
     },
+    /**
+     * @function orderList
+     * @summary returns all the objects that are part of this table's bill
+     */
     orderList() {
         //console.log(rvItemQueue.get());
         return Bills.findOne({},{sort:{billTimeCreated : -1}}).billItems;
     },
+    /**
+     * @function getTotalCost
+     * @summary calculates and returns the total cost of all items on the bill to display.
+     * @returns {number}
+     */
     getTotalCost() {
         let totalCost = 0;
         let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
@@ -304,6 +339,10 @@ Template.waiter.helpers({
         return totalCost;
 
     },
+    /**
+     * @function Date
+     * @summary Gets the date of the current bill and returns it in a proper format
+     */
     Date () {
         var date = Bills.findOne({},{sort:{billTimeCreated : -1}}).billTimeCreated;
         var day = date.getDate();
@@ -314,9 +353,17 @@ Template.waiter.helpers({
         date = (hour + ":" + minute + " " + month + "/" + day + "/" + year);
         return date;
     },
+    /**
+     * @function barcode
+     * @summary Returns the unique ID of each bill to display
+     */
     barcode () {
         return Bills.findOne({},{sort:{billTimeCreated : -1}})._id;
     },
+    /** @function fifteenPercent
+     * @summary Returns 15% of the total cost to suggest as a tip
+     * @returns {number}
+     */
     fifteenPercent () {
         let totalCost = 0;
         let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
@@ -338,6 +385,10 @@ Template.waiter.helpers({
         }
         return totalCost;
     },
+    /** @function eighteenPercent
+     * @summary Returns 18% of the total cost to suggest as a tip
+     * @returns {number}
+     */
     eighteenPercent() {
         let totalCost = 0;
         let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems;
@@ -359,6 +410,10 @@ Template.waiter.helpers({
         }
         return totalCost;
     },
+    /** @function twentyPercent
+     * @summary Returns 20% of the total cost to suggest as a tip
+     * @returns {number}
+     */
     twentyPercent() {
         let totalCost = 0;
         let itemPrice = Bills.findOne({}, {sort: {billTimeCreated: -1}}).billItems
@@ -377,6 +432,10 @@ Template.waiter.helpers({
         }
         return totalCost;
     },
+    /**
+     * @function topThreeDrinks
+     * @summary Returns the top three drinks, Appetizers, Entrees and Desserts in the menu
+     */
     topThreeDrinks() {
 
         let i = 0;
@@ -417,18 +476,38 @@ Template.waiter.helpers({
 });
 
 Template.selectedCards.helpers({
+    /**
+     * @function itemName
+     * @summary returns the name of the menu item for the given order
+     * @param order
+     */
 	itemName(order) {
 		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemName;
 	},
+    /**
+     * @function itemPrice
+     * @summary returns the price of the menu item for the given order
+     * @param order
+     */
 	itemPrice(order) {
 		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemPrice;
 	},
+    /**
+     * @function itemDescription
+     * @summary returns the description of the menu item for the given order
+     * @param order
+     */
 	itemDescription(order) {
 		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.itemDescription;
 	},
+    /**
+     * @function cookTime
+     * @summary returns the cookTime for the given order
+     * @param order
+     */
 	cookTime(order) {
 		let menuItem = MenuItems.findOne({itemID: order.menuItemID});
 		return menuItem.cookTime;
@@ -436,6 +515,11 @@ Template.selectedCards.helpers({
 });
 
 Template.menuCards.helpers({
+    /**
+     * @function isTopOne
+     * @summary Returns true if the item is first on the top list
+     * @returns {boolean}
+     */
     'isTopOne': function () {
         topDrinksArray = rvtopDrinksArray.get();
         topAppsArray = rvtopAppsArray.get();
@@ -446,6 +530,11 @@ Template.menuCards.helpers({
             return true;
         }
     },
+    /**
+     * @function isTopTwo
+     * @summary Returns true if the item is second on the top list
+     * @returns {boolean}
+     */
     'isTopTwo': function() {
         topDrinksArray = rvtopDrinksArray.get();
         topAppsArray = rvtopAppsArray.get();
@@ -456,6 +545,11 @@ Template.menuCards.helpers({
             return true;
         }
     },
+    /**
+     * @function isTopThree
+     * @summary Returns true if the item is third on the top list
+     * @returns {boolean}
+     */
     'isTopThree': function() {
         topDrinksArray = rvtopDrinksArray.get();
         topAppsArray = rvtopAppsArray.get();

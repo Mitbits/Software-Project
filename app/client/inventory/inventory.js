@@ -1,3 +1,7 @@
+// written by: Prabhjot Singh
+// tested by: Moulindra Muchumari
+// debugged by: Raj Patel
+// assisted by: Nill Patel
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { inventoryItems, inventoryItem} from '../../imports/api/ingredient.js';
 import { ReactiveVar } from 'meteor/reactive-var';
@@ -10,15 +14,12 @@ var i = 0;
 var k = 0;
 var totalCost = 0.00;
 var rvtotalCost = new ReactiveVar();
-// function createShoppingList(itemName,itemQuantity,itemPrice) {
-//
-// };
+
 Template.inventoryPage.events({
-    'click #inventoryPlus' () {
-        $('#addIngredientModal')
-            .modal('show')
-        ;
-    },
+    /**
+     * @function #buyMore
+     * @summary clicking the button in the inventory box adds it to the shopping list
+     */
     'click #buyMore' () {
         inventoryItem1 = {
             id: this.invID,
@@ -55,6 +56,10 @@ Template.inventoryPage.events({
         }
         Template.inventoryPage.__helpers.get('totalCost')();
     },
+    /**
+     * @function click .remove.icon.link
+     * @summary Removes the selected item from the shopping list
+     */
     'click .remove.icon.link' () {
         for (i = 0; i < shoppingList.length; i++)
         {
@@ -67,11 +72,19 @@ Template.inventoryPage.events({
         Template.inventoryPage.__helpers.get('totalCost')();
 
     },
+    /**
+     * @function click #clearList
+     * @summary Clears the shopping list
+     */
     'click #clearList' () {
         shoppingList = [];
         rvShoppingList.set(shoppingList);
         Template.inventoryPage.__helpers.get('totalCost')();
     },
+    /**
+     * @function click .small.send.icon.link
+     * @summary Sends the order, which automatically updates the inventory
+     */
     'click .small.send.icon.link' () {
         console.log("Hullo");
         for(var i = 0; i < shoppingList.length; i++) {
@@ -84,40 +97,31 @@ Template.inventoryPage.events({
     }
 
 })
-Template.addItemModal.events({
-    'click .ui.red.right.floated.button' () {
-        console.log("Hello");
-        // var ItemName = document.getElementById('itemName').value;
-        // var ItemQuantity = document.getElementById('itemQuantity').value;
-        // var ItemPrice = document.getElementById('itemPrice').value;
-        // var ItemPerUnit = document.getElementById('itemPerUnit').value;
-        // var ItemUnits = document.getElementById("itemUnits").innerHTML;
-        // var ItemThreshold = document.getElementById('itemThreshold').value;
-        // new inventoryItem({
-        //     invID: inventoryItem.findOne({}, { sort: {invID: -1}}).invID + 1,
-        //     invName: ItemName,
-        //     invQuantity: ItemQuantity,
-        //     invPrice: ItemPrice,
-        //     invPerUnit: ItemPerUnit,
-        //     invUnits: ItemUnits,
-        //     invThreshold: ItemThreshold,
-        // }).addItem();
-    }
-})
 
 
 /* Inventory.js */
 
 Template.inventoryPage.helpers({
+    /**
+     * @function ingredients
+     * @summary Returns the ingredients in the order of most frequently used
+     */
     ingredients() {
         //console.log(inventoryItems.find({invThreshold: {$gt: 'invQuantity'}}));
         return inventoryItems.find({},{sort: {invTimesUsed: -1}});
     },
-
+    /**
+     * @function shoppingArray
+     * @summary Returns all the items in the shopping list
+     */
     shoppingArray() {
         //console.log(rvShoppingList.get());
         return (rvShoppingList.get());
     },
+    /**
+     * @function totalCost
+     * @summary Returns the total cost of all items in the shopping list
+     */
     totalCost() {
         totalCost = 0.00;
         for(var i =0; i < shoppingList.length; i++) {
@@ -143,12 +147,21 @@ Template.inventoryPage.helpers({
     }
 })
 Template.ingredientRow.helpers({
+    /**
+     * @function belowThreshold
+     * @summary Checks if the item is below the threshold
+     * @returns {boolean}
+     */
     belowThreshold() {
         if(this.invQuantity < this.invThreshold)
         {
             return true;
         }
     },
+    /**
+     * @function decimalPrice
+     * @summary Convers
+     */
     decimalPrice () {
         var price = this.invPrice;
         if(price < 0 ){
