@@ -1,6 +1,12 @@
+
 //written by: Prabhjot singh, Dylan herman and Nill Patel
 //tested by: Prabhjot Singh, dylan herman and Nill Patel
 //debugged by:  Prabhjot Singh, Dylan Herman and Nill Patel
+
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
 
 import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports/api/table.js';
 

@@ -8,7 +8,11 @@ Project Website: https://github.com/Mitbits/Software-Project
 	https://github.com/Mitbits/Software-Project. If you do not have Internet access, you will
 	find a basic text version of the installation instructions in the current folder.
 	
-2.	Directory Tree
+2.	Unit and Integration Test Instructions (Client and Server)
+	
+	The instructions to run the tests are located in a separate file: ./code/app/READMETest.txt
+	
+3.	Directory Tree
 
 + README.txt : Basic information about the contents of the electronic archive.
 + Installation.txt : Offline instructions for running the software.
@@ -16,6 +20,8 @@ Project Website: https://github.com/Mitbits/Software-Project
 	+ Demo_01_Slides : The presentation slides used for Demo 1
 	+ Group_02_Report1_Full : The submitted version of Report 2 (Full)
 	+ Group_02_Report2_Full : The submitted version of Report 2 (Full)
+- design
+	+ Diagrams.zip : ZIP archive of relevant diagram images
 - code
 	- app
 		- client
@@ -37,10 +43,10 @@ Project Website: https://github.com/Mitbits/Software-Project
 				+ manager.html
 				+ manager.js
 			- order
-				+ CountDownTimer.js
-				+ order.css
-				+ order.html
-				+ order.js
+				+ CountDownTimer.js : Handles counters for order queue
+				+ order.css :  Configures styles for order queue UI
+				+ order.html : Displays order queue and relevant data
+				+ order.js : Controls client side order queue logic
 			- reservation
 				+ reservation.css
 				+ reservation.html
@@ -88,14 +94,14 @@ Project Website: https://github.com/Mitbits/Software-Project
 						+ order.tests.js
 						+ priorityMangager.tests.js
 						+ table.tests.js
-			+ billJS.js
-			+ ingredient.js
-			+ mealSuggestions.js
-			+ menuItem.js
-			+ order.js
-			+ priorityManager.js
-			+ reservation.js
-			+ table.js
+			+ billJS.js : Server side class and database setup for billItems and bill
+			+ ingredient.js : Server side class and database setup for ingredients
+			+ mealSuggestions.js : Server side class and database setup for popularItems
+			+ menuItem.js : Server side class and database setup for menuItems
+			+ order.js : Server side class and database setup for order and orderItems
+			+ priorityManager.js : Server side class and database setup for priority manager
+			+ reservation.js : Server side class and database setup for reservation
+			+ table.js : Server side class and database setup for table
 		- lib
 		- private
 			+ debug.log

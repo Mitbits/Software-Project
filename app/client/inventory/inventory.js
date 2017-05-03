@@ -1,7 +1,14 @@
+
 // written by: Prabhjot Singh
 // tested by: Moulindra Muchumar
 // debugged by: Raj Patel
 // assisted by: Nill Patel
+
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
+
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { inventoryItems, inventoryItem} from '../../imports/api/ingredient.js';
 import { ReactiveVar } from 'meteor/reactive-var';

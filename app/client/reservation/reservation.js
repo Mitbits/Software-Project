@@ -1,6 +1,13 @@
+
 //written by : Prabhjot Singh, Dylan Herman and Nill Patel
 //tested by:  Prabhjot Singh, Dylan Herman and Nill Patel
 //debugged by:  Prabhjot Singh, Dylan Herman and Nill Patel
+
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
+
 import {Reservations} from '../../imports/api/reservation.js';
 import { Reservation } from '../../imports/api/reservation.js';
 import { TableManager } from '../../imports/api/table.js';

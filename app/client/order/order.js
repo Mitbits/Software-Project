@@ -1,3 +1,8 @@
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
+
 import { CountDownTimer } from './CountDownTimer.js';
 import { Template } from 'meteor/templating';
 import { Order, Orders } from '../../imports/api/order.js';
@@ -80,7 +85,7 @@ Template.orderQueue.helpers({
 
 /**
  * @function doneButtonHandler
- * @summary Allows user to get rid of an order from the order queue
+ * @summary Allows user to get rid of an order from the order queue and use that data to update new existing values in database based on the algorithm
  * @param event
  * @param templateInstance
  */
