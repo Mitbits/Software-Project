@@ -11,6 +11,8 @@ Project Website: https://github.com/Mitbits/Software-Project
 2.	Unit and Integration Test Instructions (Client and Server)
 	
 	The instructions to run the tests are located in a separate file: ./code/app/READMETest.txt
+	These instructions are an extension to the installation instructions. Therefore, make sure
+	you learn how to run the project before attempting this.
 	
 3.	Directory Tree
 
@@ -18,8 +20,9 @@ Project Website: https://github.com/Mitbits/Software-Project
 + Installation.txt : Offline instructions for running the software.
 - doc : Relevant documents to the project
 	+ Demo_01_Slides : The presentation slides used for Demo 1
-	+ Group_02_Report1_Full : The submitted version of Report 2 (Full)
+	+ Group_02_Report1_Full : The submitted version of Report 1 (Full)
 	+ Group_02_Report2_Full : The submitted version of Report 2 (Full)
+	+ Group_02_Report3_Full : The submitted version of Report 3 (Full)
 - design
 	+ Diagrams.zip : ZIP archive of relevant diagram images
 - code
