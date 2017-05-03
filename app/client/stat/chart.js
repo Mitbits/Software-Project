@@ -1,3 +1,6 @@
+//written by Moulindra Muchumari
+//assisted by Dylan Herman
+//tested by Moulindra Muchumari and Dylan Herman
 const primaryColors = ['#B7A6AD', '#BEB2A7', '#CAB388', '#B5B292', '#A8ADB4'];
 const secondaryColors = ['#502812', '#892034', '#6F256C', '#004236', '#9F9B74'];
 

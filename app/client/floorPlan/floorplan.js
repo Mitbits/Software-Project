@@ -1,11 +1,23 @@
 
+//written by: Prabhjot singh, Dylan herman and Nill Patel
+//tested by: Prabhjot Singh, dylan herman and Nill Patel
+//debugged by:  Prabhjot Singh, Dylan Herman and Nill Patel
+
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
+
 import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports/api/table.js';
 
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
 
-
 Template.floorplan.events({
+	/*
+	 *@function click #merge_button
+	 *@summary transistions interface to manual merge interface, allows for selecting tables to merge
+	 */
 	'click #merge_button' (){
 		// check of the button to enter the merge interface was clicked
 		if($(event.target).attr("clicked") == "false"){
@@ -84,7 +96,10 @@ Template.table.events({
         $("#"+this.table_id).removeClass("selectedTable");
 
     },
-
+/*
+ * @function click .small.red.button.left.attached.label
+ * @summary unmerges selected table
+ */
     'click .small.red.bottom.left.attached.label' (){
 	    //break up merged table
 		var manager = TableManager.findOne({});
@@ -199,7 +214,11 @@ Template.floorplan.helpers({
     {
         return Table.find();
     },
-
+/*
+ * @function merging
+ * @summary checks if merge button was clicked
+ * @returns {Boolean} - whether button was clicked
+ */
     merging(){
 
 	return (($("#merge_button").attr("clicked") == "true") ? true: false); 
@@ -212,20 +231,29 @@ Template.floorplan.helpers({
 
 Template.table.helpers({
 /**
+ *@function isMergedTable
+ *@summary filters out tables that are can't be used for manual merge
+ *@returns {Boolean} - whether table is allowed for manual merge
+ */
+	//used by blaze to check if table is a 'merged table'
+    'isMergedTable': function(){
+	return (this.table_components.length == 0||this.table_type!=TableType.WALKIN)? false: true;
+    },
+/**
+ *@function notMergeComponent
+ *@summary filters out tables that are merge components
+ *@return {Boolean}  - whether table is a merge component
+ */
+	//used by blaze to check if table is a component of a 'merged table'
+    'notMergeComponent':function(){
+	return !this.merged;
+    },
+/**
 * @function
 * @name isDirty 
 * @summary Checks if current table is Dirty
 * @returns {Boolean}
 */
-	//used by blaze to check if table is a 'merged table'
-    'isMergedTable': function(){
-	return (this.table_components.length == 0||this.table_type!=TableType.WALKIN)? false: true;
-    },
-	//used by blaze to check if table is a component of a 'merged table'
-    'notMergeComponent':function(){
-	return !this.merged;
-    },
-
     'isDirty': function() {
         if(this.table_status == 'Dirty') {
             return true;

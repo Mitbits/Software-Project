@@ -1,3 +1,7 @@
+//written by Dylan Herman
+//tested by Dylan Herman
+//debugged by Dylan Herman
+
 import {Meteor} from 'meteor/meteor';
 import {Order, Orders, orderItem} from '../../order.js';
 import {chai} from 'meteor/practicalmeteor:chai';

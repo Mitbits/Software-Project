@@ -1,4 +1,6 @@
-
+//written by Dylan Herman
+//tested by Dylan Herman
+//debugged by Dylan Herman
 
 import { Meteor } from 'meteor/meteor';
 import {Table,TableStatus,TableType,TableCluster,TableManager} from '../../table.js';
@@ -67,7 +69,7 @@ if (Meteor.isServer) {
 			});
 		});
 	}),
-	describe('TableCluster/Table/Reservation Integration tests', ()=>{
+	describe('TableManager/Table/Reservation Integration tests', ()=>{
 		describe('methods', ()=>{
 			beforeEach(()=>{
 				Reservation.remove({});

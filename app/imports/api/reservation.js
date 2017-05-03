@@ -1,3 +1,7 @@
+//written by Dylan Herman
+//debugged by Dylan Herman
+//tested by Dylan Herman
+
 import { Mongo } from 'meteor/mongo';
 import { Class } from 'meteor/jagi:astronomy'
 
@@ -12,7 +16,7 @@ export const Reservations = new Mongo.Collection('reservations');
  * @param {String} email - Email address of reservation holder
  * @param {Number} seats - Number of seats reserved
  * @param {Date} date - Date and time of reservation
- * @param {Boolean} assigned -
+ * @param {Boolean} assigned - whether reservation has been assigned a table
  *
  * @todo Either use the mongo unique '_id' to remove reservations, or create a 'reserverationID' field.
  */
@@ -48,7 +52,7 @@ export const Reservation = Class.create({
 	},
 	meteorMethods: {
         /**
-		 * @function sssave
+		 * @function reservation_save
 		 * @summary Saves/Writes reservation into the database
 		 * @returns {Number} Status of database write operation
          */
@@ -58,8 +62,8 @@ export const Reservation = Class.create({
         /**
 		 * @function isToday
 		 * @summary Checks if the date of the Reservation corressonds to the current server date
-         * @returns {boolean} True if date matches, false otherwise
-         */
+		 * @returns {boolean} True if date matches, false otherwise
+		 */
 		isToday() {
 			if (this.date == undefined)
 				return false;

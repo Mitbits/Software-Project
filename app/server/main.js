@@ -268,7 +268,13 @@ Meteor.startup(() => {
 
         assignRanks();
         assignPopularity();
+    /**
+     * @function generateStats
+     * @summary Calculates the cost, profit, revenue of the menu items, and inserts a popularItem object into the database
+     * @param itemCountArray Count of items sold within a particular time period
+     * @param timePeriod
 
+     */
         function generateStats(itemCountArray, timePeriod) {
             console.log("Generating Statistics...");
             for (let menuItem = 0; menuItem < MenuItems.find().count(); menuItem++) {
@@ -295,7 +301,11 @@ Meteor.startup(() => {
             }
         }
 
-        function assignRanks() {
+    /**
+     * @function assignRanks
+     * @summary This function will assign ranks to menu items for each duration of time
+     */
+    function assignRanks() {
             let maxRank = MenuItem.find().count() * 3;
             let rankCount = 1;
 
@@ -311,6 +321,10 @@ Meteor.startup(() => {
             }
         }
 
+    /**
+     * @function assignPopularity
+     * @summary This function will assign popularity to menu items based time period ranks
+     */
         function assignPopularity() {
             let allMenuItems = MenuItem.find({});
 

@@ -1,5 +1,7 @@
-// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
-// Project Website: https://github.com/Mitbits/Software-Project
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';

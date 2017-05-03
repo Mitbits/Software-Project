@@ -1,7 +1,11 @@
+//written by Dylan Herman
+//tested by Dylan Herman
+//debugged by Dylan Herman
+
 import { Meteor } from 'meteor/meteor';
 import {assert } from 'meteor/practicalmeteor:chai';
 import {jQuery} from "./jquery.js";
-//import { Template } from 'meteor/templating';
+
 import { Blaze } from 'meteor/blaze';
 
 
