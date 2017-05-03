@@ -37,7 +37,6 @@ export const ORDER_TYPE = Enum.create({
  * @enum {Number}
  * @summary Enum for popularity levels
  *
- * @todo Convert this Enum from type: Number to type: String and refactor code based on change
  */
 export const POPULARITY = Enum.create({
 	name: 'popularity',
