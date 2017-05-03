@@ -5,7 +5,7 @@ import { MenuItem, MenuItems, ORDER_TYPE } from './menuItem.js';
 //const orderQueueItems = new Mongo.Collection('orderQueueItems');
 
 /**
- * @function start
+ * @function updatePriorityManager
  * @summary Starts the priority manager, initializes the different variables needed for the function, operates on those variables to calculate the priorities
  * @returns {Array.<orderItems>} An array of order items in the correct order
  **/
@@ -277,7 +277,10 @@ Type.create({
     name: 'timeNode',
     class: 'timeNode'
 });
-
+/**
+ * @class
+ * @classdesc Creates the class that holds the timenode property of each order. This property is used within priority calculation
+ */
 export const timeNode = Class.create({
     name: 'timeNode',
     fields: {
@@ -339,17 +342,13 @@ export const orderQueueItem = Class.create({
 		}
 	},
 	meteorMethods: {
-		/**
-		 * @function combineMealAndMenuItems
-		 * @summary Combines information from both the Order object and the menuItem object
-		 * @param order Order object that contains the different fields of an order
-		 * @param orderItem A particular field of the an order instance that contains the list of items for a particular order
-		 * @param menuItem An object that contains the information specific to each item on the menu
-		 * @returns {{orderID: number, itemName: (orderQueue.fields.itemName|{type}|*|string|MenuItem.fields.itemName|selectedItem.fields.itemName), mealType, cookTime: (*|orderQueue.fields.cookTime|{type}|selectedItem.fields.cookTime|MenuItem.fields.cookTime|number), specialRequests: (orderQueue.fields.specialRequests|{type}|*|string|orderItem.fields.specialRequests)}}
-		 *
-		 * @todo Implement the class to be integrated with Astronomy
-		 * @todo Modify the priority algorithm to include unaccounted factors for improved accuracy
-		 **/
+
+        /**
+		 * @function setPriorityValue
+		 * @summary Sets the priority value of an order item
+         * @param mPrtyVal the priority value that you want to assign
+		 * @returns {Number} Status of database write operation
+         */
 		setPriorityValue(mPrtyVal) {
 			priorityVal = mPrtyVal;
 			return this.save();
@@ -357,8 +356,14 @@ export const orderQueueItem = Class.create({
 	}
 });
 
+/**
+ *
+ * @function PriorityManager
+ * @summary Starts the priority manager module
+ */
 export const PriorityManager = function(){
 	this.arr = [];
+
 	this.start = function(){
 
 		return (this.arr.length==0) ? [] :this.arr ;
