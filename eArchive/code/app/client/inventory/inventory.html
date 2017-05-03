@@ -1,0 +1,149 @@
+<!--
+Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+Project Website - https://github.com/Mitbits/Software-Project
+-->
+
+<template name="inventoryPage">
+    <div class="container" ng-controller="index">
+
+        <div class="box margin-right" id="shopping-list">
+            <h1 id="titleH12">
+                My Shopping List
+                <span class="tooltipSpan" data-inverted="" data-tooltip="Checkout" data-position="bottom center">
+                    <i class="small send icon link" id="shoppingSend"></i>
+                </span>
+            </h1>
+           <!-- <div id="errorMessage"><i class="icon-cross"></i>Please enter all inputs!</div>
+
+            <div id="successMessage"><i class="icon-checkmark"></i>Item added to shopping list!</div>
+
+            <div class="half margin-right">
+                <input type='text'   class="searchButton" placeholder='Item Name' ng-model="itemName" autofocus required>
+            </div><div class="half"><input type='text'   class="searchButton" placeholder='Shop Name' ng-model="itemShop" required></div>
+            <div class="half margin-right">
+                <input type='number' class="searchButton margin-right" placeholder='Quantity' ng-model="itemQuantity" required>
+            </div><div class="dollar half">
+            <span>$</span>
+            <input type='number' class="searchButton" placeholder='Price (each)' ng-model="itemPrice" required>
+        </div>
+
+            <button id="addItem" ng-click="addItem()">Add Item</button>
+-->
+            <div class="list">
+                <table class="inventoryTable" border="0" cellspacing="0" id="shoppingTbl">
+                    <tr class="table-header">
+                        <td></td>
+                        <td class="left">Name</td>
+                        <td class="center">Quantity</td>
+                        <td class="center">Price</td>
+                    </tr>
+                </table>
+                <div id="shoppingList">
+                    <table class="inventoryTable" border="0" cellspacing="0">
+                        {{#each shoppingArray}}
+                            {{>shoppingRow}}
+                        {{/each}}
+                    </table>
+                </div>
+                <div class="cost cf">
+                    <span class="left">Total Cost:</span>
+                    <span class="right" id="totalCost">$ {{totalCost}}</span>
+                </div>
+                <button class="fluid ui button" id="clearList">Clear Shopping List</button>
+            </div>
+        </div>
+
+        <div class="box" id="inventory">
+            <h1 id="titleH1">
+                Inventory
+            </h1>
+            <table class="inventoryTable" border="0" cellspacing="0">
+                <tr class="table-header">
+                    <td>Name</td>
+                    <td class="center">&nbsp;</td>
+                    <td class="right">Quantity</td>
+                    <td class="right">Price</td>
+                    <td class="center">Buy More</td>
+                </tr>
+            </table>
+            <div class="list" id="inventoryList">
+                <table class="inventoryTable" border="0" cellspacing="0">
+                    <!--<div ng-hide="inventory.length" class="center">Your inventory is empty.</div>-->
+                    {{#each ingredients}}
+                        {{> ingredientRow}}
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var html = document.getElementById("shoppingTbl").innerHTML;
+        var totalCost = document.getElementById("totalCost").innerHTML;
+
+    </script>
+</template>
+<template name="ingredientRow">
+    <tr>
+        <td>{{invName}}</td>
+        <td class="center">{{precisionQuantity}} {{invUnits}}</td>
+        <!-- add quantity & units here -->
+        <td class="center">${{decimalPrice}}</td>
+        {{#if belowThreshold}}
+                <td><button class="ui red button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
+            {{else}}
+                <td><button class="ui green button" id="buyMore">{{invPerUnit}} {{invUnits}}</button></td>
+        {{/if}}
+    </tr>
+</template>
+<template name="shoppingRow">
+    <tr>
+        <td class="smallTd"><i class="remove icon link"></i></td>
+        <td class="left">{{name}}</td>
+        <td class="center"> {{quantity}} {{units}} </td>
+        <td class="center">$ {{decimalPrice}}</td>
+    </tr>
+</template>
+<template name="addItemModal">
+    <div class="ui modal" id="addIngredientModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Add New Item to Inventory
+        </div>
+        <div class="content">
+            <div class="ui form" id="inventoryForm">
+                <div class="field">
+                    <label>Item Name</label>
+                    <input type="text" placeholder="Name" id="itemName">
+                </div>
+                <div class="field">
+                    <label>Quantity</label>
+                    <input type="text" placeholder="Quantity" id ="itemQuantity">
+                </div>
+                <div class="field">
+                    <label>Price</label>
+                    <input type="text" placeholder="Price per Unit (ex: $5 per lb)" id="itemPrice">
+                </div>
+                <div class="field">
+                    <label>How many?</label>
+                    <input type="text" placeholder="How many items for the above price?" id="itemPerUnit">
+                </div>
+                <div class="field">
+                    <label>Units</label>
+                    <input type="text" placeholder="Units (ex: lbs, cups, oz" id="itemUnits">
+                </div>
+                <div class="field">
+                    <label>Threshold</label>
+                    <input type="text" placeholder="Threshold before you need to order more" id="itemThreshold">
+                </div>
+            </div>
+            <button class="ui red right floated button"> Cancel </button>
+            <button class="ui green right floated button" id="addItemForm"> Add Item</button>
+            <br>
+            <br>
+        </div>
+
+    </div>
+
+</template>

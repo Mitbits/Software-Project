@@ -1,0 +1,23 @@
+<!--Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel-->
+<!--Project Website: https://github.com/Mitbits/Software-Project-->
+<template name="kitchen">
+  <h1>Cook Time of an Item</h1>
+  <select id="cookTimeItems" class="ui dropdown">
+    {{{listMenuItems}}}
+  </select>
+  <div class="chartContainer">
+    <div id="cookTimeGraph"></div>
+  </div>
+  <h1>Usage of an Ingredient</h1>
+  <select id="ingredients" class="ui dropdown">
+    {{{listIngredients}}}
+  </select>
+  <div class="chartContainer">
+    <div id="ingUsageGraph"></div>
+  </div>
+  <h1>Number of Orders</h1>
+  {{createNumOrdersGraph}}
+  <div class="chartContainer">
+    <div id="numOrdersGraph"></div>
+  </div>
+</template>

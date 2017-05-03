@@ -1,0 +1,93 @@
+<!--
+Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+Project Website - https://github.com/Mitbits/Software-Project
+-->
+
+<template name="reservationPage">
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <div class="ui grid">
+        <div class="four wide column">
+        </div>
+        <div class="eight wide column">
+            <div class="ui fluid centered card">
+                <div class="content">
+                    <form class="ui form" id="reserve_form">
+                        <h2 class="ui dividing header">Reserve a Table</h2>
+                        <div class="field">
+                            <label>Name</label>
+                            <div class="two fields">
+                                <div class="field">
+                                    <input type="text" id="firstName" name="reservation[first-name]" placeholder="First Name">
+                                </div>
+                                <div class="field">
+                                    <input type="text" id="lastName" name="reservation[last-name]" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Phone Number</label>
+                                    <input type="text" id="phoneNum" name="reservation[phone-number]" placeholder="XXX-XXX-XXXX">
+                                </div>
+                                <div class="field">
+                                    <label>Email</label>
+
+                                    <input type="email" id="email" name="reservation[email]" placeholder="example@example.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grey statistic" id ="counter">
+
+                            <div class="slabel">
+                                Table For
+                            </div>
+                            <i class="big disabled minus icon link" id = "minus"></i>
+                            <i class="big plus icon link" id="plus"></i>
+                            <br>
+                            <div class="value" id="count">
+                                1
+                            </div>
+                        </div>
+                        <label class="timeLabel">Pick a time:</label>
+                        <div class="container">
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <div class="form-group" >
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                            <input type='text' id ="date-time" name="reservation[date]" class="form-control fluid field">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker1').datetimepicker();
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <button name=" " class="fluid ui positive button">Confirm Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="four wide column">
+        </div>
+    </div>
+
+</template>

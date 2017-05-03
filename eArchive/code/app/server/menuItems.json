@@ -1,0 +1,632 @@
+{
+	"menu": {
+		"items": [
+			{
+				"id": 0,
+				"name": "Coffee",
+				"description": "Freshly Brewed Coffee",
+				"type": 0,
+				"price": 1.95,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 0,
+						"quantity": 4
+					},
+					{
+						"itemID": 1,
+						"quantity": 30
+					},
+					{
+						"itemID": 12,
+						"quantity": 0.03
+					}
+				]
+			},
+			{
+				"id": 1,
+				"name": "Herbal Teas",
+				"description": "Fresh Tea",
+				"type": 0,
+				"price": 1.99,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 2,
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"id": 2,
+				"name": "Orange Juice",
+				"description": "Fresh glass of orange juice",
+				"type": 0,
+				"price": 1.00,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 3,
+						"quantity": 8
+					}
+				]
+			},
+			{
+				"id": 3,
+				"name": "Iced Tea",
+				"description": "With a free refill",
+				"type": 0,
+				"price": 1.00,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 2,
+						"quantity": 1
+					},
+					{
+						"itemID": 12,
+						"quantity":0.03
+					}
+				]
+			},
+			{
+				"id": 4,
+				"name": "Milk",
+				"description": "Refreshing glass of milk",
+				"type": 0,
+				"price": 1.49,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 0,
+						"quantity": 8
+					}
+				]
+			},
+			{
+				"id": 5,
+				"name": "Nachos Supreme",
+				"description": "Homemade chili topped with shredded, lettuce, diced tomato, monterey jack cheese, jalapenos over tortillas with salsa, sour cream.",
+				"type": 1,
+				"price": 6.50,
+				"cookTime": 10,
+				"ingredients": [
+					{
+						"itemID": 4,
+						"quantity":0.10
+					},
+					{
+						"itemID": 5,
+						"quantity":0.25
+					},
+					{
+						"itemID": 6,
+						"quantity": 0.3
+					},
+					{
+						"itemID": 7,
+						"quantity": 1
+					},
+					{
+						"itemID": 11,
+						"quantity": 30
+					},
+					{
+						"itemID": 15,
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"id": 6,
+				"name": "Chicken Fingers",
+				"description": "Fried golden brown with honey mustard sauce, with french fries.",
+				"type": 1,
+				"price": 4.00,
+				"cookTime": 12,
+				"ingredients": [
+					{
+						"itemID": 8,
+						"quantity":0.5
+					},
+					{
+						"itemID": 9,
+						"quantity":0.25
+					},
+					{
+						"itemID": 11,
+						"quantity": 300
+					}
+				]
+			},
+			{
+				"id": 7,
+				"name": "Mozarella Sticks",
+				"description": "Fried golden brown with marinara sauce.",
+				"type": 1,
+				"price": 6.50,
+				"cookTime": 12,
+				"ingredients": [
+					{
+						"itemID": 10,
+						"quantity":0.25
+					},
+					{
+						"itemID": 9,
+						"quantity":0.15
+					},
+					{
+						"itemID": 11,
+						"quantity": 150
+					}
+				]
+			},
+			{
+				"id": 8,
+				"name": "Hot Wings",
+				"description": "A southern recipe, served with ranch dressing and celery sticks.",
+				"type": 1,
+				"price": 4.50,
+				"cookTime": 12,
+				"ingredients": [
+					{
+						"itemID": 8,
+						"quantity":0.5
+					},
+					{
+						"itemID": 9,
+						"quantity":0.25
+					},
+					{
+						"itemID": 11,
+						"quantity": 300
+					},
+					{
+						"itemID": 14,
+						"quantity":0.10
+					},
+					{
+						"itemID": 18,
+						"quantity": 1.5
+					}
+				]
+			},
+			{
+				"id": 9,
+				"name": "Disco Fries",
+				"description": "Topped with brown gravy & melted mozzarella cheese.",
+				"type": 1,
+				"price": 3.50,
+				"cookTime": 8,
+				"ingredients": [
+					{
+						"itemID": 16,
+						"quantity":0.5
+					},
+					{
+						"itemID": 11,
+						"quantity": 100
+					},
+					{
+						"itemID": 13,
+						"quantity":0.09
+					},
+					{
+						"itemID": 10,
+						"quantity":0.15
+					},
+					{
+						"itemID": 17,
+						"quantity": 3
+					}
+				]
+			},
+			{
+				"id": 10,
+				"name": "Chopped Sirloin Steak",
+				"description": "With fried onions and gravy",
+				"type": 2,
+				"price": 34.99,
+				"cookTime": 20,
+				"ingredients": [
+					{
+						"itemID": 23,
+						"quantity": 1.5
+					},
+					{
+						"itemID": 22,
+						"quantity":0.06
+					},
+					{
+						"itemID": 20,
+						"quantity":0.5
+					},
+					{
+						"itemID": 11,
+						"quantity":0.10
+					},
+					{
+						"itemID": 13,
+						"quantity":0.015
+					},
+					{
+						"itemID": 14,
+						"quantity": 0.015
+					},
+					{
+						"itemID": 19,
+						"quantity":0.5
+					},
+					{
+						"itemID": 17,
+						"quantity": 3
+					}
+				]
+			},
+			{
+				"id": 11,
+				"name": "Roasted Spring Chicken",
+				"description": "Slow roasted with herbs stuffing",
+				"type": 2,
+				"price": 10.95,
+				"cookTime": 20,
+				"ingredients": [
+					{
+						"itemID": 8,
+						"quantity": 1.5
+					},
+					{
+						"itemID": 13,
+						"quantity":0.06
+					},
+					{
+						"itemID": 14,
+						"quantity": 0.06
+					},
+					{
+						"itemID": 16,
+						"quantity": 0.25
+					},
+					{
+						"itemID": 22,
+						"quantity": 0.10
+					}
+				]
+			},
+			{
+				"id": 12,
+				"name": "Penne Vodka Pasta",
+				"description": "Penne tossed with tomato cream",
+				"type": 2,
+				"price": 12.99,
+				"cookTime": 15,
+				"ingredients": [
+					{
+						"itemID": 24,
+						"quantity": 1
+					},
+					{
+						"itemID": 10,
+						"quantity": 0.25
+					},
+					{
+						"itemID": 25,
+						"quantity": 0.15
+					},
+					{
+						"itemID": 14,
+						"quantity": 0.08
+					},
+					{
+						"itemID": 13,
+						"quantity":0.03
+					},
+					{
+						"itemID": 6,
+						"quantity": 1.75
+					}
+				]
+			},
+			{
+				"id": 13,
+				"name": "Stuffed Salmon",
+				"description": "Baked fillet of salmon stuffed with crabmeat",
+				"type": 2,
+				"price": 34.99,
+				"cookTime": 15,
+				"ingredients": [
+					{
+						"itemID": 27,
+						"quantity": 1
+					},
+					{
+						"itemID": 26,
+						"quantity": 1.65
+					},
+					{
+						"itemID": 27,
+						"quantity": 0.5
+					},
+					{
+						"itemID": 13,
+						"quantity": 0.05
+					},
+					{
+						"itemID": 14,
+						"quantity":0.05
+					},
+					{
+						"itemID": 22,
+						"quantity": 0.10
+					}
+				]
+			},
+			{
+				"id": 14,
+				"name": "Succulent Sea Scallops",
+				"description": "Broiled served with roasted potatoes and vegetable medley",
+				"type": 2,
+				"price": 35.99,
+				"cookTime": 15,
+				"ingredients": [
+					{
+						"itemID": 29,
+						"quantity": 2
+					},
+					{
+						"itemID": 30,
+						"quantity": 4
+					},
+					{
+						"itemID": 22,
+						"quantity":0.25
+					},
+					{
+						"itemID": 28,
+						"quantity": 1
+					},
+					{
+						"itemID": 13,
+						"quantity": 0.05
+					}
+				]
+			},
+			{
+				"id": 15,
+				"name": "Vanilla Milk Shakes",
+				"description": "Delightful sweet vanilla flavored milkshake",
+				"type": 3,
+				"price": 3.50,
+				"cookTime": 6,
+				"ingredients": [
+					{
+						"itemID": 12,
+						"quantity": 0.03
+					},
+					{
+						"itemID": 0,
+						"quantity": 6
+					},
+					{
+						"itemID": 31,
+						"quantity": 0.01
+					},
+					{
+						"itemID": 32,
+						"quantity": 8
+					}
+				]
+			},
+			{
+				"id": 16,
+				"name": "Ice Cream",
+				"description": "Delightful Dessert",
+				"type": 3,
+				"price": 2.00,
+				"cookTime": 4,
+				"ingredients": [
+					{
+						"itemID": 32,
+						"quantity": 8
+					},
+					{
+						"itemID": 33,
+						"quantity": 0.01
+					},
+					{
+						"itemID": 34,
+						"quantity": 0.01
+					}
+				]
+			},
+			{
+				"id": 17,
+				"name": "Homemade Cheesecake",
+				"description": "Rich, Creamy Classic Cheesecake",
+				"type": 3,
+				"price": 12.99,
+				"cookTime": 10,
+				"ingredients": [
+					{
+						"itemID": 12,
+						"quantity":0.09
+					},
+					{
+						"itemID": 22,
+						"quantity":0.33
+					},
+					{
+						"itemID": 35,
+						"quantity": 2
+					},
+					{
+						"itemID": 31,
+						"quantity": 0.03
+					},
+					{
+						"itemID": 36,
+						"quantity": 4
+					}
+				]
+			},
+			{
+				"id": 18,
+				"name": "Homemade Fruit Pie",
+				"description": "Fresh fruit pie",
+				"type": 3,
+				"price": 3.50,
+				"cookTime": 10,
+				"ingredients": [
+					{
+						"itemID": 39,
+						"quantity": 0.15
+					},
+					{
+						"itemID": 13,
+						"quantity": 0.015
+					},
+					{
+						"itemID": 41,
+						"quantity": 0.10
+					},
+					{
+						"itemID": 37,
+						"quantity": 0.20
+					},
+					{
+						"itemID": 38,
+						"quantity": 0.20
+					},
+					{
+						"itemID": 40,
+						"quantity": 0.09
+					}
+				]
+			},
+			{
+				"id": 19,
+				"name": "Brownie Sundae",
+				"description": "Fresh Baked brownie sundae",
+				"type": 3,
+				"price": 10.95,
+				"cookTime": 7,
+				"ingredients": [
+					{
+						"itemID": 42,
+						"quantity": 0.6
+					},
+					{
+						"itemID": 33,
+						"quantity": 0.75
+					},
+					{
+						"itemID": 34,
+						"quantity": 1
+					},
+					{
+						"itemID": 1,
+						"quantity": 0.30
+					},
+					{
+						"itemID": 32,
+						"quantity": 4
+					}
+				]
+			},
+			{
+				"id": 20,
+				"name": "Apple Juice",
+				"description": "Fresh Apple Juice",
+				"type": 0,
+				"price": 1.00,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 43,
+						"quantity": 8
+					}
+				]
+			},
+			{
+				"id": 21,
+				"name": "Cranberry Juice",
+				"description": "Fresh Cranberry Juice",
+				"type": 0,
+				"price": 1.00,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 44,
+						"quantity": 8
+					}
+				]
+			},
+			{
+				"id": 22,
+				"name": "Grapefruit Juice",
+				"description": "Fresh Grapefruit Juice",
+				"type": 0,
+				"price": 3.50,
+				"cookTime": 3,
+				"ingredients": [
+					{
+						"itemID": 45,
+						"quantity": 8
+					}
+				]
+			},
+			{
+				"id": 23,
+				"name": "Chocolate Milk Shakes",
+				"description": "Delicious Chocolate Milk Shake",
+				"type": 3,
+				"price": 2.50,
+				"cookTime": 6,
+				"ingredients": [
+					{
+						"itemID": 12,
+						"quantity": 0.03
+					},
+					{
+						"itemID": 0,
+						"quantity": 6
+					},
+					{
+						"itemID": 33,
+						"quantity": 0.5
+					},
+					{
+						"itemID": 32,
+						"quantity": 8
+					}
+				]
+			},
+			{
+				"id": 24,
+				"name": "Strawberry Milk Shakes",
+				"description": "Delicious Strawberry Milk Shake",
+				"type": 3,
+				"price": 2.50,
+				"cookTime": 6,
+				"ingredients": [
+					{
+						"itemID": 12,
+						"quantity": 0.03
+					},
+					{
+						"itemID": 0,
+						"quantity": 6
+					},
+					{
+						"itemID": 41,
+						"quantity": 0.5
+					},
+					{
+						"itemID": 32,
+						"quantity": 8
+					}
+				]
+			}
+		]
+	}
+}

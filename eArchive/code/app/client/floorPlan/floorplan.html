@@ -1,0 +1,73 @@
+<!--
+Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+Project Website - https://github.com/Mitbits/Software-Project
+-->
+
+<template name="floorplan">
+    <button id="merge_button" class="ui primary button" clicked="false"> Manual Merge</button>
+     <div class="ui four column grid" id="fourColumnGrid">
+        {{#each tables}}
+            {{>table}}
+        {{/each}}
+    </div>
+	
+</template>
+
+<template name="table" >
+{{#if notMergeComponent}}
+    <div class="column" >
+
+	    <div class="ui raised inverted segment" id="{{table_id}}" style="color:white">
+	    {{#if isMergedTable}}
+	    <div class = "ui small red bottom left  attached label">Unmerge</div>  
+	    {{/if}}
+            {{#if isDirty}}
+                <a class="ui red right corner label">
+                    <i class="trash outline icon"></i>
+                </a>
+            {{else if isClean}}
+			
+                <a class="ui green right corner label">
+                    <i class="white check icon"></i>
+				
+                </a>
+            {{else if isReserved}}
+                <a class="ui gray right corner label">
+                    <i class="checked calendar icon"></i>
+                </a>
+
+            {{else if isTaken}}
+                <a class="ui yellow right corner label">
+                    <i class="notched circle loading icon"></i>
+                </a>
+            {{/if}}
+
+            <div class="tableNum"><i class="users icon"> {{occupants}}/{{size}}</i><p class="tableID">Table {{table_id}}</p>
+			{{#if isTaken}}
+			<div><button class="ui yellow centered button">Serving&nbsp;&nbsp;<i class="notched circle loading icon"></i></button></div>
+			{{/if}}
+			<div class="grey statistic" id ="counter">
+
+                            {{#if isClean}}
+                            <i class="big disabled minus icon link" id = "minus"></i>
+                            <i class="big plus icon link" id="plus"></i>
+                           
+                            <div class="value" id="counts" style="color:white;">
+				    {{occupants}}	
+                            </div>
+							{{/if}}
+
+                        </div>
+			</div>
+
+            {{#if isReserved}}
+	    <h3> Reserved for: {{reservation.firstName}}</h3> <p id="{{table_id}}dateDisplay">{{restime}}</p>
+               
+                <!--             Reservation Interval {{reservation_intv}}<br>
+                 -->
+                <!--<button class="ui teal button">Taken</button>-->
+                {{/if}}
+		</div>
+    	</div>
+{{/if}}
+</template>

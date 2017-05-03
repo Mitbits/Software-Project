@@ -1,0 +1,19 @@
+<!--Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel-->
+<!--Project Website: https://github.com/Mitbits/Software-Project-->
+<template name="general">
+  <h1>Time Spent by a Customer in the Restaurant</h1>
+  {{createTimeSpentGraph}}
+  <div class="chartContainer">
+    <div id="timeSpentGraph"></div>
+  </div>
+  {{createPopItemsCharts}}
+  <h1>Popular Items This Week</h1>
+  <h3>Refreshments</h3>
+  <div id="refreshmentPieChart"></div>
+  <h3>Appetizers</h3>
+  <div id="appetizerPieChart"></div>
+  <h3>Entrees</h3>
+  <div id="entreePieChart"></div>
+  <h3>Desserts</h3>
+  <div id="dessertPieChart"></div>
+</template>

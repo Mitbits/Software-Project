@@ -1,0 +1,59 @@
+<!--Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel-->
+<!--Project Website: https://github.com/Mitbits/Software-Project-->
+<template name="archive">
+  <h1>View Past Transactions</h1>
+  <div id="container">
+    <div id="sandbox-container">
+      <div></div>
+    </div>
+    <div id="viewBills">
+      <table class="ui celled striped table">
+    <thead>
+      <tr><th colspan="3">
+        <button class="ui icon button" id="prev">
+          <i class="angle left icon"></i>
+        </button>
+        <span><span id="index">0</span> of <span id="itemsLength">0</span></span>
+        <button class="ui icon button" id="next">
+          <i class="angle right icon"></i>
+        </button>
+      </th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>Order ID:</td>
+        <td class="right aligned collapsing" id="order-id"></td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td class="right aligned collapsing" id="time"></td>
+      </tr>
+      <tr>
+        <td>Items</td>
+      </tr>
+      <tr>
+        <td id="itemNames"></td>
+        <td class="right aligned collapsing" id="itemCosts"></td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td class="right aligned collapsing" id="total"></td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+  <style>
+    #container {
+      display: flex;
+    }
+
+    #container > div {
+      flex: 1;
+    }
+
+    td#itemCosts ul li {
+      list-style-type: none;
+    }
+  </style>
+</template>

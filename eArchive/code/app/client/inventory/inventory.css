@@ -1,0 +1,243 @@
+
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
+@import url("http://www.markmurray.co/codepen/customstyle.css");
+@import url("http://fonts.googleapis.com/css?family=Lato:300,400,700");
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.left {
+    text-align: left !important;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.right {
+    text-align: right !important;
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.box {
+    width: 49%;
+    background: #f3f3f3;
+    margin: 0 auto 2em auto;
+    overflow: auto;
+    padding: 1em;
+    border-radius: 3px;
+    display: inline-block;
+    vertical-align: top;
+}
+.box:first-child {
+    margin-right: 1%;
+}
+
+
+table.inventoryTable {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+table.inventoryTable tr.table-header td {
+    font-size: 0.7em;
+    font-weight: bolder;
+}
+table.inventoryTable td {
+    padding: 0.75em 0.5em;
+}
+table.inventoryTable td:first-child {
+    text-align: left;
+}
+table.inventoryTable td:nth-child(3) {
+    text-align: center;
+}
+table.inventoryTable td:last-child, table td:nth-child(4) {
+    text-align: right;
+}
+table.inventoryTable tr:nth-child(2n+2) {
+    background: #ebebeb;
+}
+
+.searchButton {
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    outline: none;
+    padding: 1em;
+    border-radius: 3px;
+    font-weight: 300;
+    font-size: 0.8em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    position: relative;
+}
+
+.margin-right {
+    margin-right: 1%;
+}
+
+.half {
+    width: 49.5%;
+    display: inline-block;
+}
+.half input {
+    width: 100%;
+}
+
+.half:first-child {
+    margin-right: 2%;
+}
+
+.selected {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.dollar {
+    position: relative;
+    display: inline-block;
+}
+
+.dollar input {
+    padding-left: 2em;
+}
+
+.dollar span {
+    position: absolute;
+    display: block;
+    padding: 3px 3px 3px 7px;
+    pointer-events: none;
+    left: 5px;
+    top: 13px;
+    color: #aaa;
+}
+
+.searchButton.full {
+    width: 100%;
+}
+
+.list {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+.list ul li {
+    margin: 1em 0;
+}
+
+
+input[type='checkbox'] {
+    background: transparent;
+    border: 2px solid #3a3a3a;
+    padding: 0.2em;
+    font-size: 1em;
+}
+
+
+
+.cost {
+    margin-bottom: 1em;
+}
+.cost span {
+    padding: 0.5em;
+}
+.cost span:first-child {
+    float: left;
+}
+.cost span:nth-child(2) {
+    float: right;
+    vertical-align: baseline;
+}
+
+.total {
+    background: #fb887c;
+    color: white;
+    font-weight: bolder;
+    border-radius: 5px;
+}
+
+#successMessage, #errorMessage {
+    display: none;
+    text-align: center;
+    margin: 0.5em 0;
+    -webkit-transition: display 0.3s ease;
+    transition: display 0.3s ease;
+}
+
+
+#successMessage {
+    color: green;
+}
+
+#errorMessage {
+    color: red;
+}
+#inventoryPlus{
+    float:right;
+    margin-left:10px;
+}
+#shoppingSend{
+    float:right;
+    margin-left:10px;
+}
+#inventoryForm {
+    padding: 10px;
+}
+.tooltipSpan {
+    float:right;
+    padding-left: 13px;
+}
+#titleH1{
+    color: #3a3a3a;
+    padding-top: 5px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+#titleH12{
+    color: #3a3a3a;
+    padding-top: 5px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+#inventoryList {
+    max-height: 500px;
+    overflow: scroll;
+}
+#shoppingList {
+    max-height: 410px;
+    overflow:scroll;
+}
+#miniInput {
+    width: 50px;
+    height: 25px;
+}
+.smallTd {
+    width: 10px;
+}
+
+
+@media (max-width: 800px) {
+    .box {
+        width: 100%;
+        display: block;
+    }
+}
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}

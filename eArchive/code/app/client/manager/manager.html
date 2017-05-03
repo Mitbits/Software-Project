@@ -1,0 +1,632 @@
+<!--
+Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+Project Website - https://github.com/Mitbits/Software-Project
+-->
+
+<template name="menuSuggestions">
+    <!--
+    <h1> Manager Page, WIP</h1>
+    <h2> Meal Suggester</h2>
+
+    -->
+<html>
+
+
+<div class="manager">
+
+
+<div class="card">
+    <section class="card-info card-section hideBlock" id = "itemToDisplay">
+        <i class="ion-navicon menu"></i>
+        <i class="ion-ios-search search"></i>
+        <div class="itemNameDiv">
+        <h3 class="user-header">
+        {{itemNAME}}
+        <br>
+        <br>
+        </h3>
+        </div>
+
+        <div class="dial">
+            <h2 class="dial-value">
+                {{itemRANK}}
+            </h2>
+        </div>
+
+        <section class="user managerRow" >
+            <h1 class="user-header manager manager1">
+                <br>
+                <br>
+
+                PROFIT:
+                $ {{itemPROFIT}}
+                <br>
+                COST:
+                $ {{itemCOST}}
+                <br>
+                REVENUE:
+                $ {{itemREVENUE}}
+
+
+            </h1>
+        </section>
+
+        <!--<section class="statistics">
+
+        </section>-->
+
+
+
+    </section>
+    <section class="card-details card-section">
+
+
+        <h2 class="manager manager1">Exclusive</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsExclusive}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+
+    <section class="card-details card-section">
+
+        <!--<nav class="menu">-->
+        <!--<article class="menu-item menu-item-active">-->
+        <!--Global-->
+        <!--</article>-->
+        <!--<article class="menu-item">-->
+        <!--Friends-->
+        <!--</article>-->
+        <!--</nav>-->
+        <h2 class="manager manager1">High</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsHigh}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+
+    <section class="card-details card-section">
+
+        <!--<nav class="menu">-->
+        <!--<article class="menu-item menu-item-active">-->
+        <!--Global-->
+        <!--</article>-->
+        <!--<article class="menu-item">-->
+        <!--Friends-->
+        <!--</article>-->
+        <!--</nav>-->
+        <h2 class="manager manager1">Medium</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsMedium}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+
+    <section class="card-details card-section">
+
+        <!--<nav class="menu">-->
+        <!--<article class="menu-item menu-item-active">-->
+        <!--Global-->
+        <!--</article>-->
+        <!--<article class="menu-item">-->
+        <!--Friends-->
+        <!--</article>-->
+        <!--</nav>-->
+        <h2 class="manager manager1">Low</h2>
+        <dl class="leaderboard" id = leaderBoardList>
+
+            {{#each itemsLow}}
+                {{> itemRow}}
+            {{/each}}
+
+        </dl>
+
+
+    </section>
+</div>
+</div>
+</html>
+    <style>
+
+        div.manager {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            overflow: scroll;
+            box-sizing: border-box;
+            height: 100%;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            /*background: #16a8a3;*/
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        h1.manager, h2.manager, h3.manager, h4.manager, h5.manager, h6.manager {
+            margin: 0;
+            padding: 0;
+            font-weight: 300;
+        }
+
+        h1.manager1, h2.manager1 {
+            font-size: 1em;
+        }
+        .itemNameDiv {
+            height: 70px;
+        }
+
+        h2.sub.header {
+            font-size: 1.1em;
+        }
+
+        .managerRow {
+            margin-bottom: 40px;
+        }
+
+        .card {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            background: #fff;
+            width: 90%;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15), 0 55px 50px -20px rgba(34, 36, 38, 0.25);
+        }
+        .card-section {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            padding: 60px;
+        }
+        .card-info {
+            position: relative;
+            background: -webkit-linear-gradient(top, #626d82 0%, #343d4d 100%);
+            background: linear-gradient(to bottom, #626d82 0%, #343d4d 100%);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+        .card-info h2.sub.header {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .card-info .menu, .card-info .search {
+            position: absolute;
+            font-size: 3em;
+            left: 40px;
+        }
+        .card-info .menu {
+            top: 40px;
+        }
+        .card-info .search {
+            bottom: 40px;
+        }
+        .card-details {
+            position: relative;
+            color: rgba(0, 0, 0, 0.6);
+            width: 50%;
+        }
+
+        .avatar {
+            display: inline-block;
+            background-image: url("http://radfaces.com/images/avatars/alex-murphy.jpg");
+            background-size: cover;
+            border-radius: 50%;
+            height: 75px;
+            width: 75px;
+            border: 3px solid #e45b6c;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .dial {
+            color: #e45b6c;
+            text-shadow: inset 1px 1px 0 white;
+            background: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            height: 150px;
+            width: 150px;
+            margin: 50px 0;
+            padding: 40px;
+            box-shadow: 0 4px 15px -10px rgba(0, 0, 0, 0.1), 0 5px 15px 1px rgba(0, 0, 0, 0.18), 0 0 0 15px #fff, 0 0 0 22px #e45b6c, 0 55px 50px -20px rgba(34, 36, 38, 0.25);
+        }
+        .dial-title {
+            font-size: 3.8em;
+            font-weight: 400;
+            line-height: .8;
+        }
+        .dial-value {
+            padding-top: 28%;
+            font-size: 1.5em;
+        }
+
+        .menu {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .menu-item {
+            font-size: 1.6em;
+            font-weight: 400;
+            padding: 20px 40px;
+            color: rgba(0, 0, 0, 0.3);
+            min-width: 50%;
+        }
+        .menu-item:not(:last-child) {
+            box-shadow: 25px 0px 0 -24px rgba(0, 0, 0, 0.2);
+        }
+        .menu-item:last-child {
+            text-align: right;
+        }
+        .menu-item-active {
+            color: #e97c89;
+        }
+
+        .statistics {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+        .statistics .statistic {
+            padding: 0px 20px;
+            min-width: 120px;
+        }
+        .statistics .statistic:not(:last-child) {
+            box-shadow: 20px 0px 0px -19px rgba(255, 255, 255, 0.2);
+        }
+        .statistics .statistic-title {
+            font-size: 1.5em;
+        }
+        .statistics .statistic-value {
+            color: #e45b6c;
+            font-size: 2em;
+        }
+
+        .progress {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            background: rgba(0, 0, 0, 0.1);
+            min-height: 12px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: #e97c89;
+            min-height: 10px;
+        }
+
+        .leaderboard {
+            height: 100%;
+            width: 100%;
+            counter-reset: leaderboard-counter;
+        }
+        .leaderboard dt {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .leaderboard dt:before {
+            content: counter(leaderboard-counter);
+            counter-increment: leaderboard-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            line-height: .8;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.8);
+            width: 100%;
+        }
+        .leaderboard dd {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 40px;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+        .leaderboard-value {
+            font-weight: 700;
+        }
+
+        #leaderBoardList {
+            max-height: 500px;
+            overflow-y: scroll;
+        }
+
+        .hideBlock {
+            display: None;
+        }
+
+        .displayBlock {
+            display: block;
+            /*width: 271px;*/
+        }
+
+
+    </style>
+</template>
+
+
+<template name="itemRow">
+    <tr>
+        <div class = particularItem>
+             <td>{{itemName}}</td>
+        </div>
+
+    </tr>
+    <style>
+
+        div.manager {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            overflow: scroll;
+            box-sizing: border-box;
+            height: 100%;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            /*background: #16a8a3;*/
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        h1.manager, h2.manager, h3.manager, h4.manager, h5.manager, h6.manager {
+            margin: 0;
+            padding: 0;
+            font-weight: 300;
+        }
+
+        h1.manager1, h2.manager1 {
+            font-size: 1em;
+        }
+        .itemNameDiv {
+            height: 70px;
+        }
+
+        h2.sub.header {
+            font-size: 1.1em;
+        }
+
+        .managerRow {
+            margin-bottom: 40px;
+        }
+
+        .card {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            background: #fff;
+            width: 90%;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15), 0 55px 50px -20px rgba(34, 36, 38, 0.25);
+        }
+        .card-section {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            padding: 60px;
+        }
+        .card-info {
+            position: relative;
+            background: -webkit-linear-gradient(top, #626d82 0%, #343d4d 100%);
+            background: linear-gradient(to bottom, #626d82 0%, #343d4d 100%);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+        .card-info h2.sub.header {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .card-info .menu, .card-info .search {
+            position: absolute;
+            font-size: 3em;
+            left: 40px;
+        }
+        .card-info .menu {
+            top: 40px;
+        }
+        .card-info .search {
+            bottom: 40px;
+        }
+        .card-details {
+            position: relative;
+            color: rgba(0, 0, 0, 0.6);
+            width: 50%;
+        }
+
+        .avatar {
+            display: inline-block;
+            background-image: url("http://radfaces.com/images/avatars/alex-murphy.jpg");
+            background-size: cover;
+            border-radius: 50%;
+            height: 75px;
+            width: 75px;
+            border: 3px solid #e45b6c;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .dial {
+            color: #e45b6c;
+            text-shadow: inset 1px 1px 0 white;
+            background: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            height: 150px;
+            width: 150px;
+            margin: 50px 0;
+            padding: 40px;
+            box-shadow: 0 4px 15px -10px rgba(0, 0, 0, 0.1), 0 5px 15px 1px rgba(0, 0, 0, 0.18), 0 0 0 15px #fff, 0 0 0 22px #e45b6c, 0 55px 50px -20px rgba(34, 36, 38, 0.25);
+        }
+        .dial-title {
+            font-size: 3.8em;
+            font-weight: 400;
+            line-height: .8;
+        }
+        .dial-value {
+            padding-top: 28%;
+            font-size: 1.5em;
+        }
+
+        .menu {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .menu-item {
+            font-size: 1.6em;
+            font-weight: 400;
+            padding: 20px 40px;
+            color: rgba(0, 0, 0, 0.3);
+            min-width: 50%;
+        }
+        .menu-item:not(:last-child) {
+            box-shadow: 25px 0px 0 -24px rgba(0, 0, 0, 0.2);
+        }
+        .menu-item:last-child {
+            text-align: right;
+        }
+        .menu-item-active {
+            color: #e97c89;
+        }
+
+        .statistics {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+        .statistics .statistic {
+            padding: 0px 20px;
+            min-width: 120px;
+        }
+        .statistics .statistic:not(:last-child) {
+            box-shadow: 20px 0px 0px -19px rgba(255, 255, 255, 0.2);
+        }
+        .statistics .statistic-title {
+            font-size: 1.5em;
+        }
+        .statistics .statistic-value {
+            color: #e45b6c;
+            font-size: 2em;
+        }
+
+        .progress {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            background: rgba(0, 0, 0, 0.1);
+            min-height: 12px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: #e97c89;
+            min-height: 10px;
+        }
+
+        .leaderboard {
+            height: 100%;
+            width: 100%;
+            counter-reset: leaderboard-counter;
+        }
+        .leaderboard dt {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .leaderboard dt:before {
+            content: counter(leaderboard-counter);
+            counter-increment: leaderboard-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            line-height: .8;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.8);
+            width: 100%;
+        }
+        .leaderboard dd {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 40px;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+        .leaderboard-value {
+            font-weight: 700;
+        }
+
+        #leaderBoardList {
+            max-height: 500px;
+            overflow-y: scroll;
+        }
+
+        .hideBlock {
+            display: None;
+        }
+
+        .displayBlock {
+            display: block;
+            /*width: 271px;*/
+        }
+
+
+    </style>
+</template>
+
+<!--
+<template name="levelCard">
+
+
+</template>-->

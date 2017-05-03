@@ -1,0 +1,38 @@
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
+
+.ui.celled.grid > .white.row {
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3px;
+}
+
+.ui[class*="internally celled"].grid {
+  padding:2em;
+}
+
+.rounded.row {
+  border-radius: 17px;
+}
+
+.ui.celled.grid > .spaced.row {
+  margin-bottom: 10px;
+}
+
+.ui.celled.grid > .active.row {
+  background-color: rgba(0, 176, 240, 0.8);
+  margin-bottom: 3px;
+}
+
+.ui.celled.grid > .expired.row {
+  background-color: rgba(227, 73, 50, 0.8);
+  margin-bottom: 3px;
+}
+
+#scrollfeature {
+  height: 64px;
+  word-wrap: break-word;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

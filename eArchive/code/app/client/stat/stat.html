@@ -1,0 +1,22 @@
+<!--Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel-->
+<!--Project Website: https://github.com/Mitbits/Software-Project-->
+<template name="stat">
+  <div class="ui top inverted menu">
+    <div class="item"><span class="large text">Manager</span></div>
+    {{{menuItems}}}
+  </div>
+  <section class="mainContent">
+    <div id="general">
+      {{>general}}
+    </div>
+    <div id="kitchen" style="display:none;">
+      {{>kitchen}}
+    </div>
+    <div id="archive" style="display:none;">
+      {{>archive}}
+    </div>
+    <div id="reservations" style="display:none;">
+      {{>reservations}}
+    </div>
+  </section>
+</template>
