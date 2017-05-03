@@ -68,7 +68,6 @@ export const orderItem = Class.create({
  * @param {Date} timePlaced - Time and date the order was created
  * @param {Boolean} isCompleted - Indicates if an Order is compeleted or not
  *
- * @todo Extend the order class to include a table identifier (integrate with the table class).
  * @todo Add meteor method(s) to extend the functionality of placing and viewing live orders.
  */
 export const Order = Class.create({
