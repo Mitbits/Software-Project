@@ -104,8 +104,8 @@ Project Website: https://github.com/Mitbits/Software-Project
 			+ table.js : Server side class and database setup for table
 		- lib
 		- private
-			+ debug.log
-			+ reservation-email.html
+			+ debug.log : log file for debugging
+			+ reservation-email.html: email template for reservation confirmation
 		- server
 			+ dataDriver.js
 			+ inventory.json : Json file for all the inventory items in our application
