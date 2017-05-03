@@ -25,6 +25,10 @@ var itemRevenue =0;
 var rvItemRevenue = new ReactiveVar();
 
 Template.itemRow.events({
+    /**
+     * @function click .particularItem
+     * @summary This function is used to extract menuItem details for the particular menuItem clicked on by the user
+     */
     'click .particularItem'(){
         document.getElementById("itemToDisplay").className = "card-info card-section displayBlock";
 
@@ -88,18 +92,38 @@ Template.itemRow.events({
 });
 
 Template.menuSuggestions.helpers({
+    /**
+     * @function itemsExclusive
+     * @summary Returns all the menu items in the exclusive category
+     */
     itemsExclusive(){
         return MenuItem.find({itemPopularity: 0});
     },
+    /**
+     * @function itemsHigh
+     * @summary Returns all the menu items in the high category
+     */
     itemsHigh(){
         return MenuItem.find({itemPopularity: 1});
     },
+    /**
+     * @function itemsMedium
+     * @summary Returns all the menu items in the medium category
+     */
     itemsMedium(){
         return MenuItem.find({itemPopularity: 2});
     },
+    /**
+     * @function itemsLow
+     * @summary Returns all the menu items in the low category
+     */
     itemsLow(){
         return MenuItem.find({itemPopularity: 3});
     },
+    /**
+     * @function itemsRank
+     * @summary Returns the rank of each respective menu item
+     */
     itemRANK() {
         let rank;
         if(rvItemRank.get() == 0) {
@@ -119,15 +143,31 @@ Template.menuSuggestions.helpers({
             return rank;
         }
     },
+    /**
+     * @function itemsExclusive
+     * @summary Returns all the menu items names to be printed on the webpage
+     */
     itemNAME(){
         return (rvItemName.get());
     },
+    /**
+     * @function itemsExclusive
+     * @summary Returns the profit of each menu item
+     */
     itemPROFIT(){
         return(rvItemProfit.get());
     },
+    /**
+     * @function itemsExclusive
+     * @summary Returns the cost of making each menu item
+     */
     itemCOST(){
         return(rvItemCost.get());
     },
+    /**
+     * @function itemsExclusive
+     * @summary Returns the revenue of each menu item
+     */
     itemREVENUE(){
         return(rvItemRevenue.get());
     }
