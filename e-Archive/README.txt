@@ -26,22 +26,22 @@ Project Website: https://github.com/Mitbits/Software-Project
 	- app
 		- client
 			- floorPlan
-				+ floorplan.css
-				+ floorplan.html
-				+ floorplan.js
+				+ floorplan.css: Stylesheet for the floor plan page
+				+ floorplan.html: Floorplan HTML page housing the tables
+				+ floorplan.js: JavaScript for the floorplan page with all the functions
 			- inventory
 				+ inventory.css : The stylesheet for the inventory page
 				+ inventory.html : HTML Page for inventory
 				+ inventory.js: JavaScript for inventory including all the functions
 			- lib
 			- Login
-				+ login.css
-				+ loginJS.js
-				+ loginTemplate.html
+				+ login.css: Stylesheet for the login page
+				+ loginJS.js: JavaScript for the login page including all the functions
+				+ loginTemplate.html: HTML page for the Login and Register page
 			- manager
-				+ manager.css
-				+ manager.html
-				+ manager.js
+				+ manager.css: Stylesheet for the manager menu suggestions page
+				+ manager.html: HTML Page for the manager to see menu suggestions
+				+ manager.js: JavaScript page for the manager
 			- order
 				+ CountDownTimer.js : Handles counters for order queue
 				+ order.css :  Configures styles for order queue UI
@@ -72,10 +72,10 @@ Project Website: https://github.com/Mitbits/Software-Project
 				+ waiter.css : Stylesheet for waiter interface
 				+ waiter.html : HTML page for waiter interface
 				+ waiter.js : JavaScript code for waiter interface including functions
-			+ favicon
-			+ main.css
-			+ main.html
-			+ main.js
+			+ favicon : favicon to display on the page
+			+ main.css : main css file for the whole project
+			+ main.html : main html file for the whole project
+			+ main.js : main js file for the whole project
 		- imports
 			- api
 				- data
@@ -108,7 +108,6 @@ Project Website: https://github.com/Mitbits/Software-Project
 			+ reservation-email.html
 		- server
 			+ dataDriver.js
-			+ inventory.json
+			+ inventory.json : Json file for all the inventory items in our application
 			+ main.js : contains all the code the application needs to run on startup to make sure the application is working properly
-			+ menuItems.json
-			+ MenuItems.txt
+			+ menuItems.json : Json file for all the menu items in our application
