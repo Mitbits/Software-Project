@@ -1,3 +1,8 @@
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
+
 import { Mongo } from 'meteor/mongo';
 import { Class, Enum } from 'meteor/jagi:astronomy';
 import { inventoryItem } from './ingredient.js';
