@@ -1,5 +1,11 @@
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
+//written by: Dylan Herman and Nill Patel
+//tested by: Nill Patel
+//debugged by Dylan Herman
+
+
+
 import { Reservation } from './reservation.js'
 export const Tables = new Mongo.Collection('table');
 export const TableManagers = new Mongo.Collection('tablemanagers');
@@ -39,7 +45,11 @@ export const TableType = Enum.create({
 	}
 });
 
-
+/**
+ * @function nextTableId
+ * @summary looks for next highest table id 
+ * @return next table id to use
+ */
 function nextTableId(){
     var max_id = 0;
     Tables.find({}).forEach(function(tbl){
@@ -58,7 +68,10 @@ function nextTableId(){
  * @param {Number} occupants - Number of people seated at the table
  * @param {TableStatus} table_status - Current status of the table
  * @param {TableType} table_type - The type of table
- * @param {Number} reservation_intv - Time interval used to update reservations
+ * @param {Reservation} reservation - Reservation for the table
+ * @param {Boolean} merged - True if the table is a component of a merged table
+ * @param {[Table]} table_components - Tables that make up a merged table 
+ * @param {Boolean} checked_for_merge - True if a table is selected as a component for manual merge in the floor plan interface
  */
 export const Table = Class.create({
 	name: 'TableEntry',
@@ -133,12 +146,21 @@ export const Table = Class.create({
             
 	},
 	meteorMethods: {
-		//makes a table a candidate for manual merging
+
+		/*
+		 *@function change_for_merge
+		 *@summary toggles the checked_for_merge attribute
+		 *@returns new value for checked_for_merge
+		 */
 		change_for_merge(){
 			this.checked_for_merge = !this.checked_for_merge;
 			this.save();
 			return this.checked_for_merge;
 		},
+		/*
+		 *@function clean
+		 *@summary clears a table up and makes it clean, unmerges
+		 */
      		clean(){
 			if(this.reservation != null){
 				var manager = TableManager.findOne({});
@@ -155,12 +177,12 @@ export const Table = Class.create({
 			}
 			
 		},
-        /**
+        	/**
 		 * @function updateTableStatus
 		 * @summary Changes the current table status to the specified status
-         * @param toStatus
+         	 * @param toStatus
 		 * @returns Status of database write operation
-         */
+         	*/
  		updateTableStatus(toStatus) {
  			this.table_status = toStatus;
  			return this.save();
@@ -197,7 +219,12 @@ export const Table = Class.create({
     }
 });
 
-
+/**
+ * @class TableManager
+ * @summary manages all tables of all sizes, merges and assigns tables
+ * @param {Reservation} reservations- Queue of pending reservations
+ * @param {Number} reservation_intv - threshold time difference between now and reservation date for when reservation should be assigned
+ */
 export const TableManager = Class.create({
     name: 'TableManagerEntry',
     collection: TableManagers,
@@ -219,15 +246,19 @@ export const TableManager = Class.create({
     },
 
     meteorMethods : {
+	/**
+	 * @function manager_save
+	 * @summary saves changes to new manager
+	 */
         manager_save(){
            return this.save()
         
         },
         /**
-		 * @function verifyReservation
-		 * @summary Checks if a reservation can be added to the wait list.
+         * @function verifyReservation
+	 * @summary Checks if a reservation can be added to the wait list.
          * @param {Number} time - Time to check the reservations
-         * @returns {boolean} True if the number of reservation tables is less than the number reserved at some time.
+         * @returns {Boolean} True if the number of reservation tables is less than the number reserved at some time.
          */
 		verifyReservation(time) {
 			//the number of reses for a given time must not exceed # of reservation tables
@@ -240,11 +271,21 @@ export const TableManager = Class.create({
 			});
 			return (numRes + 1 <= numResTables) ? true : false;
 		},
-
+	/**
+	 *@function pushReservation
+	 *@summary pushes new reservation onto queue
+	 *@param {Reservation} reservation
+	 */
         pushReservation(reservation){
             this.reservations.push(reservation);
             this.save();
         },
+	/**
+	 *@function popReservation
+	 *@summary removes reservation from queue and deletes it
+	 *@param {Reservation} res - Reservation to pop from queue
+	 *@returns {Boolean} success
+	 */
         popReservation(res) {
 			var res_ind = this.reservations.findIndex((res_loop) =>(res.phoneNum == res_loop.phoneNum));
             if (res_ind == -1)
@@ -254,10 +295,16 @@ export const TableManager = Class.create({
 			res.remote_delete();
             return true;
 	},
-	/*
-	 * gets num tables if possible of table_type and table_status
-	 * returns array of table id's
-	 *
+
+	/**
+	 * @function getTables
+	 * @summary gets num tables if possible of table_type and table_status
+	 * @returns array of table id's 
+	 * @param {Number} num - Number of tables to retreive
+	 * @param {Number} size - Size of tables to retreive
+	 * @param {TableType} table_type - type of tables to get
+	 * @param {TableStatus} table_status - status of the tables to get
+	 * @return array of table ids
 	 */
 	getTables(num,size,table_type,table_status){
 		 var table_list = [];
@@ -278,6 +325,12 @@ export const TableManager = Class.create({
 
 
 	},
+	/**
+	 *@function assignTable
+	 *@summary assigns a reservation to a table
+	 *@param {Table} table - Table to assign reservation to
+	 *@param {Reservation} res - Reservation to assign a table
+	 */
         assignTable(table,res){
 	   
 	    var table_obj = Table.findOne({'table_id':table});
@@ -292,6 +345,12 @@ export const TableManager = Class.create({
         },
         // combines tables in list 'tables' into one temporarly
 	// 'tables' contains the id's of tables to merge
+	/**
+	 *@function mergeTable
+	 *@summary merges the tables in "tables" and assigns "res" to the resulting table
+	 *@param {[Number]} tables - Id's of tables to merge
+	 *@param {Reservation} res - Reservation to assign to merged table
+	 */
         mergeTable(tables,res){
 	    var size = 0;
 	    var table_type = null;
@@ -332,7 +391,13 @@ export const TableManager = Class.create({
 	    return;          
             
         },
+
 	//breaks table_merged into its components and deletes it
+	/**
+	 *@function unmergeTable
+	 *@summary breaks merged table up into its components
+	 *@param {Number} table_merged_id - Id of merged table
+	 */
         unmergeTable(table_merged_id){
 	    //pass table id since meteor is stupid
             //break table up into its components
@@ -349,6 +414,10 @@ export const TableManager = Class.create({
             return;
         
         },
+	/*
+	 *@function startPollReservations
+	 *@summary polls for incoming reservations to assign them tables
+	 */
         startPollReservations(){
         	var size = this.size;
    		Meteor.setInterval(function(){
@@ -398,7 +467,7 @@ export const TableManager = Class.create({
 					
 					}
 				}
-			    console.log("WTF");
+
 			    	manager.popReservation(res);
 				return;
 		    }

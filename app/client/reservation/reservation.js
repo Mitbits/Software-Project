@@ -1,4 +1,6 @@
-
+//written by : Prabhjot Singh, Dylan Herman and Nill Patel
+//tested by:  Prabhjot Singh, Dylan Herman and Nill Patel
+//debugged by:  Prabhjot Singh, Dylan Herman and Nill Patel
 import {Reservations} from '../../imports/api/reservation.js';
 import { Reservation } from '../../imports/api/reservation.js';
 import { TableManager } from '../../imports/api/table.js';

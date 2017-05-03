@@ -1,5 +1,5 @@
 // written by: Prabhjot Singh
-// tested by: Moulindra Muchumari
+// tested by: Moulindra Muchumar
 // debugged by: Raj Patel
 // assisted by: Nill Patel
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
