@@ -1,3 +1,5 @@
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 import {createChart, createPieChart} from './chart.js';
 import {TimeSpent,AvgTimeSpent} from '../../imports/api/data/avgTimeSpent.js';
 import {PopItem, PopItems} from '../../imports/api/data/popularItems.js';

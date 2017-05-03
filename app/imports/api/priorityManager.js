@@ -1,3 +1,5 @@
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 import { Class, Enum, Type } from 'meteor/jagi:astronomy';
 import { Orders } from './order.js';
 import { MenuItem, MenuItems, ORDER_TYPE } from './menuItem.js';

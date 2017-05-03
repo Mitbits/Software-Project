@@ -1,6 +1,5 @@
-//written by Dylan Herman
-//tested by Dylan Herman
-//debugged by Dylan Herman and Moulindra Muchumari
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 import {createChartSingleY} from './chart.js';
 import {ArchivedReservations} from '../../imports/api/data/reservation.js'
 

@@ -1,3 +1,5 @@
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 import { Meteor } from 'meteor/meteor';
 import {initData} from './dataDriver.js';
 import { Bill } from '../imports/api/billsJS.js';

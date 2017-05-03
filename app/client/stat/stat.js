@@ -1,3 +1,5 @@
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 var dataItems; // dataItems object
 import {createChart} from './chart.js';
 import {AvgCookTime,AvgCookTimes} from '../../imports/api/data/avgCookTime.js';

@@ -1,6 +1,5 @@
-//written by Moulindra Muchumari
-//assisted by Dylan Herman
-//tested by Moulindra Muchumari and Dylan Herman
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 const primaryColors = ['#B7A6AD', '#BEB2A7', '#CAB388', '#B5B292', '#A8ADB4'];
 const secondaryColors = ['#502812', '#892034', '#6F256C', '#004236', '#9F9B74'];
 

@@ -1,6 +1,5 @@
-//written by Dylan Herman
-//debugged by Dylan Herman
-//tested by Dylan Herman
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 
 import { Mongo } from 'meteor/mongo';
 import { Class } from 'meteor/jagi:astronomy'

@@ -1,11 +1,8 @@
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
+
 import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
-//written by: Dylan Herman and Nill Patel
-//tested by: Nill Patel
-//debugged by Dylan Herman
-
-
-
 import { Reservation } from './reservation.js'
 export const Tables = new Mongo.Collection('table');
 export const TableManagers = new Mongo.Collection('tablemanagers');

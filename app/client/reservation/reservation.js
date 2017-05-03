@@ -1,7 +1,5 @@
-
-//written by : Prabhjot Singh, Dylan Herman and Nill Patel
-//tested by:  Prabhjot Singh, Dylan Herman and Nill Patel
-//debugged by:  Prabhjot Singh, Dylan Herman and Nill Patel
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 
 /**
  * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli

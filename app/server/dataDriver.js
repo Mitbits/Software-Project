@@ -1,3 +1,5 @@
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 import {AvgCookTime, AvgCookTimes} from '../imports/api/data/avgCookTime.js';
 import {IngUsage, AvgIngUsage} from '../imports/api/data/avgIngUsage.js';
 import {NumOrders, AvgNumOrders} from '../imports/api/data/avgNumOrders.js';
