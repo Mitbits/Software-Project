@@ -57,21 +57,21 @@ Project Website: https://github.com/Mitbits/Software-Project
 				+ reservation.js : JavaScript for reservation page including function
 				+ reservationSuccess.html : HTML page for reservation success
 			- stat
-				+ archive.html
-				+ archive.js
-				+ billing.html
-				+ billing.js
-				+ chart.js
-				+ d3_timeseries.css
-				+ d3_timeseries.js
-				+ general.html
-				+ general.js
-				+ kitchen.html
-				+ kitchen.js
-				+ reservation.html
-				+ stat.css
-				+ stat.html
-				+ stat.js
+				+ archive.html : HTML page for archive statistics
+				+ archive.js : JS file controller for archives
+				+ billing.html : Billing HTML page that shows past transactions
+				+ billing.js : Billing page controller
+				+ chart.js : Controller for creating HTML graphics objects of charts using various libraries
+				+ d3_timeseries.css : Stylesheet for timeseries graphs (3rd party library)
+				+ d3_timeseries.js : Javascript file from 3rd party that uses d3.js to create timeseries graphs
+				+ general.html : HTML page for "general" statistics
+				+ general.js : JS controller for "general" statistics
+				+ kitchen.html : HTML page for kitchen statistics
+				+ kitchen.js : JS controller for kitchen statistics 
+				+ reservation.html : HTML page showing reservation statistics
+				+ stat.css : Stylesheet for all the statistics, graphs and other displays
+				+ stat.html : Wrapper HTML page for statistics containing the menu
+				+ stat.js : Main controller that creates displays for each statistic
 			- waiter
 				+ waiter.css : Stylesheet for waiter interface
 				+ waiter.html : HTML page for waiter interface
@@ -83,21 +83,21 @@ Project Website: https://github.com/Mitbits/Software-Project
 		- imports
 			- api
 				- data
-					+ avgCookTime.js
-					+ avgIngUsage.js
-					+ avgNumOrders.js
-					+ avgTimeSpent.js
-					+ popularItems.js
-					+ reservation.js
+					+ avgCookTime.js : Server side class and database setup for average cook time data
+					+ avgIngUsage.js : Server side class and database setup for average ingredient usage data
+					+ avgNumOrders.js : Server side class and database setup for average number of orders data
+					+ avgTimeSpent.js : Server side class and database setup for average time spent data
+					+ popularItems.js : Server side class and database setup for popular items(for the week) data
+					+ reservation.js : Server side class and database setup for archived reservation data
 				- test
 					- client
-						+ client.tests.js
-						+ jquery.js
-						+ stats.tests.js
+						+ client.tests.js : All the client side tests
+						+ jquery.js : Jquery library used in client side testing
+						+ stats.tests.js : Client side tests for the statistics
 					- server
-						+ order.tests.js
-						+ priorityMangager.tests.js
-						+ table.tests.js
+						+ order.tests.js : Server side tests for ordering module
+						+ priorityMangager.tests.js : Server side tests for priority manager module
+						+ table.tests.js : Server side tests for table managing
 			+ billJS.js : Server side class and database setup for billItems and bill
 			+ ingredient.js : Server side class and database setup for ingredients
 			+ mealSuggestions.js : Server side class and database setup for popularItems
