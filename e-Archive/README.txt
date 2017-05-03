@@ -33,7 +33,7 @@ Project Website: https://github.com/Mitbits/Software-Project
 				+ inventory.css : The stylesheet for the inventory page
 				+ inventory.html : HTML Page for inventory
 				+ inventory.js: JavaScript for inventory including all the functions
-			- lib
+			- lib : libraries used by semantic
 			- Login
 				+ login.css: Stylesheet for the login page
 				+ loginJS.js: JavaScript for the login page including all the functions
@@ -102,7 +102,7 @@ Project Website: https://github.com/Mitbits/Software-Project
 			+ priorityManager.js : Server side class and database setup for priority manager
 			+ reservation.js : Server side class and database setup for reservation
 			+ table.js : Server side class and database setup for table
-		- lib
+		- lib : library for semantic
 		- private
 			+ debug.log : log file for debugging
 			+ reservation-email.html: email template for reservation confirmation
