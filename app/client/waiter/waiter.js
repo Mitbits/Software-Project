@@ -1,7 +1,7 @@
-// written by: Prabhjot Singh
-// tested by: Dylan Herman
-// debugged by: Raj Patel
-// assisted by: Mit Patel
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';

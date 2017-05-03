@@ -1,4 +1,7 @@
-
+/**
+ * Authors - Mit, Raj, Prabhjot, Nill, Dylan, Mouli
+ * Project Website - https://github.com/Mitbits/Software-Project
+ */
 import { Tables,Table, TableStatus,TableType, TableManager } from '../../imports/api/table.js';
 
 import { Mongo } from 'meteor/mongo';
