@@ -9,9 +9,9 @@ import { Mongo } from 'meteor/mongo';
 import { Class,Enum } from 'meteor/jagi:astronomy'
 
 Template.floorplan.events({
-	/*
-	 *@function click #merge_button
-	 *@summary transistions interface to manual merge interface, allows for selecting tables to merge
+	/**
+	 * @function click #merge_button
+	 * @summary transistions interface to manual merge interface, allows for selecting tables to merge
 	 */
 	'click #merge_button' (){
 		// check of the button to enter the merge interface was clicked
