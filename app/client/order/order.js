@@ -85,7 +85,7 @@ Template.orderQueue.helpers({
 
 /**
  * @function doneButtonHandler
- * @summary Allows user to get rid of an order from the order queue
+ * @summary Allows user to get rid of an order from the order queue and use that data to update new existing values in database based on the algorithm
  * @param event
  * @param templateInstance
  */
