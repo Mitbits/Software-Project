@@ -20,11 +20,11 @@ Meteor.startup(() => {
     initData();
     TableManager.remove({});
     Table.remove({});
-    //Order.remove({}); //remove late
+    Order.remove({}); //remove late
     Reservation.remove({});
-    //MenuItem.remove({});
+    MenuItem.remove({});
     popularItem.remove({});
-    //inventoryItems.remove({});
+    inventoryItems.remove({});
     ArchivedReservation.remove({});
     var date = new Date();
     for (var i = 0; i < 24; i++) {

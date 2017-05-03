@@ -24,9 +24,9 @@ Project Website: https://github.com/Mitbits/Software-Project
 				+ floorplan.html
 				+ floorplan.js
 			- inventory
-				+ inventory.css
-				+ inventory.html
-				+ inventory.js
+				+ inventory.css : The stylesheet for the inventory page
+				+ inventory.html : HTML Page for inventory
+				+ inventory.js: JavaScript for inventory including all the functions
 			- lib
 			- Login
 				+ login.css
@@ -42,10 +42,10 @@ Project Website: https://github.com/Mitbits/Software-Project
 				+ order.html
 				+ order.js
 			- reservation
-				+ reservation.css
-				+ reservation.html
-				+ reservation.js
-				+ reservationSuccess.html
+				+ reservation.css : The stylesheet for the reservation page
+				+ reservation.html : HTML page for reservation
+				+ reservation.js : JavaScript for reservation page including function
+				+ reservationSuccess.html : HTML page for reservation success
 			- stat
 				+ archive.html
 				+ archive.js
@@ -63,9 +63,9 @@ Project Website: https://github.com/Mitbits/Software-Project
 				+ stat.html
 				+ stat.js
 			- waiter
-				+ waiter.css
-				+ waiter.html
-				+ waiter.js
+				+ waiter.css : Stylesheet for waiter interface
+				+ waiter.html : HTML page for waiter interface
+				+ waiter.js : JavaScript code for waiter interface including functions
 			+ favicon
 			+ main.css
 			+ main.html
@@ -89,12 +89,12 @@ Project Website: https://github.com/Mitbits/Software-Project
 						+ priorityMangager.tests.js
 						+ table.tests.js
 			+ billJS.js
-			+ ingredient.js
+			+ ingredient.js : Inventory Item class which is saved in a mongoDB database at the beginning of the application
 			+ mealSuggestions.js
-			+ menuItem.js
+			+ menuItem.js : MenuItem class which is saved in a mongoDB database at the beginning of the application
 			+ order.js
 			+ priorityManager.js
-			+ reservation.js
+			+ reservation.js : reservation class which is saved in a mongoDB database when a customer makes a reservation
 			+ table.js
 		- lib
 		- private
@@ -103,6 +103,6 @@ Project Website: https://github.com/Mitbits/Software-Project
 		- server
 			+ dataDriver.js
 			+ inventory.json
-			+ main.js
+			+ main.js : contains all the code the application needs to run on startup to make sure the application is working properly
 			+ menuItems.json
 			+ MenuItems.txt

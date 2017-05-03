@@ -1,7 +1,5 @@
-// written by: Prabhjot Singh
-// tested by: Moulindra Muchumari
-// debugged by: Raj Patel
-// assisted by: Nill Patel
+// Authors: Raj Patel, Mit Patel, Dylan Herman, Moulindra Muchumari, Prabhjot Singh, Nill Patel
+// Project Website: https://github.com/Mitbits/Software-Project
 import { MenuItem, MenuItems } from '../../imports/api/menuItem.js';
 import { inventoryItems, inventoryItem} from '../../imports/api/ingredient.js';
 import { ReactiveVar } from 'meteor/reactive-var';
@@ -160,7 +158,7 @@ Template.ingredientRow.helpers({
     },
     /**
      * @function decimalPrice
-     * @summary Convers
+     * @summary Converts the price to proper decimal places and returns the value
      */
     decimalPrice () {
         var price = this.invPrice;
@@ -175,6 +173,10 @@ Template.ingredientRow.helpers({
         }
         return price;
     },
+    /**
+     * @function precisionQuantity
+     * @summary Converts the quantity of an item to propmer decimal places and returns the value
+     */
     precisionQuantity () {
         var pQuantity = this.invQuantity;
         if(pQuantity < 10){
@@ -194,6 +196,10 @@ Template.ingredientRow.helpers({
 })
 
 Template.shoppingRow.helpers({
+    /**
+     * @function decimalPrice
+     * @summary Converts the price to proper decimal places and returns the value
+     */
     decimalPrice () {
         var price = this.price;
         if(price < 0 ) {
