@@ -19,10 +19,11 @@ Project Website: https://github.com/Mitbits/Software-Project
 + README.txt : Basic information about the contents of the electronic archive.
 + Installation.txt : Offline instructions for running the software.
 - doc : Relevant documents to the project
-	+ Demo_01_Slides : The presentation slides used for Demo 1
-	+ Group_02_Report1_Full : The submitted version of Report 1 (Full)
-	+ Group_02_Report2_Full : The submitted version of Report 2 (Full)
-	+ Group_02_Report3_Full : The submitted version of Report 3 (Full)
+	+ Demo_01_Slides.pptx : The presentation slides used for Demo 1
+	+ Group_02_Report1_Full.pdf : The submitted version of Report 1 (Full)
+	+ Group_02_Report2_Full.pdf : The submitted version of Report 2 (Full)
+	+ Group_02_Report3_Full.pdf : The submitted version of Report 3 (Full)
+	+ Technical-Documentation-for-iRestaurant.pdf : Technical documentation for the software (Final)
 - design
 	+ Diagrams.zip : ZIP archive of relevant diagram images
 - code
