@@ -6,6 +6,10 @@ let dataArr = null;
 let index = 0;
 let total = 0;
 
+/**
+* @function datePickerFtn
+* @summary shows the datepicker for the transaction viewing date
+*/
 Template.archive.onRendered(function(){
 	$('#sandbox-container div').datepicker()
   .on('changeDate', function(e) {
@@ -15,12 +19,20 @@ Template.archive.onRendered(function(){
 });
 
 Template.archive.events({
+	/**
+	* @function prevClick
+	* @summary handles the click event to show previous transaction on the same day
+	*/
 	'click #prev': function(e) {
 		if(index > 1 && index <= total) {
 
 			setDataToHTML(--index, total);
 		}
 	},
+	/**
+	* @function nextClick
+	* @summary handles the click event to show next transaction on the same day
+	*/
 	'click #next' : function(e) {
 		if(index >= 1 && index <= total - 1) {
 			setDataToHTML(++index, total);
@@ -28,6 +40,10 @@ Template.archive.events({
 	}
 })
 
+/**
+* @function bindData
+* @summary pulls billing data from the database and binds it to the HTML page
+*/
 let bindData = function(date) {
   let data = [];
   Bills.find({}).forEach(function(bill) {
@@ -51,6 +67,10 @@ let bindData = function(date) {
 
 }
 
+/**
+* @function setDataToHTML
+* @summary creates the HTML for the bill display
+*/
 let setDataToHTML = function(ind, totalNum) {
 	let dataItem = dataArr[ind - 1];
 	$('#index').text(ind);

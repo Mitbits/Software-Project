@@ -7,25 +7,10 @@ import {AvgCookTime,AvgCookTimes} from '../../imports/api/data/avgCookTime.js';
 
 var prevSelected = 'general';
 
-Template.stat.onRendered(function() {
-
-  /*var data = [4, 8, 15, 16, 23, 42];
-
-  var x = d3.scale.linear()
-      .domain([0, d3.max(data)])
-      .range([0, 420]);
-
-  d3.select(".chart")
-    .selectAll("div")
-      .data(data)
-    .enter().append("div")
-      .style("width", function(d) { return x(d) + "px"; })
-      .text(function(d) { return d; });*/
-
-
-});
-
-
+/**
+* @function create menu
+* @summary Creates the menu based on the statistics to be shown (based on the DataItems object)
+*/
 Template.stat.onCreated(function() {
   dataItems = new DataItems();
   for(var item of dataItems.names) {
@@ -34,6 +19,10 @@ Template.stat.onCreated(function() {
 });
 
 Template.stat.helpers({
+  /**
+  * @function menuItems
+  * @summary Switches between different statistics on the menu
+  */
   menuItems() { // initialize menu items properly
     var html = '';
     for(var ind in dataItems.names) {
@@ -50,6 +39,10 @@ Template.stat.helpers({
 });
 
 Template.stat.events({
+  /**
+  * @function clickMenu
+  * @summary Handles the click events on the menu
+  */
   'click .menu-item': function(event) { // menu item clicked render proper change
     var $clickedItem = event.target;
     var clickedName = $clickedItem.text;
@@ -62,6 +55,10 @@ Template.stat.events({
   }
 });
 
+/**
+ *@class DataItems
+ *@summary Contains the statistics to be shown 
+ */
 class DataItems {
   constructor() {
     this.names = [

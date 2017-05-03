@@ -3,7 +3,10 @@
 const primaryColors = ['#B7A6AD', '#BEB2A7', '#CAB388', '#B5B292', '#A8ADB4'];
 const secondaryColors = ['#502812', '#892034', '#6F256C', '#004236', '#9F9B74'];
 
-
+/**
+* @function createChart
+* @summary creates the actual HTML graphics object for the chart using the d3 timerseries api - used for two data series
+*/
 var createChart = function(options) {
 	console.log(options.data);
   var chart = d3.timeseries()
@@ -16,6 +19,10 @@ var createChart = function(options) {
   chart(options.selection);
 }
 
+/**
+* @function createChartSingleY
+* @summary creates the actual HTML graphics object for the chart using the d3 timerseries api - used for only one data series
+*/
 var createChartSingleY = function(options) {
   var chart = d3.timeseries()
               .addSerie(options.data,{x:options.x,y:options.y},{interpolate:'monotone',color:primaryColors[getRandomInt(0,4)]})
@@ -26,7 +33,10 @@ var createChartSingleY = function(options) {
   chart(options.selection);
 }
 
-
+/**
+* @function createPieChart
+* @summary creates the actual HTML graphics object for the chart using the c3 api - used for pie charts only
+*/
 var createPieChart = function(options) {
 
   var chart = c3.generate({

@@ -5,14 +5,26 @@ import {TimeSpent,AvgTimeSpent} from '../../imports/api/data/avgTimeSpent.js';
 import {PopItem, PopItems} from '../../imports/api/data/popularItems.js';
 
 Template.general.helpers({
+  /**
+  * @function createTimeSpentGraph
+  * @summary helper to create time spent graph
+  */
   createTimeSpentGraph: function() {
     createTimeSpentDisplay();
   },
+  /**
+  * @function createPopItemsCharts
+  * @summary helper to create popular items graphs
+  */
   createPopItemsCharts: function() {
     createPopItemsDisplay();
   }
 });
 
+/**
+* @function createTimeSpentDisplay
+* @summary Pulls appropriate data of time spent from database and creates the chart to be displayed
+*/
 const createTimeSpentDisplay = function() {
   let timeSpent = [];
   AvgTimeSpent.find({}).forEach(
@@ -23,6 +35,10 @@ const createTimeSpentDisplay = function() {
   createChart({data: timeSpent,x:'time',y:'spent',y2:'avgSpent',selection:'#timeSpentGraph'});
 }
 
+/**
+* @function createPopItemsDisplay
+* @summary Pulls appropriate data of popular items from database and creates charts to be displayed for each menu item type
+*/
 const createPopItemsDisplay = function() {
   let refreshments = [], appetizers = [], entrees = [], desserts = [];
   PopItems.find({}).forEach(

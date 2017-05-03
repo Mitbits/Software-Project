@@ -8,6 +8,10 @@ import {PopItem, PopItems} from '../imports/api/data/popularItems.js';
 import {MenuItems, ORDER_TYPE} from '../imports/api/menuItem.js';
 import {inventoryItems} from '../imports/api/ingredient.js';
 
+/**
+* @function initAvgCookTime
+* @summary Creates random data of cook time of an item for an entire year and saves it to the database
+*/
 export const initAvgCookTime = function() {
   let menuItems = MenuItems.find({});
   menuItems.forEach(function(menuItem) {
@@ -36,6 +40,10 @@ export const initAvgCookTime = function() {
 
 }
 
+/**
+* @function initAvgIngUsage
+* @summary Creates random data of usage of an ingredient for an entire year and saves it to the database
+*/
 export const initAvgIngUsage = function() {
   let ings = inventoryItems.find({});
   ings.forEach(function(ing) {
@@ -74,6 +82,10 @@ export const initAvgIngUsage = function() {
   });
 }
 
+/**
+* @function initAvgNumOrders
+* @summary Creates random data of number of orders of a menu item for an entire year and saves it to the database
+*/
 export const initAvgNumOrders = function() {
   let today = new Date();
   let start = new Date(today.setFullYear(today.getFullYear() - 1));
@@ -100,6 +112,10 @@ export const initAvgNumOrders = function() {
   }
 }
 
+/**
+* @function initAvgTimeSpent
+* @summary Creates random data of time spent by a customer at the restaurant every hour for an entire year and saves it to the database
+*/
 export const initAvgTimeSpent = function() {
   let today = new Date();
   let start = new Date(today.setFullYear(today.getFullYear() - 1));
@@ -119,6 +135,10 @@ export const initAvgTimeSpent = function() {
   }
 }
 
+/**
+* @function initPopItems
+* @summary Creates random data of popular items for the week and saves it to the database
+*/
 export const initPopItems = function() {
   let menuItems = MenuItems.find({});
   menuItems.forEach(function(menuItem) {
@@ -133,6 +153,10 @@ export const initPopItems = function() {
   });
 }
 
+/**
+* @function initData
+* @summary Checks if the data used for statistics exists otherwise creates data
+*/
 export const initData = function() {
   PopItems.remove({});
   var count = AvgCookTimes.find({}).count();
@@ -161,6 +185,11 @@ export const initData = function() {
   }
 }
 
+/**
+* @function getRandomInt
+* @summary Creates a random integer that is in range [min, max]
+* @returns {Number} an integer between and including min, max
+*/
 const getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

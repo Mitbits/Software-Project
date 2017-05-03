@@ -11,6 +11,10 @@ let listHTML= '';
 let listIngHTML = '';
 
 Template.kitchen.helpers({
+  /**
+  * @function listMenuItems
+  * @summary Displays the menuItems select feature
+  */
   listMenuItems: function() {
     if(listHTML === '') {
       let menuItems = MenuItems.find({});
@@ -23,6 +27,10 @@ Template.kitchen.helpers({
     return listHTML;
   },
 
+  /**
+  * @function listIngredients
+  * @summary Displays the ingredients select feature
+  */
   listIngredients: function() {
     if(listIngHTML === '') {
       let invItems = inventoryItems.find({});
@@ -35,17 +43,29 @@ Template.kitchen.helpers({
     return listIngHTML;
   },
 
+  /**
+  * @function createNumOrdersGraph
+  * @summary creates the number of orders graph
+  */
   createNumOrdersGraph: function() {
     createNumOrdersDisplay();
   }
 });
 
 Template.kitchen.events({
+  /**
+  * @function clickCookTimeItems
+  * @summary Handles the click events on different menu items select feature
+  */
   'change #cookTimeItems': function(event) { // menu item clicked render proper change
     var $clickedItem = $('#cookTimeItems option:selected');
     var clickedID = parseInt($clickedItem.attr('value'));
     createCookTimeDisplay(clickedID);
   },
+  /**
+  * @function clickIngredients
+  * @summary Handles the click events on the different ingredients select feature
+  */
   'change #ingredients': function(event) { // menu item clicked render proper change
     var $clickedItem = $('#ingredients option:selected');
     var clickedID = parseInt($clickedItem.attr('value'));
@@ -53,6 +73,10 @@ Template.kitchen.events({
   }
 });
 
+/**
+* @function createCookTimeDisplay
+* @summary Pulls appropriate data of cook times from database and creates the chart to be displayed
+*/
 const createCookTimeDisplay = function(itemID) {
   let avgCookTimes = [];
   AvgCookTimes.find({menuItemID: itemID}).forEach(
@@ -63,6 +87,10 @@ const createCookTimeDisplay = function(itemID) {
   createChart({data: avgCookTimes,x:'time',y:'cookTime',y2:'avgCookTime',selection:'#cookTimeGraph'});
 }
 
+/**
+* @function createIngUsageDisplay
+* @summary Pulls appropriate data of ingredient usage from database and creates the chart to be displayed
+*/
 const createIngUsageDisplay = function(itemID) {
   let avgIngUsage = [];
   AvgIngUsage.find({ingID: itemID}).forEach(
@@ -74,6 +102,10 @@ const createIngUsageDisplay = function(itemID) {
   createChart({data: avgIngUsage,x:'time',y:'quantity',y2:'avgQuantity',selection:'#ingUsageGraph'});
 }
 
+/**
+* @function createNumOrdersDisplay
+* @summary Pulls appropriate data of number of orders from database and creates the chart to be displayed
+*/
 const createNumOrdersDisplay = function() {
   let numOrders = [];
   AvgNumOrders.find({}).forEach(
@@ -85,6 +117,10 @@ const createNumOrdersDisplay = function() {
 }
 
 const Kitchen = {};
+/**
+* @function createDisplay
+* @summary Called by the master controller in statjs
+*/
 Kitchen.createDisplay = function() {
   console.log('createDisplay');
 }
